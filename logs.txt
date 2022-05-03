@@ -1,0 +1,164 @@
+2022-04-19 14:33:02.496 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-04-19 14:33:02.565 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-04-19 14:33:02.566 +04:30 [INF] Hosting environment: Development
+2022-04-19 14:33:02.566 +04:30 [INF] Content root path: D:\Projects\C#\Templates\GroupManager
+2022-04-19 14:33:41.060 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-04-19 14:33:41.127 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-04-19 14:33:41.129 +04:30 [INF] Hosting environment: Development
+2022-04-19 14:33:41.129 +04:30 [INF] Content root path: D:\Projects\C#\Templates\GroupManager
+2022-05-03 23:16:13.752 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-03 23:16:13.868 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-03 23:16:13.871 +04:30 [INF] Hosting environment: Development
+2022-05-03 23:16:13.871 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-03 23:16:48.042 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-03 23:16:48.130 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-03 23:16:48.133 +04:30 [INF] Hosting environment: Development
+2022-05-03 23:16:48.134 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-03 23:29:14.646 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-03 23:29:14.719 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-03 23:29:14.721 +04:30 [INF] Hosting environment: Development
+2022-05-03 23:29:14.722 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-03 23:29:51.739 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-03 23:29:51.817 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-03 23:29:51.819 +04:30 [INF] Hosting environment: Development
+2022-05-03 23:29:51.819 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-03 23:34:06.893 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-03 23:34:06.969 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-03 23:34:06.972 +04:30 [INF] Hosting environment: Development
+2022-05-03 23:34:06.973 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-03 23:41:18.448 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-03 23:41:18.525 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-03 23:41:18.527 +04:30 [INF] Hosting environment: Development
+2022-05-03 23:41:18.528 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-03 23:43:54.834 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-03 23:43:54.909 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-03 23:43:54.912 +04:30 [INF] Hosting environment: Development
+2022-05-03 23:43:54.912 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-03 23:44:12.458 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-03 23:44:12.539 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-03 23:44:12.542 +04:30 [INF] Hosting environment: Development
+2022-05-03 23:44:12.542 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-03 23:44:16.269 +04:30 [ERR] BackgroundService failed
+Telegram.Bot.Exceptions.ApiRequestException: Forbidden: bot was kicked from the supergroup chat
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.SendTextMessageAsync(ITelegramBotClient botClient, ChatId chatId, String text, Nullable`1 parseMode, IEnumerable`1 entities, Nullable`1 disableWebPagePreview, Nullable`1 disableNotification, Nullable`1 replyToMessageId, Nullable`1 allowSendingWithoutReply, IReplyMarkup replyMarkup, CancellationToken cancellationToken)
+   at GroupManager.Application.Services.AdminService.BotJoinedChatAsync(ChatMemberUpdated chatMember, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\AdminService.cs:line 22
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 47
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateHandler.HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientPollingExtensions.ReceiveAsync(ITelegramBotClient botClient, IUpdateHandler updateHandler, ReceiverOptions receiverOptions, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientPollingExtensions.ReceiveAsync(ITelegramBotClient botClient, Func`4 updateHandler, Func`4 errorHandler, ReceiverOptions receiverOptions, CancellationToken cancellationToken)
+   at GroupManager.Application.Services.UpdateService.ExecuteAsync(CancellationToken stoppingToken) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 30
+   at Microsoft.Extensions.Hosting.Internal.Host.TryExecuteBackgroundServiceAsync(BackgroundService backgroundService)
+2022-05-03 23:44:16.325 +04:30 [FTL] The HostOptions.BackgroundServiceExceptionBehavior is configured to StopHost. A BackgroundService has thrown an unhandled exception, and the IHost instance is stopping. To avoid this behavior, configure this to Ignore; however the BackgroundService will not be restarted.
+Telegram.Bot.Exceptions.ApiRequestException: Forbidden: bot was kicked from the supergroup chat
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.SendTextMessageAsync(ITelegramBotClient botClient, ChatId chatId, String text, Nullable`1 parseMode, IEnumerable`1 entities, Nullable`1 disableWebPagePreview, Nullable`1 disableNotification, Nullable`1 replyToMessageId, Nullable`1 allowSendingWithoutReply, IReplyMarkup replyMarkup, CancellationToken cancellationToken)
+   at GroupManager.Application.Services.AdminService.BotJoinedChatAsync(ChatMemberUpdated chatMember, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\AdminService.cs:line 22
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 47
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateHandler.HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientPollingExtensions.ReceiveAsync(ITelegramBotClient botClient, IUpdateHandler updateHandler, ReceiverOptions receiverOptions, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientPollingExtensions.ReceiveAsync(ITelegramBotClient botClient, Func`4 updateHandler, Func`4 errorHandler, ReceiverOptions receiverOptions, CancellationToken cancellationToken)
+   at GroupManager.Application.Services.UpdateService.ExecuteAsync(CancellationToken stoppingToken) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 30
+   at Microsoft.Extensions.Hosting.Internal.Host.TryExecuteBackgroundServiceAsync(BackgroundService backgroundService)
+2022-05-03 23:44:16.333 +04:30 [INF] Application is shutting down...
+2022-05-03 23:44:34.128 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-03 23:44:34.207 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-03 23:44:34.209 +04:30 [INF] Hosting environment: Development
+2022-05-03 23:44:34.210 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-03 23:45:01.922 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-03 23:45:02.002 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-03 23:45:02.005 +04:30 [INF] Hosting environment: Development
+2022-05-03 23:45:02.005 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-03 23:45:12.448 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-03 23:45:12.531 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-03 23:45:12.534 +04:30 [INF] Hosting environment: Development
+2022-05-03 23:45:12.534 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-03 23:46:26.402 +04:30 [ERR] BackgroundService failed
+Telegram.Bot.Exceptions.ApiRequestException: Bad Request: can't parse entities: Character '>' is reserved and must be escaped with the preceding '\'
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.SendTextMessageAsync(ITelegramBotClient botClient, ChatId chatId, String text, Nullable`1 parseMode, IEnumerable`1 entities, Nullable`1 disableWebPagePreview, Nullable`1 disableNotification, Nullable`1 replyToMessageId, Nullable`1 allowSendingWithoutReply, IReplyMarkup replyMarkup, CancellationToken cancellationToken)
+   at GroupManager.Application.Services.AdminService.BotJoinedChatAsync(ChatMemberUpdated chatMember, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\AdminService.cs:line 27
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 47
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateHandler.HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientPollingExtensions.ReceiveAsync(ITelegramBotClient botClient, IUpdateHandler updateHandler, ReceiverOptions receiverOptions, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientPollingExtensions.ReceiveAsync(ITelegramBotClient botClient, Func`4 updateHandler, Func`4 errorHandler, ReceiverOptions receiverOptions, CancellationToken cancellationToken)
+   at GroupManager.Application.Services.UpdateService.ExecuteAsync(CancellationToken stoppingToken) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 30
+   at Microsoft.Extensions.Hosting.Internal.Host.TryExecuteBackgroundServiceAsync(BackgroundService backgroundService)
+2022-05-03 23:46:26.430 +04:30 [FTL] The HostOptions.BackgroundServiceExceptionBehavior is configured to StopHost. A BackgroundService has thrown an unhandled exception, and the IHost instance is stopping. To avoid this behavior, configure this to Ignore; however the BackgroundService will not be restarted.
+Telegram.Bot.Exceptions.ApiRequestException: Bad Request: can't parse entities: Character '>' is reserved and must be escaped with the preceding '\'
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.SendTextMessageAsync(ITelegramBotClient botClient, ChatId chatId, String text, Nullable`1 parseMode, IEnumerable`1 entities, Nullable`1 disableWebPagePreview, Nullable`1 disableNotification, Nullable`1 replyToMessageId, Nullable`1 allowSendingWithoutReply, IReplyMarkup replyMarkup, CancellationToken cancellationToken)
+   at GroupManager.Application.Services.AdminService.BotJoinedChatAsync(ChatMemberUpdated chatMember, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\AdminService.cs:line 27
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 47
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateHandler.HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientPollingExtensions.ReceiveAsync(ITelegramBotClient botClient, IUpdateHandler updateHandler, ReceiverOptions receiverOptions, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientPollingExtensions.ReceiveAsync(ITelegramBotClient botClient, Func`4 updateHandler, Func`4 errorHandler, ReceiverOptions receiverOptions, CancellationToken cancellationToken)
+   at GroupManager.Application.Services.UpdateService.ExecuteAsync(CancellationToken stoppingToken) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 30
+   at Microsoft.Extensions.Hosting.Internal.Host.TryExecuteBackgroundServiceAsync(BackgroundService backgroundService)
+2022-05-03 23:46:26.435 +04:30 [INF] Application is shutting down...
+2022-05-03 23:46:53.552 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-03 23:46:53.631 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-03 23:46:53.634 +04:30 [INF] Hosting environment: Development
+2022-05-03 23:46:53.634 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-03 23:47:25.992 +04:30 [ERR] BackgroundService failed
+Telegram.Bot.Exceptions.ApiRequestException: Forbidden: bot was kicked from the supergroup chat
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.SendTextMessageAsync(ITelegramBotClient botClient, ChatId chatId, String text, Nullable`1 parseMode, IEnumerable`1 entities, Nullable`1 disableWebPagePreview, Nullable`1 disableNotification, Nullable`1 replyToMessageId, Nullable`1 allowSendingWithoutReply, IReplyMarkup replyMarkup, CancellationToken cancellationToken)
+   at GroupManager.Application.Services.AdminService.BotJoinedChatAsync(ChatMemberUpdated chatMember, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\AdminService.cs:line 22
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 47
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateHandler.HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientPollingExtensions.ReceiveAsync(ITelegramBotClient botClient, IUpdateHandler updateHandler, ReceiverOptions receiverOptions, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientPollingExtensions.ReceiveAsync(ITelegramBotClient botClient, Func`4 updateHandler, Func`4 errorHandler, ReceiverOptions receiverOptions, CancellationToken cancellationToken)
+   at GroupManager.Application.Services.UpdateService.ExecuteAsync(CancellationToken stoppingToken) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 30
+   at Microsoft.Extensions.Hosting.Internal.Host.TryExecuteBackgroundServiceAsync(BackgroundService backgroundService)
+2022-05-03 23:47:26.020 +04:30 [FTL] The HostOptions.BackgroundServiceExceptionBehavior is configured to StopHost. A BackgroundService has thrown an unhandled exception, and the IHost instance is stopping. To avoid this behavior, configure this to Ignore; however the BackgroundService will not be restarted.
+Telegram.Bot.Exceptions.ApiRequestException: Forbidden: bot was kicked from the supergroup chat
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.SendTextMessageAsync(ITelegramBotClient botClient, ChatId chatId, String text, Nullable`1 parseMode, IEnumerable`1 entities, Nullable`1 disableWebPagePreview, Nullable`1 disableNotification, Nullable`1 replyToMessageId, Nullable`1 allowSendingWithoutReply, IReplyMarkup replyMarkup, CancellationToken cancellationToken)
+   at GroupManager.Application.Services.AdminService.BotJoinedChatAsync(ChatMemberUpdated chatMember, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\AdminService.cs:line 22
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 47
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateHandler.HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientPollingExtensions.ReceiveAsync(ITelegramBotClient botClient, IUpdateHandler updateHandler, ReceiverOptions receiverOptions, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientPollingExtensions.ReceiveAsync(ITelegramBotClient botClient, Func`4 updateHandler, Func`4 errorHandler, ReceiverOptions receiverOptions, CancellationToken cancellationToken)
+   at GroupManager.Application.Services.UpdateService.ExecuteAsync(CancellationToken stoppingToken) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 30
+   at Microsoft.Extensions.Hosting.Internal.Host.TryExecuteBackgroundServiceAsync(BackgroundService backgroundService)
+2022-05-03 23:47:26.024 +04:30 [INF] Application is shutting down...
+2022-05-03 23:48:20.053 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-03 23:48:20.143 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-03 23:48:20.146 +04:30 [INF] Hosting environment: Development
+2022-05-03 23:48:20.147 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-04 00:36:32.134 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-04 00:36:32.248 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-04 00:36:32.251 +04:30 [INF] Hosting environment: Development
+2022-05-04 00:36:32.251 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-04 00:37:03.562 +04:30 [ERR] BackgroundService failed
+Telegram.Bot.Exceptions.ApiRequestException: Forbidden: bot is not a member of the group chat
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.SendTextMessageAsync(ITelegramBotClient botClient, ChatId chatId, String text, Nullable`1 parseMode, IEnumerable`1 entities, Nullable`1 disableWebPagePreview, Nullable`1 disableNotification, Nullable`1 replyToMessageId, Nullable`1 allowSendingWithoutReply, IReplyMarkup replyMarkup, CancellationToken cancellationToken)
+   at GroupManager.Application.Services.AdminService.InitAsync(ChatMemberUpdated chatMember, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\AdminService.cs:line 19
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 47
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateHandler.HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientPollingExtensions.ReceiveAsync(ITelegramBotClient botClient, IUpdateHandler updateHandler, ReceiverOptions receiverOptions, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientPollingExtensions.ReceiveAsync(ITelegramBotClient botClient, Func`4 updateHandler, Func`4 errorHandler, ReceiverOptions receiverOptions, CancellationToken cancellationToken)
+   at GroupManager.Application.Services.UpdateService.ExecuteAsync(CancellationToken stoppingToken) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 30
+   at Microsoft.Extensions.Hosting.Internal.Host.TryExecuteBackgroundServiceAsync(BackgroundService backgroundService)
+2022-05-04 00:37:03.589 +04:30 [FTL] The HostOptions.BackgroundServiceExceptionBehavior is configured to StopHost. A BackgroundService has thrown an unhandled exception, and the IHost instance is stopping. To avoid this behavior, configure this to Ignore; however the BackgroundService will not be restarted.
+Telegram.Bot.Exceptions.ApiRequestException: Forbidden: bot is not a member of the group chat
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.SendTextMessageAsync(ITelegramBotClient botClient, ChatId chatId, String text, Nullable`1 parseMode, IEnumerable`1 entities, Nullable`1 disableWebPagePreview, Nullable`1 disableNotification, Nullable`1 replyToMessageId, Nullable`1 allowSendingWithoutReply, IReplyMarkup replyMarkup, CancellationToken cancellationToken)
+   at GroupManager.Application.Services.AdminService.InitAsync(ChatMemberUpdated chatMember, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\AdminService.cs:line 19
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 47
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateHandler.HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientPollingExtensions.ReceiveAsync(ITelegramBotClient botClient, IUpdateHandler updateHandler, ReceiverOptions receiverOptions, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientPollingExtensions.ReceiveAsync(ITelegramBotClient botClient, Func`4 updateHandler, Func`4 errorHandler, ReceiverOptions receiverOptions, CancellationToken cancellationToken)
+   at GroupManager.Application.Services.UpdateService.ExecuteAsync(CancellationToken stoppingToken) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 30
+   at Microsoft.Extensions.Hosting.Internal.Host.TryExecuteBackgroundServiceAsync(BackgroundService backgroundService)
+2022-05-04 00:37:03.593 +04:30 [INF] Application is shutting down...
