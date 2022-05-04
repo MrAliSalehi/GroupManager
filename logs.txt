@@ -162,3 +162,272 @@ Telegram.Bot.Exceptions.ApiRequestException: Forbidden: bot is not a member of t
    at GroupManager.Application.Services.UpdateService.ExecuteAsync(CancellationToken stoppingToken) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 30
    at Microsoft.Extensions.Hosting.Internal.Host.TryExecuteBackgroundServiceAsync(BackgroundService backgroundService)
 2022-05-04 00:37:03.593 +04:30 [INF] Application is shutting down...
+2022-05-04 00:38:50.846 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-04 00:38:50.920 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-04 00:38:50.922 +04:30 [INF] Hosting environment: Development
+2022-05-04 00:38:50.923 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-04 00:39:15.645 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-04 00:39:15.718 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-04 00:39:15.722 +04:30 [INF] Hosting environment: Development
+2022-05-04 00:39:15.723 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-04 00:39:29.428 +04:30 [ERR] BackgroundService failed
+Telegram.Bot.Exceptions.ApiRequestException: Forbidden: bot is not a member of the group chat
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.SendTextMessageAsync(ITelegramBotClient botClient, ChatId chatId, String text, Nullable`1 parseMode, IEnumerable`1 entities, Nullable`1 disableWebPagePreview, Nullable`1 disableNotification, Nullable`1 replyToMessageId, Nullable`1 allowSendingWithoutReply, IReplyMarkup replyMarkup, CancellationToken cancellationToken)
+   at GroupManager.Application.Services.AdminService.InitAsync(ChatMemberUpdated chatMember, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\AdminService.cs:line 19
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 47
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateHandler.HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientPollingExtensions.ReceiveAsync(ITelegramBotClient botClient, IUpdateHandler updateHandler, ReceiverOptions receiverOptions, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientPollingExtensions.ReceiveAsync(ITelegramBotClient botClient, Func`4 updateHandler, Func`4 errorHandler, ReceiverOptions receiverOptions, CancellationToken cancellationToken)
+   at GroupManager.Application.Services.UpdateService.ExecuteAsync(CancellationToken stoppingToken) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 30
+   at Microsoft.Extensions.Hosting.Internal.Host.TryExecuteBackgroundServiceAsync(BackgroundService backgroundService)
+2022-05-04 00:39:29.456 +04:30 [FTL] The HostOptions.BackgroundServiceExceptionBehavior is configured to StopHost. A BackgroundService has thrown an unhandled exception, and the IHost instance is stopping. To avoid this behavior, configure this to Ignore; however the BackgroundService will not be restarted.
+Telegram.Bot.Exceptions.ApiRequestException: Forbidden: bot is not a member of the group chat
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.SendTextMessageAsync(ITelegramBotClient botClient, ChatId chatId, String text, Nullable`1 parseMode, IEnumerable`1 entities, Nullable`1 disableWebPagePreview, Nullable`1 disableNotification, Nullable`1 replyToMessageId, Nullable`1 allowSendingWithoutReply, IReplyMarkup replyMarkup, CancellationToken cancellationToken)
+   at GroupManager.Application.Services.AdminService.InitAsync(ChatMemberUpdated chatMember, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\AdminService.cs:line 19
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 47
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateHandler.HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientPollingExtensions.ReceiveAsync(ITelegramBotClient botClient, IUpdateHandler updateHandler, ReceiverOptions receiverOptions, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientPollingExtensions.ReceiveAsync(ITelegramBotClient botClient, Func`4 updateHandler, Func`4 errorHandler, ReceiverOptions receiverOptions, CancellationToken cancellationToken)
+   at GroupManager.Application.Services.UpdateService.ExecuteAsync(CancellationToken stoppingToken) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 30
+   at Microsoft.Extensions.Hosting.Internal.Host.TryExecuteBackgroundServiceAsync(BackgroundService backgroundService)
+2022-05-04 00:39:29.462 +04:30 [INF] Application is shutting down...
+2022-05-04 00:39:37.510 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-04 00:39:37.584 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-04 00:39:37.587 +04:30 [INF] Hosting environment: Development
+2022-05-04 00:39:37.588 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-04 00:43:12.092 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-04 00:43:12.111 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-04 00:43:12.114 +04:30 [INF] Hosting environment: Development
+2022-05-04 00:43:12.115 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-04 20:46:38.328 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-04 20:46:38.349 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-04 20:46:38.351 +04:30 [INF] Hosting environment: Development
+2022-05-04 20:46:38.352 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-04 20:48:21.306 +04:30 [ERR] OnError
+Telegram.Bot.Exceptions.RequestException: Exception during making request
+ ---> System.Net.Http.HttpRequestException: An error occurred while sending the request.
+ ---> System.IO.IOException: Unable to read data from the transport connection: An established connection was aborted by the software in your host machine..
+ ---> System.Net.Sockets.SocketException (10053): An established connection was aborted by the software in your host machine.
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource<System.Int32>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.EnsureFullTlsFrameAsync[TIOAdapter](TIOAdapter adapter)
+   at System.Net.Security.SslStream.ReadAsyncInternal[TIOAdapter](TIOAdapter adapter, Memory`1 buffer)
+   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at Telegram.Bot.TelegramBotClient.<MakeRequestAsync>g__SendRequestAsync|22_0[TResponse](HttpClient httpClient, HttpRequestMessage httpRequest, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Telegram.Bot.TelegramBotClient.<MakeRequestAsync>g__SendRequestAsync|22_0[TResponse](HttpClient httpClient, HttpRequestMessage httpRequest, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+2022-05-04 20:49:03.566 +04:30 [ERR] OnError
+Telegram.Bot.Exceptions.RequestException: Exception during making request
+ ---> System.Net.Http.HttpRequestException: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond. (api.telegram.org:443)
+ ---> System.Net.Sockets.SocketException (10060): A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|277_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.AddHttp11ConnectionAsync(HttpRequestMessage request)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.GetHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at Telegram.Bot.TelegramBotClient.<MakeRequestAsync>g__SendRequestAsync|22_0[TResponse](HttpClient httpClient, HttpRequestMessage httpRequest, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Telegram.Bot.TelegramBotClient.<MakeRequestAsync>g__SendRequestAsync|22_0[TResponse](HttpClient httpClient, HttpRequestMessage httpRequest, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+2022-05-04 20:49:45.718 +04:30 [ERR] OnError
+Telegram.Bot.Exceptions.RequestException: Exception during making request
+ ---> System.Net.Http.HttpRequestException: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond. (api.telegram.org:443)
+ ---> System.Net.Sockets.SocketException (10060): A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|277_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.AddHttp11ConnectionAsync(HttpRequestMessage request)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.GetHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at Telegram.Bot.TelegramBotClient.<MakeRequestAsync>g__SendRequestAsync|22_0[TResponse](HttpClient httpClient, HttpRequestMessage httpRequest, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Telegram.Bot.TelegramBotClient.<MakeRequestAsync>g__SendRequestAsync|22_0[TResponse](HttpClient httpClient, HttpRequestMessage httpRequest, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+2022-05-04 20:50:27.872 +04:30 [ERR] OnError
+Telegram.Bot.Exceptions.RequestException: Exception during making request
+ ---> System.Net.Http.HttpRequestException: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond. (api.telegram.org:443)
+ ---> System.Net.Sockets.SocketException (10060): A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|277_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.AddHttp11ConnectionAsync(HttpRequestMessage request)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.GetHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at Telegram.Bot.TelegramBotClient.<MakeRequestAsync>g__SendRequestAsync|22_0[TResponse](HttpClient httpClient, HttpRequestMessage httpRequest, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Telegram.Bot.TelegramBotClient.<MakeRequestAsync>g__SendRequestAsync|22_0[TResponse](HttpClient httpClient, HttpRequestMessage httpRequest, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+2022-05-04 20:51:10.021 +04:30 [ERR] OnError
+Telegram.Bot.Exceptions.RequestException: Exception during making request
+ ---> System.Net.Http.HttpRequestException: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond. (api.telegram.org:443)
+ ---> System.Net.Sockets.SocketException (10060): A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Net.Sockets.Socket.<ConnectAsync>g__WaitForConnectWithCancellation|277_0(AwaitableSocketAsyncEventArgs saea, ValueTask connectTask, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnectionPool.ConnectToTcpHostAsync(String host, Int32 port, HttpRequestMessage initialRequest, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.ConnectAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.CreateHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.AddHttp11ConnectionAsync(HttpRequestMessage request)
+   at System.Threading.Tasks.TaskCompletionSourceWithCancellation`1.WaitWithCancellationAsync(CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.GetHttp11ConnectionAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at Telegram.Bot.TelegramBotClient.<MakeRequestAsync>g__SendRequestAsync|22_0[TResponse](HttpClient httpClient, HttpRequestMessage httpRequest, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Telegram.Bot.TelegramBotClient.<MakeRequestAsync>g__SendRequestAsync|22_0[TResponse](HttpClient httpClient, HttpRequestMessage httpRequest, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+2022-05-04 20:53:42.820 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-04 20:53:42.838 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-04 20:53:42.841 +04:30 [INF] Hosting environment: Development
+2022-05-04 20:53:42.841 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-04 21:04:42.035 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-04 21:04:42.053 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-04 21:04:42.055 +04:30 [INF] Hosting environment: Development
+2022-05-04 21:04:42.056 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-04 21:05:19.904 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-04 21:05:19.922 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-04 21:05:19.925 +04:30 [INF] Hosting environment: Development
+2022-05-04 21:05:19.925 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-04 21:25:24.053 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-04 21:25:24.072 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-04 21:25:24.075 +04:30 [INF] Hosting environment: Development
+2022-05-04 21:25:24.075 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-04 21:26:34.979 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-04 21:26:35.028 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-04 21:26:35.036 +04:30 [INF] Hosting environment: Development
+2022-05-04 21:26:35.037 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-04 21:39:56.515 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-04 21:39:56.532 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-04 21:39:56.534 +04:30 [INF] Hosting environment: Development
+2022-05-04 21:39:56.535 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-04 21:40:51.274 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-04 21:40:51.292 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-04 21:40:51.295 +04:30 [INF] Hosting environment: Development
+2022-05-04 21:40:51.295 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-04 21:52:11.422 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-04 21:52:11.441 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-04 21:52:11.443 +04:30 [INF] Hosting environment: Development
+2022-05-04 21:52:11.444 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-04 22:06:11.122 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-04 22:06:11.994 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-04 22:06:12.008 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-04 22:06:12.011 +04:30 [INF] Hosting environment: Development
+2022-05-04 22:06:12.011 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-04 22:06:12.185 +04:30 [ERR] OnError
+Telegram.Bot.Exceptions.ApiRequestException: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+2022-05-04 22:06:15.411 +04:30 [ERR] OnError
+Telegram.Bot.Exceptions.ApiRequestException: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+2022-05-04 22:06:15.687 +04:30 [ERR] OnError
+Telegram.Bot.Exceptions.ApiRequestException: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+2022-05-04 22:06:18.899 +04:30 [ERR] OnError
+Telegram.Bot.Exceptions.ApiRequestException: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+2022-05-04 22:06:19.116 +04:30 [ERR] OnError
+Telegram.Bot.Exceptions.ApiRequestException: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+2022-05-04 22:06:22.324 +04:30 [ERR] OnError
+Telegram.Bot.Exceptions.ApiRequestException: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+2022-05-04 22:06:22.487 +04:30 [ERR] OnError
+Telegram.Bot.Exceptions.ApiRequestException: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+2022-05-04 22:06:25.678 +04:30 [ERR] OnError
+Telegram.Bot.Exceptions.ApiRequestException: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+2022-05-04 22:06:25.891 +04:30 [ERR] OnError
+Telegram.Bot.Exceptions.ApiRequestException: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+2022-05-04 22:06:30.076 +04:30 [ERR] OnError
+Telegram.Bot.Exceptions.ApiRequestException: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+2022-05-04 22:06:30.299 +04:30 [ERR] OnError
+Telegram.Bot.Exceptions.ApiRequestException: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+2022-05-04 22:07:48.328 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-04 22:07:49.371 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-04 22:07:49.400 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-04 22:07:49.402 +04:30 [INF] Hosting environment: Development
+2022-05-04 22:07:49.403 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-04 22:07:49.593 +04:30 [ERR] OnError
+Telegram.Bot.Exceptions.ApiRequestException: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+2022-05-04 22:07:52.788 +04:30 [ERR] OnError
+Telegram.Bot.Exceptions.ApiRequestException: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+2022-05-04 22:07:52.977 +04:30 [ERR] OnError
+Telegram.Bot.Exceptions.ApiRequestException: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+2022-05-04 22:07:56.162 +04:30 [ERR] OnError
+Telegram.Bot.Exceptions.ApiRequestException: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+2022-05-04 22:07:56.370 +04:30 [ERR] OnError
+Telegram.Bot.Exceptions.ApiRequestException: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)

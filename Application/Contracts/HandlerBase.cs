@@ -2,9 +2,9 @@
 
 namespace GroupManager.Application.Contracts;
 
-public abstract class Service
+public abstract class HandlerBase
 {
-    protected Service(ITelegramBotClient client)
+    protected HandlerBase(ITelegramBotClient client)
     {
         Client = client;
     }

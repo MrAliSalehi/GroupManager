@@ -27,14 +27,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Application\Commands\" />
-		<Folder Include="Application\Handlers\" />
-		<Folder Include="Application\Contracts\" />
-		<Folder Include="Application\Services\" />
-		<Folder Include="Common\Globals\" />
 		<Folder Include="Common\Extensions\" />
 		<Folder Include="DataLayer\Models\" />
 		<Folder Include="DataLayer\Context\" />
+		<Folder Include="DataLayer\Controller\" />
 	</ItemGroup>
 
 </Project>

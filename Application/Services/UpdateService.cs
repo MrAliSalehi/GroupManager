@@ -1,6 +1,6 @@
-﻿using Serilog;
+﻿using GroupManager.Application.Handlers;
+using Serilog;
 using Telegram.Bot;
-using Telegram.Bot.Extensions.Polling;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 
@@ -9,38 +9,42 @@ namespace GroupManager.Application.Services
     public class UpdateService : BackgroundService
     {
         private readonly TelegramBotClient _client;
-        private readonly AdminService _adminService;
+        private readonly MyChatMemberHandler _myChatMemberHandler;
+        private readonly MessageHandler _messageHandler;
+        private readonly CallBackHandler _callBackHandler;
         public UpdateService()
         {
             _client = new TelegramBotClient(Globals.BotConfigs.Token);
-            _adminService = new AdminService(_client);
+            _myChatMemberHandler = new MyChatMemberHandler(_client);
+            _messageHandler = new MessageHandler(_client);
+            _callBackHandler = new CallBackHandler(_client);
         }
         public override async Task StartAsync(CancellationToken cancellationToken)
         {
             var me = await _client.GetMeAsync(cancellationToken);
             Log.Information("Bot Started With : {0}", me.Username);
+            ManagerConfig.BotUserName = me.Username ?? "-";
+            _client.StartReceiving(OnUpdate, OnError, cancellationToken: cancellationToken);
 
             await base.StartAsync(cancellationToken);
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            while (!stoppingToken.IsCancellationRequested)
-            {
-                await _client.ReceiveAsync(OnUpdate, OnError, cancellationToken: stoppingToken, receiverOptions: new ReceiverOptions() { Offset = 0 });
-                await Task.Delay(300, stoppingToken);
-            }
+            await Task.CompletedTask;
         }
 
         private async Task OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct)
         {
             var updateHandler = update.Type switch
             {
-                UpdateType.Message => Task.CompletedTask,
-                UpdateType.MyChatMember when (update.MyChatMember is not null) => _adminService.InitAsync(update.MyChatMember, ct),
-                UpdateType.Unknown => Task.CompletedTask,
-                UpdateType.ChatMember => Task.CompletedTask,
+                UpdateType.Message when (update.Message is not null) => _messageHandler.InitHandlerAsync(update.Message, ct),
+                UpdateType.ChatMember when (update.ChatMember is not null) => _myChatMemberHandler.InitHandlerAsync(update.ChatMember, ct),
+                UpdateType.MyChatMember when (update.MyChatMember is not null) => _myChatMemberHandler.InitHandlerAsync(update.MyChatMember, ct),
+
+                UpdateType.CallbackQuery when (update.CallbackQuery is not null) => _callBackHandler.InitHandlerAsync(update.CallbackQuery, ct),
                 UpdateType.ChatJoinRequest => Task.CompletedTask,
+                UpdateType.Unknown => Task.CompletedTask,
                 _ => Task.CompletedTask
             };
 
