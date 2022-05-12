@@ -7,6 +7,7 @@ namespace GroupManager.DataLayer.Context;
 public class ManagerContext : DbContext
 {
     public DbSet<Group> Groups { get; set; }
+    public DbSet<User> Users { get; set; }
 
     private readonly ILoggerFactory _loggerFactory;
     private static string DbPath => "ManagerDb.db";
@@ -17,6 +18,8 @@ public class ManagerContext : DbContext
     {
         _loggerFactory = loggerFactory;
     }
+
+
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
         options.UseLoggerFactory(_loggerFactory);

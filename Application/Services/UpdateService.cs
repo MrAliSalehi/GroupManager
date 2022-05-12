@@ -1,4 +1,5 @@
 ﻿using GroupManager.Application.Handlers;
+using GroupManager.DataLayer.Controller;
 using Serilog;
 using Telegram.Bot;
 using Telegram.Bot.Types;
@@ -24,6 +25,8 @@ namespace GroupManager.Application.Services
             var me = await _client.GetMeAsync(cancellationToken);
             Log.Information("Bot Started With : {0}", me.Username);
             ManagerConfig.BotUserName = me.Username ?? "-";
+            var groups = await GroupController.GetAllGroupsAsync(cancellationToken);
+            ManagerConfig.Groups.AddRange(groups);
             _client.StartReceiving(OnUpdate, OnError, cancellationToken: cancellationToken);
 
             await base.StartAsync(cancellationToken);
@@ -36,27 +39,32 @@ namespace GroupManager.Application.Services
 
         private async Task OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct)
         {
-            var updateHandler = update.Type switch
+            try
             {
-                UpdateType.Message when (update.Message is not null) => _messageHandler.InitHandlerAsync(update.Message, ct),
-                UpdateType.ChatMember when (update.ChatMember is not null) => _myChatMemberHandler.InitHandlerAsync(update.ChatMember, ct),
-                UpdateType.MyChatMember when (update.MyChatMember is not null) => _myChatMemberHandler.InitHandlerAsync(update.MyChatMember, ct),
+                var updateHandler = update.Type switch
+                {
+                    UpdateType.Message when (update.Message is not null) => _messageHandler.InitHandlerAsync(update.Message, ct),
+                    UpdateType.ChatMember when (update.ChatMember is not null) => _myChatMemberHandler.InitHandlerAsync(update.ChatMember, ct),
+                    UpdateType.MyChatMember when (update.MyChatMember is not null) => _myChatMemberHandler.InitHandlerAsync(update.MyChatMember, ct),
+                    UpdateType.CallbackQuery when (update.CallbackQuery is not null) => _callBackHandler.InitHandlerAsync(update.CallbackQuery, ct),
+                    UpdateType.ChatJoinRequest => Task.CompletedTask,
+                    UpdateType.Unknown => Task.CompletedTask,
+                    _ => Task.CompletedTask
+                };
 
-                UpdateType.CallbackQuery when (update.CallbackQuery is not null) => _callBackHandler.InitHandlerAsync(update.CallbackQuery, ct),
-                UpdateType.ChatJoinRequest => Task.CompletedTask,
-                UpdateType.Unknown => Task.CompletedTask,
-                _ => Task.CompletedTask
-            };
+                await updateHandler;
+            }
+            catch (Exception e)
+            {
+                Log.Error(e, "OnUpdate");
+            }
 
-            await updateHandler;
-
-            await Task.CompletedTask;
         }
 
-        private static Task OnError(ITelegramBotClient client, Exception ex, CancellationToken ct)
+        private static async Task OnError(ITelegramBotClient client, Exception ex, CancellationToken ct)
         {
             Log.Error(ex, "OnError");
-            return Task.CompletedTask;
+            await Task.CompletedTask;
         }
 
     }

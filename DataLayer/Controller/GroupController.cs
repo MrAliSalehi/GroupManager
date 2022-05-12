@@ -1,5 +1,4 @@
-﻿using GroupManager.Application.Commands;
-using GroupManager.DataLayer.Context;
+﻿using GroupManager.DataLayer.Context;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Group = GroupManager.DataLayer.Models.Group;
@@ -37,20 +36,53 @@ public struct GroupController
         }
     }
 
-    public static async Task AddGroupAsync(long groupId, CancellationToken ct = default)
+    public static async ValueTask<Group?> AddGroupAsync(long groupId, CancellationToken ct = default)
     {
         try
         {
             await using var db = new ManagerContext();
-            var exists = await db.Groups.AnyAsync(gp => gp.GroupId == groupId, cancellationToken: ct);
-            if (exists)
-                return;
-            await db.Groups.AddAsync(new Group() { GroupId = groupId }, ct);
+            var exists = await db.Groups.FirstOrDefaultAsync(gp => gp.GroupId == groupId, cancellationToken: ct);
+            if (exists is not null)
+                return exists;
+
+            var result = await db.Groups.AddAsync(new Group()
+            {
+                GroupId = groupId,
+                BanOnCurse = false,
+                WarnOnCurse = true,
+                MaxWarns = 3,
+                MuteTime = TimeSpan.FromHours(2),
+                MuteOnCurse = true
+            }, ct);
+
             await db.SaveChangesAsync(ct);
+            return result.Entity;
         }
         catch (Exception e)
         {
             Log.Error(e, "AddGroupAsync");
+            return null;
+        }
+    }
+
+    public static async ValueTask<Group?> UpdateGroupAsync(Action<Group> update, long groupId, CancellationToken ct = default)
+    {
+        try
+        {
+            await using var db = new ManagerContext();
+            var find = await db.Groups.FirstOrDefaultAsync(p => p.GroupId == groupId, ct);
+            if (find is null)
+                return null;
+
+            update(find);
+
+            await db.SaveChangesAsync(ct);
+            return find;
+        }
+        catch (Exception e)
+        {
+            Log.Error(e, nameof(UpdateGroupAsync));
+            return null;
         }
     }
 

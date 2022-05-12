@@ -431,3 +431,441 @@ Telegram.Bot.Exceptions.ApiRequestException: Conflict: terminated by other getUp
 Telegram.Bot.Exceptions.ApiRequestException: Conflict: terminated by other getUpdates request; make sure that only one bot instance is running
    at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
    at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+2022-05-05 00:24:44.265 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-05 00:24:44.283 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 00:24:44.285 +04:30 [INF] Hosting environment: Development
+2022-05-05 00:24:44.286 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-05 00:26:38.063 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-05 00:26:38.082 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 00:26:38.086 +04:30 [INF] Hosting environment: Development
+2022-05-05 00:26:38.086 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-05 03:03:06.404 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-05 03:03:06.423 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 03:03:06.426 +04:30 [INF] Hosting environment: Development
+2022-05-05 03:03:06.427 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-05 03:06:06.922 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-05 03:06:06.941 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 03:06:06.943 +04:30 [INF] Hosting environment: Development
+2022-05-05 03:06:06.945 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-05 03:09:45.927 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-05 03:09:45.948 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 03:09:45.951 +04:30 [INF] Hosting environment: Development
+2022-05-05 03:09:45.952 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-05 03:15:13.416 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-05 03:15:13.436 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 03:15:13.438 +04:30 [INF] Hosting environment: Development
+2022-05-05 03:15:13.439 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-05 03:18:17.634 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-05 03:18:17.655 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 03:18:17.659 +04:30 [INF] Hosting environment: Development
+2022-05-05 03:18:17.661 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-05 03:21:03.403 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-05 03:21:03.424 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 03:21:03.427 +04:30 [INF] Hosting environment: Development
+2022-05-05 03:21:03.427 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-05 03:21:17.616 +04:30 [ERR] UpdateGroupAsync
+System.Reflection.TargetParameterCountException: Parameter count mismatch.
+   at System.Reflection.RuntimeMethodInfo.Invoke(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Delegate.DynamicInvokeImpl(Object[] args)
+   at System.Delegate.DynamicInvoke(Object[] args)
+   at GroupManager.DataLayer.Controller.GroupController.UpdateGroupAsync(Func`1 func, Int64 groupId, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\DataLayer\Controller\GroupController.cs:line 65
+   at GroupManager.DataLayer.Controller.GroupController.UpdateGroupAsync(Func`1 func, Int64 groupId, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\DataLayer\Controller\GroupController.cs:line 66
+2022-05-05 03:23:15.169 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-05 03:23:15.190 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 03:23:15.192 +04:30 [INF] Hosting environment: Development
+2022-05-05 03:23:15.194 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-05 03:25:07.805 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-05 03:25:07.825 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 03:25:07.828 +04:30 [INF] Hosting environment: Development
+2022-05-05 03:25:07.829 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-05 03:25:49.569 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-05 03:25:49.590 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 03:25:49.593 +04:30 [INF] Hosting environment: Development
+2022-05-05 03:25:49.594 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-05 03:26:52.390 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-05 03:26:52.409 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 03:26:52.412 +04:30 [INF] Hosting environment: Development
+2022-05-05 03:26:52.412 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-05 03:26:53.518 +04:30 [ERR] UpdateGroupAsync
+System.InvalidOperationException: The instance of entity type 'Group' cannot be tracked because another instance with the same key value for {'Id'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.ThrowIdentityConflict(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry, Boolean updateDuplicate)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.StartTracking(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState oldState, EntityState newState, Boolean acceptChanges, Boolean modifyProperties)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState entityState, Boolean acceptChanges, Boolean modifyProperties, Nullable`1 forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.PaintAction(EntityEntryGraphNode`1 node)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityEntryGraphIterator.TraverseGraph[TState](EntityEntryGraphNode`1 node, Func`2 handleNode)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.AttachGraph(InternalEntityEntry rootEntry, EntityState targetState, EntityState storeGeneratedWithKeySetTargetState, Boolean forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.SetEntityState(InternalEntityEntry entry, EntityState entityState)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.Update(TEntity entity)
+   at GroupManager.DataLayer.Controller.GroupController.UpdateGroupAsync(Func`2 func, Int64 groupId, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\DataLayer\Controller\GroupController.cs:line 66
+   at GroupManager.DataLayer.Controller.GroupController.UpdateGroupAsync(Func`2 func, Int64 groupId, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\DataLayer\Controller\GroupController.cs:line 67
+2022-05-05 03:26:57.583 +04:30 [ERR] UpdateGroupAsync
+System.InvalidOperationException: The instance of entity type 'Group' cannot be tracked because another instance with the same key value for {'Id'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.ThrowIdentityConflict(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry, Boolean updateDuplicate)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(TKey key, InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.IdentityMap`1.Add(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.StartTracking(InternalEntityEntry entry)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState oldState, EntityState newState, Boolean acceptChanges, Boolean modifyProperties)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.InternalEntityEntry.SetEntityState(EntityState entityState, Boolean acceptChanges, Boolean modifyProperties, Nullable`1 forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.PaintAction(EntityEntryGraphNode`1 node)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityEntryGraphIterator.TraverseGraph[TState](EntityEntryGraphNode`1 node, Func`2 handleNode)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.EntityGraphAttacher.AttachGraph(InternalEntityEntry rootEntry, EntityState targetState, EntityState storeGeneratedWithKeySetTargetState, Boolean forceStateWhenUnknownKey)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.SetEntityState(InternalEntityEntry entry, EntityState entityState)
+   at Microsoft.EntityFrameworkCore.Internal.InternalDbSet`1.Update(TEntity entity)
+   at GroupManager.DataLayer.Controller.GroupController.UpdateGroupAsync(Func`2 func, Int64 groupId, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\DataLayer\Controller\GroupController.cs:line 66
+   at GroupManager.DataLayer.Controller.GroupController.UpdateGroupAsync(Func`2 func, Int64 groupId, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\DataLayer\Controller\GroupController.cs:line 67
+2022-05-05 03:29:00.648 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-05 03:29:00.667 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 03:29:00.670 +04:30 [INF] Hosting environment: Development
+2022-05-05 03:29:00.670 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-05 03:29:44.484 +04:30 [ERR] UpdateGroupAsync
+System.ObjectDisposedException: Cannot access a disposed context instance. A common cause of this error is disposing a context instance that was resolved from dependency injection and then later trying to use the same context instance elsewhere in your application. This may occur if you are calling 'Dispose' on the context instance, or wrapping it in a using statement. If you are using dependency injection, you should let the dependency injection container take care of disposing context instances.
+Object name: 'ManagerContext'.
+   at Microsoft.EntityFrameworkCore.DbContext.CheckDisposed()
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at GroupManager.DataLayer.Controller.GroupController.UpdateGroupAsync(Func`2 func, Int64 groupId, CancellationToken ct)
+   at GroupManager.DataLayer.Controller.GroupController.UpdateGroupAsync(Func`2 func, Int64 groupId, CancellationToken ct)
+2022-05-05 03:30:02.624 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-05 03:30:02.650 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 03:30:02.653 +04:30 [INF] Hosting environment: Development
+2022-05-05 03:30:02.654 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-05 03:32:42.035 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-05 03:32:42.074 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 03:32:42.077 +04:30 [INF] Hosting environment: Development
+2022-05-05 03:32:42.079 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-05 05:58:37.112 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-05 05:58:37.148 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 05:58:37.155 +04:30 [INF] Hosting environment: Development
+2022-05-05 05:58:37.157 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-05 06:01:00.219 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-05 06:01:00.237 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 06:01:00.240 +04:30 [INF] Hosting environment: Development
+2022-05-05 06:01:00.241 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-05 06:17:45.261 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-05 06:17:45.279 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 06:17:45.281 +04:30 [INF] Hosting environment: Development
+2022-05-05 06:17:45.282 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-05 06:20:26.791 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-05 06:20:26.814 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 06:20:26.817 +04:30 [INF] Hosting environment: Development
+2022-05-05 06:20:26.818 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-05 06:22:04.048 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-05 06:22:04.069 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 06:22:04.072 +04:30 [INF] Hosting environment: Development
+2022-05-05 06:22:04.072 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-05 23:14:40.512 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-05 23:14:40.530 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 23:14:40.533 +04:30 [INF] Hosting environment: Development
+2022-05-05 23:14:40.534 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-05 23:16:21.688 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-05 23:16:21.706 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 23:16:21.708 +04:30 [INF] Hosting environment: Development
+2022-05-05 23:16:21.709 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-05 23:16:24.751 +04:30 [ERR] OnError
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection. (Parameter 'index')
+   at System.Collections.Generic.List`1.get_Item(Int32 index)
+   at GroupManager.Common.Globals.InlineButtons.Admin.Warn.GetMenu(Group group) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Common\Globals\Buttons.cs:line 30
+   at GroupManager.Application.Handlers.CallBackHandler.AdminCallbacksAsync(CallbackQuery callback, IReadOnlyList`1 data, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 57
+   at GroupManager.Application.Handlers.CallBackHandler.InitHandlerAsync(CallbackQuery callback, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 26
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 50
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateHandler.HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientPollingExtensions.ReceiveAsync(ITelegramBotClient botClient, IUpdateHandler updateHandler, ReceiverOptions receiverOptions, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientPollingExtensions.<>c__DisplayClass3_0.<<StartReceiving>b__0>d.MoveNext()
+2022-05-05 23:17:01.450 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-05 23:17:01.468 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 23:17:01.470 +04:30 [INF] Hosting environment: Development
+2022-05-05 23:17:01.471 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-05 23:17:03.341 +04:30 [ERR] OnError
+Telegram.Bot.Exceptions.ApiRequestException: Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.EditMessageTextAsync(ITelegramBotClient botClient, ChatId chatId, Int32 messageId, String text, Nullable`1 parseMode, IEnumerable`1 entities, Nullable`1 disableWebPagePreview, InlineKeyboardMarkup replyMarkup, CancellationToken cancellationToken)
+   at GroupManager.Application.Handlers.CallBackHandler.AdminCallbacksAsync(CallbackQuery callback, IReadOnlyList`1 data, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 57
+   at GroupManager.Application.Handlers.CallBackHandler.InitHandlerAsync(CallbackQuery callback, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 26
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 50
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateHandler.HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientPollingExtensions.ReceiveAsync(ITelegramBotClient botClient, IUpdateHandler updateHandler, ReceiverOptions receiverOptions, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientPollingExtensions.<>c__DisplayClass3_0.<<StartReceiving>b__0>d.MoveNext()
+2022-05-05 23:17:09.089 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-05 23:17:09.108 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 23:17:09.110 +04:30 [INF] Hosting environment: Development
+2022-05-05 23:17:09.111 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-05 23:17:10.836 +04:30 [ERR] OnError
+Telegram.Bot.Exceptions.ApiRequestException: Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.EditMessageTextAsync(ITelegramBotClient botClient, ChatId chatId, Int32 messageId, String text, Nullable`1 parseMode, IEnumerable`1 entities, Nullable`1 disableWebPagePreview, InlineKeyboardMarkup replyMarkup, CancellationToken cancellationToken)
+   at GroupManager.Application.Handlers.CallBackHandler.AdminCallbacksAsync(CallbackQuery callback, IReadOnlyList`1 data, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 57
+   at GroupManager.Application.Handlers.CallBackHandler.InitHandlerAsync(CallbackQuery callback, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 26
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 50
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateHandler.HandleUpdateAsync(ITelegramBotClient botClient, Update update, CancellationToken cancellationToken)
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientPollingExtensions.ReceiveAsync(ITelegramBotClient botClient, IUpdateHandler updateHandler, ReceiverOptions receiverOptions, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientPollingExtensions.<>c__DisplayClass3_0.<<StartReceiving>b__0>d.MoveNext()
+2022-05-05 23:17:55.430 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-05 23:17:55.448 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 23:17:55.450 +04:30 [INF] Hosting environment: Development
+2022-05-05 23:17:55.451 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-05 23:17:56.828 +04:30 [ERR] OnUpdate
+Telegram.Bot.Exceptions.ApiRequestException: Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.EditMessageTextAsync(ITelegramBotClient botClient, ChatId chatId, Int32 messageId, String text, Nullable`1 parseMode, IEnumerable`1 entities, Nullable`1 disableWebPagePreview, InlineKeyboardMarkup replyMarkup, CancellationToken cancellationToken)
+   at GroupManager.Application.Handlers.CallBackHandler.AdminCallbacksAsync(CallbackQuery callback, IReadOnlyList`1 data, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 57
+   at GroupManager.Application.Handlers.CallBackHandler.InitHandlerAsync(CallbackQuery callback, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 26
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 52
+2022-05-05 23:28:00.504 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-05 23:28:00.522 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 23:28:00.525 +04:30 [INF] Hosting environment: Development
+2022-05-05 23:28:00.526 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-05 23:28:14.111 +04:30 [ERR] OnUpdate
+Telegram.Bot.Exceptions.ApiRequestException: Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.EditMessageReplyMarkupAsync(ITelegramBotClient botClient, ChatId chatId, Int32 messageId, InlineKeyboardMarkup replyMarkup, CancellationToken cancellationToken)
+   at GroupManager.Application.Handlers.CallBackHandler.AdminWarnMenuAsync(CallbackQuery callback, IReadOnlyList`1 data, Group group, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 113
+   at GroupManager.Application.Handlers.CallBackHandler.AdminCallbacksAsync(CallbackQuery callback, IReadOnlyList`1 data, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 66
+   at GroupManager.Application.Handlers.CallBackHandler.InitHandlerAsync(CallbackQuery callback, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 26
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 52
+2022-05-05 23:33:57.571 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-05 23:33:57.589 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 23:33:57.591 +04:30 [INF] Hosting environment: Development
+2022-05-05 23:33:57.592 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-05 23:35:00.189 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-05 23:35:00.208 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 23:35:00.211 +04:30 [INF] Hosting environment: Development
+2022-05-05 23:35:00.211 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-05 23:35:40.730 +04:30 [ERR] OnUpdate
+Telegram.Bot.Exceptions.ApiRequestException: Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.EditMessageReplyMarkupAsync(ITelegramBotClient botClient, ChatId chatId, Int32 messageId, InlineKeyboardMarkup replyMarkup, CancellationToken cancellationToken)
+   at GroupManager.Application.Handlers.CallBackHandler.AdminWarnMenuAsync(CallbackQuery callback, IReadOnlyList`1 data, Group group, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 113
+   at GroupManager.Application.Handlers.CallBackHandler.AdminCallbacksAsync(CallbackQuery callback, IReadOnlyList`1 data, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 66
+   at GroupManager.Application.Handlers.CallBackHandler.InitHandlerAsync(CallbackQuery callback, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 26
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 52
+2022-05-05 23:37:27.744 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-05 23:37:27.760 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-05 23:37:27.763 +04:30 [INF] Hosting environment: Development
+2022-05-05 23:37:27.764 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-06 00:11:24.677 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-06 00:11:24.696 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-06 00:11:24.699 +04:30 [INF] Hosting environment: Development
+2022-05-06 00:11:24.699 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-06 00:11:34.633 +04:30 [ERR] OnUpdate
+Telegram.Bot.Exceptions.ApiRequestException: Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.EditMessageReplyMarkupAsync(ITelegramBotClient botClient, ChatId chatId, Int32 messageId, InlineKeyboardMarkup replyMarkup, CancellationToken cancellationToken)
+   at GroupManager.Application.Handlers.CallBackHandler.AdminWarnMenuAsync(CallbackQuery callback, IReadOnlyList`1 data, Group group, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 120
+   at GroupManager.Application.Handlers.CallBackHandler.AdminCallbacksAsync(CallbackQuery callback, IReadOnlyList`1 data, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 66
+   at GroupManager.Application.Handlers.CallBackHandler.InitHandlerAsync(CallbackQuery callback, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 26
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 52
+2022-05-06 00:11:58.153 +04:30 [ERR] OnUpdate
+System.InvalidOperationException: Sequence contains more than one matching element
+   at System.Linq.ThrowHelper.ThrowMoreThanOneMatchException()
+   at System.Linq.Enumerable.TryGetSingle[TSource](IEnumerable`1 source, Func`2 predicate, Boolean& found)
+   at System.Linq.Enumerable.SingleOrDefault[TSource](IEnumerable`1 source, Func`2 predicate)
+   at GroupManager.Common.Globals.InlineButtons.Admin.Warn.GetMenu(Group group) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Common\Globals\Buttons.cs:line 45
+   at GroupManager.Application.Handlers.CallBackHandler.AdminCallbacksAsync(CallbackQuery callback, IReadOnlyList`1 data, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 57
+   at GroupManager.Application.Handlers.CallBackHandler.InitHandlerAsync(CallbackQuery callback, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 26
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 52
+2022-05-06 00:12:20.161 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-06 00:12:20.179 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-06 00:12:20.181 +04:30 [INF] Hosting environment: Development
+2022-05-06 00:12:20.182 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-06 00:16:04.138 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-06 00:16:04.156 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-06 00:16:04.158 +04:30 [INF] Hosting environment: Development
+2022-05-06 00:16:04.159 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-06 00:16:16.970 +04:30 [ERR] OnUpdate
+Telegram.Bot.Exceptions.ApiRequestException: Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.EditMessageReplyMarkupAsync(ITelegramBotClient botClient, ChatId chatId, Int32 messageId, InlineKeyboardMarkup replyMarkup, CancellationToken cancellationToken)
+   at GroupManager.Application.Handlers.CallBackHandler.AdminWarnMenuAsync(CallbackQuery callback, IReadOnlyList`1 data, Group group, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 138
+   at GroupManager.Application.Handlers.CallBackHandler.AdminCallbacksAsync(CallbackQuery callback, IReadOnlyList`1 data, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 66
+   at GroupManager.Application.Handlers.CallBackHandler.InitHandlerAsync(CallbackQuery callback, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 26
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 52
+2022-05-06 00:18:00.047 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-06 00:18:00.068 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-06 00:18:00.071 +04:30 [INF] Hosting environment: Development
+2022-05-06 00:18:00.072 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-06 00:28:12.416 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-06 00:28:12.435 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-06 00:28:12.438 +04:30 [INF] Hosting environment: Development
+2022-05-06 00:28:12.439 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-06 00:29:48.838 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-06 00:29:48.856 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-06 00:29:48.859 +04:30 [INF] Hosting environment: Development
+2022-05-06 00:29:48.859 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-06 00:29:53.037 +04:30 [ERR] OnUpdate
+Newtonsoft.Json.JsonSerializationException: Cannot convert date value that is before Unix epoch of 00:00:00 UTC on 1 January 1970.
+   at Newtonsoft.Json.Converters.UnixDateTimeConverter.WriteJson(JsonWriter writer, Object value, JsonSerializer serializer)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeConvertable(JsonWriter writer, JsonConverter converter, Object value, JsonContract contract, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeObject(JsonWriter writer, Object value, JsonObjectContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.Serialize(JsonWriter jsonWriter, Object value, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.SerializeInternal(JsonWriter jsonWriter, Object value, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Serialize(JsonWriter jsonWriter, Object value, Type objectType)
+   at Newtonsoft.Json.JsonConvert.SerializeObjectInternal(Object value, Type type, JsonSerializer jsonSerializer)
+   at Newtonsoft.Json.JsonConvert.SerializeObject(Object value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.SerializeObject(Object value)
+   at Telegram.Bot.Requests.RequestBase`1.ToHttpContent()
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.RestrictChatMemberAsync(ITelegramBotClient botClient, ChatId chatId, Int64 userId, ChatPermissions permissions, Nullable`1 untilDate, CancellationToken cancellationToken)
+   at GroupManager.Application.Handlers.MessageHandler.FilterWordsAsync(Message message, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\MessageHandler.cs:line 93
+   at GroupManager.Application.Handlers.MessageHandler.InitHandlerAsync(Message message, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\MessageHandler.cs:line 35
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 52
+2022-05-06 00:30:49.690 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-06 00:30:49.708 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-06 00:30:49.710 +04:30 [INF] Hosting environment: Development
+2022-05-06 00:30:49.711 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-06 00:31:02.399 +04:30 [ERR] OnUpdate
+Newtonsoft.Json.JsonSerializationException: Cannot convert date value that is before Unix epoch of 00:00:00 UTC on 1 January 1970.
+   at Newtonsoft.Json.Converters.UnixDateTimeConverter.WriteJson(JsonWriter writer, Object value, JsonSerializer serializer)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeConvertable(JsonWriter writer, JsonConverter converter, Object value, JsonContract contract, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeObject(JsonWriter writer, Object value, JsonObjectContract contract, JsonProperty member, JsonContainerContract collectionContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.SerializeValue(JsonWriter writer, Object value, JsonContract valueContract, JsonProperty member, JsonContainerContract containerContract, JsonProperty containerProperty)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.Serialize(JsonWriter jsonWriter, Object value, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.SerializeInternal(JsonWriter jsonWriter, Object value, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Serialize(JsonWriter jsonWriter, Object value, Type objectType)
+   at Newtonsoft.Json.JsonConvert.SerializeObjectInternal(Object value, Type type, JsonSerializer jsonSerializer)
+   at Newtonsoft.Json.JsonConvert.SerializeObject(Object value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.SerializeObject(Object value)
+   at Telegram.Bot.Requests.RequestBase`1.ToHttpContent()
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.RestrictChatMemberAsync(ITelegramBotClient botClient, ChatId chatId, Int64 userId, ChatPermissions permissions, Nullable`1 untilDate, CancellationToken cancellationToken)
+   at GroupManager.Application.Handlers.MessageHandler.FilterWordsAsync(Message message, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\MessageHandler.cs:line 93
+   at GroupManager.Application.Handlers.MessageHandler.InitHandlerAsync(Message message, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\MessageHandler.cs:line 35
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 52
+2022-05-06 00:31:57.750 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-06 00:31:57.767 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-06 00:31:57.770 +04:30 [INF] Hosting environment: Development
+2022-05-06 00:31:57.770 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-06 00:36:09.166 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-06 00:36:09.186 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-06 00:36:09.188 +04:30 [INF] Hosting environment: Development
+2022-05-06 00:36:09.189 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-12 07:35:09.185 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-12 07:35:10.403 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-12 07:35:10.406 +04:30 [INF] Hosting environment: Development
+2022-05-12 07:35:10.407 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-12 08:35:21.124 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-12 08:35:21.830 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-12 08:35:21.832 +04:30 [INF] Hosting environment: Development
+2022-05-12 08:35:21.833 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-12 08:35:43.858 +04:30 [ERR] OnUpdate
+Telegram.Bot.Exceptions.ApiRequestException: Bad Request: can't parse inline keyboard button: Text buttons are unallowed in the inline keyboard
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.EditMessageTextAsync(ITelegramBotClient botClient, ChatId chatId, Int32 messageId, String text, Nullable`1 parseMode, IEnumerable`1 entities, Nullable`1 disableWebPagePreview, InlineKeyboardMarkup replyMarkup, CancellationToken cancellationToken)
+   at GroupManager.Application.Handlers.CallBackHandler.AdminCallbacksAsync(CallbackQuery callback, IReadOnlyList`1 data, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 60
+   at GroupManager.Application.Handlers.CallBackHandler.InitHandlerAsync(CallbackQuery callback, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 26
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 55
+2022-05-12 08:37:13.494 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-12 08:37:14.231 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-12 08:37:14.234 +04:30 [INF] Hosting environment: Development
+2022-05-12 08:37:14.234 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-12 08:38:58.961 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-12 08:38:59.672 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-12 08:38:59.674 +04:30 [INF] Hosting environment: Development
+2022-05-12 08:38:59.675 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-12 08:39:19.993 +04:30 [ERR] OnUpdate
+Telegram.Bot.Exceptions.ApiRequestException: Bad Request: can't parse inline keyboard button: Text buttons are unallowed in the inline keyboard
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.EditMessageReplyMarkupAsync(ITelegramBotClient botClient, ChatId chatId, Int32 messageId, InlineKeyboardMarkup replyMarkup, CancellationToken cancellationToken)
+   at GroupManager.Application.Handlers.CallBackHandler.AdminCurseMenuAsync(CallbackQuery callback, IReadOnlyList`1 data, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 95
+   at GroupManager.Application.Handlers.CallBackHandler.AdminCallbacksAsync(CallbackQuery callback, IReadOnlyList`1 data, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 72
+   at GroupManager.Application.Handlers.CallBackHandler.InitHandlerAsync(CallbackQuery callback, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 26
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 55
+2022-05-12 08:45:47.324 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-12 08:45:48.045 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-12 08:45:48.048 +04:30 [INF] Hosting environment: Development
+2022-05-12 08:45:48.048 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-12 09:03:52.746 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-12 09:03:53.456 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-12 09:03:53.459 +04:30 [INF] Hosting environment: Development
+2022-05-12 09:03:53.459 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-12 09:06:08.254 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-12 09:06:09.006 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-12 09:06:09.008 +04:30 [INF] Hosting environment: Development
+2022-05-12 09:06:09.009 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-12 09:06:10.001 +04:30 [ERR] OnUpdate
+Telegram.Bot.Exceptions.ApiRequestException: Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.EditMessageReplyMarkupAsync(ITelegramBotClient botClient, ChatId chatId, Int32 messageId, InlineKeyboardMarkup replyMarkup, CancellationToken cancellationToken)
+   at GroupManager.Application.Handlers.CallBackHandler.AdminCurseMenuAsync(CallbackQuery callback, IReadOnlyList`1 data, Group group, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 129
+   at GroupManager.Application.Handlers.CallBackHandler.AdminCallbacksAsync(CallbackQuery callback, IReadOnlyList`1 data, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 72
+   at GroupManager.Application.Handlers.CallBackHandler.InitHandlerAsync(CallbackQuery callback, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 26
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 55
+2022-05-12 09:06:27.339 +04:30 [ERR] OnUpdate
+Telegram.Bot.Exceptions.ApiRequestException: Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.EditMessageReplyMarkupAsync(ITelegramBotClient botClient, ChatId chatId, Int32 messageId, InlineKeyboardMarkup replyMarkup, CancellationToken cancellationToken)
+   at GroupManager.Application.Handlers.CallBackHandler.AdminCurseMenuAsync(CallbackQuery callback, IReadOnlyList`1 data, Group group, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 129
+   at GroupManager.Application.Handlers.CallBackHandler.AdminCallbacksAsync(CallbackQuery callback, IReadOnlyList`1 data, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 72
+   at GroupManager.Application.Handlers.CallBackHandler.InitHandlerAsync(CallbackQuery callback, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 26
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 55
+2022-05-12 09:06:51.277 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-12 09:06:51.999 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-12 09:06:52.001 +04:30 [INF] Hosting environment: Development
+2022-05-12 09:06:52.002 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-12 09:06:55.769 +04:30 [ERR] OnError
+Telegram.Bot.Exceptions.RequestException: Exception during making request
+ ---> System.Net.Http.HttpRequestException: An error occurred while sending the request.
+ ---> System.IO.IOException: Unable to read data from the transport connection: An established connection was aborted by the software in your host machine..
+ ---> System.Net.Sockets.SocketException (10053): An established connection was aborted by the software in your host machine.
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource<System.Int32>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.EnsureFullTlsFrameAsync[TIOAdapter](TIOAdapter adapter)
+   at System.Net.Security.SslStream.ReadAsyncInternal[TIOAdapter](TIOAdapter adapter, Memory`1 buffer)
+   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at Telegram.Bot.TelegramBotClient.<MakeRequestAsync>g__SendRequestAsync|22_0[TResponse](HttpClient httpClient, HttpRequestMessage httpRequest, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Telegram.Bot.TelegramBotClient.<MakeRequestAsync>g__SendRequestAsync|22_0[TResponse](HttpClient httpClient, HttpRequestMessage httpRequest, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+2022-05-12 09:07:34.813 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-12 09:07:35.537 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-12 09:07:35.540 +04:30 [INF] Hosting environment: Development
+2022-05-12 09:07:35.540 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-12 09:28:14.632 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-12 09:28:15.360 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-12 09:28:15.362 +04:30 [INF] Hosting environment: Development
+2022-05-12 09:28:15.363 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-12 09:28:31.267 +04:30 [ERR] OnUpdate
+Telegram.Bot.Exceptions.ApiRequestException: Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.EditMessageReplyMarkupAsync(ITelegramBotClient botClient, ChatId chatId, Int32 messageId, InlineKeyboardMarkup replyMarkup, CancellationToken cancellationToken)
+   at GroupManager.Application.Handlers.CallBackHandler.AdminCurseMenuAsync(CallbackQuery callback, IReadOnlyList`1 data, Group group, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 132
+   at GroupManager.Application.Handlers.CallBackHandler.AdminCallbacksAsync(CallbackQuery callback, IReadOnlyList`1 data, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 72
+   at GroupManager.Application.Handlers.CallBackHandler.InitHandlerAsync(CallbackQuery callback, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 26
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 55
+2022-05-12 09:28:43.931 +04:30 [ERR] OnUpdate
+Telegram.Bot.Exceptions.ApiRequestException: Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.EditMessageReplyMarkupAsync(ITelegramBotClient botClient, ChatId chatId, Int32 messageId, InlineKeyboardMarkup replyMarkup, CancellationToken cancellationToken)
+   at GroupManager.Application.Handlers.CallBackHandler.AdminCurseMenuAsync(CallbackQuery callback, IReadOnlyList`1 data, Group group, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 132
+   at GroupManager.Application.Handlers.CallBackHandler.AdminCallbacksAsync(CallbackQuery callback, IReadOnlyList`1 data, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 72
+   at GroupManager.Application.Handlers.CallBackHandler.InitHandlerAsync(CallbackQuery callback, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 26
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 55
+2022-05-12 09:29:22.177 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-12 09:29:22.900 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-12 09:29:22.903 +04:30 [INF] Hosting environment: Development
+2022-05-12 09:29:22.903 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-12 09:29:49.813 +04:30 [ERR] OnUpdate
+Telegram.Bot.Exceptions.ApiRequestException: Bad Request: can't parse inline keyboard button: Text buttons are unallowed in the inline keyboard
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.EditMessageReplyMarkupAsync(ITelegramBotClient botClient, ChatId chatId, Int32 messageId, InlineKeyboardMarkup replyMarkup, CancellationToken cancellationToken)
+   at GroupManager.Application.Handlers.CallBackHandler.AdminCurseMenuAsync(CallbackQuery callback, IReadOnlyList`1 data, Group group, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 137
+   at GroupManager.Application.Handlers.CallBackHandler.AdminCallbacksAsync(CallbackQuery callback, IReadOnlyList`1 data, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 72
+   at GroupManager.Application.Handlers.CallBackHandler.InitHandlerAsync(CallbackQuery callback, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 26
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 55

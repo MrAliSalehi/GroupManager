@@ -3,6 +3,7 @@ using System;
 using GroupManager.DataLayer.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GroupManager.Migrations
 {
     [DbContext(typeof(ManagerContext))]
-    partial class ManagerContextModelSnapshot : ModelSnapshot
+    [Migration("20220505182444_updateGroupTableForCurseWords")]
+    partial class updateGroupTableForCurseWords
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.3");
@@ -26,9 +28,6 @@ namespace GroupManager.Migrations
                     b.Property<bool>("BanOnCurse")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("BanOnMaxWarn")
-                        .HasColumnType("INTEGER");
-
                     b.Property<long>("GroupId")
                         .HasColumnType("INTEGER");
 
@@ -36,9 +35,6 @@ namespace GroupManager.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("MuteOnCurse")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("MuteOnMaxWarn")
                         .HasColumnType("INTEGER");
 
                     b.Property<TimeSpan>("MuteTime")

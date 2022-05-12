@@ -30,6 +30,7 @@ public class AdminBotCommands : HandlerBase
         }
 
         var result = await GroupController.RemoveGroupAsync(message.Chat.Id, ct);
+        ManagerConfig.Groups.Remove(group);
         var response = result switch
         {
             0 => "Group Has Been Removed",
@@ -49,7 +50,22 @@ public class AdminBotCommands : HandlerBase
             return;
         }
 
-        await GroupController.AddGroupAsync(message.Chat.Id, ct);
+        var addedGp = await GroupController.AddGroupAsync(message.Chat.Id, ct);
+        if (addedGp is null)
+        {
+            await Client.SendTextMessageAsync(message.Chat.Id, "Cant Add Group Right Now", cancellationToken: ct);
+            return;
+        }
+        ManagerConfig.Groups.Add(addedGp);
         await Client.SendTextMessageAsync(message.Chat.Id, "Group Has Been Added To Bot", cancellationToken: ct);
+    }
+
+    internal async Task SettingAsync(Message message, CancellationToken ct)
+    {
+        if (message.From is null)
+            return;
+        await Client.SendTextMessageAsync(message.Chat.Id, ConstData.MessageOfMainMenu, replyMarkup: InlineButtons.Admin.SettingMenu,
+            cancellationToken: ct, replyToMessageId: message.MessageId);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
     }
 }
