@@ -36,8 +36,12 @@ public class MessageHandler : HandlerBase
         if (RegPatterns.Is.MemberBotCommand(message.Text))
             await MemberCommandsAsync(message, ct);
 
-        if (ManagerConfig.Groups.Any(p => p.GroupId == message.Chat.Id))
-            await _groupCommands.HandleGroupAsync(message, ct);
+        if (message.Chat.Id != message.From.Id)
+        {
+            var group = await GroupController.GetGroupByIdAsync(message.Chat.Id, ct);
+            if (group is not null)
+                await _groupCommands.HandleGroupAsync(message, group, ct);
+        }
     }
 
     private async Task AdminCommandsAsync(Message message, CancellationToken ct)

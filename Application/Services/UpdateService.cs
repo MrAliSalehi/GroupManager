@@ -25,8 +25,7 @@ namespace GroupManager.Application.Services
             var me = await _client.GetMeAsync(cancellationToken);
             Log.Information("Bot Started With : {0}", me.Username);
             ManagerConfig.BotUserName = me.Username ?? "-";
-            var groups = await GroupController.GetAllGroupsAsync(cancellationToken);
-            ManagerConfig.Groups.AddRange(groups);
+
             _client.StartReceiving(OnUpdate, OnError, cancellationToken: cancellationToken);
 
             await base.StartAsync(cancellationToken);

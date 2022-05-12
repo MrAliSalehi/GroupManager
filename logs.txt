@@ -869,3 +869,7 @@ Telegram.Bot.Exceptions.ApiRequestException: Bad Request: can't parse inline key
    at GroupManager.Application.Handlers.CallBackHandler.AdminCallbacksAsync(CallbackQuery callback, IReadOnlyList`1 data, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 72
    at GroupManager.Application.Handlers.CallBackHandler.InitHandlerAsync(CallbackQuery callback, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 26
    at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 55
+2022-05-12 09:42:06.070 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-12 09:42:06.781 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-12 09:42:06.783 +04:30 [INF] Hosting environment: Development
+2022-05-12 09:42:06.784 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager

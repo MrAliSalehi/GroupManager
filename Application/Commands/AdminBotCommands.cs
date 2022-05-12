@@ -30,7 +30,6 @@ public class AdminBotCommands : HandlerBase
         }
 
         var result = await GroupController.RemoveGroupAsync(message.Chat.Id, ct);
-        ManagerConfig.Groups.Remove(group);
         var response = result switch
         {
             0 => "Group Has Been Removed",
@@ -56,7 +55,6 @@ public class AdminBotCommands : HandlerBase
             await Client.SendTextMessageAsync(message.Chat.Id, "Cant Add Group Right Now", cancellationToken: ct);
             return;
         }
-        ManagerConfig.Groups.Add(addedGp);
         await Client.SendTextMessageAsync(message.Chat.Id, "Group Has Been Added To Bot", cancellationToken: ct);
     }
 
