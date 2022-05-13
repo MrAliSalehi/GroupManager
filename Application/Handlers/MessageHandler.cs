@@ -1,12 +1,8 @@
 ﻿using GroupManager.Application.Commands;
 using GroupManager.Application.Contracts;
 using GroupManager.DataLayer.Controller;
-using GroupManager.DataLayer.Models;
-using Humanizer;
 using Telegram.Bot;
 using Telegram.Bot.Types;
-using Telegram.Bot.Types.Enums;
-using WordFilter;
 
 namespace GroupManager.Application.Handlers;
 
@@ -59,12 +55,30 @@ public class MessageHandler : HandlerBase
         if (command is null)
             return;
 
+        var group = await GroupController.GetGroupByIdAsync(message.Chat.Id, ct);
+
+        _adminBotCommands.CurrentGroup = group;
+
         var response = command.Value.Replace("!!", "") switch
         {
+            "sett" => _adminBotCommands.SettingAsync(message, ct),
             "is active" => _adminBotCommands.IsActiveAsync(message, ct),
+
             "remove gp" => _adminBotCommands.RemoveGroupAsync(message, ct),
             "add gp" => _adminBotCommands.AddGroupAsync(message, ct),
-            "sett" => _adminBotCommands.SettingAsync(message, ct),
+
+            "enable welcome" => _adminBotCommands.EnableWelcomeAsync(message, ct),
+            "disable welcome" => _adminBotCommands.DisableWelcomeAsync(message, ct),
+            { } x when (x.Contains("set welcome")) => _adminBotCommands.SetWelcomeAsync(message, ct),
+
+            { } x when (x.Contains("unban")) => _adminBotCommands.UnBanUserAsync(message, ct),
+            { } x when (x.Contains("ban")) => _adminBotCommands.BanUserAsync(message, ct),
+
+            "enable force" => _adminBotCommands.EnableForceJoinAsync(message, ct),
+            "disable force" => _adminBotCommands.DisableForceJoinAsync(message, ct),
+            { } x when (x.Contains("add force")) => _adminBotCommands.AddForceJoinAsync(message, ct),
+            { } x when (x.Contains("rem force")) => _adminBotCommands.RemoveForceJoinAsync(message, ct),
+
             _ => Task.CompletedTask
         };
         await response;

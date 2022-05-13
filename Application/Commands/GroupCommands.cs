@@ -67,12 +67,13 @@ public class GroupCommands : HandlerBase
                     cancellationToken: ct);
                 if (_group.BanOnMaxWarn)
                 {
+                    await UserController.UpdateUserAsync(p => { p.IsBanned = true; }, message.From.Id, ct);
                     await Client.BanChatMemberAsync(message.Chat.Id, message.From.Id, cancellationToken: ct);
                     await Client.EditMessageTextAsync(stat.Chat.Id, stat.MessageId, $"{stat.Text}\nUser Has Been Banned!",
                         cancellationToken: ct);
                 }
 
-                if (_group.MuteOnMaxWarn)
+                else if (_group.MuteOnMaxWarn)
                 {
                     await Client.RestrictChatMemberAsync(message.Chat.Id, message.From.Id, MutePermissions,
                         DateTime.Now + _group.MuteTime, ct);

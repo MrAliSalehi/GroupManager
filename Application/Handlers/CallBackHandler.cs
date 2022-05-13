@@ -69,7 +69,10 @@ public class CallBackHandler : HandlerBase
                 await AdminWarnMenuAsync(callback, data, group, ct);
                 break;
             case nameof(InlineButtons.Admin.Curse):
-                await AdminCurseMenuAsync(callback, data, group, ct);
+                await AdminCurseMenuAsync(callback, data, ct);
+                break;
+            case nameof(InlineButtons.Admin.Curse.MuteTimeModify):
+                await ModifyMuteTimeAsync(callback, data,group, ct);
                 break;
             case nameof(InlineButtons.Admin.ConfirmChat):
                 await GroupController.AddGroupAsync(callback.Message.Chat.Id, ct);
@@ -80,7 +83,29 @@ public class CallBackHandler : HandlerBase
 
     }
 
-    private async Task AdminCurseMenuAsync(CallbackQuery callback, IReadOnlyList<string> data, Group group, CancellationToken ct = default)
+    private async Task ModifyMuteTimeAsync(CallbackQuery callback, IReadOnlyList<string> data,Group group, CancellationToken ct = default)
+    {
+        if (callback.Message is null)
+            return;
+
+        switch (data[2])
+        {
+            case ConstData.HourPlus:
+                break;
+            case ConstData.HourMinus:
+                break;
+            case ConstData.MinutePlus:
+                break;
+            case ConstData.MinuteMinus:
+                break;
+
+            case ConstData.Back:
+                await Client.EditMessageTextAsync(callback.Message.Chat.Id, callback.Message.MessageId,
+                    ConstData.MessageOfCurseMenu,replyMarkup:InlineButtons.Admin.Curse.GetMenu(group), cancellationToken: ct);
+                break;
+        }
+    }
+    private async Task AdminCurseMenuAsync(CallbackQuery callback, IReadOnlyList<string> data, CancellationToken ct = default)
     {
         if (callback.Message?.ReplyMarkup is null)
             return;
@@ -89,52 +114,59 @@ public class CallBackHandler : HandlerBase
             case ConstData.Ban:
             case ConstData.Mute:
             case ConstData.Warn:
-                var updatedProperty = "";
-                var buttonName = "";
-                var updatedGroup = await GroupController.UpdateGroupAsync(gp =>
                 {
-                    if (data[2] is ConstData.Ban)
+                    var updatedProperty = "";
+                    var buttonName = "";
+                    var updatedGroup = await GroupController.UpdateGroupAsync(gp =>
                     {
-                        updatedProperty = nameof(gp.BanOnCurse);
-                        buttonName = "Ban ";
-                        gp.BanOnCurse = !gp.BanOnCurse;
-                    }
+                        if (data[2] is ConstData.Ban)
+                        {
+                            updatedProperty = nameof(gp.BanOnCurse);
+                            buttonName = "Ban ";
+                            gp.BanOnCurse = !gp.BanOnCurse;
+                        }
 
-                    if (data[2] is ConstData.Mute)
+                        if (data[2] is ConstData.Mute)
+                        {
+                            buttonName = "Mute ";
+                            updatedProperty = nameof(gp.MuteOnCurse);
+                            gp.MuteOnCurse = !gp.MuteOnCurse;
+                        }
+
+                        if (data[2] is ConstData.Warn)
+                        {
+                            buttonName = "Warn ";
+                            updatedProperty = nameof(gp.WarnOnCurse);
+                            gp.WarnOnCurse = !gp.WarnOnCurse;
+                        }
+
+                    }, callback.Message.Chat.Id, ct);
+                    if (updatedGroup is null)
+                        return;
+
+                    var prop = updatedGroup.GetType().GetProperties().SingleOrDefault(p => p.Name == updatedProperty);
+                    if (prop is null)
+                        return;
+                    var value = (bool)prop.GetValue(updatedGroup)!;
+
+                    InlineButtons.ChangeButtonValue(buttonName, callback.Message.ReplyMarkup, button =>
                     {
-                        buttonName = "Mute ";
-                        updatedProperty = nameof(gp.MuteOnCurse);
-                        gp.MuteOnCurse = !gp.MuteOnCurse;
-                    }
+                        button.Text = $"{buttonName} " + (value ? ConstData.TrueEmoji : ConstData.FalseEmoji);
+                    });
 
-                    if (data[2] is ConstData.Warn)
-                    {
-                        buttonName = "Warn ";
-                        updatedProperty = nameof(gp.WarnOnCurse);
-                        gp.WarnOnCurse = !gp.WarnOnCurse;
-                    }
-
-                }, callback.Message.Chat.Id, ct);
-                if (updatedGroup is null)
-                    return;
-
-                group = updatedGroup;
-                var prop = group.GetType().GetProperties().SingleOrDefault(p => p.Name == updatedProperty);
-                if (prop is null)
-                    return;
-                var value = (bool)prop.GetValue(group)!;
-
-                InlineButtons.ChangeButtonValue(buttonName, callback.Message.ReplyMarkup, button =>
-                {
-                    button.Text = $"{buttonName} " + (value ? ConstData.TrueEmoji : ConstData.FalseEmoji);
-                });
-
-                await Client.EditMessageReplyMarkupAsync(callback.Message.Chat.Id, callback.Message.MessageId,
-                    callback.Message.ReplyMarkup, ct);
-                break;
+                    await Client.EditMessageReplyMarkupAsync(callback.Message.Chat.Id, callback.Message.MessageId,
+                        callback.Message.ReplyMarkup, ct);
+                    break;
+                }
 
             case nameof(InlineButtons.Admin.Curse.MuteTimeModify):
-                await Client.EditMessageReplyMarkupAsync(callback.Message.Chat.Id, callback.Message.MessageId, InlineButtons.Admin.Curse.MuteTimeModify, ct);
+                await Client.EditMessageTextAsync(callback.Message.Chat.Id, callback.Message.MessageId, ConstData.MessageOfModifyMuteTimeMenu,
+                    replyMarkup: InlineButtons.Admin.Curse.MuteTimeModify, cancellationToken: ct);
+                break;
+
+            case ConstData.Back:
+                await Client.EditMessageTextAsync(callback.Message.Chat.Id, callback.Message.MessageId, ConstData.MessageOfMainMenu,
+                    replyMarkup: InlineButtons.Admin.SettingMenu, cancellationToken: ct);
                 break;
         }
     }

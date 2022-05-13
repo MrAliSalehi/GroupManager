@@ -1,19 +1,25 @@
 ﻿using GroupManager.Application.Contracts;
 using GroupManager.DataLayer.Controller;
+using GroupManager.DataLayer.Models;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 
 namespace GroupManager.Application.Commands;
 
-public class AdminBotCommands : HandlerBase
+public class AdminBotCommands : HandlerBase, IBotCommand
 {
+
+    public Group? CurrentGroup { get; set; }
+
     public AdminBotCommands(ITelegramBotClient client) : base(client)
     {
+
     }
+
     internal async Task IsActiveAsync(Message message, CancellationToken ct)
     {
-        var groups = await GroupController.GetAllGroupsAsync(ct);
-        var response = groups.Any(p => p.GroupId == message.Chat.Id)
+
+        var response = CurrentGroup is null
             ? "Bot Is Active Here"
             : "Bot Is Not Active in This group";
         await Client.SendTextMessageAsync(message.Chat.Id, response, cancellationToken: ct);
@@ -21,8 +27,7 @@ public class AdminBotCommands : HandlerBase
 
     internal async Task RemoveGroupAsync(Message message, CancellationToken ct)
     {
-        var group = await GroupController.GetGroupByIdAsync(message.Chat.Id, ct);
-        if (group is null)
+        if (CurrentGroup is null)
         {
             await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Registered For Bot",
                 cancellationToken: ct);
@@ -42,8 +47,7 @@ public class AdminBotCommands : HandlerBase
 
     internal async Task AddGroupAsync(Message message, CancellationToken ct)
     {
-        var group = await GroupController.GetGroupByIdAsync(message.Chat.Id, ct);
-        if (group is not null)
+        if (CurrentGroup is not null)
         {
             await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Already added", cancellationToken: ct);
             return;
@@ -66,4 +70,243 @@ public class AdminBotCommands : HandlerBase
             cancellationToken: ct, replyToMessageId: message.MessageId);
         await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
     }
+
+    internal async Task SetWelcomeAsync(Message message, CancellationToken ct)
+    {
+        try
+        {
+            var messageToUpdate = message.Text?.Replace("!!set welcome", "");
+
+            var group = await GroupController.UpdateGroupAsync(p =>
+            {
+                p.WelcomeMessage = messageToUpdate;
+            }, message.Chat.Id, ct);
+            if (group is null)
+            {
+                await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", cancellationToken: ct);
+                return;
+            }
+
+            await Client.SendTextMessageAsync(message.Chat.Id, $"Welcome Message Set To :\n({messageToUpdate})", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+        }
+        catch (Exception e)
+        {
+            Log.Error(e, nameof(SetWelcomeAsync));
+        }
+    }
+
+    internal async Task DisableWelcomeAsync(Message message, CancellationToken ct)
+    {
+        try
+        {
+            var group = await GroupController.UpdateGroupAsync(p =>
+            {
+                p.SayWelcome = false;
+            }, message.Chat.Id, ct);
+            if (group is null)
+            {
+                await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+                await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+
+                return;
+            }
+
+            await Client.SendTextMessageAsync(message.Chat.Id, "Welcome Message Disabled!", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+
+        }
+        catch (Exception e)
+        {
+            Log.Error(e, nameof(DisableWelcomeAsync));
+        }
+
+    }
+
+    internal async Task EnableWelcomeAsync(Message message, CancellationToken ct)
+    {
+        try
+        {
+            var group = await GroupController.UpdateGroupAsync(p =>
+            {
+                p.SayWelcome = true;
+
+            }, message.Chat.Id, ct);
+            if (group is null)
+            {
+                await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+                await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+
+                return;
+            }
+            await Client.SendTextMessageAsync(message.Chat.Id, "Welcome Message Enabled!", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+
+        }
+        catch (Exception e)
+        {
+            Log.Error(e, nameof(EnableWelcomeAsync));
+        }
+
+    }
+
+    internal async Task UnBanUserAsync(Message message, CancellationToken ct)
+    {
+        try
+        {
+            var canParse = long.TryParse(message.Text?.Replace("!!unban", ""), out var userIdFromCommand);
+            if (!canParse)
+            {
+                if (message.ReplyToMessage?.From is null)
+                    return;
+
+                userIdFromCommand = message.ReplyToMessage.From.Id;
+            }
+
+            if (userIdFromCommand is 0)
+                return;
+            await UserController.UpdateUserAsync(p => { p.IsBanned = false; }, userIdFromCommand, ct);
+
+            await Client.UnbanChatMemberAsync(message.Chat.Id, userIdFromCommand, true, ct);
+            await Client.SendTextMessageAsync(message.Chat.Id, $"User {userIdFromCommand} Has Been Unbanned", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+        }
+        catch (Exception e)
+        {
+            Log.Error(e, nameof(UnBanUserAsync));
+        }
+    }
+
+    internal async Task BanUserAsync(Message message, CancellationToken ct)
+    {
+        try
+        {
+            var canParse = long.TryParse(message.Text?.Replace("!!ban", ""), out var userIdFromCommand);
+            if (!canParse)
+            {
+                if (message.ReplyToMessage?.From is null)
+                    return;
+
+                userIdFromCommand = message.ReplyToMessage.From.Id;
+            }
+
+            if (userIdFromCommand is 0)
+                return;
+
+            await UserController.UpdateUserAsync(p => { p.IsBanned = true; }, userIdFromCommand, ct);
+            await Client.BanChatMemberAsync(message.Chat.Id, userIdFromCommand, cancellationToken: ct);
+            await Client.SendTextMessageAsync(message.Chat.Id, $"User {userIdFromCommand} Has Been banned", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+        }
+        catch (Exception e)
+        {
+            Log.Error(e, nameof(UnBanUserAsync));
+        }
+    }
+
+    internal async Task EnableForceJoinAsync(Message message, CancellationToken ct)
+    {
+        try
+        {
+            var group = await GroupController.UpdateGroupAsync(p => { p.ForceJoin = true; }, message.Chat.Id, ct);
+
+            if (group is null)
+            {
+                await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+                await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+                return;
+            }
+            await Client.SendTextMessageAsync(message.Chat.Id, "Force Join Enabled", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+
+        }
+        catch (Exception e)
+        {
+            Log.Error(e, nameof(EnableForceJoinAsync));
+        }
+    }
+
+    internal async Task DisableForceJoinAsync(Message message, CancellationToken ct)
+    {
+        try
+        {
+            var group = await GroupController.UpdateGroupAsync(p => { p.ForceJoin = false; }, message.Chat.Id, ct);
+
+            if (group is null)
+            {
+                await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+                await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+                return;
+            }
+            await Client.SendTextMessageAsync(message.Chat.Id, "Force Join Disabled", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+
+        }
+        catch (Exception e)
+        {
+            Log.Error(e, nameof(DisableForceJoinAsync));
+        }
+    }
+
+    internal async Task AddForceJoinAsync(Message message, CancellationToken ct)
+    {
+        try
+        {
+            var channelId = message.Text?.Replace("!!add force", "");
+            if (channelId is null or "" or " ")
+            {
+                await Client.SendTextMessageAsync(message.Chat.Id, "Channel Id Is Wrong!", replyToMessageId: message.MessageId, cancellationToken: ct);
+                await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+                return;
+            }
+
+            if (CurrentGroup is null)
+            {
+                await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+                await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+                return;
+            }
+
+            await ForceJoinController.AddChannelAsync(CurrentGroup.Id, channelId, ct);
+
+
+            await Client.SendTextMessageAsync(message.Chat.Id, $"Channel @{channelId?.Replace("@", "")} Added To Force Join List.", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+
+        }
+        catch (Exception e)
+        {
+            Log.Error(e, nameof(AddForceJoinAsync));
+        }
+    }
+
+    internal async Task RemoveForceJoinAsync(Message message, CancellationToken ct)
+    {
+        try
+        {
+            var channelId = message.Text?.Replace("!!add force", "");
+            if (channelId is null or "" or " ")
+            {
+                await Client.SendTextMessageAsync(message.Chat.Id, "Channel Id Is Wrong!", replyToMessageId: message.MessageId, cancellationToken: ct);
+                await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+                return;
+            }
+
+            if (CurrentGroup is null)
+            {
+                await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+                await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+                return;
+            }
+            await ForceJoinController.RemoveChannelAsync(message.Chat.Id, channelId, ct);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Force Join Enabled", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+
+        }
+        catch (Exception e)
+        {
+            Log.Error(e, nameof(AddForceJoinAsync));
+        }
+    }
+
 }

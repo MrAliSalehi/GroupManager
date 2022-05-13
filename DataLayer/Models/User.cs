@@ -1,19 +1,20 @@
-﻿namespace GroupManager.DataLayer.Models;
-#nullable disable
-public class User
+﻿
+namespace GroupManager.DataLayer.Models
 {
-    //todo : limitations should come from admin configs
-    public int Id { get; set; }
-    public long UserId { get; set; }
-    public short Warns { get; set; } = 0;
-    public bool IsBanned { get; set; } = false;
-    public bool IsBot { get; set; }
-    public short StickerLimits { get; set; }
-    public short SentStickers { get; set; } = 0;
-    public short VideoLimits { get; set; }
-    public short SentVideos { get; set; } = 0;
-    public short GifLimits { get; set; }
-    public short SentGif { get; set; } = 0;
-    public short PhotoLimits { get; set; }
-    public short SentPhotos { get; set; } = 0;
+    public partial class User
+    {
+        public long Id { get; set; }
+        public long UserId { get; set; }
+        public uint Warns { get; set; }
+        public bool IsBanned { get; set; }
+        public bool IsBot { get; set; }
+        public uint StickerLimits { get; set; }
+        public uint SentStickers { get; set; }
+        public uint VideoLimits { get; set; }
+        public uint SentVideos { get; set; }
+        public uint GifLimits { get; set; }
+        public uint SentGif { get; set; }
+        public uint PhotoLimits { get; set; }
+        public uint SentPhotos { get; set; }
+    }
 }

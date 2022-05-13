@@ -19,7 +19,6 @@ public class MyChatMemberHandler : HandlerBase
 
         await CheckNewGroupAsync(chatMember, ct);
 
-        await ChatStatusUpdateAsync(chatMember, ct);
     }
 
     private async Task CheckNewGroupAsync(ChatMemberUpdated update, CancellationToken ct)
@@ -67,10 +66,6 @@ public class MyChatMemberHandler : HandlerBase
             default:
                 break;
         }
-    }
-    private async Task ChatStatusUpdateAsync(ChatMemberUpdated chatMember, CancellationToken ct)
-    {
-
     }
 
 }

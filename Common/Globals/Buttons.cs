@@ -120,7 +120,7 @@ public struct InlineButtons
                     new []
                     {
                         InlineKeyboardButton.WithCallbackData("Modify Time",$"{nameof(Admin)}:{nameof(Curse)}:{nameof(MuteTimeModify)}"),
-                        InlineKeyboardButton.WithCallbackData("Back","efiisjef"),
+                        InlineKeyboardButton.WithCallbackData("Back",$"{nameof(Admin)}:{nameof(Curse)}:{ConstData.Back}"),
                     }
 
                 });
@@ -130,19 +130,17 @@ public struct InlineButtons
                 {
                     new []
                     {
-                        InlineKeyboardButton.WithCallbackData("Day +",""),
-                        InlineKeyboardButton.WithCallbackData("Hour +",""),
-                        InlineKeyboardButton.WithCallbackData("Min +",""),
+                        InlineKeyboardButton.WithCallbackData("Hour +",$"{nameof(Admin)}:{nameof(MuteTimeModify)}:{ConstData.HourPlus}"),
+                        InlineKeyboardButton.WithCallbackData("Min +",$"{nameof(Admin)}:{nameof(MuteTimeModify)}:{ConstData.MinutePlus}"),
                     },
                     new []
                     {
-                        InlineKeyboardButton.WithCallbackData("Day -",""),
-                        InlineKeyboardButton.WithCallbackData("Hour -",""),
-                        InlineKeyboardButton.WithCallbackData("Min -",""),
+                        InlineKeyboardButton.WithCallbackData("Hour -",$"{nameof(Admin)}:{nameof(MuteTimeModify)}:{ConstData.HourMinus}"),
+                        InlineKeyboardButton.WithCallbackData("Min -",$"{nameof(Admin)}:{nameof(MuteTimeModify)}:{ConstData.MinuteMinus}"),
                     },
                     new []
                     {
-                        InlineKeyboardButton.WithCallbackData("Back",$"{nameof(Admin)}:{nameof(Curse)}:"),
+                        InlineKeyboardButton.WithCallbackData("Back",$"{nameof(Admin)}:{nameof(MuteTimeModify)}:{ConstData.Back}"),
                     }
                 });
         }
@@ -157,6 +155,10 @@ public struct ConstData
     public const string Back = "bk";
     public const string Plus = "+";
     public const string Minus = "-";
+    public const string HourPlus = $"H{Plus}";
+    public const string HourMinus = $"H{Minus}";
+    public const string MinutePlus = $"M{Plus}";
+    public const string MinuteMinus = $"M{Minus}";
     public const string Ban = "bn";
     public const string Mute = "mt";
     public const char TrueEmoji = '✅';
@@ -165,5 +167,6 @@ public struct ConstData
     public const string MessageOfMainMenu = "Settings:";
     public const string MessageOfCurseMenu = "Curse Configs:";
     public const string MessageOfWarnMenu = "Warn Configs:";
+    public const string MessageOfModifyMuteTimeMenu = "Modify Mute Time:";
 
 }

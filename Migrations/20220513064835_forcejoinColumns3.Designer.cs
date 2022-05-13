@@ -3,6 +3,7 @@ using System;
 using GroupManager.DataLayer.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,23 +11,24 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GroupManager.Migrations
 {
     [DbContext(typeof(ManagerContext))]
-    partial class ManagerContextModelSnapshot : ModelSnapshot
+    [Migration("20220513064835_forcejoinColumns3")]
+    partial class forcejoinColumns3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "6.0.5");
+            modelBuilder.HasAnnotation("ProductVersion", "6.0.3");
 
-            modelBuilder.Entity("GroupManager.DataLayer.Models.ForceJoinChannel", b =>
+            modelBuilder.Entity("GroupManager.DataLayer.Models.ForceJoinChannels", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("ChannelId")
                         .HasColumnType("TEXT");
 
-                    b.Property<long>("GroupId")
+                    b.Property<int?>("GroupId")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
@@ -38,7 +40,7 @@ namespace GroupManager.Migrations
 
             modelBuilder.Entity("GroupManager.DataLayer.Models.Group", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
@@ -55,9 +57,7 @@ namespace GroupManager.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<short>("MaxWarns")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER")
-                        .HasDefaultValueSql("3");
+                        .HasColumnType("INTEGER");
 
                     b.Property<bool>("MuteOnCurse")
                         .HasColumnType("INTEGER");
@@ -66,9 +66,7 @@ namespace GroupManager.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<TimeSpan>("MuteTime")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
-                        .HasDefaultValueSql("'03:00:00'");
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("SayWelcome")
                         .HasColumnType("INTEGER");
@@ -77,9 +75,7 @@ namespace GroupManager.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("WelcomeMessage")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
-                        .HasDefaultValueSql("'Welcome To Group!'");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -88,11 +84,11 @@ namespace GroupManager.Migrations
 
             modelBuilder.Entity("GroupManager.DataLayer.Models.User", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<uint>("GifLimits")
+                    b.Property<short>("GifLimits")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("IsBanned")
@@ -101,31 +97,31 @@ namespace GroupManager.Migrations
                     b.Property<bool>("IsBot")
                         .HasColumnType("INTEGER");
 
-                    b.Property<uint>("PhotoLimits")
+                    b.Property<short>("PhotoLimits")
                         .HasColumnType("INTEGER");
 
-                    b.Property<uint>("SentGif")
+                    b.Property<short>("SentGif")
                         .HasColumnType("INTEGER");
 
-                    b.Property<uint>("SentPhotos")
+                    b.Property<short>("SentPhotos")
                         .HasColumnType("INTEGER");
 
-                    b.Property<uint>("SentStickers")
+                    b.Property<short>("SentStickers")
                         .HasColumnType("INTEGER");
 
-                    b.Property<uint>("SentVideos")
+                    b.Property<short>("SentVideos")
                         .HasColumnType("INTEGER");
 
-                    b.Property<uint>("StickerLimits")
+                    b.Property<short>("StickerLimits")
                         .HasColumnType("INTEGER");
 
                     b.Property<long>("UserId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<uint>("VideoLimits")
+                    b.Property<short>("VideoLimits")
                         .HasColumnType("INTEGER");
 
-                    b.Property<uint>("Warns")
+                    b.Property<short>("Warns")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
@@ -133,20 +129,18 @@ namespace GroupManager.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("GroupManager.DataLayer.Models.ForceJoinChannel", b =>
+            modelBuilder.Entity("GroupManager.DataLayer.Models.ForceJoinChannels", b =>
                 {
                     b.HasOne("GroupManager.DataLayer.Models.Group", "Group")
-                        .WithMany("ForceJoinChannel")
-                        .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("ForceJoinChannels")
+                        .HasForeignKey("GroupId");
 
                     b.Navigation("Group");
                 });
 
             modelBuilder.Entity("GroupManager.DataLayer.Models.Group", b =>
                 {
-                    b.Navigation("ForceJoinChannel");
+                    b.Navigation("ForceJoinChannels");
                 });
 #pragma warning restore 612, 618
         }

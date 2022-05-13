@@ -1,5 +1,8 @@
 ﻿using GroupManager.Application.Handlers;
 using GroupManager.DataLayer.Controller;
+using Microsoft.EntityFrameworkCore.Internal;
+using Microsoft.EntityFrameworkCore.Query;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 using Serilog;
 using Telegram.Bot;
 using Telegram.Bot.Types;
@@ -11,6 +14,7 @@ namespace GroupManager.Application.Services
     {
         private readonly TelegramBotClient _client;
         private readonly MyChatMemberHandler _myChatMemberHandler;
+        private readonly ChatMemberHandler _chatMemberHandler;
         private readonly MessageHandler _messageHandler;
         private readonly CallBackHandler _callBackHandler;
         public UpdateService()
@@ -19,6 +23,7 @@ namespace GroupManager.Application.Services
             _myChatMemberHandler = new MyChatMemberHandler(_client);
             _messageHandler = new MessageHandler(_client);
             _callBackHandler = new CallBackHandler(_client);
+            _chatMemberHandler = new ChatMemberHandler(_client);
         }
         public override async Task StartAsync(CancellationToken cancellationToken)
         {
@@ -42,11 +47,18 @@ namespace GroupManager.Application.Services
             {
                 var updateHandler = update.Type switch
                 {
-                    UpdateType.Message when (update.Message is not null) => _messageHandler.InitHandlerAsync(update.Message, ct),
-                    UpdateType.ChatMember when (update.ChatMember is not null) => _myChatMemberHandler.InitHandlerAsync(update.ChatMember, ct),
+                    UpdateType.Message when (update.Message is { NewChatMembers: null }) => _messageHandler.InitHandlerAsync(update.Message, ct),
+
+                    UpdateType.Message when (update.Message?.NewChatMembers is not null) => _chatMemberHandler.InitHandlerAsync(update.Message.NewChatMembers, update.Message.Chat, ct),
+
+                    //UpdateType.ChatMember when (update.ChatMember is not null) => _chatMemberHandler.InitHandlerAsync(update.ChatMember, ct),
+
                     UpdateType.MyChatMember when (update.MyChatMember is not null) => _myChatMemberHandler.InitHandlerAsync(update.MyChatMember, ct),
+
                     UpdateType.CallbackQuery when (update.CallbackQuery is not null) => _callBackHandler.InitHandlerAsync(update.CallbackQuery, ct),
+
                     UpdateType.ChatJoinRequest => Task.CompletedTask,
+
                     UpdateType.Unknown => Task.CompletedTask,
                     _ => Task.CompletedTask
                 };

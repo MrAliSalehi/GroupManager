@@ -3,6 +3,7 @@ using System;
 using GroupManager.DataLayer.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,26 +11,21 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GroupManager.Migrations
 {
     [DbContext(typeof(ManagerContext))]
-    partial class ManagerContextModelSnapshot : ModelSnapshot
+    [Migration("20220513075640_globalFix")]
+    partial class globalFix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "6.0.5");
+            modelBuilder.HasAnnotation("ProductVersion", "6.0.3");
 
             modelBuilder.Entity("GroupManager.DataLayer.Models.ForceJoinChannel", b =>
                 {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("ChannelId")
                         .HasColumnType("TEXT");
 
                     b.Property<long>("GroupId")
                         .HasColumnType("INTEGER");
-
-                    b.HasKey("Id");
 
                     b.HasIndex("GroupId");
 
@@ -68,7 +64,7 @@ namespace GroupManager.Migrations
                     b.Property<TimeSpan>("MuteTime")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT")
-                        .HasDefaultValueSql("'03:00:00'");
+                        .HasDefaultValueSql("'00:00:00'");
 
                     b.Property<bool>("SayWelcome")
                         .HasColumnType("INTEGER");
@@ -136,17 +132,11 @@ namespace GroupManager.Migrations
             modelBuilder.Entity("GroupManager.DataLayer.Models.ForceJoinChannel", b =>
                 {
                     b.HasOne("GroupManager.DataLayer.Models.Group", "Group")
-                        .WithMany("ForceJoinChannel")
+                        .WithMany()
                         .HasForeignKey("GroupId")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Group");
-                });
-
-            modelBuilder.Entity("GroupManager.DataLayer.Models.Group", b =>
-                {
-                    b.Navigation("ForceJoinChannel");
                 });
 #pragma warning restore 612, 618
         }

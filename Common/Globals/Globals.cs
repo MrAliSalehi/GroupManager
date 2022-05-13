@@ -1,4 +1,5 @@
 ﻿global using GroupManager.Common.Globals;
+global using Serilog;
 using GroupManager.Common.Models;
 
 

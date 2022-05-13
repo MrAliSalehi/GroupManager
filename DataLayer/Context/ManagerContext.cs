@@ -6,15 +6,16 @@ namespace GroupManager.DataLayer.Context;
 
 public class ManagerContext : DbContext
 {
-    public DbSet<Group> Groups { get; set; }
-    public DbSet<User> Users { get; set; }
+    public virtual DbSet<ForceJoinChannel> ForceJoinChannels { get; set; } = null!;
+    public virtual DbSet<Group> Groups { get; set; } = null!;
+    public virtual DbSet<User> Users { get; set; } = null!;
 
     private readonly ILoggerFactory _loggerFactory;
     private static string DbPath => "ManagerDb.db";
 
     public ManagerContext() : base() { }
 
-    public ManagerContext(ILoggerFactory loggerFactory)
+    public ManagerContext(DbContextOptions<ManagerContext> options, ILoggerFactory loggerFactory) : base(options)
     {
         _loggerFactory = loggerFactory;
     }
@@ -22,9 +23,28 @@ public class ManagerContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
+
         options.UseLoggerFactory(_loggerFactory);
-        options.UseSqlite($"Data Source={DbPath}");
+        options.UseLazyLoadingProxies().UseSqlite($"Data Source={DbPath}");
         base.OnConfiguring(options);
+
+    }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+
+        modelBuilder.Entity<Group>(entity =>
+        {
+            entity.HasMany(p => p.ForceJoinChannel)
+                .WithOne(x => x.Group)
+                .HasForeignKey(f => f.GroupId);
+
+
+            entity.Property(e => e.MaxWarns).HasDefaultValueSql("3");
+
+            entity.Property(e => e.MuteTime).HasDefaultValueSql("'03:00:00'");
+
+            entity.Property(e => e.WelcomeMessage).HasDefaultValueSql("'Welcome To Group!'");
+        });
 
     }
 

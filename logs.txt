@@ -873,3 +873,89 @@ Telegram.Bot.Exceptions.ApiRequestException: Bad Request: can't parse inline key
 2022-05-12 09:42:06.781 +04:30 [INF] Application started. Press Ctrl+C to shut down.
 2022-05-12 09:42:06.783 +04:30 [INF] Hosting environment: Development
 2022-05-12 09:42:06.784 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-12 09:58:45.924 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-12 09:58:45.942 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-12 09:58:45.944 +04:30 [INF] Hosting environment: Development
+2022-05-12 09:58:45.945 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-12 10:09:59.817 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-12 10:09:59.835 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-12 10:09:59.837 +04:30 [INF] Hosting environment: Development
+2022-05-12 10:09:59.837 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-12 10:10:31.503 +04:30 [ERR] OnUpdate
+Telegram.Bot.Exceptions.ApiRequestException: Bad Request: can't parse inline keyboard button: Text buttons are unallowed in the inline keyboard
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.EditMessageTextAsync(ITelegramBotClient botClient, ChatId chatId, Int32 messageId, String text, Nullable`1 parseMode, IEnumerable`1 entities, Nullable`1 disableWebPagePreview, InlineKeyboardMarkup replyMarkup, CancellationToken cancellationToken)
+   at GroupManager.Application.Handlers.CallBackHandler.AdminCurseMenuAsync(CallbackQuery callback, IReadOnlyList`1 data, Group group, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 139
+   at GroupManager.Application.Handlers.CallBackHandler.AdminCallbacksAsync(CallbackQuery callback, IReadOnlyList`1 data, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 72
+   at GroupManager.Application.Handlers.CallBackHandler.InitHandlerAsync(CallbackQuery callback, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 26
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 54
+2022-05-12 10:23:50.232 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-12 10:23:50.250 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-12 10:23:50.253 +04:30 [INF] Hosting environment: Development
+2022-05-12 10:23:50.253 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-12 10:25:11.871 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-12 10:25:11.889 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-12 10:25:11.892 +04:30 [INF] Hosting environment: Development
+2022-05-12 10:25:11.892 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-13 09:22:41.014 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-13 09:22:41.040 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-13 09:22:41.043 +04:30 [INF] Hosting environment: Development
+2022-05-13 09:22:41.043 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-13 09:25:36.782 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-13 09:25:36.802 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-13 09:25:36.804 +04:30 [INF] Hosting environment: Development
+2022-05-13 09:25:36.804 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-13 09:35:12.250 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-13 09:35:12.268 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-13 09:35:12.270 +04:30 [INF] Hosting environment: Development
+2022-05-13 09:35:12.271 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-13 09:50:08.112 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-13 09:50:08.130 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-13 09:50:08.133 +04:30 [INF] Hosting environment: Development
+2022-05-13 09:50:08.134 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-13 09:57:33.815 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-13 09:57:33.835 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-13 09:57:33.838 +04:30 [INF] Hosting environment: Development
+2022-05-13 09:57:33.838 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-13 10:35:10.986 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-13 10:35:11.005 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-13 10:35:11.008 +04:30 [INF] Hosting environment: Development
+2022-05-13 10:35:11.009 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-13 10:45:20.316 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-13 10:45:20.335 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-13 10:45:20.338 +04:30 [INF] Hosting environment: Development
+2022-05-13 10:45:20.338 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-13 11:44:00.204 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-13 11:44:00.222 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-13 11:44:00.224 +04:30 [INF] Hosting environment: Development
+2022-05-13 11:44:00.225 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-13 11:44:46.483 +04:30 [ERR] AddChannelAsync
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 19: 'UNIQUE constraint failed: Groups.Id'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at GroupManager.DataLayer.Controller.ForceJoinController.AddChannelAsync(ForceJoinChannels channel, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\DataLayer\Controller\ForceJoinController.cs:line 18
+   at GroupManager.DataLayer.Controller.ForceJoinController.AddChannelAsync(ForceJoinChannels channel, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\DataLayer\Controller\ForceJoinController.cs:line 18
+2022-05-13 11:58:43.044 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-13 11:58:43.062 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-13 11:58:43.064 +04:30 [INF] Hosting environment: Development
+2022-05-13 11:58:43.065 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-13 13:07:38.052 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-13 13:07:38.071 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-13 13:07:38.073 +04:30 [INF] Hosting environment: Development
+2022-05-13 13:07:38.074 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
