@@ -80,6 +80,8 @@ public class MessageHandler : HandlerBase
             { } x when (x.Contains("add force")) => _adminBotCommands.AddForceJoinAsync(message, ct),
             { } x when (x.Contains("rem force")) => _adminBotCommands.RemoveForceJoinAsync(message, ct),
 
+            "mute all" => _adminBotCommands.MuteAllChatAsync(message, ct),
+            "unmute all" => _adminBotCommands.UnMuteAllChatAsync(message, ct),
             _ => Task.CompletedTask
         };
         await response;

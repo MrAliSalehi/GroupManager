@@ -348,4 +348,58 @@ public class AdminBotCommands : HandlerBase, IBotCommand
             Log.Error(e, nameof(GetListOfForceJoinAsync));
         }
     }
+
+    internal async Task MuteAllChatAsync(Message message, CancellationToken ct)
+    {
+        var result = await GroupController.UpdateGroupAsync(p =>
+        {
+            p.MuteAllChat = true;
+        }, message.Chat.Id, ct);
+        if (result is null)
+        {
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated",
+                replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+            return;
+        }
+        CurrentGroup = result;
+        try
+        {
+            await Client.SetChatPermissionsAsync(message.Chat.Id, Globals.MuteUserChatPermissions, ct);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Has been Muted", replyToMessageId: message.MessageId, cancellationToken: ct);
+        }
+        catch (Exception)
+        {
+            await Client.SendTextMessageAsync(message.Chat.Id, "Bot Doesn't Have Permissions To Do This\nOr Just Can Do it Right Now!", replyToMessageId: message.MessageId, cancellationToken: ct);
+        }
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+
+    }
+
+    public async Task UnMuteAllChatAsync(Message message, CancellationToken ct)
+    {
+        var result = await GroupController.UpdateGroupAsync(p =>
+        {
+            p.MuteAllChat = false;
+        }, message.Chat.Id, ct);
+        if (result is null)
+        {
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated",
+                replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+            return;
+        }
+
+        try
+        {
+            await Client.SetChatPermissionsAsync(message.Chat.Id, Globals.UnMuteUserChatPermissions, ct);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Has been UnMuted", replyToMessageId: message.MessageId, cancellationToken: ct);
+        }
+        catch (Exception)
+        {
+            await Client.SendTextMessageAsync(message.Chat.Id, "Bot Doesn't Have Permissions To Do This\nOr Just Can Do it Right Now!", replyToMessageId: message.MessageId, cancellationToken: ct);
+        }
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+
+    }
 }

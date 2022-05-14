@@ -15,12 +15,13 @@ namespace GroupManager.Common.Globals
         {
             CanSendOtherMessages = false,
             CanSendMediaMessages = false,
-            CanInviteUsers = false,
-            CanChangeInfo = false,
-            CanAddWebPagePreviews = false,
-            CanPinMessages = false,
             CanSendMessages = false,
-            CanSendPolls = false
+        };
+        public static readonly ChatPermissions UnMuteUserChatPermissions = new()
+        {
+            CanSendOtherMessages = true,
+            CanSendMediaMessages = true,
+            CanSendMessages = true,
         };
     }
 
