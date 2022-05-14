@@ -959,3 +959,132 @@ Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving 
 2022-05-13 13:07:38.071 +04:30 [INF] Application started. Press Ctrl+C to shut down.
 2022-05-13 13:07:38.073 +04:30 [INF] Hosting environment: Development
 2022-05-13 13:07:38.074 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-14 09:20:54.581 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-14 09:20:54.630 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-14 09:20:54.632 +04:30 [INF] Hosting environment: Development
+2022-05-14 09:20:54.633 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-14 09:22:58.764 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-14 09:22:58.783 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-14 09:22:58.786 +04:30 [INF] Hosting environment: Development
+2022-05-14 09:22:58.786 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-14 09:22:59.618 +04:30 [ERR] OnUpdate
+Telegram.Bot.Exceptions.ApiRequestException: Forbidden: bot was kicked from the channel chat
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.SendTextMessageAsync(ITelegramBotClient botClient, ChatId chatId, String text, Nullable`1 parseMode, IEnumerable`1 entities, Nullable`1 disableWebPagePreview, Nullable`1 disableNotification, Nullable`1 replyToMessageId, Nullable`1 allowSendingWithoutReply, IReplyMarkup replyMarkup, CancellationToken cancellationToken)
+   at GroupManager.Application.Handlers.MyChatMemberHandler.CheckNewGroupAsync(ChatMemberUpdated update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\MyChatMemberHandler.cs:line 28
+   at GroupManager.Application.Handlers.MyChatMemberHandler.InitHandlerAsync(ChatMemberUpdated chatMember, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\MyChatMemberHandler.cs:line 20
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 66
+2022-05-14 09:24:50.342 +04:30 [ERR] OnUpdate
+System.InvalidOperationException: An error was generated for warning 'Microsoft.EntityFrameworkCore.Infrastructure.LazyLoadOnDisposedContextWarning': An attempt was made to lazy-load navigation 'GroupProxy.ForceJoinChannel' after the associated DbContext was disposed. This exception can be suppressed or logged by passing event ID 'CoreEventId.LazyLoadOnDisposedContextWarning' to the 'ConfigureWarnings' method in 'DbContext.OnConfiguring' or 'AddDbContext'.
+   at Microsoft.EntityFrameworkCore.Diagnostics.EventDefinition`2.Log[TLoggerCategory](IDiagnosticsLogger`1 logger, TParam1 arg1, TParam2 arg2)
+   at Microsoft.EntityFrameworkCore.Diagnostics.CoreLoggerExtensions.LazyLoadOnDisposedContextWarning(IDiagnosticsLogger`1 diagnostics, DbContext context, Object entityType, String navigationName)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.LazyLoader.ShouldLoad(Object entity, String navigationName, NavigationEntry& navigationEntry)
+   at Microsoft.EntityFrameworkCore.Infrastructure.Internal.LazyLoader.Load(Object entity, String navigationName)
+   at Microsoft.EntityFrameworkCore.Proxies.Internal.LazyLoadingInterceptor.Intercept(IInvocation invocation)
+   at Castle.DynamicProxy.AbstractInvocation.Proceed()
+   at Castle.Proxies.GroupProxy.get_ForceJoinChannel()
+   at GroupManager.Application.Handlers.ChatMemberHandler.ForceJoinAsync(List`1 users, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\ChatMemberHandler.cs:line 38
+   at GroupManager.Application.Handlers.ChatMemberHandler.UserJoinedChatAsync(List`1 users, Chat chat, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\ChatMemberHandler.cs:line 27
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 66
+2022-05-14 09:29:50.666 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-14 09:29:50.685 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-14 09:29:50.687 +04:30 [INF] Hosting environment: Development
+2022-05-14 09:29:50.688 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-14 09:32:56.392 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-14 09:32:56.409 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-14 09:32:56.412 +04:30 [INF] Hosting environment: Development
+2022-05-14 09:32:56.412 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-14 10:06:25.415 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-14 10:06:25.433 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-14 10:06:25.436 +04:30 [INF] Hosting environment: Development
+2022-05-14 10:06:25.436 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-14 10:09:26.562 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-14 10:09:26.580 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-14 10:09:26.583 +04:30 [INF] Hosting environment: Development
+2022-05-14 10:09:26.583 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-14 10:10:20.794 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-14 10:10:20.812 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-14 10:10:20.814 +04:30 [INF] Hosting environment: Development
+2022-05-14 10:10:20.815 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-14 10:11:40.065 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-14 10:11:40.083 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-14 10:11:40.086 +04:30 [INF] Hosting environment: Development
+2022-05-14 10:11:40.086 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-14 10:12:40.660 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-14 10:12:40.679 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-14 10:12:40.681 +04:30 [INF] Hosting environment: Development
+2022-05-14 10:12:40.682 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-14 10:22:12.698 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-14 10:22:12.716 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-14 10:22:12.718 +04:30 [INF] Hosting environment: Development
+2022-05-14 10:22:12.719 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-14 10:24:31.881 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-14 10:24:31.899 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-14 10:24:31.900 +04:30 [INF] Hosting environment: Development
+2022-05-14 10:24:31.901 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-14 10:26:36.322 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-14 10:26:36.341 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-14 10:26:36.343 +04:30 [INF] Hosting environment: Development
+2022-05-14 10:26:36.344 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-14 10:27:13.054 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-14 10:27:13.072 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-14 10:27:13.075 +04:30 [INF] Hosting environment: Development
+2022-05-14 10:27:13.076 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-14 10:31:13.569 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-14 10:31:13.587 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-14 10:31:13.590 +04:30 [INF] Hosting environment: Development
+2022-05-14 10:31:13.590 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-14 10:33:27.740 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-14 10:33:27.760 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-14 10:33:27.763 +04:30 [INF] Hosting environment: Development
+2022-05-14 10:33:27.763 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-14 10:36:42.112 +04:30 [ERR] OnUpdate
+Telegram.Bot.Exceptions.ApiRequestException: Bad Request: message to delete not found
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.DeleteMessageAsync(ITelegramBotClient botClient, ChatId chatId, Int32 messageId, CancellationToken cancellationToken)
+   at GroupManager.Application.Handlers.CallBackHandler.ForceJoinAsync(CallbackQuery callback, IReadOnlyList`1 data, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 131
+   at GroupManager.Application.Handlers.CallBackHandler.MemberCallbacksAsync(CallbackQuery callBack, IReadOnlyList`1 data, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 100
+   at GroupManager.Application.Handlers.CallBackHandler.InitHandlerAsync(CallbackQuery callback, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 36
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 66
+2022-05-14 10:38:03.884 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-14 10:38:03.904 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-14 10:38:03.906 +04:30 [INF] Hosting environment: Development
+2022-05-14 10:38:03.907 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-14 10:40:12.189 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-14 10:40:12.207 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-14 10:40:12.209 +04:30 [INF] Hosting environment: Development
+2022-05-14 10:40:12.210 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-14 11:04:05.265 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-14 11:04:05.285 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-14 11:04:05.287 +04:30 [INF] Hosting environment: Development
+2022-05-14 11:04:05.288 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-14 11:05:07.628 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-14 11:05:07.648 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-14 11:05:07.650 +04:30 [INF] Hosting environment: Development
+2022-05-14 11:05:07.651 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-14 11:06:16.948 +04:30 [ERR] OnError
+Telegram.Bot.Exceptions.RequestException: Exception during making request
+ ---> System.Net.Http.HttpRequestException: An error occurred while sending the request.
+ ---> System.IO.IOException: Unable to read data from the transport connection: An established connection was aborted by the software in your host machine..
+ ---> System.Net.Sockets.SocketException (10053): An established connection was aborted by the software in your host machine.
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource<System.Int32>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.EnsureFullTlsFrameAsync[TIOAdapter](TIOAdapter adapter)
+   at System.Net.Security.SslStream.ReadAsyncInternal[TIOAdapter](TIOAdapter adapter, Memory`1 buffer)
+   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at Telegram.Bot.TelegramBotClient.<MakeRequestAsync>g__SendRequestAsync|22_0[TResponse](HttpClient httpClient, HttpRequestMessage httpRequest, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Telegram.Bot.TelegramBotClient.<MakeRequestAsync>g__SendRequestAsync|22_0[TResponse](HttpClient httpClient, HttpRequestMessage httpRequest, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+2022-05-14 11:06:54.040 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-14 11:06:54.059 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-14 11:06:54.061 +04:30 [INF] Hosting environment: Development
+2022-05-14 11:06:54.062 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager

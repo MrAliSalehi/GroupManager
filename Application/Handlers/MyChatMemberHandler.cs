@@ -38,6 +38,9 @@ public class MyChatMemberHandler : HandlerBase
         if (update.NewChatMember.User.Username != ManagerConfig.BotUserName)
             return;
 
+        if (update.Chat.Type == ChatType.Channel)
+            return;
+
         switch (update.NewChatMember.Status)
         {
             case ChatMemberStatus.Member when (update.OldChatMember.Status == ChatMemberStatus.Administrator):

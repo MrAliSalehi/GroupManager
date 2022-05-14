@@ -145,6 +145,29 @@ public struct InlineButtons
                 });
         }
     }
+
+    public struct Member
+    {
+        public static InlineKeyboardMarkup CreateForceJoinMarkup(List<ForceJoinChannel> channels, long userId)
+        {
+            var outPut = new List<List<InlineKeyboardButton>>();
+            var splitter = 0;
+            foreach (var channel in channels)
+            {
+                if (splitter % 2 == 0)
+                {
+                    outPut.Add(new List<InlineKeyboardButton>());
+                }
+
+                var channelId = channel.ChannelId.Contains("https") ? channel.ChannelId.Trim() : $"https://t.me/{channel.ChannelId.Trim()}";
+
+                outPut.Last().Add(InlineKeyboardButton.WithUrl($"Channel-{splitter}", channelId!));
+                splitter++;
+            }
+            outPut.Add(new List<InlineKeyboardButton>() { InlineKeyboardButton.WithCallbackData("Confirm", $"{nameof(Member)}:Force:{userId}") });
+            return new InlineKeyboardMarkup(outPut);
+        }
+    }
 }
 
 public struct ConstData

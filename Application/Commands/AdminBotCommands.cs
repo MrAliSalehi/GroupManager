@@ -267,7 +267,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand
                 return;
             }
 
-            await ForceJoinController.AddChannelAsync(CurrentGroup.Id, channelId, ct);
+            await ForceJoinController.AddChannelAsync(CurrentGroup.Id, channelId.Trim(), ct);
 
 
             await Client.SendTextMessageAsync(message.Chat.Id, $"Channel @{channelId?.Replace("@", "")} Added To Force Join List.", replyToMessageId: message.MessageId, cancellationToken: ct);
@@ -298,8 +298,15 @@ public class AdminBotCommands : HandlerBase, IBotCommand
                 await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
                 return;
             }
-            await ForceJoinController.RemoveChannelAsync(message.Chat.Id, channelId, ct);
-            await Client.SendTextMessageAsync(message.Chat.Id, "Force Join Enabled", replyToMessageId: message.MessageId, cancellationToken: ct);
+            var result = await ForceJoinController.RemoveChannelAsync(CurrentGroup.Id, channelId.Replace("!!rem force ", ""), ct);
+            var outputText = result switch
+            {
+                0 => "Channel Has been Removed",
+                1 => "Channel Not Found",
+                2 => "There Is Some Issues during Remove Channel Operation",
+                _ => "-",
+            };
+            await Client.SendTextMessageAsync(message.Chat.Id, outputText, replyToMessageId: message.MessageId, cancellationToken: ct);
             await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
 
         }
@@ -309,4 +316,36 @@ public class AdminBotCommands : HandlerBase, IBotCommand
         }
     }
 
+    internal async Task GetListOfForceJoinAsync(Message message, CancellationToken ct)
+    {
+        try
+        {
+            if (CurrentGroup is null)
+            {
+                await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+                await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+                return;
+            }
+
+            var channelsList = await ForceJoinController.GetAllChannelsAsync(CurrentGroup.Id, ct);
+            if (channelsList is null or { Count: 0 })
+            {
+                await Client.SendTextMessageAsync(message.Chat.Id, "No Channel Found!", replyToMessageId: message.MessageId, cancellationToken: ct);
+                await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+                return;
+            }
+
+            var outputText = "";
+            channelsList.ForEach(p =>
+            {
+                outputText += $"@{p.ChannelId}\n";
+            });
+            await Client.SendTextMessageAsync(message.Chat.Id, $"List Of All Force-Join-Channels:\n{outputText}",
+                cancellationToken: ct);
+        }
+        catch (Exception e)
+        {
+            Log.Error(e, nameof(GetListOfForceJoinAsync));
+        }
+    }
 }

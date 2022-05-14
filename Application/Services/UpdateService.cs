@@ -49,7 +49,7 @@ namespace GroupManager.Application.Services
                 {
                     UpdateType.Message when (update.Message is { NewChatMembers: null }) => _messageHandler.InitHandlerAsync(update.Message, ct),
 
-                    UpdateType.Message when (update.Message?.NewChatMembers is not null) => _chatMemberHandler.InitHandlerAsync(update.Message.NewChatMembers, update.Message.Chat, ct),
+                    UpdateType.Message when (update.Message?.NewChatMembers is not null) => _chatMemberHandler.UserJoinedChatAsync(update.Message.NewChatMembers.ToList(), update.Message.Chat, ct),
 
                     //UpdateType.ChatMember when (update.ChatMember is not null) => _chatMemberHandler.InitHandlerAsync(update.ChatMember, ct),
 

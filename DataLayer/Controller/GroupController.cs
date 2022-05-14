@@ -36,6 +36,21 @@ public struct GroupController
         }
     }
 
+    public static async ValueTask<Group?> GetGroupByIdIncludeChannelAsync(long groupId, CancellationToken ct = default)
+    {
+        try
+        {
+            await using var db = new ManagerContext();
+            return await db.Groups
+                .Include(p => p.ForceJoinChannel)
+                .SingleOrDefaultAsync(p => p.GroupId == groupId, ct);
+        }
+        catch (Exception e)
+        {
+            Log.Error(e, nameof(GetGroupByIdIncludeChannelAsync));
+            return null;
+        }
+    }
     public static async ValueTask<Group?> AddGroupAsync(long groupId, CancellationToken ct = default)
     {
         try

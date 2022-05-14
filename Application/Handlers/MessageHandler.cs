@@ -34,7 +34,7 @@ public class MessageHandler : HandlerBase
 
         if (message.Chat.Id != message.From.Id)
         {
-            var group = await GroupController.GetGroupByIdAsync(message.Chat.Id, ct);
+            var group = await GroupController.GetGroupByIdIncludeChannelAsync(message.Chat.Id, ct);
             if (group is not null)
                 await _groupCommands.HandleGroupAsync(message, group, ct);
         }
@@ -76,6 +76,7 @@ public class MessageHandler : HandlerBase
 
             "enable force" => _adminBotCommands.EnableForceJoinAsync(message, ct),
             "disable force" => _adminBotCommands.DisableForceJoinAsync(message, ct),
+            "list force" => _adminBotCommands.GetListOfForceJoinAsync(message, ct),
             { } x when (x.Contains("add force")) => _adminBotCommands.AddForceJoinAsync(message, ct),
             { } x when (x.Contains("rem force")) => _adminBotCommands.RemoveForceJoinAsync(message, ct),
 

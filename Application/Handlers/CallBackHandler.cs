@@ -4,12 +4,19 @@ using GroupManager.DataLayer.Models;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
-using Telegram.Bot.Types.ReplyMarkups;
+using User = Telegram.Bot.Types.User;
 
 namespace GroupManager.Application.Handlers;
 
 public class CallBackHandler : HandlerBase
 {
+    private static readonly ChatPermissions UnMuteChatPermissions = new()
+    {
+        CanSendOtherMessages = true,
+        CanSendMessages = true,
+        CanSendMediaMessages = true,
+        CanInviteUsers = true
+    };
     public CallBackHandler(ITelegramBotClient client) : base(client)
     {
     }
@@ -22,10 +29,12 @@ public class CallBackHandler : HandlerBase
         var dataArr = callback.Data.Split(':');
         switch (dataArr[0])
         {
-            case "Admin":
+            case nameof(InlineButtons.Admin):
                 await AdminCallbacksAsync(callback, dataArr, ct);
                 break;
-
+            case nameof(InlineButtons.Member):
+                await MemberCallbacksAsync(callback, dataArr, ct);
+                break;
             default:
                 break;
         }
@@ -72,7 +81,7 @@ public class CallBackHandler : HandlerBase
                 await AdminCurseMenuAsync(callback, data, ct);
                 break;
             case nameof(InlineButtons.Admin.Curse.MuteTimeModify):
-                await ModifyMuteTimeAsync(callback, data,group, ct);
+                await ModifyMuteTimeAsync(callback, data, group, ct);
                 break;
             case nameof(InlineButtons.Admin.ConfirmChat):
                 await GroupController.AddGroupAsync(callback.Message.Chat.Id, ct);
@@ -83,7 +92,54 @@ public class CallBackHandler : HandlerBase
 
     }
 
-    private async Task ModifyMuteTimeAsync(CallbackQuery callback, IReadOnlyList<string> data,Group group, CancellationToken ct = default)
+    private async Task MemberCallbacksAsync(CallbackQuery callBack, IReadOnlyList<string> data, CancellationToken ct = default)
+    {
+        switch (data[1])
+        {
+            case "Force":
+                await ForceJoinAsync(callBack, data, ct);
+                break;
+        }
+
+
+    }
+
+    private async Task ForceJoinAsync(CallbackQuery callback, IReadOnlyList<string> data, CancellationToken ct = default)
+    {
+        if (callback.Message is null)
+            return;
+
+        var canParse = long.TryParse(data[2], out var userId);
+        if (!canParse)
+            return;
+        if (userId != callback.From.Id)
+        {
+            await Client.AnswerCallbackQueryAsync(callback.Id, "This Button Is Not Meant For You!", true, cancellationToken: ct);
+            return;
+
+        }
+        var fullGroup = await GroupController.GetGroupByIdIncludeChannelAsync(callback.Message.Chat.Id, ct);
+        if (fullGroup is null)
+            return;
+
+        var notJoinedList = await ChatMemberHandler.CheckUserChatMemberAsync(callback.From.Id, fullGroup.ForceJoinChannel, Client, ct);
+        if (notJoinedList.Count == 0)
+        {
+            await Client.RestrictChatMemberAsync(callback.Message.Chat.Id, callback.From.Id, UnMuteChatPermissions,
+                cancellationToken: ct);
+            await Client.AnswerCallbackQueryAsync(callback.Id, "You Can Chat Now!", true, cancellationToken: ct);
+            await Client.DeleteMessageAsync(callback.Message.Chat.Id, callback.Message.MessageId, ct);
+
+        }
+        else
+        {
+            await Client.AnswerCallbackQueryAsync(callback.Id, "You Are Not Joined In Channels!", true,
+                cancellationToken: ct);
+            return;
+        }
+    }
+
+    private async Task ModifyMuteTimeAsync(CallbackQuery callback, IReadOnlyList<string> data, Group group, CancellationToken ct = default)
     {
         if (callback.Message is null)
             return;
@@ -101,10 +157,11 @@ public class CallBackHandler : HandlerBase
 
             case ConstData.Back:
                 await Client.EditMessageTextAsync(callback.Message.Chat.Id, callback.Message.MessageId,
-                    ConstData.MessageOfCurseMenu,replyMarkup:InlineButtons.Admin.Curse.GetMenu(group), cancellationToken: ct);
+                    ConstData.MessageOfCurseMenu, replyMarkup: InlineButtons.Admin.Curse.GetMenu(group), cancellationToken: ct);
                 break;
         }
     }
+
     private async Task AdminCurseMenuAsync(CallbackQuery callback, IReadOnlyList<string> data, CancellationToken ct = default)
     {
         if (callback.Message?.ReplyMarkup is null)
@@ -170,6 +227,7 @@ public class CallBackHandler : HandlerBase
                 break;
         }
     }
+
     private async Task AdminWarnMenuAsync(CallbackQuery callback, IReadOnlyList<string> data, Group group, CancellationToken ct)
     {
         if (callback.Message?.ReplyMarkup is null)
