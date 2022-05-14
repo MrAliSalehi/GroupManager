@@ -44,7 +44,7 @@ public class ChatMemberHandler : HandlerBase, IBotCommand
             if (notJoined.Count == 0)
                 continue;
 
-            await Client.RestrictChatMemberAsync(CurrentGroup.GroupId, user.Id, Globals.MuteUserChatPermissions,
+            await Client.RestrictChatMemberAsync(CurrentGroup.GroupId, user.Id, Globals.MutePermissions,
                 cancellationToken: ct);
             var channelsText = "";
             notJoined.ForEach(ch =>

@@ -1,5 +1,6 @@
 ﻿global using GroupManager.Common.Globals;
 global using Serilog;
+global using GroupManager.Common.Extensions;
 using GroupManager.Common.Models;
 using Telegram.Bot.Types;
 
@@ -11,17 +12,22 @@ namespace GroupManager.Common.Globals
         public static IConfiguration Configuration { get; set; } = default!;
         public static BotConfigs BotConfigs { get; set; } = new();
         public static string ApplicationEnv => Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT")!;
-        public static readonly ChatPermissions MuteUserChatPermissions = new()
+
+        public static readonly ChatPermissions MutePermissions = new()
         {
-            CanSendOtherMessages = false,
-            CanSendMediaMessages = false,
-            CanSendMessages = false,
+            CanInviteUsers = true,
         };
-        public static readonly ChatPermissions UnMuteUserChatPermissions = new()
+        public static readonly ChatPermissions UnMutePermissions = new()
         {
-            CanSendOtherMessages = true,
-            CanSendMediaMessages = true,
+
             CanSendMessages = true,
+            CanSendPolls = true,
+            CanSendMediaMessages = true,
+            CanSendOtherMessages = true,
+            CanInviteUsers = true,
+            CanAddWebPagePreviews = true,
+            CanPinMessages = false,
+            CanChangeInfo = false,
         };
     }
 

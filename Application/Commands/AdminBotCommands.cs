@@ -351,21 +351,18 @@ public class AdminBotCommands : HandlerBase, IBotCommand
 
     internal async Task MuteAllChatAsync(Message message, CancellationToken ct)
     {
-        var result = await GroupController.UpdateGroupAsync(p =>
-        {
-            p.MuteAllChat = true;
-        }, message.Chat.Id, ct);
-        if (result is null)
+
+        if (CurrentGroup is null)
         {
             await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated",
                 replyToMessageId: message.MessageId, cancellationToken: ct);
             await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
         }
-        CurrentGroup = result;
         try
         {
-            await Client.SetChatPermissionsAsync(message.Chat.Id, Globals.MuteUserChatPermissions, ct);
+            await Client.SetChatPermissionsAsync(message.Chat.Id, Globals.MutePermissions, ct);
+
             await Client.SendTextMessageAsync(message.Chat.Id, "Group Has been Muted", replyToMessageId: message.MessageId, cancellationToken: ct);
         }
         catch (Exception)
@@ -378,11 +375,8 @@ public class AdminBotCommands : HandlerBase, IBotCommand
 
     public async Task UnMuteAllChatAsync(Message message, CancellationToken ct)
     {
-        var result = await GroupController.UpdateGroupAsync(p =>
-        {
-            p.MuteAllChat = false;
-        }, message.Chat.Id, ct);
-        if (result is null)
+
+        if (CurrentGroup is null)
         {
             await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated",
                 replyToMessageId: message.MessageId, cancellationToken: ct);
@@ -392,7 +386,9 @@ public class AdminBotCommands : HandlerBase, IBotCommand
 
         try
         {
-            await Client.SetChatPermissionsAsync(message.Chat.Id, Globals.UnMuteUserChatPermissions, ct);
+            var chat = await Client.GetChatAsync(message.Chat.Id, ct);
+
+            await Client.SetChatPermissionsAsync(message.Chat.Id, Globals.UnMutePermissions, ct);
             await Client.SendTextMessageAsync(message.Chat.Id, "Group Has been UnMuted", replyToMessageId: message.MessageId, cancellationToken: ct);
         }
         catch (Exception)

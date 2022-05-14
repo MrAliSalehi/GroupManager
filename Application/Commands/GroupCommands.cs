@@ -40,7 +40,7 @@ public class GroupCommands : HandlerBase, IBotCommand
         var status = "";
         if (CurrentGroup.MuteOnCurse)
         {
-            await Client.RestrictChatMemberAsync(message.Chat.Id, message.From.Id, Globals.MuteUserChatPermissions
+            await Client.RestrictChatMemberAsync(message.Chat.Id, message.From.Id, Globals.MutePermissions
                 , DateTime.Now + CurrentGroup.MuteTime, ct);
             status = $"User Has Been Muted For {CurrentGroup.MuteTime.Humanize()}";
         }
@@ -68,7 +68,7 @@ public class GroupCommands : HandlerBase, IBotCommand
 
                 else if (CurrentGroup.MuteOnMaxWarn)
                 {
-                    await Client.RestrictChatMemberAsync(message.Chat.Id, message.From.Id, Globals.MuteUserChatPermissions,
+                    await Client.RestrictChatMemberAsync(message.Chat.Id, message.From.Id, Globals.MutePermissions,
                         DateTime.Now + CurrentGroup.MuteTime, ct);
                     await Client.EditMessageTextAsync(stat.Chat.Id, stat.MessageId, $"{stat.Text}\nUser Has Been Muted!",
                         cancellationToken: ct);
@@ -98,7 +98,7 @@ public class GroupCommands : HandlerBase, IBotCommand
         if (notJoined.Count is 0)
             return;
 
-        await Client.RestrictChatMemberAsync(CurrentGroup.GroupId, message.From.Id, Globals.MuteUserChatPermissions,
+        await Client.RestrictChatMemberAsync(CurrentGroup.GroupId, message.From.Id, Globals.MutePermissions,
             cancellationToken: ct);
         var channelsText = "";
         notJoined.ForEach(ch =>

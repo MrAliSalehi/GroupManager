@@ -16,6 +16,5 @@ namespace GroupManager.DataLayer.Models
         public string? WelcomeMessage { get; set; }
         public bool ForceJoin { get; set; }
         public virtual ICollection<ForceJoinChannel> ForceJoinChannel { get; set; } = default!;
-        public bool MuteAllChat { get; set; } = false;
     }
 }
