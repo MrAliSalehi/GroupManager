@@ -1,4 +1,5 @@
 ﻿using GroupManager.Application.Contracts;
+using Humanizer;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 
@@ -17,5 +18,14 @@ public class MemberBotCommands : HandlerBase
 
         await Client.SendTextMessageAsync(message.Chat.Id, $"User: {message.From!.Id}", cancellationToken: ct, replyToMessageId: message.MessageId);
         await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+    }
+
+    internal async Task TimeAsync(Message message, CancellationToken ct)
+    {
+        if (message.From is null)
+            return;
+        var time = DateTime.Now.TimeOfDay;
+        await Client.SendTextMessageAsync(message.Chat.Id, $"Time:{time}\n({time.Humanize()})",
+            replyToMessageId: message.MessageId, cancellationToken: ct);
     }
 }

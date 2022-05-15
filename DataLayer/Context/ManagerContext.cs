@@ -11,7 +11,6 @@ public class ManagerContext : DbContext
     public virtual DbSet<User> Users { get; set; } = null!;
 
     private readonly ILoggerFactory _loggerFactory;
-    private static string DbPath => "ManagerDb.db";
 
     public ManagerContext() : base() { }
 
@@ -23,9 +22,10 @@ public class ManagerContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
-
+        var connString = Globals.ConnectionString();
         options.UseLoggerFactory(_loggerFactory);
-        options.UseLazyLoadingProxies().UseSqlite($"Data Source={DbPath}");
+        options.UseLazyLoadingProxies().UseSqlite(connString);
+        // Log.Information("DBContext Connection String:\n{0}", connString);
         base.OnConfiguring(options);
 
     }

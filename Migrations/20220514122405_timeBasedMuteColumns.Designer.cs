@@ -3,6 +3,7 @@ using System;
 using GroupManager.DataLayer.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GroupManager.Migrations
 {
     [DbContext(typeof(ManagerContext))]
-    partial class ManagerContextModelSnapshot : ModelSnapshot
+    [Migration("20220514122405_timeBasedMuteColumns")]
+    partial class timeBasedMuteColumns
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.5");
@@ -80,15 +82,7 @@ namespace GroupManager.Migrations
                     b.Property<DateTime>("TimeBasedMuteFromTime")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("TimeBasedMuteFuncHashId")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<DateTime>("TimeBasedMuteUntilTime")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("TimeBasedUnmuteFuncHashId")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("WarnOnCurse")

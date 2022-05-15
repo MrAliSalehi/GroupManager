@@ -16,5 +16,10 @@ namespace GroupManager.DataLayer.Models
         public string? WelcomeMessage { get; set; }
         public bool ForceJoin { get; set; }
         public virtual ICollection<ForceJoinChannel> ForceJoinChannel { get; set; } = default!;
+        public bool TimeBasedMute { get; set; } = false;
+        public DateTime TimeBasedMuteFromTime { get; set; }
+        public DateTime TimeBasedMuteUntilTime { get; set; }
+        public string TimeBasedMuteFuncHashId { get; set; } = string.Empty;
+        public string TimeBasedUnmuteFuncHashId { get; set; } = string.Empty;
     }
 }

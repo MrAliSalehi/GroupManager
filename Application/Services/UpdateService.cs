@@ -17,6 +17,7 @@ namespace GroupManager.Application.Services
         private readonly ChatMemberHandler _chatMemberHandler;
         private readonly MessageHandler _messageHandler;
         private readonly CallBackHandler _callBackHandler;
+
         public UpdateService()
         {
             _client = new TelegramBotClient(Globals.BotConfigs.Token);

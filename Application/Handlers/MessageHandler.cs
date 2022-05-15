@@ -82,6 +82,11 @@ public class MessageHandler : HandlerBase
 
             "mute all" => _adminBotCommands.MuteAllChatAsync(message, ct),
             "unmute all" => _adminBotCommands.UnMuteAllChatAsync(message, ct),
+            //todo : mute for single user and unmute him ...
+
+            { } x when (x.Contains("set tbm")) => _adminBotCommands.SetTimeBasedMuteAsync(message, ct),
+            "enable tbm" => _adminBotCommands.EnableTimeBasedMuteAsync(message, ct),
+            "disable tbm" => _adminBotCommands.DisableTimeBasedMuteAsync(message, ct),
             _ => Task.CompletedTask
         };
         await response;
@@ -95,6 +100,7 @@ public class MessageHandler : HandlerBase
         var response = command.Value.Replace("!", "") switch
         {
             "me" => _memberBotCommands.MeAsync(message, ct),
+            "time" => _memberBotCommands.TimeAsync(message, ct),
             _ => Task.CompletedTask
         };
         await response;

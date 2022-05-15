@@ -1,8 +1,13 @@
 ﻿using GroupManager.Application.Contracts;
 using GroupManager.DataLayer.Controller;
 using GroupManager.DataLayer.Models;
+using Hangfire;
+using Hangfire.Common;
+using HashidsNet;
+using Humanizer;
 using Telegram.Bot;
 using Telegram.Bot.Types;
+using Telegram.Bot.Types.Enums;
 
 namespace GroupManager.Application.Commands;
 
@@ -10,10 +15,8 @@ public class AdminBotCommands : HandlerBase, IBotCommand
 {
 
     public Group? CurrentGroup { get; set; }
-
     public AdminBotCommands(ITelegramBotClient client) : base(client)
     {
-
     }
 
     internal async Task IsActiveAsync(Message message, CancellationToken ct)
@@ -362,7 +365,6 @@ public class AdminBotCommands : HandlerBase, IBotCommand
         try
         {
             await Client.SetChatPermissionsAsync(message.Chat.Id, Globals.MutePermissions, ct);
-
             await Client.SendTextMessageAsync(message.Chat.Id, "Group Has been Muted", replyToMessageId: message.MessageId, cancellationToken: ct);
         }
         catch (Exception)
@@ -373,7 +375,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand
 
     }
 
-    public async Task UnMuteAllChatAsync(Message message, CancellationToken ct)
+    internal async Task UnMuteAllChatAsync(Message message, CancellationToken ct)
     {
 
         if (CurrentGroup is null)
@@ -397,5 +399,101 @@ public class AdminBotCommands : HandlerBase, IBotCommand
         }
         await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
 
+    }
+
+    internal async Task SetTimeBasedMuteAsync(Message message, CancellationToken ct)
+    {
+        if (CurrentGroup is null)
+        {
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated",
+                replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+            return;
+        }
+
+        var data = RegPatterns.Get.TbmData(message.Text);
+        if (data is null or { Success: false })
+            return;
+        var from = data.Groups["from"];
+        var until = data.Groups["until"];
+
+        if (!from.Success || !until.Success)
+            return;
+        var fromTime = DateTime.Parse(from.Value);
+        var untilTime = DateTime.Parse(until.Value);
+        var muteTime = TimeSpan.FromTicks((fromTime - untilTime).Ticks);
+        await GroupController.UpdateGroupAsync(p =>
+        {
+            p.TimeBasedMuteFromTime = fromTime;
+            p.TimeBasedMuteUntilTime = untilTime;
+        }, message.Chat.Id, ct);
+        await Client.SendTextMessageAsync(message.Chat.Id,
+            $"Time-Based-Mute has been set to:\n<b>[{fromTime.Humanize()}]</b> until <b>[{untilTime.Humanize()}]</b>." +
+            $"\nGroup Will Be muted for <b>[{muteTime.Humanize(3)}]</b>", ParseMode.Html,
+            replyToMessageId: message.MessageId, cancellationToken: ct);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+    }
+
+    internal async Task EnableTimeBasedMuteAsync(Message message, CancellationToken ct)
+    {
+        if (CurrentGroup is null)
+        {
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated",
+                replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+            return;
+        }
+
+        var tryHashForMute = Globals.TbmMuteHashIds.EncodeLong(CurrentGroup.Id);
+        var muteHashId = tryHashForMute is null or "" ? Guid.NewGuid().ToString() : tryHashForMute;
+
+        var tryHashForUnMute = Globals.TbmMuteHashIds.EncodeLong(CurrentGroup.Id);
+        var unmuteHashId = tryHashForUnMute is null or "" ? Guid.NewGuid().ToString() : tryHashForUnMute;
+
+
+        await GroupController.UpdateGroupAsync(p =>
+        {
+            p.TimeBasedMute = true;
+            p.TimeBasedMuteFuncHashId = muteHashId;
+            p.TimeBasedUnmuteFuncHashId = unmuteHashId;
+        }, message.Chat.Id, ct);
+
+        var fromHour = CurrentGroup.TimeBasedMuteFromTime.Hour;
+        var fromMinute = CurrentGroup.TimeBasedMuteFromTime.Minute;
+
+        var untilHour = CurrentGroup.TimeBasedMuteUntilTime.Hour;
+        var untilMinute = CurrentGroup.TimeBasedMuteUntilTime.Minute;
+
+
+        RecurringJob.AddOrUpdate<TimeBasedMute>(muteHashId, hang => hang.TimeBasedMuteAsync(message.Chat), Cron.Daily(fromHour, fromMinute));
+        RecurringJob.AddOrUpdate<TimeBasedMute>(unmuteHashId, hang => hang.TimeBasedUnMuteAsync(message.Chat), Cron.Daily(untilHour, untilMinute));
+
+        await Client.SendTextMessageAsync(message.Chat.Id, "Time-Based-Mute Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+    }
+
+    internal async Task DisableTimeBasedMuteAsync(Message message, CancellationToken ct)
+    {
+        if (CurrentGroup is null)
+        {
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated",
+                replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+            return;
+        }
+
+        RecurringJob.Trigger(CurrentGroup.TimeBasedUnmuteFuncHashId);
+        RecurringJob.RemoveIfExists(CurrentGroup.TimeBasedUnmuteFuncHashId);
+        RecurringJob.RemoveIfExists(CurrentGroup.TimeBasedMuteFuncHashId);
+
+        await GroupController.UpdateGroupAsync(p =>
+        {
+            p.TimeBasedMute = false;
+            p.TimeBasedMuteFuncHashId = string.Empty;
+            p.TimeBasedUnmuteFuncHashId = string.Empty;
+        }, message.Chat.Id, ct);
+
+        await Client.SendTextMessageAsync(message.Chat.Id, "Time-Based-Mute Deactivated", replyToMessageId: message.MessageId, cancellationToken: ct);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
     }
 }
