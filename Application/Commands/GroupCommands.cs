@@ -15,12 +15,13 @@ namespace GroupManager.Application.Commands;
 public class GroupCommands : HandlerBase, IBotCommand
 {
     private readonly TextFilter _textFilter;
-
+    private readonly SpamCommands _spam;
 
     public Group? CurrentGroup { get; set; }
     public GroupCommands(ITelegramBotClient client) : base(client)
     {
         _textFilter = new TextFilter();
+        _spam = new SpamCommands(client);
     }
 
     public async Task HandleGroupAsync(Message message, Group group, CancellationToken ct)
@@ -28,24 +29,37 @@ public class GroupCommands : HandlerBase, IBotCommand
         CurrentGroup = group;
         await FilterWordsAsync(message, ct);
         await CheckForceJoinAsync(message, ct);
-        await CheckUserMessageLimitAsync(message, group, ct);
+        await CheckUserMessageLimitAsync(message, ct);
+        await CheckAntiSpamAsync(message, ct);
     }
 
-    private async Task CheckUserMessageLimitAsync(Message message, Group group, CancellationToken ct = default)
+    private async Task CheckAntiSpamAsync(Message message, CancellationToken ct = default)
     {
-        if (group is null or { EnableMessageLimitPerUser: false } || message.From is null)
+        if (CurrentGroup is null || message.From is null)
+        {
+            await Task.CompletedTask;
+            return;
+        }
+
+        _spam.AddUserOrIncreaseMessageCount(message.From.Id, message.Chat.Id);
+        await Task.CompletedTask;
+    }
+
+    private async Task CheckUserMessageLimitAsync(Message message, CancellationToken ct = default)
+    {
+        if (CurrentGroup is null or { EnableMessageLimitPerUser: false } || message.From is null)
             return;
 
         var updatedUser = await UserController.UpdateUserAsync(usr => usr.MessageCount++, message.From.Id, ct)
                           ?? await UserController.TryAddUserAsync(message.MessageId, ct);
 
-        if (updatedUser.MessageCount >= group.MaxMessagePerUser)
+        if (updatedUser.MessageCount >= CurrentGroup.MaxMessagePerUser)
         {
             var unMuteTime = DateTime.Now.TimeOfDay.Add(TimeSpan.FromDays(1));
             BackgroundJob.Schedule<ResetMessageLimit>((reset) => reset.ResetUserLimitAsync(message.From.Id, ct), unMuteTime);
 
             await Client.SendTextMessageAsync(message.Chat.Id,
-                $"User @{message.From.Username}\nYou Reached <b>Max</b> Message ({group.MaxMessagePerUser}) Per Day!\n" +
+                $"User @{message.From.Username}\nYou Reached <b>Max</b> Message ({CurrentGroup.MaxMessagePerUser}) Per Day!\n" +
                 $"This Value Will Reset Tomorrow In:<b>{unMuteTime:G}</b>\n(<i>{unMuteTime.Humanize(7)}</i>)",
                 ParseMode.Html,
                 replyToMessageId: message.MessageId,

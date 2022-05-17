@@ -2078,3 +2078,349 @@ ManagerHangFireDb.db
 2022-05-16 20:16:50.331 +04:30 [INF] Application started. Press Ctrl+C to shut down.
 2022-05-16 20:16:50.333 +04:30 [INF] Hosting environment: Development
 2022-05-16 20:16:50.334 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-17 15:30:37.876 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-17 15:30:37.898 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-17 15:30:38.394 +04:30 [INF] Server qwxp:8824:5cad43b6 successfully announced in 459.4365 ms
+2022-05-17 15:30:38.400 +04:30 [INF] Server qwxp:8824:5cad43b6 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-17 15:30:38.509 +04:30 [INF] Server qwxp:8824:5cad43b6 all the dispatchers started
+2022-05-17 15:30:39.194 +04:30 [INF] 3 servers were removed due to timeout
+2022-05-17 15:30:39.217 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-17 15:30:39.224 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-17 15:30:39.226 +04:30 [INF] Hosting environment: Development
+2022-05-17 15:30:39.227 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-17 15:30:59.894 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-17 15:30:59.910 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-17 15:31:00.219 +04:30 [INF] Server qwxp:9628:d6d01392 successfully announced in 277.9832 ms
+2022-05-17 15:31:00.237 +04:30 [INF] Server qwxp:9628:d6d01392 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-17 15:31:00.349 +04:30 [INF] Server qwxp:9628:d6d01392 all the dispatchers started
+2022-05-17 15:31:01.851 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-17 15:31:01.858 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-17 15:31:01.860 +04:30 [INF] Hosting environment: Development
+2022-05-17 15:31:01.860 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-17 15:32:47.729 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-17 15:32:47.744 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-17 15:32:47.998 +04:30 [INF] Server qwxp:14524:4d0e24b7 successfully announced in 230.2008 ms
+2022-05-17 15:32:48.005 +04:30 [INF] Server qwxp:14524:4d0e24b7 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-17 15:32:48.107 +04:30 [INF] Server qwxp:14524:4d0e24b7 all the dispatchers started
+2022-05-17 15:32:48.706 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-17 15:32:48.713 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-17 15:32:48.715 +04:30 [INF] Hosting environment: Development
+2022-05-17 15:32:48.716 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-17 15:33:08.819 +04:30 [INF] Timer Started
+2022-05-17 15:33:08.822 +04:30 [INF] User 1127927726 in Chat -1001536264309 Added To List
+2022-05-17 15:33:13.077 +04:30 [INF] Timer Started
+2022-05-17 15:33:13.078 +04:30 [INF] Message Count increased For User 1127927726
+2022-05-17 15:33:17.474 +04:30 [INF] Timer Started
+2022-05-17 15:33:17.475 +04:30 [INF] Message Count increased For User 1127927726
+2022-05-17 15:33:18.827 +04:30 [INF] Timer Reached
+2022-05-17 15:33:18.828 +04:30 [INF] User 1127927726 Removed From List
+2022-05-17 15:33:19.630 +04:30 [INF] Timer Started
+2022-05-17 15:33:19.631 +04:30 [INF] User 1127927726 in Chat -1001536264309 Added To List
+2022-05-17 15:33:20.522 +04:30 [INF] Timer Started
+2022-05-17 15:33:20.523 +04:30 [INF] Message Count increased For User 1127927726
+2022-05-17 15:33:21.492 +04:30 [INF] Timer Started
+2022-05-17 15:33:21.493 +04:30 [INF] Message Count increased For User 1127927726
+2022-05-17 15:33:22.798 +04:30 [INF] Timer Started
+2022-05-17 15:33:22.799 +04:30 [INF] Message Count increased For User 1127927726
+2022-05-17 15:33:23.358 +04:30 [INF] Timer Started
+2022-05-17 15:33:23.359 +04:30 [INF] Message Count increased For User 1127927726
+2022-05-17 15:33:23.912 +04:30 [INF] Timer Started
+2022-05-17 15:33:23.913 +04:30 [INF] Message Count increased For User 1127927726
+2022-05-17 15:33:24.911 +04:30 [INF] Timer Started
+2022-05-17 15:33:24.913 +04:30 [INF] Message Count increased For User 1127927726
+2022-05-17 15:33:26.068 +04:30 [INF] Timer Started
+2022-05-17 15:33:26.069 +04:30 [INF] Message Count increased For User 1127927726
+2022-05-17 15:33:26.648 +04:30 [INF] Timer Started
+2022-05-17 15:33:26.649 +04:30 [INF] Message Count increased For User 1127927726
+2022-05-17 15:33:27.227 +04:30 [INF] Timer Started
+2022-05-17 15:33:27.228 +04:30 [INF] Message Count increased For User 1127927726
+2022-05-17 15:33:28.459 +04:30 [INF] Timer Started
+2022-05-17 15:33:28.460 +04:30 [INF] Message Count increased For User 1127927726
+2022-05-17 15:33:28.824 +04:30 [INF] Timer Reached
+2022-05-17 15:33:33.160 +04:30 [INF] Timer Started
+2022-05-17 15:33:33.161 +04:30 [INF] Message Count increased For User 1127927726
+2022-05-17 15:33:38.822 +04:30 [INF] Timer Reached
+2022-05-17 15:33:48.824 +04:30 [INF] Timer Reached
+2022-05-17 15:33:50.159 +04:30 [INF] Timer Started
+2022-05-17 15:34:05.345 +04:30 [INF] Timer Reached
+2022-05-17 15:34:05.357 +04:30 [INF] Message Count increased For User 1127927726
+2022-05-17 15:35:18.803 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-17 15:35:18.818 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-17 15:35:19.114 +04:30 [INF] Server qwxp:25180:2caf88db successfully announced in 271.1581 ms
+2022-05-17 15:35:19.121 +04:30 [INF] Server qwxp:25180:2caf88db is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-17 15:35:19.226 +04:30 [INF] Server qwxp:25180:2caf88db all the dispatchers started
+2022-05-17 15:35:20.395 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-17 15:35:20.401 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-17 15:35:20.403 +04:30 [INF] Hosting environment: Development
+2022-05-17 15:35:20.404 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-17 15:35:22.577 +04:30 [INF] Timer Started
+2022-05-17 15:35:22.580 +04:30 [INF] User 1127927726 in Chat -1001536264309 Added To List
+2022-05-17 15:35:23.193 +04:30 [INF] Timer Started
+2022-05-17 15:35:26.699 +04:30 [INF] Message Count increased For User 1127927726
+2022-05-17 15:35:27.875 +04:30 [INF] Timer Started
+2022-05-17 15:35:27.876 +04:30 [INF] Message Count increased For User 1127927726
+2022-05-17 15:35:29.889 +04:30 [INF] Timer Started
+2022-05-17 15:35:29.890 +04:30 [INF] Message Count increased For User 1127927726
+2022-05-17 15:35:30.449 +04:30 [INF] Timer Started
+2022-05-17 15:35:30.450 +04:30 [INF] Message Count increased For User 1127927726
+2022-05-17 15:35:31.463 +04:30 [INF] Timer Started
+2022-05-17 15:35:31.464 +04:30 [INF] Message Count increased For User 1127927726
+2022-05-17 15:35:32.444 +04:30 [INF] Timer Started
+2022-05-17 15:35:38.937 +04:30 [INF] Timer Reached
+2022-05-17 15:35:39.133 +04:30 [INF] Message Count increased For User 1127927726
+2022-05-17 15:35:49.052 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-17 15:35:49.067 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-17 15:35:49.371 +04:30 [INF] Server qwxp:14368:b6fc1ab3 successfully announced in 278.2572 ms
+2022-05-17 15:35:49.375 +04:30 [INF] Server qwxp:14368:b6fc1ab3 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-17 15:35:49.478 +04:30 [INF] Server qwxp:14368:b6fc1ab3 all the dispatchers started
+2022-05-17 15:35:49.615 +04:30 [INF] 1 servers were removed due to timeout
+2022-05-17 15:35:50.040 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-17 15:35:50.047 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-17 15:35:50.049 +04:30 [INF] Hosting environment: Development
+2022-05-17 15:35:50.050 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-17 15:35:51.964 +04:30 [INF] Timer Started
+2022-05-17 15:35:51.967 +04:30 [INF] User 1127927726 in Chat -1001536264309 Added To List
+2022-05-17 15:35:52.950 +04:30 [INF] Timer Started
+2022-05-17 15:35:52.952 +04:30 [INF] Message Count increased For User 1127927726
+2022-05-17 15:35:53.898 +04:30 [INF] Timer Started
+2022-05-17 15:35:53.899 +04:30 [INF] Message Count increased For User 1127927726
+2022-05-17 15:35:59.274 +04:30 [INF] Timer Started
+2022-05-17 15:35:59.275 +04:30 [INF] User 5098795770 in Chat -1001536264309 Added To List
+2022-05-17 15:36:00.225 +04:30 [INF] Timer Started
+2022-05-17 15:36:00.226 +04:30 [INF] Message Count increased For User 5098795770
+2022-05-17 15:36:01.069 +04:30 [INF] Timer Started
+2022-05-17 15:36:01.070 +04:30 [INF] Message Count increased For User 5098795770
+2022-05-17 15:36:01.614 +04:30 [INF] Timer Started
+2022-05-17 15:36:01.615 +04:30 [INF] Message Count increased For User 5098795770
+2022-05-17 15:36:01.979 +04:30 [INF] Timer Reached
+2022-05-17 15:36:02.695 +04:30 [INF] Timer Started
+2022-05-17 15:36:02.696 +04:30 [INF] Message Count increased For User 5098795770
+2022-05-17 15:36:03.279 +04:30 [INF] Timer Started
+2022-05-17 15:36:03.280 +04:30 [INF] Message Count increased For User 5098795770
+2022-05-17 15:36:03.817 +04:30 [INF] Timer Started
+2022-05-17 15:36:04.013 +04:30 [INF] Message Count increased For User 5098795770
+2022-05-17 15:36:05.648 +04:30 [INF] Timer Started
+2022-05-17 15:36:05.822 +04:30 [INF] Message Count increased For User 5098795770
+2022-05-17 15:58:20.965 +04:30 [INF] Timer Started
+2022-05-17 15:58:20.986 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-17 15:58:20.988 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-17 15:58:21.261 +04:30 [INF] Server qwxp:3524:00c5f1fa successfully announced in 244.4187 ms
+2022-05-17 15:58:21.265 +04:30 [INF] Server qwxp:3524:00c5f1fa is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-17 15:58:21.378 +04:30 [INF] Server qwxp:3524:00c5f1fa all the dispatchers started
+2022-05-17 15:58:21.771 +04:30 [INF] 4 servers were removed due to timeout
+2022-05-17 15:58:22.942 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-17 15:58:22.948 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-17 15:58:22.951 +04:30 [INF] Hosting environment: Development
+2022-05-17 15:58:22.952 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-17 15:59:22.954 +04:30 [INF] Timer Started
+2022-05-17 15:59:22.978 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-17 15:59:22.980 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-17 15:59:23.309 +04:30 [INF] Server qwxp:16048:156c8ab7 successfully announced in 295.8966 ms
+2022-05-17 15:59:23.318 +04:30 [INF] Server qwxp:16048:156c8ab7 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-17 15:59:23.460 +04:30 [INF] Server qwxp:16048:156c8ab7 all the dispatchers started
+2022-05-17 15:59:24.060 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-17 15:59:24.066 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-17 15:59:24.068 +04:30 [INF] Hosting environment: Development
+2022-05-17 15:59:24.069 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-17 15:59:32.964 +04:30 [INF] Timer Reached
+2022-05-17 15:59:42.962 +04:30 [INF] Timer Reached
+2022-05-17 15:59:48.904 +04:30 [INF] User 5098795770 in Chat -1001536264309 Added To List
+2022-05-17 15:59:50.717 +04:30 [INF] Message Count increased To 1 For User 5098795770
+2022-05-17 15:59:52.502 +04:30 [INF] Message Count increased To 2 For User 5098795770
+2022-05-17 15:59:52.967 +04:30 [INF] Timer Reached
+2022-05-17 15:59:53.811 +04:30 [INF] Message Count increased To 3 For User 5098795770
+2022-05-17 15:59:55.774 +04:30 [INF] Message Count increased To 4 For User 5098795770
+2022-05-17 15:59:57.914 +04:30 [INF] Message Count increased To 5 For User 5098795770
+2022-05-17 16:00:01.814 +04:30 [INF] Message Count increased To 6 For User 5098795770
+2022-05-17 16:00:02.962 +04:30 [INF] Timer Reached
+2022-05-17 16:00:12.969 +04:30 [INF] Timer Reached
+2022-05-17 16:00:22.962 +04:30 [INF] Timer Reached
+2022-05-17 16:00:32.966 +04:30 [INF] Timer Reached
+2022-05-17 16:00:49.453 +04:30 [INF] Timer Started
+2022-05-17 16:00:49.476 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-17 16:00:49.477 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-17 16:00:49.744 +04:30 [INF] Server qwxp:21460:797db606 successfully announced in 239.217 ms
+2022-05-17 16:00:49.750 +04:30 [INF] Server qwxp:21460:797db606 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-17 16:00:49.883 +04:30 [INF] Server qwxp:21460:797db606 all the dispatchers started
+2022-05-17 16:00:51.731 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-17 16:00:51.739 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-17 16:00:51.741 +04:30 [INF] Hosting environment: Development
+2022-05-17 16:00:51.742 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-17 16:00:59.462 +04:30 [INF] Timer Reached
+2022-05-17 16:01:06.812 +04:30 [INF] User 5098795770 in Chat -1001536264309 Added To List
+2022-05-17 16:01:07.733 +04:30 [INF] Message Count increased To 1 For User 5098795770
+2022-05-17 16:01:08.287 +04:30 [INF] Message Count increased To 2 For User 5098795770
+2022-05-17 16:01:09.198 +04:30 [INF] Message Count increased To 3 For User 5098795770
+2022-05-17 16:01:09.470 +04:30 [INF] Timer Reached
+2022-05-17 16:01:09.472 +04:30 [INF] User 5098795770 With 3 Message Removed From List
+2022-05-17 16:01:09.785 +04:30 [INF] User 5098795770 in Chat -1001536264309 Added To List
+2022-05-17 16:01:10.370 +04:30 [INF] Message Count increased To 1 For User 5098795770
+2022-05-17 16:01:11.224 +04:30 [INF] Message Count increased To 2 For User 5098795770
+2022-05-17 16:01:11.810 +04:30 [INF] Message Count increased To 3 For User 5098795770
+2022-05-17 16:01:12.357 +04:30 [INF] Message Count increased To 4 For User 5098795770
+2022-05-17 16:01:12.935 +04:30 [INF] Message Count increased To 5 For User 5098795770
+2022-05-17 16:01:13.499 +04:30 [INF] Message Count increased To 6 For User 5098795770
+2022-05-17 16:01:14.520 +04:30 [INF] Message Count increased To 7 For User 5098795770
+2022-05-17 16:01:15.439 +04:30 [INF] Message Count increased To 8 For User 5098795770
+2022-05-17 16:01:16.009 +04:30 [INF] Message Count increased To 9 For User 5098795770
+2022-05-17 16:01:16.819 +04:30 [INF] Message Count increased To 10 For User 5098795770
+2022-05-17 16:02:40.024 +04:30 [INF] Timer Started
+2022-05-17 16:02:40.047 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-17 16:02:40.048 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-17 16:02:40.324 +04:30 [INF] Server qwxp:10972:9f377905 successfully announced in 248.7382 ms
+2022-05-17 16:02:40.331 +04:30 [INF] Server qwxp:10972:9f377905 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-17 16:02:40.437 +04:30 [INF] Server qwxp:10972:9f377905 all the dispatchers started
+2022-05-17 16:02:41.808 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-17 16:02:41.815 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-17 16:02:41.817 +04:30 [INF] Hosting environment: Development
+2022-05-17 16:02:41.818 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-17 16:02:50.034 +04:30 [INF] Timer Reached
+2022-05-17 16:02:58.516 +04:30 [INF] User 5098795770 in Chat -1001536264309 Added To List
+2022-05-17 16:02:59.099 +04:30 [INF] Message Count increased To 1 For User 5098795770
+2022-05-17 16:02:59.805 +04:30 [INF] Message Count increased To 2 For User 5098795770
+2022-05-17 16:03:00.052 +04:30 [INF] Timer Reached
+2022-05-17 16:03:00.396 +04:30 [INF] Message Count increased To 3 For User 5098795770
+2022-05-17 16:03:01.334 +04:30 [INF] Message Count increased To 4 For User 5098795770
+2022-05-17 16:03:02.486 +04:30 [INF] Message Count increased To 5 For User 5098795770
+2022-05-17 16:03:03.109 +04:30 [INF] Message Count increased To 6 For User 5098795770
+2022-05-17 16:03:04.078 +04:30 [INF] Message Count increased To 7 For User 5098795770
+2022-05-17 16:03:04.731 +04:30 [INF] Message Count increased To 8 For User 5098795770
+2022-05-17 16:03:05.327 +04:30 [INF] Message Count increased To 9 For User 5098795770
+2022-05-17 16:03:05.940 +04:30 [INF] Message Count increased To 10 For User 5098795770
+2022-05-17 16:03:06.482 +04:30 [INF] Message Count increased To 11 For User 5098795770
+2022-05-17 16:03:10.035 +04:30 [INF] Timer Reached
+2022-05-17 16:03:20.038 +04:30 [INF] Timer Reached
+2022-05-17 16:03:30.030 +04:30 [INF] Timer Reached
+2022-05-17 16:03:41.860 +04:30 [INF] Timer Reached
+2022-05-17 16:05:06.933 +04:30 [INF] Timer Started
+2022-05-17 16:05:06.959 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-17 16:05:06.960 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-17 16:05:07.274 +04:30 [INF] Server qwxp:8512:e8f466fa successfully announced in 282.735 ms
+2022-05-17 16:05:07.278 +04:30 [INF] Server qwxp:8512:e8f466fa is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-17 16:05:07.385 +04:30 [INF] Server qwxp:8512:e8f466fa all the dispatchers started
+2022-05-17 16:05:07.419 +04:30 [INF] 1 servers were removed due to timeout
+2022-05-17 16:05:08.036 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-17 16:05:08.043 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-17 16:05:08.045 +04:30 [INF] Hosting environment: Development
+2022-05-17 16:05:08.045 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-17 16:05:16.932 +04:30 [INF] Timer Reached
+2022-05-17 16:05:26.936 +04:30 [INF] Timer Reached
+2022-05-17 16:05:29.352 +04:30 [INF] User 5098795770 in Chat -1001536264309 Added To List
+2022-05-17 16:05:29.945 +04:30 [INF] Message Count increased To 1 For User 5098795770
+2022-05-17 16:05:30.527 +04:30 [INF] Message Count increased To 2 For User 5098795770
+2022-05-17 16:05:33.983 +04:30 [INF] User 1127927726 in Chat -1001536264309 Added To List
+2022-05-17 16:05:34.625 +04:30 [INF] Message Count increased To 1 For User 1127927726
+2022-05-17 16:05:36.929 +04:30 [INF] Timer Reached
+2022-05-17 16:05:46.943 +04:30 [INF] Timer Reached
+2022-05-17 16:05:56.934 +04:30 [INF] Timer Reached
+2022-05-17 16:06:09.677 +04:30 [INF] Timer Reached
+2022-05-17 16:10:33.234 +04:30 [INF] Timer Started
+2022-05-17 16:10:33.257 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-17 16:10:33.258 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-17 16:10:33.540 +04:30 [INF] Server qwxp:19800:a4831c21 successfully announced in 250.5595 ms
+2022-05-17 16:10:33.549 +04:30 [INF] Server qwxp:19800:a4831c21 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-17 16:10:33.636 +04:30 [INF] Server qwxp:19800:a4831c21 all the dispatchers started
+2022-05-17 16:10:34.185 +04:30 [INF] 3 servers were removed due to timeout
+2022-05-17 16:10:34.650 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-17 16:10:34.656 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-17 16:10:34.658 +04:30 [INF] Hosting environment: Development
+2022-05-17 16:10:34.659 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-17 16:10:37.299 +04:30 [INF] User 1127927726 in Chat -1001536264309 Added To List
+2022-05-17 16:10:38.309 +04:30 [INF] Message Count increased To 1 For User 1127927726
+2022-05-17 16:10:43.250 +04:30 [INF] Timer Reached
+2022-05-17 16:10:53.245 +04:30 [INF] Timer Reached
+2022-05-17 16:11:03.241 +04:30 [INF] Timer Reached
+2022-05-17 16:11:13.237 +04:30 [INF] Timer Reached
+2022-05-17 16:11:23.256 +04:30 [INF] Timer Reached
+2022-05-17 16:11:33.249 +04:30 [INF] Timer Reached
+2022-05-17 16:12:46.722 +04:30 [INF] Timer Started
+2022-05-17 16:12:46.751 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-17 16:12:46.753 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-17 16:12:47.089 +04:30 [INF] Server qwxp:16192:7b45f270 successfully announced in 298.7768 ms
+2022-05-17 16:12:47.108 +04:30 [INF] Server qwxp:16192:7b45f270 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-17 16:12:47.394 +04:30 [INF] 1 servers were removed due to timeout
+2022-05-17 16:12:47.820 +04:30 [INF] Server qwxp:16192:7b45f270 all the dispatchers started
+2022-05-17 16:12:48.057 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-17 16:12:48.064 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-17 16:12:48.065 +04:30 [INF] Hosting environment: Development
+2022-05-17 16:12:48.066 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-17 16:12:56.731 +04:30 [INF] Timer Reached
+2022-05-17 16:13:06.730 +04:30 [INF] Timer Reached
+2022-05-17 16:13:16.732 +04:30 [INF] Timer Reached
+2022-05-17 16:13:17.450 +04:30 [INF] User 1127927726 in Chat -1001536264309 Added To List
+2022-05-17 16:13:19.060 +04:30 [INF] Message Count increased To 1 For User 1127927726
+2022-05-17 16:13:26.739 +04:30 [INF] Timer Reached
+2022-05-17 16:14:58.726 +04:30 [INF] Timer Reached
+2022-05-17 16:14:58.738 +04:30 [INF] Timer Reached
+2022-05-17 16:15:09.262 +04:30 [INF] Timer Reached
+2022-05-17 16:19:15.217 +04:30 [INF] Timer Started
+2022-05-17 16:19:15.241 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-17 16:19:15.242 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-17 16:19:15.504 +04:30 [INF] Server qwxp:11808:816912b6 successfully announced in 235.8787 ms
+2022-05-17 16:19:15.511 +04:30 [INF] Server qwxp:11808:816912b6 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-17 16:19:15.605 +04:30 [INF] Server qwxp:11808:816912b6 all the dispatchers started
+2022-05-17 16:19:15.702 +04:30 [INF] 1 servers were removed due to timeout
+2022-05-17 16:19:16.611 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-17 16:19:16.618 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-17 16:19:16.620 +04:30 [INF] Hosting environment: Development
+2022-05-17 16:19:16.621 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-17 16:19:20.888 +04:30 [INF] User 1127927726 in Chat -1001536264309 Added To List
+2022-05-17 16:19:21.498 +04:30 [INF] Message Count increased To 1 For User 1127927726
+2022-05-17 16:19:22.077 +04:30 [INF] Message Count increased To 2 For User 1127927726
+2022-05-17 16:19:25.226 +04:30 [INF] Timer Reached
+2022-05-17 16:19:35.230 +04:30 [INF] Timer Reached
+2022-05-17 16:19:35.234 +04:30 [INF] User 1127927726 With 2 Message Removed From List
+2022-05-17 16:19:45.231 +04:30 [INF] Timer Reached
+2022-05-17 16:19:55.228 +04:30 [INF] Timer Reached
