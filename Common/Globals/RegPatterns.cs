@@ -12,6 +12,7 @@ public struct RegPatterns
     private static readonly Regex SetTbmCommandRegex = new(@"!!set tbm\s+-from\s+(?<from>\d+:\d+\s+\w{2})\s+-until\s+(?<until>\d+:\d+\s+\w{2})",
             RegexOptions.Compiled | RegexOptions.IgnoreCase, TimeSpan.FromSeconds(1));
 
+    private static readonly Regex MuteUserCommandRegex = new(@"!!mute\s+(?<userId>\d+)", RegexOptions.Compiled, TimeSpan.FromMilliseconds(300));
     public struct Is
     {
         public static bool MemberBotCommand(string? message)
@@ -28,6 +29,8 @@ public struct RegPatterns
     public struct Get
     {
         public static Match? TbmData(string? message) => message is null ? null : SetTbmCommandRegex.Match(message);
+
+        public static Match? MuteUserData(string? message) => message is null ? null : MuteUserCommandRegex.Match(message);
 
         public static Match? MessageLimitData(string? message) => message is null ? null : MessageLimitCommandRegex.Match(message);
 

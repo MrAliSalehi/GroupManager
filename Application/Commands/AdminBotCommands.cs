@@ -630,6 +630,79 @@ public class AdminBotCommands : HandlerBase, IBotCommand
         await SetMessageLimitStatusAsync(message, false, ct);
     }
 
+    internal async Task MuteUserAsync(Message message, CancellationToken ct)
+    {
+        if (CurrentGroup is null)
+        {
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+            return;
+        }
+
+        var userId = GetUserIdFromForwardOrDirectly(message);
+
+        if (userId is 0)
+        {
+            await Client.SendTextMessageAsync(message.Chat.Id, "User Id Is Not Specified!", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+            return;
+        }
+
+        await SetUserPermissionStatusAsync(userId, message.Chat.Id, true, ct);
+
+    }
+
+    internal async Task UnMuteUserAsync(Message message, CancellationToken ct)
+    {
+        if (CurrentGroup is null)
+        {
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+            return;
+        }
+
+        var userId = GetUserIdFromForwardOrDirectly(message);
+
+        if (userId is 0)
+        {
+            await Client.SendTextMessageAsync(message.Chat.Id, "User Id Is Not Specified!", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+            return;
+        }
+
+        await SetUserPermissionStatusAsync(userId, message.Chat.Id, false, ct);
+    }
+
+    private static long GetUserIdFromForwardOrDirectly(Message message)
+    {
+        long userId;
+        if (message.ReplyToMessage?.From is not null)
+        {
+            userId = message.ReplyToMessage.From.Id;
+        }
+        else
+        {
+            var regex = RegPatterns.Get.MuteUserData(message.Text);
+
+            var canParse = long.TryParse(regex?.Groups["userId"].Value, out userId);
+            if (!canParse)
+                userId = 0;
+        }
+        return userId;
+    }
+    private async Task SetUserPermissionStatusAsync(long userId, long groupId, bool muteUser, CancellationToken ct)
+    {
+        try
+        {
+            await Client.RestrictChatMemberAsync(groupId, userId, muteUser ? Globals.MutePermissions : Globals.UnMutePermissions, cancellationToken: ct);
+            var text = muteUser ? $"User {userId} Has been Muted!" : $"User {userId} Has been UnMuted!";
+            await Client.SendTextMessageAsync(groupId, text, cancellationToken: ct);
+        }
+        catch (Exception)
+        {
+            await Client.SendTextMessageAsync(groupId, $"Cant Change User Permissions!\nThere Is Some Issues!", cancellationToken: ct);
+        }
+    }
     private async Task SetMessageLimitStatusAsync(Message message, bool limitStatus, CancellationToken ct = default)
     {
         var updatedGroup = await GroupController.UpdateGroupAsync(p =>

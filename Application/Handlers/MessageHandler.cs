@@ -82,7 +82,8 @@ public class MessageHandler : HandlerBase
 
             "mute all" => _adminBotCommands.MuteAllChatAsync(message, ct),
             "unmute all" => _adminBotCommands.UnMuteAllChatAsync(message, ct),
-            //todo : mute for single user and unmute him ...
+            { } x when (x.Contains("mute")) => _adminBotCommands.MuteUserAsync(message, ct),
+            { } x when (x.Contains("unmute")) => _adminBotCommands.UnMuteUserAsync(message, ct),
 
             { } x when (x.Contains("set tbm")) => _adminBotCommands.SetTimeBasedMuteAsync(message, ct),
             "enable tbm" => _adminBotCommands.EnableTimeBasedMuteAsync(message, ct),
