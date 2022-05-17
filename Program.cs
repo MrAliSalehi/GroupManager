@@ -1,8 +1,8 @@
 using GroupManager.Application.Services;
 using GroupManager.Common.Models;
 using Hangfire;
+using Hangfire.Logging.LogProviders;
 using Hangfire.Storage.SQLite;
-using Microsoft.AspNetCore.Builder;
 
 var host = Host.CreateDefaultBuilder(args);
 
@@ -25,17 +25,19 @@ host.ConfigureServices((context, services) =>
 
     Globals.Configuration = context.Configuration;
 
-    services.AddHostedService<UpdateService>();
     services.AddHangfire(conf =>
     {
         var connString = Globals.ConnectionString();
         conf.SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
             .UseSimpleAssemblyNameTypeSerializer()
             .UseDefaultTypeSerializer()
-            .UseSQLiteStorage(connString);
-        Log.Information("HangFire ConnectionString:\n{0}", connString);
+            .UseSQLiteStorage(connString)
+            .UseColouredConsoleLogProvider()
+            .UseLogProvider(new SerilogLogProvider());
     });
     services.AddHangfireServer();
+
+    services.AddHostedService<UpdateService>();
 
 });
 

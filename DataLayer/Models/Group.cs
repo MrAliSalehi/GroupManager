@@ -21,5 +21,9 @@ namespace GroupManager.DataLayer.Models
         public DateTime TimeBasedMuteUntilTime { get; set; }
         public string TimeBasedMuteFuncHashId { get; set; } = string.Empty;
         public string TimeBasedUnmuteFuncHashId { get; set; } = string.Empty;
+        public uint MaxMessagePerUser { get; set; } = 300;
+        public bool EnableMessageLimitPerUser { get; set; }
+        public bool AntiJoin { get; set; } = false;
+        public bool AntiBot { get; set; } = false;
     }
 }

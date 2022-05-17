@@ -87,6 +87,11 @@ public class MessageHandler : HandlerBase
             { } x when (x.Contains("set tbm")) => _adminBotCommands.SetTimeBasedMuteAsync(message, ct),
             "enable tbm" => _adminBotCommands.EnableTimeBasedMuteAsync(message, ct),
             "disable tbm" => _adminBotCommands.DisableTimeBasedMuteAsync(message, ct),
+            { } x when (x.Contains("monitor tbm")) => _adminBotCommands.MonitorTbmAsync(message, ct),
+
+            { } x when (x.Contains("set ml")) => _adminBotCommands.SetMessageLimitPerUserDayAsync(message, ct),
+            "enable ml" => _adminBotCommands.EnableMessageLimitAsync(message, ct),
+            "disable ml" => _adminBotCommands.DisableMessageLimitAsync(message, ct),
             _ => Task.CompletedTask
         };
         await response;

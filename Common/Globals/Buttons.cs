@@ -37,6 +37,10 @@ public struct InlineButtons
                 InlineKeyboardButton.WithCallbackData("Warn Settings", $"{nameof(Admin)}:{nameof(SettingMenu)}:{nameof(Warn)}"),
                 InlineKeyboardButton.WithCallbackData("Curse Settings", $"{nameof(Admin)}:{nameof(SettingMenu)}:{nameof(Curse)}"),
             },
+            new []
+            {
+                InlineKeyboardButton.WithCallbackData("General Settings", $"{nameof(Admin)}:{nameof(SettingMenu)}:{nameof(General)}"),
+            },
             new[]
             {
                 //Admin:SettingMenu:cls
@@ -144,6 +148,40 @@ public struct InlineButtons
                     }
                 });
         }
+
+        public struct General
+        {
+            public static InlineKeyboardMarkup GetMenu(Group group)
+            {
+                var messageLimitStatus = group.EnableMessageLimitPerUser ? ConstData.TrueEmoji : ConstData.FalseEmoji;
+                GeneralSetting.InlineKeyboard.First().First().Text = $"Message Limit {messageLimitStatus}";
+
+                var antiJoin = group.AntiJoin ? ConstData.TrueEmoji : ConstData.FalseEmoji;
+                var antiBot = group.AntiBot ? ConstData.TrueEmoji : ConstData.FalseEmoji;
+
+                ChangeButtonValue("Anti Join", GeneralSetting, button => button.Text = $"Anti Join {antiJoin}");
+                ChangeButtonValue("Anti Bot", GeneralSetting, button => button.Text = $"Anti Bot {antiBot}");
+
+                return GeneralSetting;
+            }
+            private static readonly InlineKeyboardMarkup GeneralSetting = new(new[]
+            {
+                new []
+                {
+                    InlineKeyboardButton.WithCallbackData("Message Limit ",$"{nameof(Admin)}:{nameof(General)}:{ConstData.MessageLimitPerDay}"),
+
+                },
+                new []
+                {
+                    InlineKeyboardButton.WithCallbackData("Anti Bot ",$"{nameof(Admin)}:{nameof(General)}:{ConstData.AntiBot}"),
+                    InlineKeyboardButton.WithCallbackData("Anti Join ",$"{nameof(Admin)}:{nameof(General)}:{ConstData.AntiJoin}"),
+                },
+                new []
+                {
+                    InlineKeyboardButton.WithCallbackData("Back",$"{nameof(Admin)}:{nameof(General)}:{ConstData.Back}"),
+                }
+            });
+        }
     }
 
     public struct Member
@@ -184,12 +222,17 @@ public struct ConstData
     public const string MinuteMinus = $"M{Minus}";
     public const string Ban = "bn";
     public const string Mute = "mt";
+    public const string MessageLimitPerDay = "MLPD";
+    public const string AntiJoin = "aj";
+    public const string AntiBot = "ab";
     public const char TrueEmoji = '✅';
     public const char FalseEmoji = '❌';
+
 
     public const string MessageOfMainMenu = "Settings:";
     public const string MessageOfCurseMenu = "Curse Configs:";
     public const string MessageOfWarnMenu = "Warn Configs:";
+    public const string MessageOfGeneralMenu = "General Configs:";
     public const string MessageOfModifyMuteTimeMenu = "Modify Mute Time:";
 
 }

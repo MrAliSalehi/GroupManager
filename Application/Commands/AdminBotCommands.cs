@@ -1,13 +1,20 @@
-﻿using GroupManager.Application.Contracts;
+﻿using Cronos;
+using GroupManager.Application.Contracts;
+using GroupManager.Application.Services;
 using GroupManager.DataLayer.Controller;
 using GroupManager.DataLayer.Models;
 using Hangfire;
 using Hangfire.Common;
 using HashidsNet;
 using Humanizer;
+using System;
+using System.Linq.Expressions;
+using GroupManager.Application.RecurringJobs;
+using Newtonsoft.Json;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace GroupManager.Application.Commands;
 
@@ -15,8 +22,10 @@ public class AdminBotCommands : HandlerBase, IBotCommand
 {
 
     public Group? CurrentGroup { get; set; }
+    private readonly RecurringJobManager _manager;
     public AdminBotCommands(ITelegramBotClient client) : base(client)
     {
+        _manager = new RecurringJobManager();
     }
 
     internal async Task IsActiveAsync(Message message, CancellationToken ct)
@@ -428,7 +437,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand
             p.TimeBasedMuteUntilTime = untilTime;
         }, message.Chat.Id, ct);
         await Client.SendTextMessageAsync(message.Chat.Id,
-            $"Time-Based-Mute has been set to:\n<b>[{fromTime.Humanize()}]</b> until <b>[{untilTime.Humanize()}]</b>." +
+            $"Time-Based-Mute has been set to:\n<b>[{fromTime.TimeOfDay.Humanize(3)}]</b> until <b>[{untilTime.TimeOfDay.Humanize(3)}]</b>." +
             $"\nGroup Will Be muted for <b>[{muteTime.Humanize(3)}]</b>", ParseMode.Html,
             replyToMessageId: message.MessageId, cancellationToken: ct);
         await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
@@ -438,18 +447,13 @@ public class AdminBotCommands : HandlerBase, IBotCommand
     {
         if (CurrentGroup is null)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated",
-                replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
             await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
         }
 
-        var tryHashForMute = Globals.TbmMuteHashIds.EncodeLong(CurrentGroup.Id);
-        var muteHashId = tryHashForMute is null or "" ? Guid.NewGuid().ToString() : tryHashForMute;
-
-        var tryHashForUnMute = Globals.TbmMuteHashIds.EncodeLong(CurrentGroup.Id);
-        var unmuteHashId = tryHashForUnMute is null or "" ? Guid.NewGuid().ToString() : tryHashForUnMute;
-
+        var muteHashId = $"Mute{CurrentGroup.GroupId}";
+        var unmuteHashId = $"UnMute{CurrentGroup.GroupId}";
 
         await GroupController.UpdateGroupAsync(p =>
         {
@@ -458,15 +462,25 @@ public class AdminBotCommands : HandlerBase, IBotCommand
             p.TimeBasedUnmuteFuncHashId = unmuteHashId;
         }, message.Chat.Id, ct);
 
+
         var fromHour = CurrentGroup.TimeBasedMuteFromTime.Hour;
         var fromMinute = CurrentGroup.TimeBasedMuteFromTime.Minute;
+        var fromCron = $"{fromMinute} {fromHour} * * *";
 
         var untilHour = CurrentGroup.TimeBasedMuteUntilTime.Hour;
         var untilMinute = CurrentGroup.TimeBasedMuteUntilTime.Minute;
+        var untilCron = $"{untilMinute} {untilHour} * * *";
 
 
-        RecurringJob.AddOrUpdate<TimeBasedMute>(muteHashId, hang => hang.TimeBasedMuteAsync(message.Chat), Cron.Daily(fromHour, fromMinute));
-        RecurringJob.AddOrUpdate<TimeBasedMute>(unmuteHashId, hang => hang.TimeBasedUnMuteAsync(message.Chat), Cron.Daily(untilHour, untilMinute));
+        TimeBasedMute.Bot = Client as TelegramBotClient;
+        TimeBasedMute.ChatId = message.Chat.Id;
+
+        _manager.RemoveIfExists(muteHashId);
+        _manager.RemoveIfExists(unmuteHashId);
+        _manager.AddOrUpdate<TimeBasedMute>(muteHashId, (tbm) => tbm.TimeBasedMuteAsync(), fromCron, TimeZoneInfo.Local);
+
+        _manager.AddOrUpdate<TimeBasedMute>(unmuteHashId, (tbm) => tbm.TimeBasedUnMuteAsync(), untilCron, TimeZoneInfo.Local);
+
 
         await Client.SendTextMessageAsync(message.Chat.Id, "Time-Based-Mute Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
         await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
@@ -482,9 +496,10 @@ public class AdminBotCommands : HandlerBase, IBotCommand
             return;
         }
 
-        RecurringJob.Trigger(CurrentGroup.TimeBasedUnmuteFuncHashId);
-        RecurringJob.RemoveIfExists(CurrentGroup.TimeBasedUnmuteFuncHashId);
-        RecurringJob.RemoveIfExists(CurrentGroup.TimeBasedMuteFuncHashId);
+        _manager.Trigger(CurrentGroup.TimeBasedUnmuteFuncHashId);
+
+        _manager.RemoveIfExists(CurrentGroup.TimeBasedUnmuteFuncHashId);
+        _manager.RemoveIfExists(CurrentGroup.TimeBasedMuteFuncHashId);
 
         await GroupController.UpdateGroupAsync(p =>
         {
@@ -494,6 +509,141 @@ public class AdminBotCommands : HandlerBase, IBotCommand
         }, message.Chat.Id, ct);
 
         await Client.SendTextMessageAsync(message.Chat.Id, "Time-Based-Mute Deactivated", replyToMessageId: message.MessageId, cancellationToken: ct);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+    }
+
+    internal async Task MonitorTbmAsync(Message message, CancellationToken ct)
+    {
+        if (message.Text is null)
+            return;
+        var monitorApi = JobStorage.Current.GetMonitoringApi();
+
+        var data = "";
+        if (message.Text.Contains("-s"))
+        {
+            data += "\n Scheduled:\n";
+
+            var items = monitorApi.ScheduledJobs(0, 10);
+            if (items is null)
+            {
+                data += "Nothing Found For -Scheduled";
+                goto SkipScheduled;
+            }
+
+            foreach (var item in items)
+            {
+                var scheduledAt = item.Value.ScheduledAt is null ? "-" : item.Value.ScheduledAt.Value.Humanize();
+                var job = item.Value.Job is null ? "-" : item.Value.Job.Method.Name;
+                data +=
+                    $"Key:{item.Key}\n" +
+                    $"Enqueue At:{item.Value.EnqueueAt.Humanize()}\n" +
+                    $"InScheduledState:{item.Value.InScheduledState}\n" +
+                    $"MethodName:{job}\n" +
+                    $"ScheduledAt:{scheduledAt}\n";
+            }
+        }
+    SkipScheduled:
+        if (message.Text.Contains("-q"))
+        {
+            data += "\nQueues:\n";
+            var queues = monitorApi.Queues();
+            if (queues is null or { Count: 0 })
+            {
+                data += "Nothing Found For -Queues";
+                goto SkipQueues;
+            }
+
+            foreach (var queue in queues)
+            {
+                var jobs = "";
+                queue.FirstJobs.ForEach(v =>
+                 {
+                     var job = v.Value.Job is null ? "-" : v.Value.Job.Method.Name;
+
+                     jobs += $"Key:{v.Key}\n" +
+                             $"MethodName:{job}\n" +
+                             $"Enqueued At:{v.Value.EnqueuedAt.Humanize()}\n" +
+                             $"InEnqueuedState:{v.Value.InEnqueuedState}\n" +
+                             $"State:{v.Value.State}\n";
+
+                 });
+                data += $"Name:{queue.Name}\n" +
+                        $"Len:{queue.Length}" +
+                        $"Fetched:{queue.Fetched}\n" +
+                        $"----Jobs:[{jobs}]";
+
+            }
+        }
+    SkipQueues:
+        await Client.SendTextMessageAsync(message.Chat.Id, data, cancellationToken: ct);
+    }
+
+    internal async Task SetMessageLimitPerUserDayAsync(Message message, CancellationToken ct)
+    {
+        if (CurrentGroup is null)
+        {
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+            return;
+        }
+
+        var regex = RegPatterns.Get.MessageLimitData(message.Text);
+        if (regex is null or { Success: false })
+            return;
+        var canParse = uint.TryParse(regex.Groups["count"].Value, out var count);
+        if (!canParse)
+            return;
+        var updatedGroup = await GroupController.UpdateGroupAsync(p =>
+        {
+            p.MaxMessagePerUser = count;
+        }, CurrentGroup.GroupId, ct);
+        if (updatedGroup is null)
+        {
+            await Client.SendTextMessageAsync(message.Chat.Id, "Cant Updated Group Right Now!", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+            return;
+        }
+        await Client.SendTextMessageAsync(message.Chat.Id, $"Max Message Per User has been Set to:({updatedGroup.MaxMessagePerUser})", replyToMessageId: message.MessageId, cancellationToken: ct);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+    }
+
+    internal async Task EnableMessageLimitAsync(Message message, CancellationToken ct)
+    {
+        if (CurrentGroup is null)
+        {
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+            return;
+        }
+
+        await SetMessageLimitStatusAsync(message, true, ct);
+    }
+
+    internal async Task DisableMessageLimitAsync(Message message, CancellationToken ct)
+    {
+        if (CurrentGroup is null)
+        {
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+            return;
+        }
+        await SetMessageLimitStatusAsync(message, false, ct);
+    }
+
+    private async Task SetMessageLimitStatusAsync(Message message, bool limitStatus, CancellationToken ct = default)
+    {
+        var updatedGroup = await GroupController.UpdateGroupAsync(p =>
+        {
+            p.EnableMessageLimitPerUser = limitStatus;
+        }, message.Chat.Id, ct);
+
+        if (updatedGroup is null)
+        {
+            await Client.SendTextMessageAsync(message.Chat.Id, "Cant Updated Group Right Now!", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+            return;
+        }
+        await Client.SendTextMessageAsync(message.Chat.Id, $"Message Limit Has been Enabled", replyToMessageId: message.MessageId, cancellationToken: ct);
         await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
     }
 }

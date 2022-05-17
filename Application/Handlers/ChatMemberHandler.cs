@@ -1,4 +1,5 @@
-﻿using GroupManager.Application.Contracts;
+﻿using System.Runtime.InteropServices;
+using GroupManager.Application.Contracts;
 using GroupManager.DataLayer.Controller;
 using GroupManager.DataLayer.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
@@ -26,7 +27,40 @@ public class ChatMemberHandler : HandlerBase, IBotCommand
 
         await SayWelcomeAsync(users, chat, ct);
         await ForceJoinUserListAsync(users, ct);
+        await CheckAntiBotAsync(users, ct);
+        await CheckAntiJoinAsync(users, ct);
+    }
 
+    private async Task CheckAntiJoinAsync(List<User> users, CancellationToken ct = default)
+    {
+        if (CurrentGroup is null or { AntiJoin: false })
+            return;
+        foreach (var user in users)
+        {
+            await Client.BanChatMemberAsync(CurrentGroup.GroupId, user.Id, cancellationToken: ct);
+
+        }
+    }
+
+    private async Task CheckAntiBotAsync(IEnumerable<User> users, CancellationToken ct = default)
+    {
+        if (CurrentGroup is null or { AntiBot: false })
+            return;
+        var banUntil = DateTime.Now.AddDays(366);
+
+        foreach (var user in users.Where(user => user.IsBot))
+        {
+            try
+            {
+                await Client.BanChatMemberAsync(CurrentGroup.GroupId, user.Id, banUntil, cancellationToken: ct);
+                await Client.SendTextMessageAsync(CurrentGroup.GroupId, $"Bot @{user.Username} Detected And Banned From The Chat!", cancellationToken: ct);
+
+            }
+            catch (Exception)
+            {
+                await Client.SendTextMessageAsync(CurrentGroup.GroupId, $"Cant Ban The Bot!\n Seems Like There Is Some Permission Issues", cancellationToken: ct);
+            }
+        }
     }
 
     private async Task ForceJoinUserListAsync(List<User> users, CancellationToken ct)

@@ -16,5 +16,6 @@ namespace GroupManager.DataLayer.Models
         public uint SentGif { get; set; }
         public uint PhotoLimits { get; set; }
         public uint SentPhotos { get; set; }
+        public uint MessageCount { get; set; }
     }
 }

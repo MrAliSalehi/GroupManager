@@ -22,9 +22,8 @@ public class ManagerContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
-        var connString = Globals.ConnectionString();
         options.UseLoggerFactory(_loggerFactory);
-        options.UseLazyLoadingProxies().UseSqlite(connString);
+        options.UseLazyLoadingProxies().UseSqlite("Data Source = ManagerDb.db");
         // Log.Information("DBContext Connection String:\n{0}", connString);
         base.OnConfiguring(options);
 

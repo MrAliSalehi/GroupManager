@@ -8,6 +8,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Cronos" Version="0.7.1" />
 		<PackageReference Include="Hangfire.AspNetCore" Version="1.7.28" />
 		<PackageReference Include="Hangfire.Core" Version="1.7.28" />
 		<PackageReference Include="Hangfire.Storage.SQLite" Version="0.3.1" />

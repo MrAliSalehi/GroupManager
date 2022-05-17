@@ -24,8 +24,8 @@ public class MemberBotCommands : HandlerBase
     {
         if (message.From is null)
             return;
-        var time = DateTime.Now.TimeOfDay;
-        await Client.SendTextMessageAsync(message.Chat.Id, $"Time:{time}\n({time.Humanize()})",
+        var time = message.Date.TimeOfDay;
+        await Client.SendTextMessageAsync(message.Chat.Id, $"Time:{time}\n({time.Humanize(5)})",
             replyToMessageId: message.MessageId, cancellationToken: ct);
     }
 }

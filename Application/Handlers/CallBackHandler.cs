@@ -4,6 +4,7 @@ using GroupManager.DataLayer.Models;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
+using Telegram.Bot.Types.ReplyMarkups;
 using User = Telegram.Bot.Types.User;
 
 namespace GroupManager.Application.Handlers;
@@ -65,11 +66,18 @@ public class CallBackHandler : HandlerBase
                         case nameof(InlineButtons.Admin.Warn):
                             await Client.EditMessageTextAsync(callback.Message.Chat.Id, callback.Message.MessageId, ConstData.MessageOfWarnMenu, replyMarkup: InlineButtons.Admin.Warn.GetMenu(group), cancellationToken: ct);
                             break;
+
                         case nameof(InlineButtons.Admin.Curse):
                             await Client.EditMessageTextAsync(callback.Message.Chat.Id, callback.Message.MessageId, ConstData.MessageOfCurseMenu, replyMarkup: InlineButtons.Admin.Curse.GetMenu(group), cancellationToken: ct);
                             break;
+
+                        case nameof(InlineButtons.Admin.General):
+                            await Client.EditMessageTextAsync(callback.Message.Chat.Id, callback.Message.MessageId, ConstData.MessageOfGeneralMenu, replyMarkup: InlineButtons.Admin.General.GetMenu(group), cancellationToken: ct);
+                            break;
+
                         case ConstData.Close:
-                            await Client.EditMessageTextAsync(callback.Message.Chat.Id, callback.Message.MessageId, "<i>Panel Closed</i>", ParseMode.Html, cancellationToken: ct);
+                            await Client.EditMessageTextAsync(callback.Message.Chat.Id, callback.Message.MessageId, "<i>Panel Closed</i>", ParseMode.Html,
+                                cancellationToken: ct);
                             break;
                     }
                     break;
@@ -88,6 +96,10 @@ public class CallBackHandler : HandlerBase
                 await Client.EditMessageTextAsync(callback.Message.Chat.Id, callback.Message.MessageId, "<b>Bot is Now Active</b>", ParseMode.Html, cancellationToken: ct);
 
                 break;
+            case nameof(InlineButtons.Admin.General):
+                await GeneralSettingsAsync(callback, data, group, ct);
+                break;
+
         }
 
     }
@@ -301,4 +313,47 @@ public class CallBackHandler : HandlerBase
         }
     }
 
+    private async Task GeneralSettingsAsync(CallbackQuery callback, IReadOnlyList<string> data, Group group, CancellationToken ct = default)
+    {
+        if (callback.Message is null)
+            return;
+        Group? updatedGroup;
+        InlineKeyboardMarkup keyboard;
+        switch (data[2])
+        {
+            case ConstData.MessageLimitPerDay:
+                updatedGroup = await GroupController.UpdateGroupAsync(p =>
+               {
+                   p.EnableMessageLimitPerUser = !p.EnableMessageLimitPerUser;
+               }, group.GroupId, ct);
+                if (updatedGroup is null)
+                    return;
+
+                keyboard = InlineButtons.Admin.General.GetMenu(updatedGroup);
+                await Client.EditMessageReplyMarkupAsync(callback.Message.Chat.Id, callback.Message.MessageId, keyboard, ct);
+
+                break;
+
+            case ConstData.AntiJoin:
+            case ConstData.AntiBot:
+                updatedGroup = await GroupController.UpdateGroupAsync(p =>
+                {
+                    if (data[2] is ConstData.AntiBot)
+                        p.AntiBot = !p.AntiBot;
+                    if (data[2] is ConstData.AntiJoin)
+                        p.AntiJoin = !p.AntiJoin;
+
+                }, group.GroupId, ct);
+                if (updatedGroup is null)
+                    return;
+                keyboard = InlineButtons.Admin.General.GetMenu(updatedGroup);
+                await Client.EditMessageReplyMarkupAsync(callback.Message.Chat.Id, callback.Message.MessageId, keyboard, ct);
+
+                break;
+
+            case ConstData.Back:
+                break;
+
+        }
+    }
 }

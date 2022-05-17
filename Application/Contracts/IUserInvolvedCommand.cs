@@ -2,7 +2,7 @@
 
 namespace GroupManager.Application.Contracts;
 
-public interface IBotCommand
+public interface IUserInvolvedCommand
 {
-    public Group? CurrentGroup { get; set; }
+    public User? User { get; set; }
 }
