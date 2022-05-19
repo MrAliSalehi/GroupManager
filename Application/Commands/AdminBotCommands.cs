@@ -8,9 +8,9 @@ using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using Group = GroupManager.DataLayer.Models.Group;
-using static SQLite.SQLite3;
-using System;
 using GroupManager.Application.Services;
+using WordFilter;
+using File = System.IO.File;
 
 namespace GroupManager.Application.Commands;
 
@@ -18,13 +18,15 @@ public class AdminBotCommands : HandlerBase, IBotCommand
 {
 
     public Group? CurrentGroup { get; set; }
+    private readonly TextFilter _textFilter;
     private readonly RecurringJobManager _manager;
     public AdminBotCommands(ITelegramBotClient client) : base(client)
     {
         _manager = new RecurringJobManager();
+        _textFilter = new TextFilter();
     }
 
-    internal async Task IsActiveAsync(Message message, CancellationToken ct)
+    internal async Task IsActiveAsync(Message message, CancellationToken ct = default)
     {
 
         var response = CurrentGroup is null
@@ -33,7 +35,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand
         await Client.SendTextMessageAsync(message.Chat.Id, response, cancellationToken: ct);
     }
 
-    internal async Task RemoveGroupAsync(Message message, CancellationToken ct)
+    internal async Task RemoveGroupAsync(Message message, CancellationToken ct = default)
     {
         if (CurrentGroup is null)
         {
@@ -68,7 +70,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand
         await Client.SendTextMessageAsync(message.Chat.Id, $"{removeGroupResponse}\n{removeForceChannelsResponse}\n{removeSettingResponse}", cancellationToken: ct);
     }
 
-    internal async Task AddGroupAsync(Message message, CancellationToken ct)
+    internal async Task AddGroupAsync(Message message, CancellationToken ct = default)
     {
         if (CurrentGroup is not null)
         {
@@ -86,7 +88,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand
         await Client.SendTextMessageAsync(message.Chat.Id, "Group Has Been Added To Bot", cancellationToken: ct);
     }
 
-    internal async Task SettingAsync(Message message, CancellationToken ct)
+    internal async Task SettingAsync(Message message, CancellationToken ct = default)
     {
         if (message.From is null)
             return;
@@ -95,7 +97,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand
         await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
     }
 
-    internal async Task SetWelcomeAsync(Message message, CancellationToken ct)
+    internal async Task SetWelcomeAsync(Message message, CancellationToken ct = default)
     {
         try
         {
@@ -120,7 +122,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand
         }
     }
 
-    internal async Task DisableWelcomeAsync(Message message, CancellationToken ct)
+    internal async Task DisableWelcomeAsync(Message message, CancellationToken ct = default)
     {
         try
         {
@@ -147,7 +149,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand
 
     }
 
-    internal async Task EnableWelcomeAsync(Message message, CancellationToken ct)
+    internal async Task EnableWelcomeAsync(Message message, CancellationToken ct = default)
     {
         try
         {
@@ -174,7 +176,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand
 
     }
 
-    internal async Task UnBanUserAsync(Message message, CancellationToken ct)
+    internal async Task UnBanUserAsync(Message message, CancellationToken ct = default)
     {
         try
         {
@@ -201,7 +203,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand
         }
     }
 
-    internal async Task BanUserAsync(Message message, CancellationToken ct)
+    internal async Task BanUserAsync(Message message, CancellationToken ct = default)
     {
         try
         {
@@ -228,7 +230,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand
         }
     }
 
-    internal async Task EnableForceJoinAsync(Message message, CancellationToken ct)
+    internal async Task EnableForceJoinAsync(Message message, CancellationToken ct = default)
     {
         try
         {
@@ -250,7 +252,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand
         }
     }
 
-    internal async Task DisableForceJoinAsync(Message message, CancellationToken ct)
+    internal async Task DisableForceJoinAsync(Message message, CancellationToken ct = default)
     {
         try
         {
@@ -272,7 +274,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand
         }
     }
 
-    internal async Task AddForceJoinAsync(Message message, CancellationToken ct)
+    internal async Task AddForceJoinAsync(Message message, CancellationToken ct = default)
     {
         try
         {
@@ -304,7 +306,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand
         }
     }
 
-    internal async Task RemoveForceJoinAsync(Message message, CancellationToken ct)
+    internal async Task RemoveForceJoinAsync(Message message, CancellationToken ct = default)
     {
         try
         {
@@ -340,7 +342,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand
         }
     }
 
-    internal async Task GetListOfForceJoinAsync(Message message, CancellationToken ct)
+    internal async Task GetListOfForceJoinAsync(Message message, CancellationToken ct = default)
     {
         try
         {
@@ -373,7 +375,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand
         }
     }
 
-    internal async Task MuteAllChatAsync(Message message, CancellationToken ct)
+    internal async Task MuteAllChatAsync(Message message, CancellationToken ct = default)
     {
 
         if (CurrentGroup is null)
@@ -396,7 +398,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand
 
     }
 
-    internal async Task UnMuteAllChatAsync(Message message, CancellationToken ct)
+    internal async Task UnMuteAllChatAsync(Message message, CancellationToken ct = default)
     {
 
         if (CurrentGroup is null)
@@ -422,7 +424,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand
 
     }
 
-    internal async Task SetTimeBasedMuteAsync(Message message, CancellationToken ct)
+    internal async Task SetTimeBasedMuteAsync(Message message, CancellationToken ct = default)
     {
         if (CurrentGroup is null)
         {
@@ -455,7 +457,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand
         await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
     }
 
-    internal async Task EnableTimeBasedMuteAsync(Message message, CancellationToken ct)
+    internal async Task EnableTimeBasedMuteAsync(Message message, CancellationToken ct = default)
     {
         if (CurrentGroup is null)
         {
@@ -498,7 +500,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand
         await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
     }
 
-    internal async Task DisableTimeBasedMuteAsync(Message message, CancellationToken ct)
+    internal async Task DisableTimeBasedMuteAsync(Message message, CancellationToken ct = default)
     {
         if (CurrentGroup is null)
         {
@@ -524,7 +526,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand
         await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
     }
 
-    internal async Task MonitorTbmAsync(Message message, CancellationToken ct)
+    internal async Task MonitorTbmAsync(Message message, CancellationToken ct = default)
     {
         if (message.Text is null)
             return;
@@ -590,7 +592,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand
         await Client.SendTextMessageAsync(message.Chat.Id, data, cancellationToken: ct);
     }
 
-    internal async Task SetMessageLimitPerUserDayAsync(Message message, CancellationToken ct)
+    internal async Task SetMessageLimitPerUserDayAsync(Message message, CancellationToken ct = default)
     {
         if (CurrentGroup is null)
         {
@@ -619,7 +621,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand
         await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
     }
 
-    internal async Task EnableMessageLimitAsync(Message message, CancellationToken ct)
+    internal async Task EnableMessageLimitAsync(Message message, CancellationToken ct = default)
     {
         if (CurrentGroup is null)
         {
@@ -631,7 +633,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand
         await SetMessageLimitStatusAsync(message, true, ct);
     }
 
-    internal async Task DisableMessageLimitAsync(Message message, CancellationToken ct)
+    internal async Task DisableMessageLimitAsync(Message message, CancellationToken ct = default)
     {
         if (CurrentGroup is null)
         {
@@ -642,7 +644,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand
         await SetMessageLimitStatusAsync(message, false, ct);
     }
 
-    internal async Task MuteUserAsync(Message message, CancellationToken ct)
+    internal async Task MuteUserAsync(Message message, CancellationToken ct = default)
     {
         if (CurrentGroup is null)
         {
@@ -664,7 +666,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand
 
     }
 
-    internal async Task UnMuteUserAsync(Message message, CancellationToken ct)
+    internal async Task UnMuteUserAsync(Message message, CancellationToken ct = default)
     {
         if (CurrentGroup is null)
         {
@@ -685,7 +687,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand
         await SetUserPermissionStatusAsync(userId, message.Chat.Id, false, ct);
     }
 
-    internal async Task EnableFloodAsync(Message message, CancellationToken ct)
+    internal async Task EnableFloodAsync(Message message, CancellationToken ct = default)
     {
         if (CurrentGroup is null)
         {
@@ -720,7 +722,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand
         await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
     }
 
-    internal async Task DisableFloodAsync(Message message, CancellationToken ct)
+    internal async Task DisableFloodAsync(Message message, CancellationToken ct = default)
     {
         if (CurrentGroup is null)
         {
@@ -758,7 +760,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand
         await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
     }
 
-    internal async Task FloodSettingsAsync(Message message, CancellationToken ct)
+    internal async Task FloodSettingsAsync(Message message, CancellationToken ct = default)
     {
         if (CurrentGroup is null)
         {
@@ -891,7 +893,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand
 
     }
 
-    internal async Task EnableMessageSizeLimitAsync(Message message, CancellationToken ct)
+    internal async Task EnableMessageSizeLimitAsync(Message message, CancellationToken ct = default)
     {
         if (CurrentGroup is null)
         {
@@ -906,7 +908,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand
         await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
     }
 
-    internal async Task DisableMessageSizeLimitAsync(Message message, CancellationToken ct)
+    internal async Task DisableMessageSizeLimitAsync(Message message, CancellationToken ct = default)
     {
         if (CurrentGroup is null)
         {
@@ -920,7 +922,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand
         await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
     }
 
-    internal async Task SetMessageSizeLimitAsync(Message message, CancellationToken ct)
+    internal async Task SetMessageSizeLimitAsync(Message message, CancellationToken ct = default)
     {
         if (CurrentGroup is null)
         {
@@ -983,6 +985,30 @@ public class AdminBotCommands : HandlerBase, IBotCommand
 
     }
 
+    internal async Task AddNewFilterWordAsync(Message message, CancellationToken ct = default)
+    {
+        if (CurrentGroup is null)
+        {
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+            return;
+        }
+        if (message.Text is null or "filter")
+            return;
+
+        var data = message.Text.Replace("filter", "");
+
+        var result = await _textFilter.AddWordIfNotExistsAsync(data, ct);
+
+        var response = result switch
+        {
+            0 => "Word Is Already Exists In Filters.",
+            1 => "Word Added To Filters!",
+            _ => "Cant Add Anything Right Now ):"
+        };
+        await Client.SendTextMessageAsync(message.Chat.Id, response, cancellationToken: ct);
+    }
+
     private static long GetUserIdFromForwardOrDirectly(Message message)
     {
         long userId;
@@ -1000,7 +1026,8 @@ public class AdminBotCommands : HandlerBase, IBotCommand
         }
         return userId;
     }
-    private async Task SetUserPermissionStatusAsync(long userId, long groupId, bool muteUser, CancellationToken ct)
+
+    private async Task SetUserPermissionStatusAsync(long userId, long groupId, bool muteUser, CancellationToken ct = default)
     {
         try
         {
@@ -1013,6 +1040,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand
             await Client.SendTextMessageAsync(groupId, $"Cant Change User Permissions!\nThere Is Some Issues!", cancellationToken: ct);
         }
     }
+
     private async Task SetMessageLimitStatusAsync(Message message, bool limitStatus, CancellationToken ct = default)
     {
         var updatedGroup = await GroupController.UpdateGroupAsync(p =>

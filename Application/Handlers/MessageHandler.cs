@@ -24,20 +24,28 @@ public class MessageHandler : HandlerBase
         if (message.From is null)
             return;
 
-        await UserController.TryAddUserAsync(message.From.Id, ct);
-
-        if (RegPatterns.Is.AdminBotCommand(message.Text))
-            await AdminCommandsAsync(message, ct);
-
-        if (RegPatterns.Is.MemberBotCommand(message.Text))
-            await MemberCommandsAsync(message, ct);
-
-        if (message.Chat.Id != message.From.Id)
+        try
         {
-            var group = await GroupController.GetGroupByIdIncludeChannelAsync(message.Chat.Id, ct);
-            if (group is not null)
-                await _groupCommands.HandleGroupAsync(message, group, ct);
+            await UserController.TryAddUserAsync(message.From.Id, ct);
+
+            if (RegPatterns.Is.AdminBotCommand(message.Text))
+                await AdminCommandsAsync(message, ct);
+
+            if (RegPatterns.Is.MemberBotCommand(message.Text))
+                await MemberCommandsAsync(message, ct);
+
+            if (message.Chat.Id != message.From.Id)
+            {
+                var group = await GroupController.GetGroupByIdIncludeChannelAsync(message.Chat.Id, ct);
+                if (group is not null)
+                    await _groupCommands.HandleGroupAsync(message, group, ct);
+            }
         }
+        catch (Exception e)
+        {
+            Log.Error(e, nameof(InitHandlerAsync));
+        }
+
     }
 
     private async Task AdminCommandsAsync(Message message, CancellationToken ct)
@@ -101,6 +109,9 @@ public class MessageHandler : HandlerBase
             { } x when (x.StartsWith("set ms")) => _adminBotCommands.SetMessageSizeLimitAsync(message, ct),
             "enable ms" => _adminBotCommands.EnableMessageSizeLimitAsync(message, ct),
             "disable ms" => _adminBotCommands.DisableMessageSizeLimitAsync(message, ct),
+
+            { } x when (x.StartsWith("filter")) => _adminBotCommands.AddNewFilterWordAsync(message, ct),
+
             _ => Task.CompletedTask
         };
         await response;
