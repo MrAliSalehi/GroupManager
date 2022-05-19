@@ -9,6 +9,7 @@ public class ManagerContext : DbContext
     public virtual DbSet<ForceJoinChannel> ForceJoinChannels { get; set; } = null!;
     public virtual DbSet<Group> Groups { get; set; } = null!;
     public virtual DbSet<User> Users { get; set; } = null!;
+    public virtual DbSet<FloodSettings> FloodSettings { get; set; }
 
     private readonly ILoggerFactory _loggerFactory;
 
@@ -30,7 +31,12 @@ public class ManagerContext : DbContext
     }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-
+        modelBuilder.Entity<FloodSettings>(entity =>
+        {
+            entity.HasOne(p => p.Group)
+                .WithOne(x => x.FloodSetting)
+                .HasForeignKey<FloodSettings>(x => x.GroupId);
+        });
         modelBuilder.Entity<Group>(entity =>
         {
             entity.HasMany(p => p.ForceJoinChannel)

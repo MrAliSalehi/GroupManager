@@ -2424,3 +2424,878 @@ ManagerHangFireDb.db
 2022-05-17 16:19:35.234 +04:30 [INF] User 1127927726 With 2 Message Removed From List
 2022-05-17 16:19:45.231 +04:30 [INF] Timer Reached
 2022-05-17 16:19:55.228 +04:30 [INF] Timer Reached
+2022-05-18 13:20:18.687 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-18 13:20:18.709 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-18 13:20:19.076 +04:30 [INF] Server qwxp:18464:b2b44d6e successfully announced in 308.8155 ms
+2022-05-18 13:20:19.082 +04:30 [INF] Server qwxp:18464:b2b44d6e is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-18 13:20:19.208 +04:30 [INF] Server qwxp:18464:b2b44d6e all the dispatchers started
+2022-05-18 13:20:19.354 +04:30 [INF] 2 servers were removed due to timeout
+2022-05-18 13:20:20.694 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-18 13:20:20.750 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-18 13:20:20.753 +04:30 [INF] Hosting environment: Development
+2022-05-18 13:20:20.754 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-18 13:20:20.799 +04:30 [WRN] Recurring job 'Mute-1001536264309' can't be scheduled due to an error and will be retried in 00:00:15.
+System.InvalidOperationException: Recurring job can't be scheduled, see inner exception for details.
+ ---> Hangfire.Common.JobLoadException: Could not load the job. See inner exception for the details.
+ ---> System.TypeLoadException: Could not load type 'GroupManager.Application.Commands.TimeBasedMute' from assembly 'GroupManager, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+   at System.Reflection.RuntimeAssembly.GetType(QCallAssembly assembly, String name, Boolean throwOnError, Boolean ignoreCase, ObjectHandleOnStack type, ObjectHandleOnStack keepAlive, ObjectHandleOnStack assemblyLoadContext)
+   at System.Reflection.RuntimeAssembly.GetType(String name, Boolean throwOnError, Boolean ignoreCase)
+   at Hangfire.Common.TypeHelper.TypeResolver(Assembly assembly, String typeName, Boolean ignoreCase)
+   at System.TypeNameParser.ResolveType(Assembly assembly, String[] names, Func`4 typeResolver, Boolean throwOnError, Boolean ignoreCase, StackCrawlMark& stackMark)
+   at System.TypeNameParser.ConstructType(Func`2 assemblyResolver, Func`4 typeResolver, Boolean throwOnError, Boolean ignoreCase, StackCrawlMark& stackMark)
+   at System.TypeNameParser.GetType(String typeName, Func`2 assemblyResolver, Func`4 typeResolver, Boolean throwOnError, Boolean ignoreCase, StackCrawlMark& stackMark)
+   at System.Type.GetType(String typeName, Func`2 assemblyResolver, Func`4 typeResolver, Boolean throwOnError)
+   at Hangfire.Common.TypeHelper.DefaultTypeResolver(String typeName)
+   at Hangfire.Storage.InvocationData.DeserializeJob()
+   --- End of inner exception stack trace ---
+   at Hangfire.Storage.InvocationData.DeserializeJob()
+   at Hangfire.RecurringJobEntity..ctor(String recurringJobId, IDictionary`2 recurringJob, ITimeZoneResolver timeZoneResolver, DateTime now)
+   --- End of inner exception stack trace ---
+   at Hangfire.Server.RecurringJobScheduler.ScheduleRecurringJob(BackgroundProcessContext context, IStorageConnection connection, String recurringJobId, RecurringJobEntity recurringJob, DateTime now)
+2022-05-18 13:20:22.518 +04:30 [WRN] Recurring job 'UnMute-1001536264309' can't be scheduled due to an error and will be retried in 00:00:15.
+System.InvalidOperationException: Recurring job can't be scheduled, see inner exception for details.
+ ---> Hangfire.Common.JobLoadException: Could not load the job. See inner exception for the details.
+ ---> System.TypeLoadException: Could not load type 'GroupManager.Application.Commands.TimeBasedMute' from assembly 'GroupManager, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+   at System.Reflection.RuntimeAssembly.GetType(QCallAssembly assembly, String name, Boolean throwOnError, Boolean ignoreCase, ObjectHandleOnStack type, ObjectHandleOnStack keepAlive, ObjectHandleOnStack assemblyLoadContext)
+   at System.Reflection.RuntimeAssembly.GetType(String name, Boolean throwOnError, Boolean ignoreCase)
+   at Hangfire.Common.TypeHelper.TypeResolver(Assembly assembly, String typeName, Boolean ignoreCase)
+   at System.TypeNameParser.ResolveType(Assembly assembly, String[] names, Func`4 typeResolver, Boolean throwOnError, Boolean ignoreCase, StackCrawlMark& stackMark)
+   at System.TypeNameParser.ConstructType(Func`2 assemblyResolver, Func`4 typeResolver, Boolean throwOnError, Boolean ignoreCase, StackCrawlMark& stackMark)
+   at System.TypeNameParser.GetType(String typeName, Func`2 assemblyResolver, Func`4 typeResolver, Boolean throwOnError, Boolean ignoreCase, StackCrawlMark& stackMark)
+   at System.Type.GetType(String typeName, Func`2 assemblyResolver, Func`4 typeResolver, Boolean throwOnError)
+   at Hangfire.Common.TypeHelper.DefaultTypeResolver(String typeName)
+   at Hangfire.Storage.InvocationData.DeserializeJob()
+   --- End of inner exception stack trace ---
+   at Hangfire.Storage.InvocationData.DeserializeJob()
+   at Hangfire.RecurringJobEntity..ctor(String recurringJobId, IDictionary`2 recurringJob, ITimeZoneResolver timeZoneResolver, DateTime now)
+   --- End of inner exception stack trace ---
+   at Hangfire.Server.RecurringJobScheduler.ScheduleRecurringJob(BackgroundProcessContext context, IStorageConnection connection, String recurringJobId, RecurringJobEntity recurringJob, DateTime now)
+2022-05-18 13:20:38.704 +04:30 [WRN] Recurring job 'Mute-1001536264309' can't be scheduled due to an error and will be retried in 00:00:15.
+System.InvalidOperationException: Recurring job can't be scheduled, see inner exception for details.
+ ---> Hangfire.Common.JobLoadException: Could not load the job. See inner exception for the details.
+ ---> System.TypeLoadException: Could not load type 'GroupManager.Application.Commands.TimeBasedMute' from assembly 'GroupManager, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+   at System.Reflection.RuntimeAssembly.GetType(QCallAssembly assembly, String name, Boolean throwOnError, Boolean ignoreCase, ObjectHandleOnStack type, ObjectHandleOnStack keepAlive, ObjectHandleOnStack assemblyLoadContext)
+   at System.Reflection.RuntimeAssembly.GetType(String name, Boolean throwOnError, Boolean ignoreCase)
+   at Hangfire.Common.TypeHelper.TypeResolver(Assembly assembly, String typeName, Boolean ignoreCase)
+   at System.TypeNameParser.ResolveType(Assembly assembly, String[] names, Func`4 typeResolver, Boolean throwOnError, Boolean ignoreCase, StackCrawlMark& stackMark)
+   at System.TypeNameParser.ConstructType(Func`2 assemblyResolver, Func`4 typeResolver, Boolean throwOnError, Boolean ignoreCase, StackCrawlMark& stackMark)
+   at System.TypeNameParser.GetType(String typeName, Func`2 assemblyResolver, Func`4 typeResolver, Boolean throwOnError, Boolean ignoreCase, StackCrawlMark& stackMark)
+   at System.Type.GetType(String typeName, Func`2 assemblyResolver, Func`4 typeResolver, Boolean throwOnError)
+   at Hangfire.Common.TypeHelper.DefaultTypeResolver(String typeName)
+   at Hangfire.Storage.InvocationData.DeserializeJob()
+   --- End of inner exception stack trace ---
+   at Hangfire.Storage.InvocationData.DeserializeJob()
+   at Hangfire.RecurringJobEntity..ctor(String recurringJobId, IDictionary`2 recurringJob, ITimeZoneResolver timeZoneResolver, DateTime now)
+   --- End of inner exception stack trace ---
+   at Hangfire.Server.RecurringJobScheduler.ScheduleRecurringJob(BackgroundProcessContext context, IStorageConnection connection, String recurringJobId, RecurringJobEntity recurringJob, DateTime now)
+2022-05-18 13:20:39.641 +04:30 [WRN] Recurring job 'UnMute-1001536264309' can't be scheduled due to an error and will be retried in 00:00:15.
+System.InvalidOperationException: Recurring job can't be scheduled, see inner exception for details.
+ ---> Hangfire.Common.JobLoadException: Could not load the job. See inner exception for the details.
+ ---> System.TypeLoadException: Could not load type 'GroupManager.Application.Commands.TimeBasedMute' from assembly 'GroupManager, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+   at System.Reflection.RuntimeAssembly.GetType(QCallAssembly assembly, String name, Boolean throwOnError, Boolean ignoreCase, ObjectHandleOnStack type, ObjectHandleOnStack keepAlive, ObjectHandleOnStack assemblyLoadContext)
+   at System.Reflection.RuntimeAssembly.GetType(String name, Boolean throwOnError, Boolean ignoreCase)
+   at Hangfire.Common.TypeHelper.TypeResolver(Assembly assembly, String typeName, Boolean ignoreCase)
+   at System.TypeNameParser.ResolveType(Assembly assembly, String[] names, Func`4 typeResolver, Boolean throwOnError, Boolean ignoreCase, StackCrawlMark& stackMark)
+   at System.TypeNameParser.ConstructType(Func`2 assemblyResolver, Func`4 typeResolver, Boolean throwOnError, Boolean ignoreCase, StackCrawlMark& stackMark)
+   at System.TypeNameParser.GetType(String typeName, Func`2 assemblyResolver, Func`4 typeResolver, Boolean throwOnError, Boolean ignoreCase, StackCrawlMark& stackMark)
+   at System.Type.GetType(String typeName, Func`2 assemblyResolver, Func`4 typeResolver, Boolean throwOnError)
+   at Hangfire.Common.TypeHelper.DefaultTypeResolver(String typeName)
+   at Hangfire.Storage.InvocationData.DeserializeJob()
+   --- End of inner exception stack trace ---
+   at Hangfire.Storage.InvocationData.DeserializeJob()
+   at Hangfire.RecurringJobEntity..ctor(String recurringJobId, IDictionary`2 recurringJob, ITimeZoneResolver timeZoneResolver, DateTime now)
+   --- End of inner exception stack trace ---
+   at Hangfire.Server.RecurringJobScheduler.ScheduleRecurringJob(BackgroundProcessContext context, IStorageConnection connection, String recurringJobId, RecurringJobEntity recurringJob, DateTime now)
+2022-05-18 13:20:55.733 +04:30 [WRN] Recurring job 'Mute-1001536264309' can't be scheduled due to an error and will be retried in 00:00:15.
+System.InvalidOperationException: Recurring job can't be scheduled, see inner exception for details.
+ ---> Hangfire.Common.JobLoadException: Could not load the job. See inner exception for the details.
+ ---> System.TypeLoadException: Could not load type 'GroupManager.Application.Commands.TimeBasedMute' from assembly 'GroupManager, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+   at System.Reflection.RuntimeAssembly.GetType(QCallAssembly assembly, String name, Boolean throwOnError, Boolean ignoreCase, ObjectHandleOnStack type, ObjectHandleOnStack keepAlive, ObjectHandleOnStack assemblyLoadContext)
+   at System.Reflection.RuntimeAssembly.GetType(String name, Boolean throwOnError, Boolean ignoreCase)
+   at Hangfire.Common.TypeHelper.TypeResolver(Assembly assembly, String typeName, Boolean ignoreCase)
+   at System.TypeNameParser.ResolveType(Assembly assembly, String[] names, Func`4 typeResolver, Boolean throwOnError, Boolean ignoreCase, StackCrawlMark& stackMark)
+   at System.TypeNameParser.ConstructType(Func`2 assemblyResolver, Func`4 typeResolver, Boolean throwOnError, Boolean ignoreCase, StackCrawlMark& stackMark)
+   at System.TypeNameParser.GetType(String typeName, Func`2 assemblyResolver, Func`4 typeResolver, Boolean throwOnError, Boolean ignoreCase, StackCrawlMark& stackMark)
+   at System.Type.GetType(String typeName, Func`2 assemblyResolver, Func`4 typeResolver, Boolean throwOnError)
+   at Hangfire.Common.TypeHelper.DefaultTypeResolver(String typeName)
+   at Hangfire.Storage.InvocationData.DeserializeJob()
+   --- End of inner exception stack trace ---
+   at Hangfire.Storage.InvocationData.DeserializeJob()
+   at Hangfire.RecurringJobEntity..ctor(String recurringJobId, IDictionary`2 recurringJob, ITimeZoneResolver timeZoneResolver, DateTime now)
+   --- End of inner exception stack trace ---
+   at Hangfire.Server.RecurringJobScheduler.ScheduleRecurringJob(BackgroundProcessContext context, IStorageConnection connection, String recurringJobId, RecurringJobEntity recurringJob, DateTime now)
+2022-05-18 13:20:56.344 +04:30 [WRN] Recurring job 'UnMute-1001536264309' can't be scheduled due to an error and will be retried in 00:00:15.
+System.InvalidOperationException: Recurring job can't be scheduled, see inner exception for details.
+ ---> Hangfire.Common.JobLoadException: Could not load the job. See inner exception for the details.
+ ---> System.TypeLoadException: Could not load type 'GroupManager.Application.Commands.TimeBasedMute' from assembly 'GroupManager, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+   at System.Reflection.RuntimeAssembly.GetType(QCallAssembly assembly, String name, Boolean throwOnError, Boolean ignoreCase, ObjectHandleOnStack type, ObjectHandleOnStack keepAlive, ObjectHandleOnStack assemblyLoadContext)
+   at System.Reflection.RuntimeAssembly.GetType(String name, Boolean throwOnError, Boolean ignoreCase)
+   at Hangfire.Common.TypeHelper.TypeResolver(Assembly assembly, String typeName, Boolean ignoreCase)
+   at System.TypeNameParser.ResolveType(Assembly assembly, String[] names, Func`4 typeResolver, Boolean throwOnError, Boolean ignoreCase, StackCrawlMark& stackMark)
+   at System.TypeNameParser.ConstructType(Func`2 assemblyResolver, Func`4 typeResolver, Boolean throwOnError, Boolean ignoreCase, StackCrawlMark& stackMark)
+   at System.TypeNameParser.GetType(String typeName, Func`2 assemblyResolver, Func`4 typeResolver, Boolean throwOnError, Boolean ignoreCase, StackCrawlMark& stackMark)
+   at System.Type.GetType(String typeName, Func`2 assemblyResolver, Func`4 typeResolver, Boolean throwOnError)
+   at Hangfire.Common.TypeHelper.DefaultTypeResolver(String typeName)
+   at Hangfire.Storage.InvocationData.DeserializeJob()
+   --- End of inner exception stack trace ---
+   at Hangfire.Storage.InvocationData.DeserializeJob()
+   at Hangfire.RecurringJobEntity..ctor(String recurringJobId, IDictionary`2 recurringJob, ITimeZoneResolver timeZoneResolver, DateTime now)
+   --- End of inner exception stack trace ---
+   at Hangfire.Server.RecurringJobScheduler.ScheduleRecurringJob(BackgroundProcessContext context, IStorageConnection connection, String recurringJobId, RecurringJobEntity recurringJob, DateTime now)
+2022-05-18 13:21:12.387 +04:30 [WRN] Recurring job 'Mute-1001536264309' can't be scheduled due to an error and will be retried in 00:00:15.
+System.InvalidOperationException: Recurring job can't be scheduled, see inner exception for details.
+ ---> Hangfire.Common.JobLoadException: Could not load the job. See inner exception for the details.
+ ---> System.TypeLoadException: Could not load type 'GroupManager.Application.Commands.TimeBasedMute' from assembly 'GroupManager, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+   at System.Reflection.RuntimeAssembly.GetType(QCallAssembly assembly, String name, Boolean throwOnError, Boolean ignoreCase, ObjectHandleOnStack type, ObjectHandleOnStack keepAlive, ObjectHandleOnStack assemblyLoadContext)
+   at System.Reflection.RuntimeAssembly.GetType(String name, Boolean throwOnError, Boolean ignoreCase)
+   at Hangfire.Common.TypeHelper.TypeResolver(Assembly assembly, String typeName, Boolean ignoreCase)
+   at System.TypeNameParser.ResolveType(Assembly assembly, String[] names, Func`4 typeResolver, Boolean throwOnError, Boolean ignoreCase, StackCrawlMark& stackMark)
+   at System.TypeNameParser.ConstructType(Func`2 assemblyResolver, Func`4 typeResolver, Boolean throwOnError, Boolean ignoreCase, StackCrawlMark& stackMark)
+   at System.TypeNameParser.GetType(String typeName, Func`2 assemblyResolver, Func`4 typeResolver, Boolean throwOnError, Boolean ignoreCase, StackCrawlMark& stackMark)
+   at System.Type.GetType(String typeName, Func`2 assemblyResolver, Func`4 typeResolver, Boolean throwOnError)
+   at Hangfire.Common.TypeHelper.DefaultTypeResolver(String typeName)
+   at Hangfire.Storage.InvocationData.DeserializeJob()
+   --- End of inner exception stack trace ---
+   at Hangfire.Storage.InvocationData.DeserializeJob()
+   at Hangfire.RecurringJobEntity..ctor(String recurringJobId, IDictionary`2 recurringJob, ITimeZoneResolver timeZoneResolver, DateTime now)
+   --- End of inner exception stack trace ---
+   at Hangfire.Server.RecurringJobScheduler.ScheduleRecurringJob(BackgroundProcessContext context, IStorageConnection connection, String recurringJobId, RecurringJobEntity recurringJob, DateTime now)
+2022-05-18 13:21:12.986 +04:30 [WRN] Recurring job 'UnMute-1001536264309' can't be scheduled due to an error and will be retried in 00:00:15.
+System.InvalidOperationException: Recurring job can't be scheduled, see inner exception for details.
+ ---> Hangfire.Common.JobLoadException: Could not load the job. See inner exception for the details.
+ ---> System.TypeLoadException: Could not load type 'GroupManager.Application.Commands.TimeBasedMute' from assembly 'GroupManager, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+   at System.Reflection.RuntimeAssembly.GetType(QCallAssembly assembly, String name, Boolean throwOnError, Boolean ignoreCase, ObjectHandleOnStack type, ObjectHandleOnStack keepAlive, ObjectHandleOnStack assemblyLoadContext)
+   at System.Reflection.RuntimeAssembly.GetType(String name, Boolean throwOnError, Boolean ignoreCase)
+   at Hangfire.Common.TypeHelper.TypeResolver(Assembly assembly, String typeName, Boolean ignoreCase)
+   at System.TypeNameParser.ResolveType(Assembly assembly, String[] names, Func`4 typeResolver, Boolean throwOnError, Boolean ignoreCase, StackCrawlMark& stackMark)
+   at System.TypeNameParser.ConstructType(Func`2 assemblyResolver, Func`4 typeResolver, Boolean throwOnError, Boolean ignoreCase, StackCrawlMark& stackMark)
+   at System.TypeNameParser.GetType(String typeName, Func`2 assemblyResolver, Func`4 typeResolver, Boolean throwOnError, Boolean ignoreCase, StackCrawlMark& stackMark)
+   at System.Type.GetType(String typeName, Func`2 assemblyResolver, Func`4 typeResolver, Boolean throwOnError)
+   at Hangfire.Common.TypeHelper.DefaultTypeResolver(String typeName)
+   at Hangfire.Storage.InvocationData.DeserializeJob()
+   --- End of inner exception stack trace ---
+   at Hangfire.Storage.InvocationData.DeserializeJob()
+   at Hangfire.RecurringJobEntity..ctor(String recurringJobId, IDictionary`2 recurringJob, ITimeZoneResolver timeZoneResolver, DateTime now)
+   --- End of inner exception stack trace ---
+   at Hangfire.Server.RecurringJobScheduler.ScheduleRecurringJob(BackgroundProcessContext context, IStorageConnection connection, String recurringJobId, RecurringJobEntity recurringJob, DateTime now)
+2022-05-18 13:21:29.077 +04:30 [WRN] Recurring job 'Mute-1001536264309' can't be scheduled due to an error and will be retried in 00:00:15.
+System.InvalidOperationException: Recurring job can't be scheduled, see inner exception for details.
+ ---> Hangfire.Common.JobLoadException: Could not load the job. See inner exception for the details.
+ ---> System.TypeLoadException: Could not load type 'GroupManager.Application.Commands.TimeBasedMute' from assembly 'GroupManager, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+   at System.Reflection.RuntimeAssembly.GetType(QCallAssembly assembly, String name, Boolean throwOnError, Boolean ignoreCase, ObjectHandleOnStack type, ObjectHandleOnStack keepAlive, ObjectHandleOnStack assemblyLoadContext)
+   at System.Reflection.RuntimeAssembly.GetType(String name, Boolean throwOnError, Boolean ignoreCase)
+   at Hangfire.Common.TypeHelper.TypeResolver(Assembly assembly, String typeName, Boolean ignoreCase)
+   at System.TypeNameParser.ResolveType(Assembly assembly, String[] names, Func`4 typeResolver, Boolean throwOnError, Boolean ignoreCase, StackCrawlMark& stackMark)
+   at System.TypeNameParser.ConstructType(Func`2 assemblyResolver, Func`4 typeResolver, Boolean throwOnError, Boolean ignoreCase, StackCrawlMark& stackMark)
+   at System.TypeNameParser.GetType(String typeName, Func`2 assemblyResolver, Func`4 typeResolver, Boolean throwOnError, Boolean ignoreCase, StackCrawlMark& stackMark)
+   at System.Type.GetType(String typeName, Func`2 assemblyResolver, Func`4 typeResolver, Boolean throwOnError)
+   at Hangfire.Common.TypeHelper.DefaultTypeResolver(String typeName)
+   at Hangfire.Storage.InvocationData.DeserializeJob()
+   --- End of inner exception stack trace ---
+   at Hangfire.Storage.InvocationData.DeserializeJob()
+   at Hangfire.RecurringJobEntity..ctor(String recurringJobId, IDictionary`2 recurringJob, ITimeZoneResolver timeZoneResolver, DateTime now)
+   --- End of inner exception stack trace ---
+   at Hangfire.Server.RecurringJobScheduler.ScheduleRecurringJob(BackgroundProcessContext context, IStorageConnection connection, String recurringJobId, RecurringJobEntity recurringJob, DateTime now)
+2022-05-18 13:21:29.678 +04:30 [WRN] Recurring job 'UnMute-1001536264309' can't be scheduled due to an error and will be retried in 00:00:15.
+System.InvalidOperationException: Recurring job can't be scheduled, see inner exception for details.
+ ---> Hangfire.Common.JobLoadException: Could not load the job. See inner exception for the details.
+ ---> System.TypeLoadException: Could not load type 'GroupManager.Application.Commands.TimeBasedMute' from assembly 'GroupManager, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+   at System.Reflection.RuntimeAssembly.GetType(QCallAssembly assembly, String name, Boolean throwOnError, Boolean ignoreCase, ObjectHandleOnStack type, ObjectHandleOnStack keepAlive, ObjectHandleOnStack assemblyLoadContext)
+   at System.Reflection.RuntimeAssembly.GetType(String name, Boolean throwOnError, Boolean ignoreCase)
+   at Hangfire.Common.TypeHelper.TypeResolver(Assembly assembly, String typeName, Boolean ignoreCase)
+   at System.TypeNameParser.ResolveType(Assembly assembly, String[] names, Func`4 typeResolver, Boolean throwOnError, Boolean ignoreCase, StackCrawlMark& stackMark)
+   at System.TypeNameParser.ConstructType(Func`2 assemblyResolver, Func`4 typeResolver, Boolean throwOnError, Boolean ignoreCase, StackCrawlMark& stackMark)
+   at System.TypeNameParser.GetType(String typeName, Func`2 assemblyResolver, Func`4 typeResolver, Boolean throwOnError, Boolean ignoreCase, StackCrawlMark& stackMark)
+   at System.Type.GetType(String typeName, Func`2 assemblyResolver, Func`4 typeResolver, Boolean throwOnError)
+   at Hangfire.Common.TypeHelper.DefaultTypeResolver(String typeName)
+   at Hangfire.Storage.InvocationData.DeserializeJob()
+   --- End of inner exception stack trace ---
+   at Hangfire.Storage.InvocationData.DeserializeJob()
+   at Hangfire.RecurringJobEntity..ctor(String recurringJobId, IDictionary`2 recurringJob, ITimeZoneResolver timeZoneResolver, DateTime now)
+   --- End of inner exception stack trace ---
+   at Hangfire.Server.RecurringJobScheduler.ScheduleRecurringJob(BackgroundProcessContext context, IStorageConnection connection, String recurringJobId, RecurringJobEntity recurringJob, DateTime now)
+2022-05-18 13:21:45.827 +04:30 [ERR] Recurring job 'Mute-1001536264309' can't be scheduled due to an error and will be disabled.
+System.InvalidOperationException: Recurring job can't be scheduled, see inner exception for details.
+ ---> Hangfire.Common.JobLoadException: Could not load the job. See inner exception for the details.
+ ---> System.TypeLoadException: Could not load type 'GroupManager.Application.Commands.TimeBasedMute' from assembly 'GroupManager, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+   at System.Reflection.RuntimeAssembly.GetType(QCallAssembly assembly, String name, Boolean throwOnError, Boolean ignoreCase, ObjectHandleOnStack type, ObjectHandleOnStack keepAlive, ObjectHandleOnStack assemblyLoadContext)
+   at System.Reflection.RuntimeAssembly.GetType(String name, Boolean throwOnError, Boolean ignoreCase)
+   at Hangfire.Common.TypeHelper.TypeResolver(Assembly assembly, String typeName, Boolean ignoreCase)
+   at System.TypeNameParser.ResolveType(Assembly assembly, String[] names, Func`4 typeResolver, Boolean throwOnError, Boolean ignoreCase, StackCrawlMark& stackMark)
+   at System.TypeNameParser.ConstructType(Func`2 assemblyResolver, Func`4 typeResolver, Boolean throwOnError, Boolean ignoreCase, StackCrawlMark& stackMark)
+   at System.TypeNameParser.GetType(String typeName, Func`2 assemblyResolver, Func`4 typeResolver, Boolean throwOnError, Boolean ignoreCase, StackCrawlMark& stackMark)
+   at System.Type.GetType(String typeName, Func`2 assemblyResolver, Func`4 typeResolver, Boolean throwOnError)
+   at Hangfire.Common.TypeHelper.DefaultTypeResolver(String typeName)
+   at Hangfire.Storage.InvocationData.DeserializeJob()
+   --- End of inner exception stack trace ---
+   at Hangfire.Storage.InvocationData.DeserializeJob()
+   at Hangfire.RecurringJobEntity..ctor(String recurringJobId, IDictionary`2 recurringJob, ITimeZoneResolver timeZoneResolver, DateTime now)
+   --- End of inner exception stack trace ---
+   at Hangfire.Server.RecurringJobScheduler.ScheduleRecurringJob(BackgroundProcessContext context, IStorageConnection connection, String recurringJobId, RecurringJobEntity recurringJob, DateTime now)
+2022-05-18 13:21:46.422 +04:30 [ERR] Recurring job 'UnMute-1001536264309' can't be scheduled due to an error and will be disabled.
+System.InvalidOperationException: Recurring job can't be scheduled, see inner exception for details.
+ ---> Hangfire.Common.JobLoadException: Could not load the job. See inner exception for the details.
+ ---> System.TypeLoadException: Could not load type 'GroupManager.Application.Commands.TimeBasedMute' from assembly 'GroupManager, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null'.
+   at System.Reflection.RuntimeAssembly.GetType(QCallAssembly assembly, String name, Boolean throwOnError, Boolean ignoreCase, ObjectHandleOnStack type, ObjectHandleOnStack keepAlive, ObjectHandleOnStack assemblyLoadContext)
+   at System.Reflection.RuntimeAssembly.GetType(String name, Boolean throwOnError, Boolean ignoreCase)
+   at Hangfire.Common.TypeHelper.TypeResolver(Assembly assembly, String typeName, Boolean ignoreCase)
+   at System.TypeNameParser.ResolveType(Assembly assembly, String[] names, Func`4 typeResolver, Boolean throwOnError, Boolean ignoreCase, StackCrawlMark& stackMark)
+   at System.TypeNameParser.ConstructType(Func`2 assemblyResolver, Func`4 typeResolver, Boolean throwOnError, Boolean ignoreCase, StackCrawlMark& stackMark)
+   at System.TypeNameParser.GetType(String typeName, Func`2 assemblyResolver, Func`4 typeResolver, Boolean throwOnError, Boolean ignoreCase, StackCrawlMark& stackMark)
+   at System.Type.GetType(String typeName, Func`2 assemblyResolver, Func`4 typeResolver, Boolean throwOnError)
+   at Hangfire.Common.TypeHelper.DefaultTypeResolver(String typeName)
+   at Hangfire.Storage.InvocationData.DeserializeJob()
+   --- End of inner exception stack trace ---
+   at Hangfire.Storage.InvocationData.DeserializeJob()
+   at Hangfire.RecurringJobEntity..ctor(String recurringJobId, IDictionary`2 recurringJob, ITimeZoneResolver timeZoneResolver, DateTime now)
+   --- End of inner exception stack trace ---
+   at Hangfire.Server.RecurringJobScheduler.ScheduleRecurringJob(BackgroundProcessContext context, IStorageConnection connection, String recurringJobId, RecurringJobEntity recurringJob, DateTime now)
+2022-05-18 13:27:10.718 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-18 13:27:10.735 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-18 13:27:11.024 +04:30 [INF] Server qwxp:13304:c2920d0b successfully announced in 259.0447 ms
+2022-05-18 13:27:11.030 +04:30 [INF] Server qwxp:13304:c2920d0b is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-18 13:27:11.134 +04:30 [INF] Server qwxp:13304:c2920d0b all the dispatchers started
+2022-05-18 13:27:11.770 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-18 13:27:11.776 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-18 13:27:11.778 +04:30 [INF] Hosting environment: Development
+2022-05-18 13:27:11.779 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-18 13:29:03.799 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-18 13:29:03.814 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-18 13:29:04.094 +04:30 [INF] Server qwxp:20108:66f284ea successfully announced in 254.7846 ms
+2022-05-18 13:29:04.098 +04:30 [INF] Server qwxp:20108:66f284ea is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-18 13:29:04.205 +04:30 [INF] Server qwxp:20108:66f284ea all the dispatchers started
+2022-05-18 13:29:04.755 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-18 13:29:04.761 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-18 13:29:04.764 +04:30 [INF] Hosting environment: Development
+2022-05-18 13:29:04.764 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-18 13:35:10.164 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-18 13:35:10.178 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-18 13:35:10.450 +04:30 [INF] Server qwxp:16020:f73168fb successfully announced in 246.8948 ms
+2022-05-18 13:35:10.459 +04:30 [INF] Server qwxp:16020:f73168fb is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-18 13:35:10.580 +04:30 [INF] Server qwxp:16020:f73168fb all the dispatchers started
+2022-05-18 13:35:10.772 +04:30 [INF] 2 servers were removed due to timeout
+2022-05-18 13:35:11.255 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-18 13:35:11.261 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-18 13:35:11.263 +04:30 [INF] Hosting environment: Development
+2022-05-18 13:35:11.264 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-18 18:50:09.163 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-18 18:50:09.176 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-18 18:50:09.450 +04:30 [INF] Server qwxp:12204:66e44c57 successfully announced in 248.3647 ms
+2022-05-18 18:50:09.459 +04:30 [INF] Server qwxp:12204:66e44c57 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-18 18:50:09.616 +04:30 [INF] Server qwxp:12204:66e44c57 all the dispatchers started
+2022-05-18 18:50:09.683 +04:30 [INF] 2 servers were removed due to timeout
+2022-05-18 18:50:10.242 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-18 18:50:10.249 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-18 18:50:10.251 +04:30 [INF] Hosting environment: Development
+2022-05-18 18:50:10.252 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-18 18:50:48.270 +04:30 [ERR] GetFloodSettingAsync
+Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 1: 'no such column: f.RestrictTime'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteCommand.PrepareAndEnumerateStatements(Stopwatch timer)+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteCommand.GetStatements(Stopwatch timer)+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at GroupManager.DataLayer.Controller.FloodController.GetFloodSettingAsync(Int64 groupId, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\DataLayer\Controller\FloodController.cs:line 20
+   at GroupManager.DataLayer.Controller.FloodController.GetFloodSettingAsync(Int64 groupId, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\DataLayer\Controller\FloodController.cs:line 20
+2022-05-18 18:51:42.448 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-18 18:51:42.461 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-18 18:51:42.731 +04:30 [INF] Server qwxp:18468:e3945f3b successfully announced in 243.1326 ms
+2022-05-18 18:51:42.736 +04:30 [INF] Server qwxp:18468:e3945f3b is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-18 18:51:42.858 +04:30 [INF] Server qwxp:18468:e3945f3b all the dispatchers started
+2022-05-18 18:51:43.493 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-18 18:51:43.499 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-18 18:51:43.501 +04:30 [INF] Hosting environment: Development
+2022-05-18 18:51:43.502 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-18 18:52:02.997 +04:30 [ERR] AddFloodSettingAsync
+Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 19: 'FOREIGN KEY constraint failed'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at GroupManager.DataLayer.Controller.FloodController.AddFloodSettingAsync(Int64 groupId, FloodSettings settings, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\DataLayer\Controller\FloodController.cs:line 39
+   at GroupManager.DataLayer.Controller.FloodController.AddFloodSettingAsync(Int64 groupId, FloodSettings settings, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\DataLayer\Controller\FloodController.cs:line 40
+2022-05-18 18:53:51.730 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-18 18:53:51.746 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-18 18:53:52.037 +04:30 [INF] Server qwxp:11740:312b8219 successfully announced in 259.4467 ms
+2022-05-18 18:53:52.047 +04:30 [INF] Server qwxp:11740:312b8219 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-18 18:53:52.144 +04:30 [INF] Server qwxp:11740:312b8219 all the dispatchers started
+2022-05-18 18:53:52.834 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-18 18:53:52.841 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-18 18:53:52.843 +04:30 [INF] Hosting environment: Development
+2022-05-18 18:53:52.844 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-18 18:55:52.690 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-18 18:55:52.703 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-18 18:55:52.997 +04:30 [INF] Server qwxp:20224:944c99c1 successfully announced in 264.1133 ms
+2022-05-18 18:55:53.008 +04:30 [INF] Server qwxp:20224:944c99c1 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-18 18:55:53.112 +04:30 [INF] Server qwxp:20224:944c99c1 all the dispatchers started
+2022-05-18 18:55:53.791 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-18 18:55:53.797 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-18 18:55:53.799 +04:30 [INF] Hosting environment: Development
+2022-05-18 18:55:53.800 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-18 18:56:23.567 +04:30 [ERR] Unable to update heartbeat on the resource 'HangFire:recurring-jobs:lock'. The resource is not locked or is locked by another owner.
+2022-05-18 18:57:11.513 +04:30 [ERR] OnUpdate
+Telegram.Bot.Exceptions.ApiRequestException: Bad Request: replied message not found
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.SendTextMessageAsync(ITelegramBotClient botClient, ChatId chatId, String text, Nullable`1 parseMode, IEnumerable`1 entities, Nullable`1 disableWebPagePreview, Nullable`1 disableNotification, Nullable`1 replyToMessageId, Nullable`1 allowSendingWithoutReply, IReplyMarkup replyMarkup, CancellationToken cancellationToken)
+   at GroupManager.Application.Commands.GroupCommands.CheckUserMessageLimitAsync(Message message, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Commands\GroupCommands.cs:line 71
+   at GroupManager.Application.Commands.GroupCommands.HandleGroupAsync(Message message, Group group, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Commands\GroupCommands.cs:line 38
+   at GroupManager.Application.Handlers.MessageHandler.InitHandlerAsync(Message message, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\MessageHandler.cs:line 40
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 68
+2022-05-18 18:57:49.130 +04:30 [ERR] OnUpdate
+Telegram.Bot.Exceptions.ApiRequestException: Bad Request: replied message not found
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.SendTextMessageAsync(ITelegramBotClient botClient, ChatId chatId, String text, Nullable`1 parseMode, IEnumerable`1 entities, Nullable`1 disableWebPagePreview, Nullable`1 disableNotification, Nullable`1 replyToMessageId, Nullable`1 allowSendingWithoutReply, IReplyMarkup replyMarkup, CancellationToken cancellationToken)
+   at GroupManager.Application.Commands.GroupCommands.CheckUserMessageLimitAsync(Message message, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Commands\GroupCommands.cs:line 71
+   at GroupManager.Application.Commands.GroupCommands.HandleGroupAsync(Message message, Group group, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Commands\GroupCommands.cs:line 38
+   at GroupManager.Application.Handlers.MessageHandler.InitHandlerAsync(Message message, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\MessageHandler.cs:line 40
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 68
+2022-05-18 18:58:42.804 +04:30 [WRN] Server qwxp:20224:944c99c1 was considered dead by other servers, restarting...
+2022-05-18 18:58:43.993 +04:30 [INF] Server qwxp:20224:944c99c1 caught restart signal...
+2022-05-18 18:58:51.211 +04:30 [WRN] Server qwxp:20224:944c99c1 stopped non-gracefully due to Worker. Outstanding work on those dispatchers could be aborted, and there can be delays in background processing. This server instance will be incorrectly shown as active for a while. To avoid non-graceful shutdowns, investigate what prevents from stopping gracefully and add CancellationToken support for those methods.
+2022-05-18 18:58:56.994 +04:30 [INF] Server qwxp:20224:944c99c1 successfully reported itself as stopped in 824.7996 ms
+2022-05-18 18:58:58.928 +04:30 [INF] Server qwxp:20224:944c99c1 has been stopped in total 12691.3554 ms
+2022-05-18 18:58:59.288 +04:30 [INF] Server qwxp:20224:e9c8e5f4 successfully announced in 358.4942 ms
+2022-05-18 18:58:59.990 +04:30 [INF] Server qwxp:20224:e9c8e5f4 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-18 18:59:04.652 +04:30 [INF] 3 servers were removed due to timeout
+2022-05-18 18:59:07.459 +04:30 [INF] Server qwxp:20224:e9c8e5f4 all the dispatchers started
+2022-05-18 19:08:42.358 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-18 19:08:42.372 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-18 19:08:42.648 +04:30 [INF] Server qwxp:18648:d5b3587f successfully announced in 247.0409 ms
+2022-05-18 19:08:42.654 +04:30 [INF] Server qwxp:18648:d5b3587f is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-18 19:08:42.774 +04:30 [INF] Server qwxp:18648:d5b3587f all the dispatchers started
+2022-05-18 19:08:42.898 +04:30 [INF] 1 servers were removed due to timeout
+2022-05-18 19:08:43.444 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-18 19:08:43.451 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-18 19:08:43.455 +04:30 [INF] Hosting environment: Development
+2022-05-18 19:08:43.456 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-18 19:09:38.571 +04:30 [ERR] OnUpdate
+Telegram.Bot.Exceptions.ApiRequestException: Bad Request: can't remove chat owner
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.RestrictChatMemberAsync(ITelegramBotClient botClient, ChatId chatId, Int64 userId, ChatPermissions permissions, Nullable`1 untilDate, CancellationToken cancellationToken)
+   at GroupManager.Application.Commands.GroupCommands.CheckUserMessageLimitAsync(Message message, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Commands\GroupCommands.cs:line 79
+   at GroupManager.Application.Commands.GroupCommands.HandleGroupAsync(Message message, Group group, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Commands\GroupCommands.cs:line 38
+   at GroupManager.Application.Handlers.MessageHandler.InitHandlerAsync(Message message, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\MessageHandler.cs:line 40
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 68
+2022-05-18 19:11:14.066 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-18 19:11:14.082 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-18 19:11:14.348 +04:30 [INF] Server qwxp:19416:e35cee51 successfully announced in 237.2866 ms
+2022-05-18 19:11:14.356 +04:30 [INF] Server qwxp:19416:e35cee51 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-18 19:11:14.445 +04:30 [INF] Server qwxp:19416:e35cee51 all the dispatchers started
+2022-05-18 19:11:15.087 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-18 19:11:15.094 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-18 19:11:15.096 +04:30 [INF] Hosting environment: Development
+2022-05-18 19:11:15.096 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-18 19:12:47.881 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-18 19:12:47.895 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-18 19:12:48.198 +04:30 [INF] Server qwxp:23652:0e4fb748 successfully announced in 274.7788 ms
+2022-05-18 19:12:48.205 +04:30 [INF] Server qwxp:23652:0e4fb748 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-18 19:12:48.313 +04:30 [INF] Server qwxp:23652:0e4fb748 all the dispatchers started
+2022-05-18 19:12:48.928 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-18 19:12:48.935 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-18 19:12:48.937 +04:30 [INF] Hosting environment: Development
+2022-05-18 19:12:48.938 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-18 19:17:18.439 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-18 19:17:18.456 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-18 19:17:18.732 +04:30 [INF] Server qwxp:20540:bcffdbd1 successfully announced in 245.0759 ms
+2022-05-18 19:17:18.742 +04:30 [INF] Server qwxp:20540:bcffdbd1 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-18 19:17:18.836 +04:30 [INF] Server qwxp:20540:bcffdbd1 all the dispatchers started
+2022-05-18 19:17:19.016 +04:30 [INF] 1 servers were removed due to timeout
+2022-05-18 19:17:19.503 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-18 19:17:19.513 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-18 19:17:19.515 +04:30 [INF] Hosting environment: Development
+2022-05-18 19:17:19.516 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-18 19:19:43.361 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-18 19:19:43.375 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-18 19:19:43.643 +04:30 [INF] Server qwxp:15284:e81368f6 successfully announced in 238.9409 ms
+2022-05-18 19:19:43.649 +04:30 [INF] Server qwxp:15284:e81368f6 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-18 19:19:43.782 +04:30 [INF] Server qwxp:15284:e81368f6 all the dispatchers started
+2022-05-18 19:19:43.820 +04:30 [INF] 1 servers were removed due to timeout
+2022-05-18 19:19:44.563 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-18 19:19:44.569 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-18 19:19:44.571 +04:30 [INF] Hosting environment: Development
+2022-05-18 19:19:44.572 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-18 19:20:16.283 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-18 19:20:16.296 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-18 19:20:16.599 +04:30 [INF] Server qwxp:23976:5489f6bb successfully announced in 269.546 ms
+2022-05-18 19:20:16.607 +04:30 [INF] Server qwxp:23976:5489f6bb is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-18 19:20:16.707 +04:30 [INF] Server qwxp:23976:5489f6bb all the dispatchers started
+2022-05-18 19:20:17.321 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-18 19:20:17.346 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-18 19:20:17.349 +04:30 [INF] Hosting environment: Development
+2022-05-18 19:20:17.349 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-18 19:21:49.713 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-18 19:21:49.728 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-18 19:21:50.047 +04:30 [INF] Server qwxp:21892:810348e5 successfully announced in 283.93 ms
+2022-05-18 19:21:50.053 +04:30 [INF] Server qwxp:21892:810348e5 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-18 19:21:50.137 +04:30 [INF] Server qwxp:21892:810348e5 all the dispatchers started
+2022-05-18 19:21:50.202 +04:30 [INF] 1 servers were removed due to timeout
+2022-05-18 19:21:50.682 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-18 19:21:50.688 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-18 19:21:50.691 +04:30 [INF] Hosting environment: Development
+2022-05-18 19:21:50.692 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-18 19:23:56.905 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-18 19:23:56.918 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-18 19:23:57.185 +04:30 [INF] Server qwxp:19880:6b4dc0bc successfully announced in 239.6006 ms
+2022-05-18 19:23:57.190 +04:30 [INF] Server qwxp:19880:6b4dc0bc is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-18 19:23:57.291 +04:30 [INF] Server qwxp:19880:6b4dc0bc all the dispatchers started
+2022-05-18 19:23:57.362 +04:30 [INF] 1 servers were removed due to timeout
+2022-05-18 19:23:57.997 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-18 19:23:58.004 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-18 19:23:58.007 +04:30 [INF] Hosting environment: Development
+2022-05-18 19:23:58.007 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-19 10:42:59.500 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-19 10:42:59.518 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-19 10:42:59.917 +04:30 [INF] Server qwxp:11408:c60cc57d successfully announced in 351.4772 ms
+2022-05-19 10:42:59.928 +04:30 [INF] Server qwxp:11408:c60cc57d is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-19 10:43:00.080 +04:30 [INF] Server qwxp:11408:c60cc57d all the dispatchers started
+2022-05-19 10:43:01.339 +04:30 [INF] 4 servers were removed due to timeout
+2022-05-19 10:43:08.784 +04:30 [WRN] Failed to process the job '15': an exception occurred. Retry attempt 1 of 10 will be performed in 00:00:28.
+System.InvalidOperationException: The type `GroupManager.Application.RecurringJobs.ResetMessageLimit` does not contain a method with signature `ResetUserLimitAsync(Int64, Int64, CancellationToken)`
+   at Hangfire.Storage.InvocationData.DeserializeJob()
+2022-05-19 10:43:21.607 +04:30 [INF] Server qwxp:11408:c60cc57d caught stopping signal...
+2022-05-19 10:43:21.729 +04:30 [INF] Server qwxp:11408:c60cc57d caught stopped signal...
+2022-05-19 10:43:22.711 +04:30 [INF] Server qwxp:11408:c60cc57d All dispatchers stopped
+2022-05-19 10:43:22.817 +04:30 [INF] Server qwxp:11408:c60cc57d successfully reported itself as stopped in 87.7343 ms
+2022-05-19 10:43:22.821 +04:30 [INF] Server qwxp:11408:c60cc57d has been stopped in total 1100.555 ms
+2022-05-19 10:43:47.288 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-19 10:43:47.303 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-19 10:43:47.574 +04:30 [INF] Server qwxp:17612:6d917798 successfully announced in 242.9864 ms
+2022-05-19 10:43:47.580 +04:30 [INF] Server qwxp:17612:6d917798 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-19 10:43:47.703 +04:30 [INF] Server qwxp:17612:6d917798 all the dispatchers started
+2022-05-19 10:43:48.298 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-19 10:43:48.305 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-19 10:43:48.308 +04:30 [INF] Hosting environment: Development
+2022-05-19 10:43:48.308 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-19 10:43:50.113 +04:30 [ERR] GetFloodSettingAsync
+System.FormatException: String '2022-05-21 18:55:52.1352381' was not recognized as a valid TimeSpan.
+   at System.Globalization.TimeSpanParse.TimeSpanResult.SetBadTimeSpanFailure()
+   at System.Globalization.TimeSpanParse.TimeSpanRawInfo.AddNum(TimeSpanToken num, TimeSpanResult& result)
+   at System.Globalization.TimeSpanParse.TimeSpanRawInfo.ProcessToken(TimeSpanToken& tok, TimeSpanResult& result)
+   at System.Globalization.TimeSpanParse.TryParseTimeSpan(ReadOnlySpan`1 input, TimeSpanStandardStyles style, IFormatProvider formatProvider, TimeSpanResult& result)
+   at System.TimeSpan.Parse(String s)
+   at Microsoft.Data.Sqlite.SqliteValueReader.GetTimeSpan(Int32 ordinal)
+   at Microsoft.Data.Sqlite.SqliteValueReader.GetFieldValue[T](Int32 ordinal)
+   at Microsoft.Data.Sqlite.SqliteDataRecord.GetFieldValue[T](Int32 ordinal)
+   at Microsoft.Data.Sqlite.SqliteDataReader.GetFieldValue[T](Int32 ordinal)
+   at lambda_method308(Closure , QueryContext , DbDataReader , ResultContext , SingleQueryResultCoordinator )
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at GroupManager.DataLayer.Controller.FloodController.GetFloodSettingAsync(Int64 groupId, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\DataLayer\Controller\FloodController.cs:line 20
+   at GroupManager.DataLayer.Controller.FloodController.GetFloodSettingAsync(Int64 groupId, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\DataLayer\Controller\FloodController.cs:line 20
+2022-05-19 10:43:51.474 +04:30 [WRN] Failed to process the job '15': an exception occurred. Retry attempt 2 of 10 will be performed in 00:00:48.
+System.InvalidOperationException: The type `GroupManager.Application.RecurringJobs.ResetMessageLimit` does not contain a method with signature `ResetUserLimitAsync(Int64, Int64, CancellationToken)`
+   at Hangfire.Storage.InvocationData.DeserializeJob()
+2022-05-19 10:44:28.034 +04:30 [ERR] GetFloodSettingAsync
+System.FormatException: String '2022-05-21 18:55:52.1352381' was not recognized as a valid TimeSpan.
+   at System.Globalization.TimeSpanParse.TimeSpanResult.SetBadTimeSpanFailure()
+   at System.Globalization.TimeSpanParse.TimeSpanRawInfo.AddNum(TimeSpanToken num, TimeSpanResult& result)
+   at System.Globalization.TimeSpanParse.TimeSpanRawInfo.ProcessToken(TimeSpanToken& tok, TimeSpanResult& result)
+   at System.Globalization.TimeSpanParse.TryParseTimeSpan(ReadOnlySpan`1 input, TimeSpanStandardStyles style, IFormatProvider formatProvider, TimeSpanResult& result)
+   at System.TimeSpan.Parse(String s)
+   at Microsoft.Data.Sqlite.SqliteValueReader.GetTimeSpan(Int32 ordinal)
+   at Microsoft.Data.Sqlite.SqliteValueReader.GetFieldValue[T](Int32 ordinal)
+   at Microsoft.Data.Sqlite.SqliteDataRecord.GetFieldValue[T](Int32 ordinal)
+   at Microsoft.Data.Sqlite.SqliteDataReader.GetFieldValue[T](Int32 ordinal)
+   at lambda_method308(Closure , QueryContext , DbDataReader , ResultContext , SingleQueryResultCoordinator )
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync[TSource](IAsyncEnumerable`1 asyncEnumerable, CancellationToken cancellationToken)
+   at GroupManager.DataLayer.Controller.FloodController.GetFloodSettingAsync(Int64 groupId, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\DataLayer\Controller\FloodController.cs:line 20
+   at GroupManager.DataLayer.Controller.FloodController.GetFloodSettingAsync(Int64 groupId, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\DataLayer\Controller\FloodController.cs:line 20
+2022-05-19 10:45:49.654 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-19 10:45:49.669 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-19 10:45:50.000 +04:30 [INF] Server qwxp:5040:dc6d827f successfully announced in 305.041 ms
+2022-05-19 10:45:50.005 +04:30 [INF] Server qwxp:5040:dc6d827f is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-19 10:45:50.123 +04:30 [INF] Server qwxp:5040:dc6d827f all the dispatchers started
+2022-05-19 10:45:50.731 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-19 10:45:50.738 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-19 10:45:50.740 +04:30 [INF] Hosting environment: Development
+2022-05-19 10:45:50.741 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-19 10:45:56.645 +04:30 [WRN] Failed to process the job '15': an exception occurred. Retry attempt 3 of 10 will be performed in 00:00:40.
+System.InvalidOperationException: The type `GroupManager.Application.RecurringJobs.ResetMessageLimit` does not contain a method with signature `ResetUserLimitAsync(Int64, Int64, CancellationToken)`
+   at Hangfire.Storage.InvocationData.DeserializeJob()
+2022-05-19 10:46:56.713 +04:30 [WRN] Failed to process the job '15': an exception occurred. Retry attempt 4 of 10 will be performed in 00:03:08.
+System.InvalidOperationException: The type `GroupManager.Application.RecurringJobs.ResetMessageLimit` does not contain a method with signature `ResetUserLimitAsync(Int64, Int64, CancellationToken)`
+   at Hangfire.Storage.InvocationData.DeserializeJob()
+2022-05-19 10:52:20.408 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-19 10:52:20.424 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-19 10:52:20.692 +04:30 [INF] Server qwxp:23140:e4b9590c successfully announced in 243.1557 ms
+2022-05-19 10:52:20.697 +04:30 [INF] Server qwxp:23140:e4b9590c is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-19 10:52:20.801 +04:30 [INF] Server qwxp:23140:e4b9590c all the dispatchers started
+2022-05-19 10:52:20.857 +04:30 [INF] 1 servers were removed due to timeout
+2022-05-19 10:52:21.462 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-19 10:52:21.468 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-19 10:52:21.470 +04:30 [INF] Hosting environment: Development
+2022-05-19 10:52:21.471 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-19 10:56:03.375 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-19 10:56:03.390 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-19 10:56:03.679 +04:30 [INF] Server qwxp:20760:a95f8b5a successfully announced in 259.8403 ms
+2022-05-19 10:56:03.685 +04:30 [INF] Server qwxp:20760:a95f8b5a is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-19 10:56:03.806 +04:30 [INF] Server qwxp:20760:a95f8b5a all the dispatchers started
+2022-05-19 10:56:03.832 +04:30 [INF] 1 servers were removed due to timeout
+2022-05-19 10:56:04.435 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-19 10:56:04.441 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-19 10:56:04.444 +04:30 [INF] Hosting environment: Development
+2022-05-19 10:56:04.444 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-19 10:56:22.408 +04:30 [INF] timer Started
+2022-05-19 12:00:34.037 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-19 12:00:34.052 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-19 12:00:34.347 +04:30 [INF] Server qwxp:20968:101f2d68 successfully announced in 266.088 ms
+2022-05-19 12:00:34.353 +04:30 [INF] Server qwxp:20968:101f2d68 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-19 12:00:34.436 +04:30 [INF] Server qwxp:20968:101f2d68 all the dispatchers started
+2022-05-19 12:00:34.579 +04:30 [INF] 2 servers were removed due to timeout
+2022-05-19 12:00:35.073 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-19 12:00:36.224 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-19 12:00:36.226 +04:30 [INF] Hosting environment: Development
+2022-05-19 12:00:36.226 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-19 12:01:08.783 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-19 12:01:08.799 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-19 12:01:09.048 +04:30 [INF] Server qwxp:24292:664f5b6d successfully announced in 221.763 ms
+2022-05-19 12:01:09.054 +04:30 [INF] Server qwxp:24292:664f5b6d is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-19 12:01:09.164 +04:30 [INF] Server qwxp:24292:664f5b6d all the dispatchers started
+2022-05-19 12:01:09.853 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-19 12:01:36.586 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-19 12:01:36.602 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-19 12:01:36.893 +04:30 [INF] Server qwxp:20408:48fc034a successfully announced in 265.6349 ms
+2022-05-19 12:01:36.900 +04:30 [INF] Server qwxp:20408:48fc034a is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-19 12:01:36.987 +04:30 [INF] Server qwxp:20408:48fc034a all the dispatchers started
+2022-05-19 12:01:37.568 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-19 12:02:30.043 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-19 12:02:30.045 +04:30 [INF] Hosting environment: Development
+2022-05-19 12:02:30.046 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-19 12:03:08.193 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-19 12:03:08.209 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-19 12:03:08.463 +04:30 [INF] Server qwxp:16096:399ecf55 successfully announced in 228.6107 ms
+2022-05-19 12:03:08.467 +04:30 [INF] Server qwxp:16096:399ecf55 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-19 12:03:08.556 +04:30 [INF] Server qwxp:16096:399ecf55 all the dispatchers started
+2022-05-19 12:03:09.273 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-19 12:03:10.431 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-19 12:03:10.434 +04:30 [INF] Hosting environment: Development
+2022-05-19 12:03:10.434 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-19 12:04:14.598 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-19 12:04:14.613 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-19 12:04:14.888 +04:30 [INF] Server qwxp:5836:90790ef4 successfully announced in 243.426 ms
+2022-05-19 12:04:14.895 +04:30 [INF] Server qwxp:5836:90790ef4 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-19 12:04:14.993 +04:30 [INF] Server qwxp:5836:90790ef4 all the dispatchers started
+2022-05-19 12:04:45.474 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-19 12:04:45.490 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-19 12:04:45.746 +04:30 [INF] Server qwxp:3620:32ed2106 successfully announced in 226.5342 ms
+2022-05-19 12:04:45.755 +04:30 [INF] Server qwxp:3620:32ed2106 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-19 12:04:45.862 +04:30 [INF] Server qwxp:3620:32ed2106 all the dispatchers started
+2022-05-19 12:04:46.621 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-19 12:04:47.795 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-19 12:04:47.798 +04:30 [INF] Hosting environment: Development
+2022-05-19 12:04:47.798 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-19 12:04:52.049 +04:30 [INF] User added 
+2022-05-19 12:04:56.703 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:04:58.625 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:04:59.527 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:05:00.111 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:05:00.113 +04:30 [INF] User 5098795770 on max message reached
+2022-05-19 12:06:29.274 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-19 12:06:29.288 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-19 12:06:29.589 +04:30 [INF] Server qwxp:7728:f8335c65 successfully announced in 273.6025 ms
+2022-05-19 12:06:29.595 +04:30 [INF] Server qwxp:7728:f8335c65 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-19 12:06:29.721 +04:30 [INF] Server qwxp:7728:f8335c65 all the dispatchers started
+2022-05-19 12:06:29.881 +04:30 [INF] 2 servers were removed due to timeout
+2022-05-19 12:06:30.361 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-19 12:06:39.702 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-19 12:06:39.704 +04:30 [INF] Hosting environment: Development
+2022-05-19 12:06:39.705 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-19 12:07:09.363 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-19 12:07:09.382 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-19 12:07:09.660 +04:30 [INF] Server qwxp:19196:884b17dd successfully announced in 234.5055 ms
+2022-05-19 12:07:09.666 +04:30 [INF] Server qwxp:19196:884b17dd is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-19 12:07:09.778 +04:30 [INF] Server qwxp:19196:884b17dd all the dispatchers started
+2022-05-19 12:07:10.381 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-19 12:08:08.706 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-19 12:08:08.722 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-19 12:08:09.051 +04:30 [INF] Server qwxp:8004:1e020bb1 successfully announced in 299.9967 ms
+2022-05-19 12:08:09.057 +04:30 [INF] Server qwxp:8004:1e020bb1 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-19 12:08:09.166 +04:30 [INF] Server qwxp:8004:1e020bb1 all the dispatchers started
+2022-05-19 12:08:09.317 +04:30 [INF] 2 servers were removed due to timeout
+2022-05-19 12:08:10.212 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-19 12:08:11.404 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-19 12:08:11.407 +04:30 [INF] Hosting environment: Development
+2022-05-19 12:08:11.407 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-19 12:08:21.862 +04:30 [INF] User added 
+2022-05-19 12:08:22.690 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:08:23.277 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:08:24.726 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:08:26.960 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:08:26.962 +04:30 [INF] User 5098795770 on max message reached
+2022-05-19 12:08:39.487 +04:30 [INF] User 5098795770 Removed From Cache
+2022-05-19 12:09:28.767 +04:30 [INF] User added 
+2022-05-19 12:09:29.354 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:09:29.965 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:09:30.556 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:09:31.154 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:09:31.155 +04:30 [INF] User 5098795770 on max message reached
+2022-05-19 12:09:31.851 +04:30 [INF] User added 
+2022-05-19 12:09:45.753 +04:30 [INF] User 5098795770 Removed From Cache
+2022-05-19 12:09:45.754 +04:30 [INF] User 5381690668 Removed From Cache
+2022-05-19 12:10:18.047 +04:30 [INF] User added 
+2022-05-19 12:10:35.996 +04:30 [INF] User 5098795770 Removed From Cache
+2022-05-19 12:10:47.334 +04:30 [INF] User added 
+2022-05-19 12:10:47.949 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:10:48.536 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:10:49.114 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:10:49.678 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:10:50.252 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:10:50.797 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:10:51.394 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:10:51.978 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:10:52.557 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:10:53.139 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:10:53.696 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:10:54.274 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:10:54.855 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:10:55.453 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:10:56.015 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:10:57.119 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:10:57.742 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:11:00.844 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:11:01.455 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:11:01.456 +04:30 [INF] User 5098795770 on max message reached
+2022-05-19 12:11:02.078 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:11:02.079 +04:30 [INF] User 5098795770 on max message reached
+2022-05-19 12:11:02.716 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:11:02.716 +04:30 [INF] User 5098795770 on max message reached
+2022-05-19 12:11:03.430 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:11:03.431 +04:30 [INF] User 5098795770 on max message reached
+2022-05-19 12:11:04.078 +04:30 [INF] User 5098795770 Removed From Cache
+2022-05-19 12:11:04.101 +04:30 [INF] User added 
+2022-05-19 12:11:04.690 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:11:05.428 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:11:06.119 +04:30 [INF] User added 
+2022-05-19 12:11:14.111 +04:30 [INF] User 5098795770 Removed From Cache
+2022-05-19 12:11:22.129 +04:30 [INF] User 5381690668 Removed From Cache
+2022-05-19 12:12:08.155 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-19 12:12:08.169 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-19 12:12:08.414 +04:30 [INF] Server qwxp:18116:3aba6672 successfully announced in 220.6679 ms
+2022-05-19 12:12:08.421 +04:30 [INF] Server qwxp:18116:3aba6672 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-19 12:12:08.519 +04:30 [INF] Server qwxp:18116:3aba6672 all the dispatchers started
+2022-05-19 12:12:09.026 +04:30 [INF] 3 servers were removed due to timeout
+2022-05-19 12:12:09.289 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-19 12:12:10.478 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-19 12:12:10.480 +04:30 [INF] Hosting environment: Development
+2022-05-19 12:12:10.481 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-19 12:12:34.494 +04:30 [INF] User added 
+2022-05-19 12:12:40.467 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:12:41.044 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:12:41.667 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:12:42.237 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:12:42.828 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:12:43.426 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:12:44.006 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:12:44.614 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:12:45.207 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:12:45.209 +04:30 [INF] User 5098795770 on max message reached
+2022-05-19 12:12:45.786 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:12:45.787 +04:30 [INF] User 5098795770 on max message reached
+2022-05-19 12:12:46.374 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:12:46.375 +04:30 [INF] User 5098795770 on max message reached
+2022-05-19 12:12:46.951 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:12:46.952 +04:30 [INF] User 5098795770 on max message reached
+2022-05-19 12:12:47.505 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:12:47.506 +04:30 [INF] User 5098795770 on max message reached
+2022-05-19 12:12:48.090 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:12:48.091 +04:30 [INF] User 5098795770 on max message reached
+2022-05-19 12:12:48.692 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:12:48.692 +04:30 [INF] User 5098795770 on max message reached
+2022-05-19 12:12:49.265 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:12:49.266 +04:30 [INF] User 5098795770 on max message reached
+2022-05-19 12:12:50.636 +04:30 [INF] User 5098795770 Removed From Cache
+2022-05-19 12:14:19.511 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-19 12:14:19.526 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-19 12:14:19.785 +04:30 [INF] Server qwxp:9604:ba5469c9 successfully announced in 232.5842 ms
+2022-05-19 12:14:19.792 +04:30 [INF] Server qwxp:9604:ba5469c9 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-19 12:14:19.899 +04:30 [INF] Server qwxp:9604:ba5469c9 all the dispatchers started
+2022-05-19 12:14:19.929 +04:30 [INF] 1 servers were removed due to timeout
+2022-05-19 12:14:20.616 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-19 12:14:21.754 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-19 12:14:21.756 +04:30 [INF] Hosting environment: Development
+2022-05-19 12:14:21.757 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-19 12:14:22.641 +04:30 [INF] User added 
+2022-05-19 12:14:23.455 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:14:24.061 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:14:24.649 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:14:25.244 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:14:25.867 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:14:26.748 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:14:27.353 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:14:27.950 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:14:28.545 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:14:28.547 +04:30 [INF] User 5098795770 on max message reached
+2022-05-19 12:14:29.203 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:14:29.204 +04:30 [INF] User 5098795770 on max message reached
+2022-05-19 12:14:29.781 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:14:29.783 +04:30 [INF] User 5098795770 on max message reached
+2022-05-19 12:14:30.382 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:14:30.383 +04:30 [INF] User 5098795770 on max message reached
+2022-05-19 12:14:30.923 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:14:30.924 +04:30 [INF] User 5098795770 on max message reached
+2022-05-19 12:14:31.532 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:14:31.534 +04:30 [INF] User 5098795770 on max message reached
+2022-05-19 12:14:32.089 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:14:32.090 +04:30 [INF] User 5098795770 on max message reached
+2022-05-19 12:14:32.690 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:14:32.691 +04:30 [INF] User 5098795770 on max message reached
+2022-05-19 12:14:33.303 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:14:33.304 +04:30 [INF] User 5098795770 on max message reached
+2022-05-19 12:14:33.867 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:14:33.868 +04:30 [INF] User 5098795770 on max message reached
+2022-05-19 12:14:34.484 +04:30 [INF] User 5098795770 ++ message
+2022-05-19 12:14:34.485 +04:30 [INF] User 5098795770 on max message reached
+2022-05-19 12:14:39.800 +04:30 [INF] User 5098795770 Removed From Cache

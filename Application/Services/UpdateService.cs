@@ -1,9 +1,4 @@
 ﻿using GroupManager.Application.Handlers;
-using GroupManager.DataLayer.Controller;
-using Microsoft.EntityFrameworkCore.Internal;
-using Microsoft.EntityFrameworkCore.Query;
-using Microsoft.EntityFrameworkCore.Query.Internal;
-using Serilog;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
@@ -18,6 +13,7 @@ namespace GroupManager.Application.Services
         private readonly MessageHandler _messageHandler;
         private readonly CallBackHandler _callBackHandler;
 
+
         public UpdateService()
         {
             _client = new TelegramBotClient(Globals.BotConfigs.Token);
@@ -26,6 +22,14 @@ namespace GroupManager.Application.Services
             _callBackHandler = new CallBackHandler(_client);
             _chatMemberHandler = new ChatMemberHandler(_client);
         }
+
+
+        public static event EventHandler<Update> Update;
+        private static void OnUpdated(Update e)
+        {
+            Update?.Invoke(null, e);
+        }
+
         public override async Task StartAsync(CancellationToken cancellationToken)
         {
             var me = await _client.GetMeAsync(cancellationToken);
@@ -46,6 +50,7 @@ namespace GroupManager.Application.Services
         {
             try
             {
+                OnUpdated(update);
                 var updateHandler = update.Type switch
                 {
                     UpdateType.Message when (update.Message is { NewChatMembers: null }) => _messageHandler.InitHandlerAsync(update.Message, ct),
@@ -78,6 +83,7 @@ namespace GroupManager.Application.Services
             Log.Error(ex, "OnError");
             await Task.CompletedTask;
         }
+
 
     }
 }

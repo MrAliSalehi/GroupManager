@@ -1,20 +1,16 @@
-﻿using Cronos;
+﻿using System.Text.RegularExpressions;
 using GroupManager.Application.Contracts;
-using GroupManager.Application.Services;
 using GroupManager.DataLayer.Controller;
-using GroupManager.DataLayer.Models;
 using Hangfire;
-using Hangfire.Common;
-using HashidsNet;
 using Humanizer;
-using System;
-using System.Linq.Expressions;
 using GroupManager.Application.RecurringJobs;
-using Newtonsoft.Json;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
-using JsonSerializer = System.Text.Json.JsonSerializer;
+using Group = GroupManager.DataLayer.Models.Group;
+using static SQLite.SQLite3;
+using System;
+using GroupManager.Application.Services;
 
 namespace GroupManager.Application.Commands;
 
@@ -46,15 +42,30 @@ public class AdminBotCommands : HandlerBase, IBotCommand
             return;
         }
 
-        var result = await GroupController.RemoveGroupAsync(message.Chat.Id, ct);
-        var response = result switch
+        var removeGroupResult = await GroupController.RemoveGroupAsync(message.Chat.Id, ct);
+        var removeForceChannelsResult = await ForceJoinController.RemoveAllRelatedChannelsAsync(message.Chat.Id, ct);
+        var removeFloodSettingsResult = await FloodController.RemoveSettingsAsync(message.Chat.Id, ct);
+        var removeGroupResponse = removeGroupResult switch
         {
             0 => "Group Has Been Removed",
             1 => "Group Is Not Already In List",
             2 => "There Is Some Issues With Storage",
             _ => "cant get any response"
         };
-        await Client.SendTextMessageAsync(message.Chat.Id, response, cancellationToken: ct);
+
+        var removeForceChannelsResponse = removeForceChannelsResult switch
+        {
+            0 => "Force Channels Removed.",
+            1 => "No Force Channel Found.",
+            _ => "Cant Get Any Execution Response For Force Channels"
+        };
+        var removeSettingResponse = removeFloodSettingsResult switch
+        {
+            0 => "Flood Setting Removed",
+            1 => "Flood Setting Does not Exists",
+            _ => "Cant Get Any FloodSetting"
+        };
+        await Client.SendTextMessageAsync(message.Chat.Id, $"{removeGroupResponse}\n{removeForceChannelsResponse}\n{removeSettingResponse}", cancellationToken: ct);
     }
 
     internal async Task AddGroupAsync(Message message, CancellationToken ct)
@@ -66,7 +77,8 @@ public class AdminBotCommands : HandlerBase, IBotCommand
         }
 
         var addedGp = await GroupController.AddGroupAsync(message.Chat.Id, ct);
-        if (addedGp is null)
+        var floodSettings = await FloodController.AddFloodSettingAsync(message.Chat.Id, Globals.DefaultFloodSettings, ct);
+        if (addedGp is null || floodSettings is null)
         {
             await Client.SendTextMessageAsync(message.Chat.Id, "Cant Add Group Right Now", cancellationToken: ct);
             return;
@@ -673,6 +685,213 @@ public class AdminBotCommands : HandlerBase, IBotCommand
         await SetUserPermissionStatusAsync(userId, message.Chat.Id, false, ct);
     }
 
+    internal async Task EnableFloodAsync(Message message, CancellationToken ct)
+    {
+        if (CurrentGroup is null)
+        {
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+            return;
+        }
+
+
+        var setting = await FloodController.AddFloodSettingAsync(CurrentGroup.Id, Globals.DefaultFloodSettings, ct);
+        if (setting is null)
+        {
+            await Client.SendTextMessageAsync(message.Chat.Id, "Cant Enable Anti Flood", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+            return;
+        }
+
+        try
+        {
+
+            // AntiFloodService.Groups.Add(message.Chat.Id);
+            AntiFloodService.Settings.Add(setting);
+            // ManagerConfig.SpamCommands.Add(message.Chat.Id, spamCommand);
+            // spamCommand.StartTimer();
+            await Client.SendTextMessageAsync(message.Chat.Id, "Anti Flood Added To Bot", replyToMessageId: message.MessageId, cancellationToken: ct);
+        }
+        catch (Exception)
+        {
+            await Client.SendTextMessageAsync(message.Chat.Id, "Cant Store In-Memory Anti Flood", replyToMessageId: message.MessageId, cancellationToken: ct);
+        }
+
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+    }
+
+    internal async Task DisableFloodAsync(Message message, CancellationToken ct)
+    {
+        if (CurrentGroup is null)
+        {
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+            return;
+        }
+
+        var result = await FloodController.RemoveSettingsAsync(message.Chat.Id, ct);
+        var response = result switch
+        {
+            0 => "Flood Has been Removed",
+            1 => "Flood Is Already Disabled",
+            _ => "Cant Remove Settings Now!"
+        };
+        //var memoryRemove = true;
+        var memoryRemoveSetting = -1;
+        try
+        {
+            //memoryRemove = AntiFloodService.Groups.Remove(message.Chat.Id);
+            memoryRemoveSetting = AntiFloodService.Settings.RemoveAll(p => p.Group.GroupId == message.Chat.Id);
+        }
+        catch (Exception)
+        {
+            //memoryRemove = false;
+            memoryRemoveSetting = -1;
+        }
+
+        var memoryResponse = memoryRemoveSetting switch
+        {
+            -1 => "Cant Clear memory Now",
+            _ => "Memory Has Been Cleared"
+        };
+        await Client.SendTextMessageAsync(message.Chat.Id, $"Flood Status:\n{response}\nMemory Status:\nGroup:{memoryResponse}\nSetting:{memoryRemoveSetting}", replyToMessageId: message.MessageId, cancellationToken: ct);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+    }
+
+    internal async Task FloodSettingsAsync(Message message, CancellationToken ct)
+    {
+        if (CurrentGroup is null)
+        {
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+            return;
+        }
+
+        var regex = RegPatterns.Get.FloodCommandData(message.Text);
+        if (regex is null)
+            return;
+        var settings = await FloodController.GetFloodSettingAsync(CurrentGroup.Id, ct);
+        if (settings is null)
+        {
+            await Client.SendTextMessageAsync(message.Chat.Id, "Flood Setting NotFound!", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+            return;
+
+        }
+
+        bool? mute = null;
+        bool? ban = null;
+        uint? interval = null;
+        uint? messageCount = null;
+        var restrictTime = TimeSpan.Zero;
+        foreach (Match match in regex)
+        {
+            var command = match.Groups["name"].Value;
+            var value = match.Groups["value"].Value;
+            switch (command)
+            {
+                case "nomute":
+                    mute = false;
+                    break;
+                case "noban":
+                    ban = false;
+                    break;
+                case "mute":
+                    mute = true;
+                    break;
+                case "ban":
+                    ban = true;
+                    break;
+                case "i":
+                    {
+                        var canParse = uint.TryParse(value, out var result);
+                        if (!canParse)
+                        {
+                            await Client.SendTextMessageAsync(message.Chat.Id, "Interval Value Is Not Valid!", replyToMessageId: message.MessageId, cancellationToken: ct);
+                            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+                            return;
+                        }
+
+                        interval = result;
+                        break;
+                    }
+                case "c":
+                    {
+                        var canParse = uint.TryParse(value, out var count);
+                        if (!canParse)
+                        {
+                            await Client.SendTextMessageAsync(message.Chat.Id, "Max Message Count Value Is Not Valid!", replyToMessageId: message.MessageId, cancellationToken: ct);
+                            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+                            return;
+                        }
+
+                        messageCount = count;
+                        break;
+                    }
+                case "day":
+                    {
+                        var canParse = short.TryParse(value, out var dayTime);
+                        if (!canParse)
+                        {
+                            await Client.SendTextMessageAsync(message.Chat.Id, "Invalid Day Time!", cancellationToken: ct);
+                            break;
+                        }
+
+                        restrictTime = restrictTime.Add(TimeSpan.FromDays(dayTime));
+                        break;
+                    }
+                case "month":
+                    {
+                        var canParse = short.TryParse(value, out var monthTime);
+                        if (!canParse)
+                        {
+                            await Client.SendTextMessageAsync(message.Chat.Id, "Invalid Month Time!", cancellationToken: ct);
+                            break;
+                        }
+                        restrictTime = restrictTime.Add(TimeSpan.FromDays(monthTime * 30));
+                        break;
+                    }
+                case "hour":
+                    {
+                        var canParse = short.TryParse(value, out var hourTime);
+                        if (!canParse)
+                        {
+                            await Client.SendTextMessageAsync(message.Chat.Id, "Invalid Hour Time!", cancellationToken: ct);
+                            break;
+                        }
+                        restrictTime = restrictTime.Add(TimeSpan.FromHours(hourTime));
+
+                        break;
+                    }
+            }
+        }
+
+
+        await FloodController.UpdateSettingsAsync(p =>
+        {
+            if (!restrictTime.Equals(TimeSpan.Zero))
+                p.RestrictTime = restrictTime;
+
+            if (mute.HasValue)
+                p.MuteOnDetect = mute.Value;
+
+            if (ban.HasValue)
+                p.BanOnDetect = ban.Value;
+
+            if (interval.HasValue)
+                p.Interval = interval.Value;
+
+            if (messageCount.HasValue)
+                p.MessageCountPerInterval = messageCount.Value;
+
+        }, CurrentGroup.Id, ct);
+        await AntiFloodService.LoadAntiFloodGroupsAsync(ct);
+        await Client.SendTextMessageAsync(message.Chat.Id, "Flood Settings Updated Updated", replyToMessageId: message.MessageId, cancellationToken: ct);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+
+    }
+
+
     private static long GetUserIdFromForwardOrDirectly(Message message)
     {
         long userId;
@@ -719,4 +938,6 @@ public class AdminBotCommands : HandlerBase, IBotCommand
         await Client.SendTextMessageAsync(message.Chat.Id, $"Message Limit Has been Enabled", replyToMessageId: message.MessageId, cancellationToken: ct);
         await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
     }
+
+
 }

@@ -3,6 +3,7 @@ using System;
 using GroupManager.DataLayer.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GroupManager.Migrations
 {
     [DbContext(typeof(ManagerContext))]
-    partial class ManagerContextModelSnapshot : ModelSnapshot
+    [Migration("20220518142125_floodSetting")]
+    partial class floodSetting
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.5");
@@ -41,7 +43,7 @@ namespace GroupManager.Migrations
                     b.Property<bool>("MuteOnDetect")
                         .HasColumnType("INTEGER");
 
-                    b.Property<TimeSpan>("RestrictTime")
+                    b.Property<DateTime>("RestrictTime")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

@@ -24,7 +24,8 @@ host.ConfigureServices((context, services) =>
     context.Configuration.Bind(config.Key, Globals.BotConfigs);
 
     Globals.Configuration = context.Configuration;
-
+    Globals.ServiceProvider = services.BuildServiceProvider();
+    GlobalJobFilters.Filters.Add(new AutomaticRetryAttribute { Attempts = 3 });
     services.AddHangfire(conf =>
     {
         var connString = Globals.ConnectionString();
@@ -34,11 +35,12 @@ host.ConfigureServices((context, services) =>
             .UseSQLiteStorage(connString)
             .UseColouredConsoleLogProvider()
             .UseLogProvider(new SerilogLogProvider());
+
     });
+
     services.AddHangfireServer();
-
     services.AddHostedService<UpdateService>();
-
+    services.AddHostedService<AntiFloodService>();
 });
 
 

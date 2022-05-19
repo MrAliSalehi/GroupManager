@@ -69,10 +69,10 @@ public class MessageHandler : HandlerBase
 
             "enable welcome" => _adminBotCommands.EnableWelcomeAsync(message, ct),
             "disable welcome" => _adminBotCommands.DisableWelcomeAsync(message, ct),
-            { } x when (x.Contains("set welcome")) => _adminBotCommands.SetWelcomeAsync(message, ct),
+            { } x when (x.StartsWith("set welcome")) => _adminBotCommands.SetWelcomeAsync(message, ct),
 
-            { } x when (x.Contains("unban")) => _adminBotCommands.UnBanUserAsync(message, ct),
-            { } x when (x.Contains("ban")) => _adminBotCommands.BanUserAsync(message, ct),
+            { } x when (x.StartsWith("unban")) => _adminBotCommands.UnBanUserAsync(message, ct),
+            { } x when (x.StartsWith("ban")) => _adminBotCommands.BanUserAsync(message, ct),
 
             "enable force" => _adminBotCommands.EnableForceJoinAsync(message, ct),
             "disable force" => _adminBotCommands.DisableForceJoinAsync(message, ct),
@@ -82,8 +82,8 @@ public class MessageHandler : HandlerBase
 
             "mute all" => _adminBotCommands.MuteAllChatAsync(message, ct),
             "unmute all" => _adminBotCommands.UnMuteAllChatAsync(message, ct),
-            { } x when (x.Contains("mute")) => _adminBotCommands.MuteUserAsync(message, ct),
-            { } x when (x.Contains("unmute")) => _adminBotCommands.UnMuteUserAsync(message, ct),
+            { } x when (x.StartsWith("mute")) => _adminBotCommands.MuteUserAsync(message, ct),
+            { } x when (x.StartsWith("unmute")) => _adminBotCommands.UnMuteUserAsync(message, ct),
 
             { } x when (x.Contains("set tbm")) => _adminBotCommands.SetTimeBasedMuteAsync(message, ct),
             "enable tbm" => _adminBotCommands.EnableTimeBasedMuteAsync(message, ct),
@@ -93,6 +93,11 @@ public class MessageHandler : HandlerBase
             { } x when (x.Contains("set ml")) => _adminBotCommands.SetMessageLimitPerUserDayAsync(message, ct),
             "enable ml" => _adminBotCommands.EnableMessageLimitAsync(message, ct),
             "disable ml" => _adminBotCommands.DisableMessageLimitAsync(message, ct),
+
+            { } x when (x.Contains("set flood")) => _adminBotCommands.FloodSettingsAsync(message, ct),
+            "enable flood" => _adminBotCommands.EnableFloodAsync(message, ct),
+            "disable flood" => _adminBotCommands.DisableFloodAsync(message, ct),
+
             _ => Task.CompletedTask
         };
         await response;

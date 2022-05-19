@@ -2,9 +2,9 @@
 
 public class MiniUser
 {
-    public MiniUser()
+    public MiniUser(uint interval)
     {
-        ExpireTime = DateTime.Now.TimeOfDay + TimeSpan.FromSeconds(10);
+        ExpireTime = DateTime.Now.TimeOfDay.Add(TimeSpan.FromSeconds(interval));
     }
     public long UserId { get; init; }
     public long ChatId { get; init; }

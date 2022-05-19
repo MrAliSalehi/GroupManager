@@ -72,4 +72,29 @@ public struct ForceJoinController
         }
     }
 
+    /// <summary>
+    /// remove all forcejoin channels entities related to groupId 
+    /// </summary>
+    /// <param name="groupId"></param>
+    /// <param name="ct"></param>
+    /// <returns>return 0 on success. 1 on nothing found and 2 on exception</returns>
+    internal static async ValueTask<ushort> RemoveAllRelatedChannelsAsync(long groupId, CancellationToken ct = default)
+    {
+        try
+        {
+            await using var db = new ManagerContext();
+            var findGroup = await db.ForceJoinChannels.Where(p => p.GroupId == groupId).ToListAsync(ct);
+            if (!findGroup.Any())
+                return 1;
+            db.ForceJoinChannels.RemoveRange(findGroup);
+            await db.SaveChangesAsync(ct);
+            return 0;
+        }
+        catch (Exception e)
+        {
+            Log.Error(e, nameof(RemoveAllRelatedChannelsAsync));
+            return 2;
+        }
+    }
+
 }
