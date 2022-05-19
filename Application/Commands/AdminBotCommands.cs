@@ -767,7 +767,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand
             return;
         }
 
-        var regex = RegPatterns.Get.FloodCommandData(message.Text);
+        var regex = RegPatterns.Get.BaseCommandData(message.Text);
         if (regex is null)
             return;
         var settings = await FloodController.GetFloodSettingAsync(CurrentGroup.Id, ct);
@@ -891,6 +891,97 @@ public class AdminBotCommands : HandlerBase, IBotCommand
 
     }
 
+    internal async Task EnableMessageSizeLimitAsync(Message message, CancellationToken ct)
+    {
+        if (CurrentGroup is null)
+        {
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+            return;
+        }
+
+        await GroupController.UpdateGroupAsync(p => p.LimitMessageSize = true, message.Chat.Id, ct);
+
+        await Client.SendTextMessageAsync(message.Chat.Id, "Message Size Enabled", replyToMessageId: message.MessageId, cancellationToken: ct);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+    }
+
+    internal async Task DisableMessageSizeLimitAsync(Message message, CancellationToken ct)
+    {
+        if (CurrentGroup is null)
+        {
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+            return;
+        }
+        await GroupController.UpdateGroupAsync(p => p.LimitMessageSize = false, message.Chat.Id, ct);
+
+        await Client.SendTextMessageAsync(message.Chat.Id, "Message Size Disabled", replyToMessageId: message.MessageId, cancellationToken: ct);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+    }
+
+    internal async Task SetMessageSizeLimitAsync(Message message, CancellationToken ct)
+    {
+        if (CurrentGroup is null)
+        {
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+            return;
+        }
+
+        var matchCollection = RegPatterns.Get.BaseCommandData(message.Text);
+        if (matchCollection is null or { Count: 0 })
+            return;
+        uint? charCount = default;
+
+        foreach (Match match in matchCollection)
+        {
+            var command = match.Groups["name"].Value;
+            var value = match.Groups["value"].Value;
+
+            switch (command)
+            {
+                case "line":
+                    {
+                        var canParse = uint.TryParse(value, out var num);
+                        if (!canParse)
+                        {
+                            await Client.SendTextMessageAsync(message.Chat.Id, "Invalid -line Argument", cancellationToken: ct);
+                            break;
+                        }
+
+                        charCount = num * 50;
+                        break;
+                    }
+
+                case "char":
+                    {
+                        var canParse = uint.TryParse(value, out var num);
+                        if (!canParse)
+                        {
+                            await Client.SendTextMessageAsync(message.Chat.Id, "Invalid -line Argument", cancellationToken: ct);
+                            break;
+                        }
+
+                        charCount = num;
+
+                        break;
+                    }
+            }
+        }
+
+        if (charCount is null or default(uint))
+        {
+            await Client.SendTextMessageAsync(message.Chat.Id, "no valid for Char Count Found!", cancellationToken: ct);
+            return;
+        }
+
+        var result = await GroupController.UpdateGroupAsync(p => p.MaxMessageSize = charCount.Value, message.Chat.Id, ct);
+
+        var response = result is null ? "Cant Update group Message Limit" : $" message Size Limit Updated To {charCount} Char.";
+        await Client.SendTextMessageAsync(message.Chat.Id, response, cancellationToken: ct);
+
+    }
 
     private static long GetUserIdFromForwardOrDirectly(Message message)
     {
@@ -938,6 +1029,4 @@ public class AdminBotCommands : HandlerBase, IBotCommand
         await Client.SendTextMessageAsync(message.Chat.Id, $"Message Limit Has been Enabled", replyToMessageId: message.MessageId, cancellationToken: ct);
         await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
     }
-
-
 }

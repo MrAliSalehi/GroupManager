@@ -26,6 +26,8 @@ namespace GroupManager.DataLayer.Models
         public bool AntiJoin { get; set; } = false;
         public bool AntiBot { get; set; } = false;
         public bool AntiForward { get; set; }
+        public bool LimitMessageSize { get; set; }
+        public uint MaxMessageSize { get; set; }
         public virtual FloodSettings FloodSetting { get; set; } = default!;
     }
 }

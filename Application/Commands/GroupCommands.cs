@@ -27,13 +27,30 @@ public class GroupCommands : HandlerBase, IBotCommand
     public async Task HandleGroupAsync(Message message, Group group, CancellationToken ct)
     {
         CurrentGroup = group;
+        try
+        {
+            await FilterWordsAsync(message, ct);
+            await CheckForceJoinAsync(message, ct);
+            await CheckUserMessageLimitAsync(message, ct);
+            await CheckAntiForwardAsync(message, ct);
+            await CheckMessageSize(message, ct);
+        }
+        catch (Exception e)
+        {
+            Log.Error(e, nameof(HandleGroupAsync));
+        }
 
-        await FilterWordsAsync(message, ct);
-        await CheckForceJoinAsync(message, ct);
-        await CheckUserMessageLimitAsync(message, ct);
-        await CheckAntiForwardAsync(message, ct);
+    }
 
+    private async Task CheckMessageSize(Message message, CancellationToken ct = default)
+    {
+        if (CurrentGroup is null or { LimitMessageSize: false } || message.From is null || message.Text is null)
+            return;
 
+        if (message.Text.Length <= CurrentGroup.MaxMessageSize)
+            return;
+
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
     }
 
     private async Task CheckAntiForwardAsync(Message message, CancellationToken ct = default)

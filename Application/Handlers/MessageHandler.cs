@@ -98,6 +98,9 @@ public class MessageHandler : HandlerBase
             "enable flood" => _adminBotCommands.EnableFloodAsync(message, ct),
             "disable flood" => _adminBotCommands.DisableFloodAsync(message, ct),
 
+            { } x when (x.StartsWith("set ms")) => _adminBotCommands.SetMessageSizeLimitAsync(message, ct),
+            "enable ms" => _adminBotCommands.EnableMessageSizeLimitAsync(message, ct),
+            "disable ms" => _adminBotCommands.DisableMessageSizeLimitAsync(message, ct),
             _ => Task.CompletedTask
         };
         await response;

@@ -8,8 +8,7 @@ public struct RegPatterns
     private static readonly Regex AdminBotCommandRegex = new(@"^!!.+", RegexOptions.Compiled, TimeSpan.FromSeconds(1));
     private static readonly Regex MessageLimitCommandRegex = new(@"!!set ml\s+(?<count>\d+)", RegexOptions.Compiled, TimeSpan.FromMilliseconds(300));
     private static readonly Regex MuteUserCommandRegex = new(@"!!mute\s+(?<userId>\d+)", RegexOptions.Compiled, TimeSpan.FromMilliseconds(300));
-
-    private static readonly Regex FloodCommandRegex = new(@"(?<=[-{1,2}|\/])(?<name>[a-zA-Z0-9]*)[ |:|""]*(?<value>[\w|.|?|=|&|+| |:|\/|\\]*)(?=[ |""]|$)",
+    private static readonly Regex BaseCommandRegex = new(@"(?<=[-{1,2}|\/])(?<name>[a-zA-Z0-9]*)[ |:|""]*(?<value>[\w|.|?|=|&|+| |:|\/|\\]*)(?=[ |""]|$)",
         RegexOptions.Multiline | RegexOptions.IgnoreCase | RegexOptions.Compiled, TimeSpan.FromSeconds(2));
 
     private static readonly Regex SetTbmCommandRegex = new(@"!!set tbm\s+-from\s+(?<from>\d+:\d+\s+\w{2})\s+-until\s+(?<until>\d+:\d+\s+\w{2})",
@@ -42,6 +41,6 @@ public struct RegPatterns
 
         public static Match? AdminBotCommand(string? message) => message is null ? null : AdminBotCommandRegex.Match(message);
 
-        public static MatchCollection? FloodCommandData(string? message) => message is null ? null : FloodCommandRegex.Matches(message);
+        public static MatchCollection? BaseCommandData(string? message) => message is null ? null : BaseCommandRegex.Matches(message);
     }
 }
