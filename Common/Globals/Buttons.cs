@@ -158,10 +158,11 @@ public struct InlineButtons
 
                 var antiJoin = group.AntiJoin ? ConstData.TrueEmoji : ConstData.FalseEmoji;
                 var antiBot = group.AntiBot ? ConstData.TrueEmoji : ConstData.FalseEmoji;
+                var antiFor = group.AntiForward ? ConstData.TrueEmoji : ConstData.FalseEmoji;
 
                 ChangeButtonValue("Anti Join", GeneralSetting, button => button.Text = $"Anti Join {antiJoin}");
                 ChangeButtonValue("Anti Bot", GeneralSetting, button => button.Text = $"Anti Bot {antiBot}");
-
+                ChangeButtonValue("Anti Forward", GeneralSetting, button => button.Text = $"Anti Forward {antiFor}");
                 return GeneralSetting;
             }
             private static readonly InlineKeyboardMarkup GeneralSetting = new(new[]
@@ -175,6 +176,10 @@ public struct InlineButtons
                 {
                     InlineKeyboardButton.WithCallbackData("Anti Bot ",$"{nameof(Admin)}:{nameof(General)}:{ConstData.AntiBot}"),
                     InlineKeyboardButton.WithCallbackData("Anti Join ",$"{nameof(Admin)}:{nameof(General)}:{ConstData.AntiJoin}"),
+                },
+                new []
+                {
+                    InlineKeyboardButton.WithCallbackData("Anti Forward ",$"{nameof(Admin)}:{nameof(General)}:{ConstData.AntiForward}"),
                 },
                 new []
                 {
@@ -225,6 +230,7 @@ public struct ConstData
     public const string MessageLimitPerDay = "MLPD";
     public const string AntiJoin = "aj";
     public const string AntiBot = "ab";
+    public const string AntiForward = "af";
     public const char TrueEmoji = '✅';
     public const char FalseEmoji = '❌';
 

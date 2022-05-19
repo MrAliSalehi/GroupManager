@@ -27,33 +27,24 @@ public class GroupCommands : HandlerBase, IBotCommand
     public async Task HandleGroupAsync(Message message, Group group, CancellationToken ct)
     {
         CurrentGroup = group;
-        var tasks = new List<Task>
-        {
-            FilterWordsAsync(message, ct),
-            CheckForceJoinAsync(message, ct),
-            CheckUserMessageLimitAsync(message, ct),
-            //CheckAntiSpamAsync(message),
-        };
 
-        await Task.WhenAll(tasks);
+        await FilterWordsAsync(message, ct);
+        await CheckForceJoinAsync(message, ct);
+        await CheckUserMessageLimitAsync(message, ct);
+        await CheckAntiForwardAsync(message, ct);
+
 
     }
 
-    //private async Task CheckAntiSpamAsync(Message message)
-    //{
-    //    if (CurrentGroup is null || message.From is null)
-    //    {
-    //        await Task.CompletedTask;
-    //        return;
-    //    }
-
-    //    var canGetValue = ManagerConfig.SpamCommands.TryGetValue(message.Chat.Id, out var spam);
-    //    if (canGetValue || spam is null)
-    //        return;
-
-    //    spam.AddUserOrIncreaseMessageCount(message.From.Id, message.Chat.Id);
-    //    await Task.CompletedTask;
-    //}
+    private async Task CheckAntiForwardAsync(Message message, CancellationToken ct = default)
+    {
+        if (CurrentGroup is null or { AntiForward: false } || message.From is null)
+            return;
+        if (message.ForwardFrom is not null || message.ForwardFromChat is not null)
+        {
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+        }
+    }
 
     private async Task CheckUserMessageLimitAsync(Message message, CancellationToken ct = default)
     {

@@ -336,12 +336,21 @@ public class CallBackHandler : HandlerBase
 
             case ConstData.AntiJoin:
             case ConstData.AntiBot:
+            case ConstData.AntiForward:
                 updatedGroup = await GroupController.UpdateGroupAsync(p =>
                 {
-                    if (data[2] is ConstData.AntiBot)
-                        p.AntiBot = !p.AntiBot;
-                    if (data[2] is ConstData.AntiJoin)
-                        p.AntiJoin = !p.AntiJoin;
+                    switch (data[2])
+                    {
+                        case ConstData.AntiBot:
+                            p.AntiBot = !p.AntiBot;
+                            break;
+                        case ConstData.AntiJoin:
+                            p.AntiJoin = !p.AntiJoin;
+                            break;
+                        case ConstData.AntiForward:
+                            p.AntiForward = !p.AntiForward;
+                            break;
+                    }
 
                 }, group.GroupId, ct);
                 if (updatedGroup is null)
@@ -352,6 +361,8 @@ public class CallBackHandler : HandlerBase
                 break;
 
             case ConstData.Back:
+                await Client.EditMessageReplyMarkupAsync(callback.Message.Chat.Id, callback.Message.MessageId,
+                    InlineButtons.Admin.SettingMenu, ct);
                 break;
 
         }
