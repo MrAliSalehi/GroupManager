@@ -43,6 +43,7 @@ host.ConfigureServices((context, services) =>
     services.AddHangfireServer();
     services.AddHostedService<UpdateService>();
     services.AddHostedService<AntiFloodService>();
+    services.AddHostedService<MediaLimitService>();
 });
 
 var describers = typeof(IDescriber)

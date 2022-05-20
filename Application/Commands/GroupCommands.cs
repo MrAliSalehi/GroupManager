@@ -41,7 +41,6 @@ public class GroupCommands : HandlerBase, IBotCommand, IDescriber
         }
 
     }
-
     private async Task CheckMessageSize(Message message, CancellationToken ct = default)
     {
         if (CurrentGroup is null or { LimitMessageSize: false } || message.From is null || message.Text is null)

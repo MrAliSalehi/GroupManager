@@ -2,7 +2,6 @@
 using GroupManager.DataLayer.Context;
 using GroupManager.DataLayer.Models;
 using Microsoft.EntityFrameworkCore;
-using Serilog;
 
 namespace GroupManager.DataLayer.Controller;
 
@@ -12,6 +11,7 @@ public struct UserController
     /// update all of the users 
     /// </summary>
     /// <param name="update"></param>
+    /// <param name="groupId"> group id specifier</param>
     /// <param name="ct"></param>
     /// <returns>returns 0 on success and 1 on exception</returns>
     public static async ValueTask<ushort> UpdateAllUsersAsync(Action<User> update, CancellationToken ct = default)
@@ -19,7 +19,8 @@ public struct UserController
         try
         {
             await using var db = new ManagerContext();
-            var users = await db.Users.ToListAsync(ct);
+            var users = await db.Users
+                .ToListAsync(ct);
             foreach (var user in users)
             {
                 update(user);
@@ -41,9 +42,7 @@ public struct UserController
         {
             await using var db = new ManagerContext();
             var exists = await db.Users
-                .Include(f => f.Groups)
-                .Where(p => p.UserId == userId && p.Groups.Any(x => x.GroupId == group.GroupId))
-                .FirstOrDefaultAsync(ct);
+                .FirstOrDefaultAsync(p => p.UserId == userId, ct);
             if (exists is not null)
                 return exists;
             var newUser = new User()
@@ -53,13 +52,8 @@ public struct UserController
                 PhotoLimits = group.PhotoLimits,
                 VideoLimits = group.VideoLimits,
                 StickerLimits = group.StickerLimits,
-                Groups = new List<Group>()
             };
             var user = await db.Users.AddAsync(newUser, ct);
-            await db.SaveChangesAsync(ct);
-
-            newUser.Groups.Add(group);
-            //db.Users.Attach(user.Entity);
             await db.SaveChangesAsync(ct);
             return user.Entity;
         }
@@ -70,19 +64,14 @@ public struct UserController
         }
     }
 
-    public static async ValueTask<User?> GetUserByIdAsync<T>(long userId, Expression<Func<User, T>>? includeExpression, CancellationToken ct = default)
+    public static async ValueTask<User?> GetUserByIdAsync(long userId, CancellationToken ct = default)
     {
         try
         {
             await using var db = new ManagerContext();
-            if (includeExpression is null)
-            {
-                return await db.Users.FirstOrDefaultAsync(p => p.UserId == userId, ct);
-            }
-            else
-            {
-                return await db.Users.Where(p => p.UserId == userId).Include(includeExpression).FirstOrDefaultAsync(ct);
-            }
+
+            return await db.Users.FirstOrDefaultAsync(p => p.UserId == userId, ct);
+
         }
         catch (Exception e)
         {
@@ -90,6 +79,7 @@ public struct UserController
             return null;
         }
     }
+
 
     public static async ValueTask<User?> UpdateUserAsync(Action<User> update, long userId, CancellationToken ct = default)
     {

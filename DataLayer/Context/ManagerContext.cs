@@ -37,20 +37,13 @@ public class ManagerContext : DbContext
                 .WithOne(x => x.FloodSetting)
                 .HasForeignKey<FloodSettings>(x => x.GroupId);
         });
-        modelBuilder.Entity<User>(entity =>
-        {
-            entity.HasMany(p => p.Groups)
-                .WithMany(x => x.Users);
 
-        });
         modelBuilder.Entity<Group>(entity =>
         {
             entity.HasMany(p => p.ForceJoinChannel)
                 .WithOne(x => x.Group)
                 .HasForeignKey(f => f.GroupId);
 
-            entity.HasMany(p => p.Users)
-                .WithMany(x => x.Groups);
 
             entity.Property(e => e.MaxWarns).HasDefaultValueSql("3");
 

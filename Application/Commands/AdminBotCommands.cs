@@ -10,7 +10,6 @@ using Telegram.Bot.Types.Enums;
 using Group = GroupManager.DataLayer.Models.Group;
 using GroupManager.Application.Services;
 using GroupManager.Common.Attributes;
-using Telegram.Bot.Types.ReplyMarkups;
 using WordFilter;
 
 namespace GroupManager.Application.Commands;
@@ -25,6 +24,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
     {
         _manager = new RecurringJobManager();
         _textFilter = new TextFilter();
+        _manager.AddOrUpdate<ResetMediaLimit>("ResetMediaLimit", (reset) => reset.ResetMediaLimitAsync(), "00 00 * * *");
     }
     [Describer("Is Active", "Check If Group Is Under bot Protection Or Not", null)]
     internal async Task IsActiveAsync(Message message, CancellationToken ct = default)
@@ -707,11 +707,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
 
         try
         {
-
-            // AntiFloodService.Groups.Add(message.Chat.Id);
             AntiFloodService.Settings.Add(setting);
-            // ManagerConfig.SpamCommands.Add(message.Chat.Id, spamCommand);
-            // spamCommand.StartTimer();
             await Client.SendTextMessageAsync(message.Chat.Id, "Anti Flood Added To Bot", replyToMessageId: message.MessageId, cancellationToken: ct);
         }
         catch (Exception)
@@ -1048,11 +1044,14 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
         {
             var command = match.Groups["name"].Value;
             var value = match.Groups["value"].Value;
+            if (command is "" or " ")
+                continue;
+
             var canParseValue = uint.TryParse(value, out var num);
             if (!canParseValue)
             {
                 await Client.SendTextMessageAsync(message.Chat.Id, $"Invalid argument {value} given to {command}", cancellationToken: ct);
-                return;
+                continue;
             }
             switch (command)
             {
@@ -1112,7 +1111,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
                 p.StickerLimits = sticker.Value;
 
         }, message.Chat.Id, ct);
-
+        await MediaLimitService.ReLoadGroupsAsync(ct);
         var response = result is null ? "Cant Update Group Right Now" : "Limitations Of Group Updated";
         await Client.SendTextMessageAsync(message.Chat.Id, response, replyToMessageId: message.MessageId, cancellationToken: ct);
         await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
@@ -1133,6 +1132,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
             null => "Cant Update Group Right Now",
             _ => "Media Limit Enabled"
         };
+        await MediaLimitService.ReLoadGroupsAsync(ct);
         await Client.SendTextMessageAsync(message.Chat.Id, response, replyToMessageId: message.MessageId, cancellationToken: ct);
         await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
 
@@ -1154,6 +1154,8 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
             null => "Cant Update Group Right Now",
             _ => "Media Limit Disabled"
         };
+        await MediaLimitService.ReLoadGroupsAsync(ct);
+
         await Client.SendTextMessageAsync(message.Chat.Id, response, replyToMessageId: message.MessageId, cancellationToken: ct);
         await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
 

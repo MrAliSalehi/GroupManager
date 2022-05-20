@@ -1,6 +1,4 @@
-﻿using System.Linq.Expressions;
-using GroupManager.DataLayer.Context;
-using GroupManager.DataLayer.Models;
+﻿using GroupManager.DataLayer.Context;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Group = GroupManager.DataLayer.Models.Group;
@@ -9,15 +7,13 @@ namespace GroupManager.DataLayer.Controller;
 
 public struct GroupController
 {
-    public static async ValueTask<IReadOnlyList<Group>> GetAllGroupsAsync<T>(Expression<Func<Group, T>>? includeExpression, CancellationToken ct = default)
+    public static async ValueTask<IEnumerable<Group>> GetAllGroupsAsync(CancellationToken ct = default)
     {
         try
         {
             await using var db = new ManagerContext();
-            if (includeExpression is null)
-                return await db.Groups.ToListAsync(ct);
 
-            return await db.Groups.Include(includeExpression).ToListAsync(ct);
+            return await db.Groups.ToListAsync(ct);
         }
         catch (Exception e)
         {

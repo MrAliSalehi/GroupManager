@@ -3822,3 +3822,57 @@ System.InvalidOperationException: The property 'User.Id' has a temporary value w
 2022-05-20 13:00:18.331 +04:30 [INF] Application started. Press Ctrl+C to shut down.
 2022-05-20 13:00:18.333 +04:30 [INF] Hosting environment: Development
 2022-05-20 13:00:18.333 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-20 14:07:01.841 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-20 14:07:01.857 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-20 14:07:02.120 +04:30 [INF] Server qwxp:16944:ad3b1dda successfully announced in 236.2177 ms
+2022-05-20 14:07:02.126 +04:30 [INF] Server qwxp:16944:ad3b1dda is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-20 14:07:02.226 +04:30 [INF] Server qwxp:16944:ad3b1dda all the dispatchers started
+2022-05-20 14:07:02.365 +04:30 [INF] 2 servers were removed due to timeout
+2022-05-20 14:07:03.294 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-20 14:07:04.455 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-20 14:07:04.457 +04:30 [INF] Hosting environment: Development
+2022-05-20 14:07:04.458 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-20 14:08:05.076 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-20 14:08:05.110 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-20 14:08:05.545 +04:30 [INF] Server qwxp:4148:d1d249db successfully announced in 328.7046 ms
+2022-05-20 14:08:05.552 +04:30 [INF] Server qwxp:4148:d1d249db is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-20 14:08:05.679 +04:30 [INF] Server qwxp:4148:d1d249db all the dispatchers started
+2022-05-20 14:08:06.300 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-20 14:08:07.580 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-20 14:08:07.582 +04:30 [INF] Hosting environment: Development
+2022-05-20 14:08:07.583 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-20 14:10:14.228 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-20 14:10:14.244 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-20 14:10:14.507 +04:30 [INF] Server qwxp:12000:9fcd44b1 successfully announced in 232.8258 ms
+2022-05-20 14:10:14.515 +04:30 [INF] Server qwxp:12000:9fcd44b1 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-20 14:10:14.627 +04:30 [INF] Server qwxp:12000:9fcd44b1 all the dispatchers started
+2022-05-20 14:10:15.311 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-20 14:10:16.534 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-20 14:10:16.536 +04:30 [INF] Hosting environment: Development
+2022-05-20 14:10:16.537 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-20 14:12:45.852 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-20 14:12:45.867 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-20 14:12:46.145 +04:30 [INF] Server qwxp:7268:6423655c successfully announced in 250.7383 ms
+2022-05-20 14:12:46.151 +04:30 [INF] Server qwxp:7268:6423655c is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-20 14:12:46.272 +04:30 [INF] Server qwxp:7268:6423655c all the dispatchers started
+2022-05-20 14:12:46.332 +04:30 [INF] 1 servers were removed due to timeout
+2022-05-20 14:12:46.876 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-20 14:12:48.181 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-20 14:12:48.184 +04:30 [INF] Hosting environment: Development
+2022-05-20 14:12:48.185 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager

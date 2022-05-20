@@ -34,6 +34,5 @@ namespace GroupManager.DataLayer.Models
         public uint GifLimits { get; set; }
         public uint PhotoLimits { get; set; }
         public virtual FloodSettings FloodSetting { get; set; } = default!;
-        public virtual ICollection<User> Users { get; set; } = default!;
     }
 }
