@@ -17,5 +17,6 @@ namespace GroupManager.DataLayer.Models
         public uint PhotoLimits { get; set; }
         public uint SentPhotos { get; set; }
         public uint MessageCount { get; set; }
+        public virtual ICollection<Group> Groups { get; set; } = default!;
     }
 }

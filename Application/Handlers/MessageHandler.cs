@@ -23,10 +23,13 @@ public class MessageHandler : HandlerBase
     {
         if (message.From is null)
             return;
+        if (message.Chat.Id == message.From.Id)
+            return;
+
 
         try
         {
-            await UserController.TryAddUserAsync(message.From.Id, ct);
+
 
             if (RegPatterns.Is.AdminBotCommand(message.Text))
                 await AdminCommandsAsync(message, ct);
@@ -34,12 +37,13 @@ public class MessageHandler : HandlerBase
             if (RegPatterns.Is.MemberBotCommand(message.Text))
                 await MemberCommandsAsync(message, ct);
 
-            if (message.Chat.Id != message.From.Id)
-            {
-                var group = await GroupController.GetGroupByIdIncludeChannelAsync(message.Chat.Id, ct);
-                if (group is not null)
-                    await _groupCommands.HandleGroupAsync(message, group, ct);
-            }
+            var group = await GroupController.GetGroupByIdIncludeChannelAsync(message.Chat.Id, ct);
+            if (group is null)
+                return;
+
+            await UserController.TryAddUserAsync(message.From.Id, group, ct);
+
+            await _groupCommands.HandleGroupAsync(message, group, ct);
         }
         catch (Exception e)
         {
@@ -69,6 +73,7 @@ public class MessageHandler : HandlerBase
 
         var response = command.Value.Replace("!!", "") switch
         {
+            "help" => _adminBotCommands.HelpAsync(message, ct),
             "sett" => _adminBotCommands.SettingAsync(message, ct),
             "is active" => _adminBotCommands.IsActiveAsync(message, ct),
 
@@ -112,6 +117,9 @@ public class MessageHandler : HandlerBase
 
             { } x when (x.StartsWith("filter")) => _adminBotCommands.AddNewFilterWordAsync(message, ct),
 
+            { } x when (x.StartsWith("set media limit")) => _adminBotCommands.SetMediaLimitAsync(message, ct),
+            "enable media limit" => _adminBotCommands.EnableMediaLimitAsync(message, ct),
+            "disable media limit" => _adminBotCommands.DisableMediaLimitAsync(message, ct),
             _ => Task.CompletedTask
         };
         await response;

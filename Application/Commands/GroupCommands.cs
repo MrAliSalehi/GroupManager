@@ -12,7 +12,7 @@ using WordFilter;
 
 namespace GroupManager.Application.Commands;
 
-public class GroupCommands : HandlerBase, IBotCommand
+public class GroupCommands : HandlerBase, IBotCommand, IDescriber
 {
     private readonly TextFilter _textFilter;
 
@@ -72,7 +72,7 @@ public class GroupCommands : HandlerBase, IBotCommand
             return;
 
         var updatedUser = await UserController.UpdateUserAsync(usr => usr.MessageCount++, message.From.Id, ct)
-                          ?? await UserController.TryAddUserAsync(message.MessageId, ct);
+                          ?? await UserController.TryAddUserAsync(message.MessageId, CurrentGroup, ct);
 
         if (updatedUser.MessageCount >= CurrentGroup.MaxMessagePerUser)
         {

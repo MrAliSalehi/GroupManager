@@ -36,6 +36,7 @@
 
 	<ItemGroup>
 		<Folder Include="Common\Extensions\" />
+		<Folder Include="Common\Attributes\" />
 		<Folder Include="DataLayer\Models\" />
 		<Folder Include="DataLayer\Context\" />
 		<Folder Include="DataLayer\Controller\" />

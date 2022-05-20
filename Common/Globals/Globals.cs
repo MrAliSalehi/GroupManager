@@ -12,18 +12,17 @@ namespace GroupManager.Common.Globals
     {
         public static IConfiguration Configuration { get; set; } = default!;
         public static BotConfigs BotConfigs { get; set; } = new();
-        public static string ApplicationEnv => Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT")!;
         public static ServiceProvider ServiceProvider { get; set; } = default!;
-        private static DateTime Now => DateTime.Now;
         public static string ConnectionString(string name = "ManagerDb") => Configuration.GetConnectionString(name);
+        public static List<Describer> Describers { get; } = new();
 
-        //public static readonly Hashids TbmMuteHashIds = new("TBM_MUTE", 4);
-        //public static readonly Hashids TbmUnMuteHashIds = new("TBM_UNMUTE", 4);
+        private static DateTime Now => DateTime.Now;
 
         public static readonly ChatPermissions MutePermissions = new()
         {
             CanInviteUsers = true,
         };
+
         public static readonly ChatPermissions UnMutePermissions = new()
         {
 

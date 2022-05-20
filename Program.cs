@@ -1,4 +1,6 @@
+using GroupManager.Application.Contracts;
 using GroupManager.Application.Services;
+using GroupManager.Common.Attributes;
 using GroupManager.Common.Models;
 using Hangfire;
 using Hangfire.Logging.LogProviders;
@@ -43,6 +45,12 @@ host.ConfigureServices((context, services) =>
     services.AddHostedService<AntiFloodService>();
 });
 
+var describers = typeof(IDescriber)
+    .GetImplementedClasses()
+    .GetDescribeAttribute<DescriberAttribute>()
+    .Map();
+
+Globals.Describers.AddRange(describers);
 
 host.InjectSerilog();
 

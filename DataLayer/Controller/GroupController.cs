@@ -1,5 +1,6 @@
 ﻿using System.Linq.Expressions;
 using GroupManager.DataLayer.Context;
+using GroupManager.DataLayer.Models;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 using Group = GroupManager.DataLayer.Models.Group;
@@ -72,10 +73,17 @@ public struct GroupController
                 WarnOnCurse = true,
                 MaxWarns = 3,
                 MuteTime = TimeSpan.FromHours(2),
-                MuteOnCurse = true
+                MuteOnCurse = true,
+
             }, ct);
 
             await db.SaveChangesAsync(ct);
+
+            var setting = await FloodController.AddFloodSettingAsync(result.Entity.Id, Globals.DefaultFloodSettings, ct);
+            if (setting is null)
+                throw new ArgumentNullException(nameof(setting));
+
+            result.Entity.FloodSetting = setting;
             return result.Entity;
         }
         catch (Exception e)

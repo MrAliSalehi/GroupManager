@@ -28,6 +28,12 @@ namespace GroupManager.DataLayer.Models
         public bool AntiForward { get; set; }
         public bool LimitMessageSize { get; set; }
         public uint MaxMessageSize { get; set; }
+        public bool LimitMedia { get; set; }
+        public uint StickerLimits { get; set; }
+        public uint VideoLimits { get; set; }
+        public uint GifLimits { get; set; }
+        public uint PhotoLimits { get; set; }
         public virtual FloodSettings FloodSetting { get; set; } = default!;
+        public virtual ICollection<User> Users { get; set; } = default!;
     }
 }

@@ -9,23 +9,24 @@ using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using Group = GroupManager.DataLayer.Models.Group;
 using GroupManager.Application.Services;
+using GroupManager.Common.Attributes;
+using Telegram.Bot.Types.ReplyMarkups;
 using WordFilter;
-using File = System.IO.File;
 
 namespace GroupManager.Application.Commands;
 
-public class AdminBotCommands : HandlerBase, IBotCommand
+public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
 {
-
     public Group? CurrentGroup { get; set; }
     private readonly TextFilter _textFilter;
     private readonly RecurringJobManager _manager;
+
     public AdminBotCommands(ITelegramBotClient client) : base(client)
     {
         _manager = new RecurringJobManager();
         _textFilter = new TextFilter();
     }
-
+    [Describer("Is Active", "Check If Group Is Under bot Protection Or Not", null)]
     internal async Task IsActiveAsync(Message message, CancellationToken ct = default)
     {
 
@@ -79,8 +80,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand
         }
 
         var addedGp = await GroupController.AddGroupAsync(message.Chat.Id, ct);
-        var floodSettings = await FloodController.AddFloodSettingAsync(message.Chat.Id, Globals.DefaultFloodSettings, ct);
-        if (addedGp is null || floodSettings is null)
+        if (addedGp is null)
         {
             await Client.SendTextMessageAsync(message.Chat.Id, "Cant Add Group Right Now", cancellationToken: ct);
             return;
@@ -1009,6 +1009,157 @@ public class AdminBotCommands : HandlerBase, IBotCommand
         await Client.SendTextMessageAsync(message.Chat.Id, response, cancellationToken: ct);
     }
 
+    internal async Task HelpAsync(Message message, CancellationToken ct = default)
+    {
+        if (CurrentGroup is null)
+        {
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+            return;
+        }
+
+        var allCommands = Globals.Describers
+            .Select(p => p.BuildParametersToString())
+            .Aggregate("", (current, command) => current + (command + "\n"));
+        await Client.SendTextMessageAsync(message.Chat.Id, allCommands is "" or " " ? "Nothing Found" : allCommands, ParseMode.MarkdownV2, cancellationToken: ct);
+    }
+    [Describer("set media limit", "this will set your limitations for media such as (gif,video,sticker,photo)",
+        "-g: GIF LIMIT\n-s: STICKER LIMIT\n-v: VIDEO LIMIT\n-p: PHOTO LIMIT\n" +
+        "-all: SET ALL TOGETHER\n-r: RESET USERS LIMIT(set all limits of all users to 0).\n")]
+    internal async Task SetMediaLimitAsync(Message message, CancellationToken ct)
+    {
+        if (CurrentGroup is null)
+        {
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+            return;
+        }
+
+        var regex = RegPatterns.Get.BaseCommandData(message.Text);
+        if (regex is null or { Count: 0 })
+            return;
+        uint? video = 0;
+        uint? photo = 0;
+        uint? gif = 0;
+        uint? sticker = 0;
+        var resetUsers = false;
+
+        foreach (Match match in regex)
+        {
+            var command = match.Groups["name"].Value;
+            var value = match.Groups["value"].Value;
+            var canParseValue = uint.TryParse(value, out var num);
+            if (!canParseValue)
+            {
+                await Client.SendTextMessageAsync(message.Chat.Id, $"Invalid argument {value} given to {command}", cancellationToken: ct);
+                return;
+            }
+            switch (command)
+            {
+                case "r":
+                    resetUsers = true;
+                    break;
+                case "g":
+                    gif = num;
+                    break;
+                case "s":
+                    sticker = num;
+                    break;
+                case "v":
+                    video = num;
+                    break;
+                case "p":
+                    photo = num;
+                    break;
+                case "all":
+                    video = num;
+                    photo = num;
+                    sticker = num;
+                    gif = num;
+                    break;
+            }
+        }
+
+        if (resetUsers)
+        {
+            var resetResult = await UserController.UpdateAllUsersAsync(user =>
+             {
+                 user.SentGif = 0;
+                 user.SentPhotos = 0;
+                 user.SentStickers = 0;
+                 user.SentVideos = 0;
+             }, ct);
+            var resetResponse = resetResult switch
+            {
+                0 => "Users Has been updated",
+                _ => "Cant Update Users"
+            };
+            await Client.SendTextMessageAsync(message.Chat.Id, resetResponse, replyToMessageId: message.MessageId, cancellationToken: ct);
+
+        }
+        var result = await GroupController.UpdateGroupAsync(p =>
+        {
+            if (video is not 0)
+                p.VideoLimits = video.Value;
+
+            if (photo is not 0)
+                p.PhotoLimits = photo.Value;
+
+            if (gif is not 0)
+                p.GifLimits = gif.Value;
+
+            if (sticker is not 0)
+                p.StickerLimits = sticker.Value;
+
+        }, message.Chat.Id, ct);
+
+        var response = result is null ? "Cant Update Group Right Now" : "Limitations Of Group Updated";
+        await Client.SendTextMessageAsync(message.Chat.Id, response, replyToMessageId: message.MessageId, cancellationToken: ct);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+    }
+
+    internal async Task EnableMediaLimitAsync(Message message, CancellationToken ct)
+    {
+        if (CurrentGroup is null)
+        {
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+            return;
+        }
+
+        var result = await GroupController.UpdateGroupAsync(p => p.LimitMedia = true, message.Chat.Id, ct);
+        var response = result switch
+        {
+            null => "Cant Update Group Right Now",
+            _ => "Media Limit Enabled"
+        };
+        await Client.SendTextMessageAsync(message.Chat.Id, response, replyToMessageId: message.MessageId, cancellationToken: ct);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+
+
+    }
+
+    internal async Task DisableMediaLimitAsync(Message message, CancellationToken ct)
+    {
+        if (CurrentGroup is null)
+        {
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+            return;
+        }
+
+        var result = await GroupController.UpdateGroupAsync(p => p.LimitMedia = false, message.Chat.Id, ct);
+        var response = result switch
+        {
+            null => "Cant Update Group Right Now",
+            _ => "Media Limit Disabled"
+        };
+        await Client.SendTextMessageAsync(message.Chat.Id, response, replyToMessageId: message.MessageId, cancellationToken: ct);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+
+
+    }
+
     private static long GetUserIdFromForwardOrDirectly(Message message)
     {
         long userId;
@@ -1057,4 +1208,5 @@ public class AdminBotCommands : HandlerBase, IBotCommand
         await Client.SendTextMessageAsync(message.Chat.Id, $"Message Limit Has been Enabled", replyToMessageId: message.MessageId, cancellationToken: ct);
         await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
     }
+
 }
