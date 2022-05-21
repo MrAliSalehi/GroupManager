@@ -16,7 +16,9 @@ namespace GroupManager.Application.Services
 
         public UpdateService()
         {
-            _client = new TelegramBotClient(Globals.BotConfigs.Token);
+            var token = Globals.BotConfigs.Token;
+            Log.Information("Registering With Token {token}", token);
+            _client = new TelegramBotClient(token);
             _myChatMemberHandler = new MyChatMemberHandler(_client);
             _messageHandler = new MessageHandler(_client);
             _callBackHandler = new CallBackHandler(_client);
