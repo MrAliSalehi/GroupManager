@@ -11,10 +11,10 @@ jobs:
 
     steps:
     - name: Restore dependencies
-      run: dotnet restore
+      run:  /snap/bin/dotnet restore
     - name: Build
-      run: dotnet build --no-restore
+      run: /snap/bin/dotnet restore build --no-restore
     - name: Run
-      run: dotnet run
+      run: /snap/bin/dotnet restore run
     #- name: Status
     #  run: systemctl status groupManager.service
