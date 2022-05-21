@@ -31,8 +31,8 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
     {
 
         var response = CurrentGroup is null
-            ? "Bot Is Active Here"
-            : "Bot Is Not Active in This group";
+            ? "Bot Is Not Active in This group"
+            : "Bot Is Active Here";
         await Client.SendTextMessageAsync(message.Chat.Id, response, cancellationToken: ct);
     }
 

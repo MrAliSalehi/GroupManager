@@ -1,5 +1,4 @@
 ﻿using GroupManager.Application.Handlers;
-using GroupManager.DataLayer.Context;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
@@ -35,15 +34,20 @@ namespace GroupManager.Application.Services
 
         public override async Task StartAsync(CancellationToken cancellationToken)
         {
-            var me = await _client.GetMeAsync(cancellationToken);
-            Log.Information("Bot Started With : {0}", me.Username);
-            ManagerConfig.BotUserName = me.Username ?? "-";
-            var canConnect = await new ManagerContext().Database.CanConnectAsync(cancellationToken);
-            Log.Information("Can Connect To Db:\n{0}", canConnect);
+            try
+            {
+                var me = await _client.GetMeAsync(cancellationToken);
+                await _client.SendTextMessageAsync(ManagerConfig.Admins.First(), "Bot Has Been Started",
+                    cancellationToken: cancellationToken);
+                ManagerConfig.BotUserName = me.Username ?? "-";
 
-            _client.StartReceiving(OnUpdate, OnError, cancellationToken: cancellationToken);
-
-            await base.StartAsync(cancellationToken);
+                _client.StartReceiving(OnUpdate, OnError, cancellationToken: cancellationToken);
+                await base.StartAsync(cancellationToken);
+            }
+            catch (Exception e)
+            {
+                Log.Error(e, nameof(StartAsync));
+            }
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)

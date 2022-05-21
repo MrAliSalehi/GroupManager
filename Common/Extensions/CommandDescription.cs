@@ -54,6 +54,7 @@ public static class CommandDescription
             output += $"\n{describer.Parameters}";
         else
             output += "-No Parameters.";
+        output = output.Replace("-", "\\-");
         return output;
     }
 }

@@ -25,7 +25,6 @@ public class ManagerContext : DbContext
     {
         options.UseLoggerFactory(_loggerFactory);
         options.UseLazyLoadingProxies().UseSqlite($"Data Source = {Environment.CurrentDirectory}{Globals.SlashOrBackSlash}ManagerDb.db");
-        Log.Information("DB PATH:{x}{a}ManagerDb.db", Environment.CurrentDirectory, Globals.SlashOrBackSlash);
         base.OnConfiguring(options);
 
     }
