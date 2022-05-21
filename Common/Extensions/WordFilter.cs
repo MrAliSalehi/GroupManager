@@ -12,7 +12,7 @@ namespace GroupManager.Common.Extensions
 
     public class TextFilter
     {
-        private static string _path = $"{Environment.CurrentDirectory}\\badWords.json";
+        private static string _path = $"{Environment.CurrentDirectory}/badWords.json";
         private readonly Words _words;
         private LanguageDetector? _detector;
 
