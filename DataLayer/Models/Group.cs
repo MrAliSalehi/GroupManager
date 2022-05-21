@@ -1,4 +1,8 @@
 ﻿
+using System.ComponentModel.DataAnnotations;
+using HtmlAgilityPack;
+using Mosaik.Core;
+
 namespace GroupManager.DataLayer.Models
 {
     public partial class Group
@@ -34,5 +38,21 @@ namespace GroupManager.DataLayer.Models
         public uint GifLimits { get; set; }
         public uint PhotoLimits { get; set; }
         public virtual FloodSettings FloodSetting { get; set; } = default!;
+
+        public bool LanguageLimit { get; set; }
+        [Required]
+        public virtual int PhoneTypeId { get; set; }
+
+        [EnumDataType(typeof(Language))]
+        public Language AllowedLanguage
+        {
+            get => (Language)this.PhoneTypeId;
+            set => this.PhoneTypeId = (int)value;
+        }
+
+        public bool FilterTelLink { get; set; }
+        public bool FilterPublicLink { get; set; }
+        public bool FilterHashTag { get; set; }
+        public bool FilterId { get; set; }
     }
 }

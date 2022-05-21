@@ -41,7 +41,7 @@ public class MessageHandler : HandlerBase
             if (group is null)
                 return;
 
-            await UserController.TryAddUserAsync(message.From.Id, group, ct);
+            await UserController.TryAddUserAsync(message.From.Id, ct);
 
             await _groupCommands.HandleGroupAsync(message, group, ct);
         }
@@ -120,6 +120,10 @@ public class MessageHandler : HandlerBase
             { } x when (x.StartsWith("set media limit")) => _adminBotCommands.SetMediaLimitAsync(message, ct),
             "enable media limit" => _adminBotCommands.EnableMediaLimitAsync(message, ct),
             "disable media limit" => _adminBotCommands.DisableMediaLimitAsync(message, ct),
+
+            { } x when (x.StartsWith("set lang")) => _adminBotCommands.SetLanguageAsync(message, ct),
+            "enable lang" => _adminBotCommands.EnableLanguageLimitAsync(message, ct),
+            "disable lang" => _adminBotCommands.DisableLanguageLimitAsync(message, ct),
             _ => Task.CompletedTask
         };
         await response;
@@ -134,6 +138,7 @@ public class MessageHandler : HandlerBase
         {
             "me" => _memberBotCommands.MeAsync(message, ct),
             "time" => _memberBotCommands.TimeAsync(message, ct),
+            "ban me" => _memberBotCommands.BenMeAsync(message, ct),
             _ => Task.CompletedTask
         };
         await response;

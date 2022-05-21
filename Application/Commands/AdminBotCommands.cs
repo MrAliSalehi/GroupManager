@@ -10,6 +10,7 @@ using Telegram.Bot.Types.Enums;
 using Group = GroupManager.DataLayer.Models.Group;
 using GroupManager.Application.Services;
 using GroupManager.Common.Attributes;
+using Mosaik.Core;
 using WordFilter;
 
 namespace GroupManager.Application.Commands;
@@ -191,7 +192,6 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
 
             if (userIdFromCommand is 0)
                 return;
-            await UserController.UpdateUserAsync(p => { p.IsBanned = false; }, userIdFromCommand, ct);
 
             await Client.UnbanChatMemberAsync(message.Chat.Id, userIdFromCommand, true, ct);
             await Client.SendTextMessageAsync(message.Chat.Id, $"User {userIdFromCommand} Has Been Unbanned", replyToMessageId: message.MessageId, cancellationToken: ct);
@@ -219,7 +219,6 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
             if (userIdFromCommand is 0)
                 return;
 
-            await UserController.UpdateUserAsync(p => { p.IsBanned = true; }, userIdFromCommand, ct);
             await Client.BanChatMemberAsync(message.Chat.Id, userIdFromCommand, cancellationToken: ct);
             await Client.SendTextMessageAsync(message.Chat.Id, $"User {userIdFromCommand} Has Been banned", replyToMessageId: message.MessageId, cancellationToken: ct);
             await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
@@ -1162,6 +1161,80 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
 
     }
 
+    internal async Task SetLanguageAsync(Message message, CancellationToken ct = default)
+    {
+        if (CurrentGroup is null)
+        {
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated",
+                replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+            return;
+        }
+
+        var regex = RegPatterns.Get.BaseCommandData(message.Text);
+        if (regex is null or { Count: 0 })
+            return;
+
+        var command = regex.First().Groups["name"].Value;
+        var isValid = Enum.TryParse<Language>(command, out var lang);
+        if (!isValid)
+        {
+            await Client.SendTextMessageAsync(message.Chat.Id, "Invalid Language", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+            return;
+        }
+
+        var result = await GroupController.UpdateGroupAsync(p => p.AllowedLanguage = lang, message.Chat.Id, ct);
+        var response = result switch
+        {
+            null => "Cant Update Group Right Now",
+            _ => $"Language Changed To {lang}"
+        };
+        await MediaLimitService.ReLoadGroupsAsync(ct);
+
+        await Client.SendTextMessageAsync(message.Chat.Id, response, replyToMessageId: message.MessageId, cancellationToken: ct);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+    }
+
+    internal async Task EnableLanguageLimitAsync(Message message, CancellationToken ct = default)
+    {
+        if (CurrentGroup is null)
+        {
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+            return;
+        }
+        var result = await GroupController.UpdateGroupAsync(p => p.LanguageLimit = true, message.Chat.Id, ct);
+        var response = result switch
+        {
+            null => "Cant Update Group Right Now",
+            _ => "Language Limit Enabled"
+        };
+        await LanguageService.ReloadGroupsAsync(ct);
+        await Client.SendTextMessageAsync(message.Chat.Id, response, replyToMessageId: message.MessageId, cancellationToken: ct);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+
+    }
+
+    internal async Task DisableLanguageLimitAsync(Message message, CancellationToken ct = default)
+    {
+        if (CurrentGroup is null)
+        {
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+            return;
+        }
+        var result = await GroupController.UpdateGroupAsync(p => p.LanguageLimit = false, message.Chat.Id, ct);
+        var response = result switch
+        {
+            null => "Cant Update Group Right Now",
+            _ => "Language Limit Disabled"
+        };
+        await LanguageService.ReloadGroupsAsync(ct);
+        await Client.SendTextMessageAsync(message.Chat.Id, response, replyToMessageId: message.MessageId, cancellationToken: ct);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+    }
+
     private static long GetUserIdFromForwardOrDirectly(Message message)
     {
         long userId;
@@ -1210,5 +1283,6 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
         await Client.SendTextMessageAsync(message.Chat.Id, $"Message Limit Has been Enabled", replyToMessageId: message.MessageId, cancellationToken: ct);
         await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
     }
+
 
 }

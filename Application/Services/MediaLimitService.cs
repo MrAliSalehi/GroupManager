@@ -56,9 +56,12 @@ public class MediaLimitService : BackgroundService
         {
             case MessageType.Sticker:
                 {
-                    if (user.SentStickers <= currentGroup.StickerLimits)
+                    if (user.SentStickers < currentGroup.StickerLimits)
                     {
-                        await UserController.UpdateUserAsync(p => p.SentStickers++, e.Message.From.Id);
+                        await UserController.UpdateUserAsync(p =>
+                        {
+                            p.SentStickers = user.SentStickers + 1;
+                        }, e.Message.From.Id);
                     }
                     else
                     {
@@ -68,9 +71,12 @@ public class MediaLimitService : BackgroundService
                 }
             case MessageType.Photo:
                 {
-                    if (user.SentPhotos <= currentGroup.PhotoLimits)
+                    if (user.SentPhotos < currentGroup.PhotoLimits)
                     {
-                        await UserController.UpdateUserAsync(p => p.SentPhotos++, e.Message.From.Id);
+                        await UserController.UpdateUserAsync(p =>
+                        {
+                            p.SentPhotos = user.SentPhotos + 1;
+                        }, e.Message.From.Id);
                     }
                     else
                     {
@@ -80,9 +86,12 @@ public class MediaLimitService : BackgroundService
                 }
             case MessageType.Video:
                 {
-                    if (user.SentVideos <= currentGroup.VideoLimits)
+                    if (user.SentVideos < currentGroup.VideoLimits)
                     {
-                        await UserController.UpdateUserAsync(p => p.SentVideos++, e.Message.From.Id);
+                        await UserController.UpdateUserAsync(p =>
+                        {
+                            p.SentVideos = user.SentVideos + 1;
+                        }, e.Message.From.Id);
                     }
                     else
                     {
@@ -92,16 +101,19 @@ public class MediaLimitService : BackgroundService
                 }
         }
 
-        if (e.Message.Animation is not null)
+        if (e.Message.Animation is null)
+            return;
+
+        if (user.SentGif < currentGroup.GifLimits)
         {
-            if (user.SentGif <= currentGroup.GifLimits)
+            await UserController.UpdateUserAsync(p =>
             {
-                await UserController.UpdateUserAsync(p => p.SentGif++, e.Message.From.Id);
-            }
-            else
-            {
-                await _bot.DeleteMessageAsync(e.Message.Chat.Id, e.Message.MessageId);
-            }
+                p.SentGif = user.SentGif + 1;
+            }, e.Message.From.Id);
+        }
+        else
+        {
+            await _bot.DeleteMessageAsync(e.Message.Chat.Id, e.Message.MessageId);
         }
     }
 }

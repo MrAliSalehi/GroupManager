@@ -11,7 +11,6 @@ public struct UserController
     /// update all of the users 
     /// </summary>
     /// <param name="update"></param>
-    /// <param name="groupId"> group id specifier</param>
     /// <param name="ct"></param>
     /// <returns>returns 0 on success and 1 on exception</returns>
     public static async ValueTask<ushort> UpdateAllUsersAsync(Action<User> update, CancellationToken ct = default)
@@ -36,22 +35,17 @@ public struct UserController
         }
     }
 
-    public static async ValueTask<User> TryAddUserAsync(long userId, Group group, CancellationToken ct = default)
+    public static async ValueTask<User> TryAddUserAsync(long userId, CancellationToken ct = default)
     {
         try
         {
             await using var db = new ManagerContext();
-            var exists = await db.Users
-                .FirstOrDefaultAsync(p => p.UserId == userId, ct);
+            var exists = await db.Users.FirstOrDefaultAsync(p => p.UserId == userId, ct);
             if (exists is not null)
                 return exists;
-            var newUser = new User()
+            var newUser = new User
             {
                 UserId = userId,
-                GifLimits = group.GifLimits,
-                PhotoLimits = group.PhotoLimits,
-                VideoLimits = group.VideoLimits,
-                StickerLimits = group.StickerLimits,
             };
             var user = await db.Users.AddAsync(newUser, ct);
             await db.SaveChangesAsync(ct);

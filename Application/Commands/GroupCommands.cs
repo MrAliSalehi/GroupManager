@@ -71,7 +71,7 @@ public class GroupCommands : HandlerBase, IBotCommand, IDescriber
             return;
 
         var updatedUser = await UserController.UpdateUserAsync(usr => usr.MessageCount++, message.From.Id, ct)
-                          ?? await UserController.TryAddUserAsync(message.MessageId, CurrentGroup, ct);
+                          ?? await UserController.TryAddUserAsync(message.MessageId, ct);
 
         if (updatedUser.MessageCount >= CurrentGroup.MaxMessagePerUser)
         {
@@ -124,7 +124,6 @@ public class GroupCommands : HandlerBase, IBotCommand, IDescriber
                     cancellationToken: ct);
                 if (CurrentGroup.BanOnMaxWarn)
                 {
-                    await UserController.UpdateUserAsync(p => { p.IsBanned = true; }, message.From.Id, ct);
                     await Client.BanChatMemberAsync(message.Chat.Id, message.From.Id, cancellationToken: ct);
                     await Client.EditMessageTextAsync(stat.Chat.Id, stat.MessageId, $"{stat.Text}\nUser Has Been Banned!",
                         cancellationToken: ct);

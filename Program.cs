@@ -5,6 +5,7 @@ using GroupManager.Common.Models;
 using Hangfire;
 using Hangfire.Logging.LogProviders;
 using Hangfire.Storage.SQLite;
+using Telegram.Bot;
 
 var host = Host.CreateDefaultBuilder(args);
 
@@ -22,8 +23,9 @@ host.ConfigureServices((context, services) =>
 {
     var config = context.Configuration.GetSection("BotConfigs");
     services.Configure<BotConfigs>(config);
-
     context.Configuration.Bind(config.Key, Globals.BotConfigs);
+
+    services.AddSingleton<ITelegramBotClient, TelegramBotClient>(_ => new TelegramBotClient(Globals.BotConfigs.Token));
 
     Globals.Configuration = context.Configuration;
     Globals.ServiceProvider = services.BuildServiceProvider();
@@ -44,6 +46,8 @@ host.ConfigureServices((context, services) =>
     services.AddHostedService<UpdateService>();
     services.AddHostedService<AntiFloodService>();
     services.AddHostedService<MediaLimitService>();
+    services.AddHostedService<LanguageService>();
+    services.AddHostedService<AntiLinkIdTagService>();
 });
 
 var describers = typeof(IDescriber)
@@ -52,6 +56,7 @@ var describers = typeof(IDescriber)
     .Map();
 
 Globals.Describers.AddRange(describers);
+
 
 host.InjectSerilog();
 

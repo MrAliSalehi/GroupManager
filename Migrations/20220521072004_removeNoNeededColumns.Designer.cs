@@ -3,6 +3,7 @@ using System;
 using GroupManager.DataLayer.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GroupManager.Migrations
 {
     [DbContext(typeof(ManagerContext))]
-    partial class ManagerContextModelSnapshot : ModelSnapshot
+    [Migration("20220521072004_removeNoNeededColumns")]
+    partial class removeNoNeededColumns
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.5");
@@ -97,18 +99,6 @@ namespace GroupManager.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("EnableMessageLimitPerUser")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("FilterHashTag")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("FilterId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("FilterPublicLink")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("FilterTelLink")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("ForceJoin")

@@ -3,6 +3,7 @@ using System;
 using GroupManager.DataLayer.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GroupManager.Migrations
 {
     [DbContext(typeof(ManagerContext))]
-    partial class ManagerContextModelSnapshot : ModelSnapshot
+    [Migration("20220520131617_languages")]
+    partial class languages
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.5");
@@ -99,18 +101,6 @@ namespace GroupManager.Migrations
                     b.Property<bool>("EnableMessageLimitPerUser")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("FilterHashTag")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("FilterId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("FilterPublicLink")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<bool>("FilterTelLink")
-                        .HasColumnType("INTEGER");
-
                     b.Property<bool>("ForceJoin")
                         .HasColumnType("INTEGER");
 
@@ -120,7 +110,7 @@ namespace GroupManager.Migrations
                     b.Property<long>("GroupId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<bool>("LanguageLimit")
+                    b.Property<int>("LanguageId")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("LimitMedia")
@@ -150,9 +140,6 @@ namespace GroupManager.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT")
                         .HasDefaultValueSql("'03:00:00'");
-
-                    b.Property<int>("PhoneTypeId")
-                        .HasColumnType("INTEGER");
 
                     b.Property<uint>("PhotoLimits")
                         .HasColumnType("INTEGER");
@@ -202,7 +189,19 @@ namespace GroupManager.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<uint>("GifLimits")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsBanned")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("IsBot")
+                        .HasColumnType("INTEGER");
+
                     b.Property<uint>("MessageCount")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<uint>("PhotoLimits")
                         .HasColumnType("INTEGER");
 
                     b.Property<uint>("SentGif")
@@ -217,7 +216,13 @@ namespace GroupManager.Migrations
                     b.Property<uint>("SentVideos")
                         .HasColumnType("INTEGER");
 
+                    b.Property<uint>("StickerLimits")
+                        .HasColumnType("INTEGER");
+
                     b.Property<long>("UserId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<uint>("VideoLimits")
                         .HasColumnType("INTEGER");
 
                     b.Property<uint>("Warns")

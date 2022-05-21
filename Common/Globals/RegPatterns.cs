@@ -4,6 +4,18 @@ namespace GroupManager.Common.Globals;
 
 public struct RegPatterns
 {
+    private static readonly Regex PublicLinkRegex =
+        new(@"(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})",
+            RegexOptions.Compiled | RegexOptions.Multiline | RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(600));
+
+    private static readonly Regex TelegramLinkRegex = new(@"(t|telesco|telegram)\.(me|dog|pe)\/(.+)",
+        RegexOptions.Compiled | RegexOptions.Multiline, TimeSpan.FromSeconds(1));
+
+    private static readonly Regex IdRegex = new(@"^@\w{4,}", RegexOptions.Compiled | RegexOptions.Multiline,
+        TimeSpan.FromMilliseconds(300));
+    private static readonly Regex HashTagRegex = new(@"^#[a-z-0-9_]+", RegexOptions.Compiled | RegexOptions.Multiline,
+        TimeSpan.FromMilliseconds(300));
+
     private static readonly Regex MemberBotCommandRegex = new(@"^!.+", RegexOptions.Compiled, TimeSpan.FromSeconds(1));
     private static readonly Regex AdminBotCommandRegex = new(@"^!!.+", RegexOptions.Compiled, TimeSpan.FromSeconds(1));
     private static readonly Regex MessageLimitCommandRegex = new(@"!!set ml\s+(?<count>\d+)", RegexOptions.Compiled, TimeSpan.FromMilliseconds(300));
@@ -18,6 +30,11 @@ public struct RegPatterns
 
     public struct Is
     {
+
+        public static bool Id(string message) => IdRegex.IsMatch(message);
+        public static bool HashTag(string message) => HashTagRegex.IsMatch(message);
+        public static bool PublicLink(string message) => PublicLinkRegex.IsMatch(message);
+        public static bool TelegramLink(string message) => TelegramLinkRegex.IsMatch(message);
         public static bool MemberBotCommand(string? message)
         {
             return message is not null && MemberBotCommandRegex.IsMatch(message);

@@ -151,6 +151,18 @@ public struct InlineButtons
 
         public struct General
         {
+            public static InlineKeyboardMarkup GetAntiLinkMenu(Group group)
+            {
+                var filterTelLink = group.FilterTelLink ? ConstData.TrueEmoji : ConstData.FalseEmoji;
+                var filterPubLinks = group.FilterPublicLink ? ConstData.TrueEmoji : ConstData.FalseEmoji;
+                var filterId = group.FilterId ? ConstData.TrueEmoji : ConstData.FalseEmoji;
+                var filterTag = group.FilterHashTag ? ConstData.TrueEmoji : ConstData.FalseEmoji;
+                ChangeButtonValue("Tel", AntiLink, p => p.Text = $"Tel {filterTelLink}");
+                ChangeButtonValue("public", AntiLink, p => p.Text = $"public {filterPubLinks}");
+                ChangeButtonValue("ID", AntiLink, p => p.Text = $"ID {filterId}");
+                ChangeButtonValue("Tag", AntiLink, p => p.Text = $"Tag {filterTag}");
+                return AntiLink;
+            }
             public static InlineKeyboardMarkup GetMenu(Group group)
             {
                 var messageLimitStatus = group.EnableMessageLimitPerUser ? ConstData.TrueEmoji : ConstData.FalseEmoji;
@@ -183,8 +195,39 @@ public struct InlineButtons
                 },
                 new []
                 {
+                    InlineKeyboardButton.WithCallbackData("Anti Link",$"{nameof(Admin)}:{nameof(General)}:{nameof(AntiLink)}"),
+                },
+                new []
+                {
                     InlineKeyboardButton.WithCallbackData("Back",$"{nameof(Admin)}:{nameof(General)}:{ConstData.Back}"),
                 }
+            });
+
+            public static readonly InlineKeyboardMarkup AntiLink = new(new[]
+            {
+                new []
+                {
+                    InlineKeyboardButton.WithCallbackData("Links:",ConstData.IgnoreMe),
+                },
+                new []
+                {
+                    InlineKeyboardButton.WithCallbackData("Tel ",$"{nameof(Admin)}:{nameof(AntiLink)}:{ConstData.TelegramFilterLink}"),
+                    InlineKeyboardButton.WithCallbackData("public ",$"{nameof(Admin)}:{nameof(AntiLink)}:{ConstData.PublicFilterLink}"),
+                },
+                new []
+                {
+                    InlineKeyboardButton.WithCallbackData("-------------",ConstData.IgnoreMe),
+
+                },
+                new []
+                {
+                    InlineKeyboardButton.WithCallbackData("ID ",$"{nameof(Admin)}:{nameof(AntiLink)}:{ConstData.FilterId}"),
+                    InlineKeyboardButton.WithCallbackData("Tag ",$"{nameof(Admin)}:{nameof(AntiLink)}:{ConstData.FilterTag}"),
+                },
+                new []
+                {
+                    InlineKeyboardButton.WithCallbackData("Back",$"{nameof(Admin)}:{nameof(AntiLink)}:{ConstData.Back}"),
+                },
             });
         }
     }
@@ -231,6 +274,12 @@ public struct ConstData
     public const string AntiJoin = "aj";
     public const string AntiBot = "ab";
     public const string AntiForward = "af";
+    public const string TelegramFilterLink = "tfl";
+    public const string PublicFilterLink = "pfl";
+    public const string FilterId = "fi";
+    public const string FilterTag = "ft";
+
+
     public const char TrueEmoji = '✅';
     public const char FalseEmoji = '❌';
 
@@ -240,5 +289,6 @@ public struct ConstData
     public const string MessageOfWarnMenu = "Warn Configs:";
     public const string MessageOfGeneralMenu = "General Configs:";
     public const string MessageOfModifyMuteTimeMenu = "Modify Mute Time:";
+    public const string MessageOfAntiLinkMenu = "Anti Link Settings:";
 
 }
