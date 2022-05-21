@@ -4022,3 +4022,4 @@ Telegram.Bot.Exceptions.RequestException: Exception during making request
 2022-05-21 13:28:41.585 +04:30 [INF] Application started. Press Ctrl+C to shut down.
 2022-05-21 13:28:41.587 +04:30 [INF] Hosting environment: Development
 2022-05-21 13:28:41.588 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-21 22:07:23.360 +04:30 [INF] DB PATH:D:\Projects\telegram\BotApi\GroupManager\GroupManager\ManagerDb.db

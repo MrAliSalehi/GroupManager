@@ -2,6 +2,7 @@ using GroupManager.Application.Contracts;
 using GroupManager.Application.Services;
 using GroupManager.Common.Attributes;
 using GroupManager.Common.Models;
+using GroupManager.DataLayer.Context;
 using Hangfire;
 using Hangfire.Logging.LogProviders;
 using Hangfire.Storage.SQLite;
@@ -24,6 +25,9 @@ host.ConfigureServices((context, services) =>
     var config = context.Configuration.GetSection("BotConfigs");
     services.Configure<BotConfigs>(config);
     context.Configuration.Bind(config.Key, Globals.BotConfigs);
+    using var db = new ManagerContext();
+    var created = db.Database.EnsureCreated();
+    Log.Information("Db Created:{x}", created);
 
     services.AddSingleton<ITelegramBotClient, TelegramBotClient>(_ => new TelegramBotClient(Globals.BotConfigs.Token));
 

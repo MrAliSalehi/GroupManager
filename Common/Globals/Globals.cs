@@ -1,6 +1,7 @@
 ﻿global using GroupManager.Common.Globals;
 global using Serilog;
 global using GroupManager.Common.Extensions;
+using System.Runtime.InteropServices;
 using GroupManager.Common.Models;
 using GroupManager.DataLayer.Models;
 using Telegram.Bot.Types;
@@ -13,6 +14,7 @@ namespace GroupManager.Common.Globals
         public static IConfiguration Configuration { get; set; } = default!;
         public static BotConfigs BotConfigs { get; set; } = new();
         public static ServiceProvider ServiceProvider { get; set; } = default!;
+        public static string SlashOrBackSlash => RuntimeInformation.IsOSPlatform(OSPlatform.Linux) ? "/" : "\\";
         public static string ConnectionString(string name = "ManagerDb") => Configuration.GetConnectionString(name);
         public static List<Describer> Describers { get; } = new();
 

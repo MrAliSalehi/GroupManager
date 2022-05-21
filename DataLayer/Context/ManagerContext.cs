@@ -24,13 +24,14 @@ public class ManagerContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
         options.UseLoggerFactory(_loggerFactory);
-        options.UseLazyLoadingProxies().UseSqlite($"Data Source = {Environment.CurrentDirectory}/ManagerDb.db");
-        Log.Information("DB PATH:{x}/ManagerDb.db", Environment.CurrentDirectory);
+        options.UseLazyLoadingProxies().UseSqlite($"Data Source = {Environment.CurrentDirectory}{Globals.SlashOrBackSlash}ManagerDb.db");
+        Log.Information("DB PATH:{x}{a}ManagerDb.db", Environment.CurrentDirectory, Globals.SlashOrBackSlash);
         base.OnConfiguring(options);
 
     }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+
         modelBuilder.Entity<FloodSettings>(entity =>
         {
             entity.HasOne(p => p.Group)
