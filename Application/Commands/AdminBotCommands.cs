@@ -11,7 +11,6 @@ using Group = GroupManager.DataLayer.Models.Group;
 using GroupManager.Application.Services;
 using GroupManager.Common.Attributes;
 using Mosaik.Core;
-using WordFilter;
 
 namespace GroupManager.Application.Commands;
 

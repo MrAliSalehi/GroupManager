@@ -10,6 +10,9 @@
 	<ItemGroup>
 		<!--<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
 		<PackageReference Include="Cronos" Version="0.7.1" />-->
+		<PackageReference Include="Catalyst" Version="1.0.29069" />
+		<PackageReference Include="Catalyst.Models.English" Version="1.0.24970" />
+		<PackageReference Include="Catalyst.Models.Persian" Version="1.0.24970" />
 		<PackageReference Include="Hangfire.AspNetCore" Version="1.7.28" />
 		<PackageReference Include="Hangfire.Core" Version="1.7.28" />
 		<PackageReference Include="Hangfire.Storage.SQLite" Version="0.3.1" />
@@ -35,15 +38,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Common\Extensions\" />
 		<Folder Include="Common\Attributes\" />
 		<Folder Include="DataLayer\Models\" />
 		<Folder Include="DataLayer\Context\" />
 		<Folder Include="DataLayer\Controller\" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\WordFilter\WordFilter\WordFilter.csproj" />
 	</ItemGroup>
 
 </Project>

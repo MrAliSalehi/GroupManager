@@ -3973,3 +3973,52 @@ System.InvalidOperationException: The property 'User.Id' has a temporary value w
 2022-05-21 11:51:54.711 +04:30 [INF] Application started. Press Ctrl+C to shut down.
 2022-05-21 11:51:54.714 +04:30 [INF] Hosting environment: Development
 2022-05-21 11:51:54.715 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-21 13:26:46.866 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-21 13:26:46.881 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-21 13:26:47.021 +04:30 [INF] Server qwxp:7708:fdd18ded successfully announced in 110.8885 ms
+2022-05-21 13:26:47.025 +04:30 [INF] Server qwxp:7708:fdd18ded is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-21 13:26:47.139 +04:30 [INF] Server qwxp:7708:fdd18ded all the dispatchers started
+2022-05-21 13:26:47.255 +04:30 [INF] 2 servers were removed due to timeout
+2022-05-21 13:26:47.862 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-21 13:26:49.094 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-21 13:26:49.097 +04:30 [INF] Hosting environment: Development
+2022-05-21 13:26:49.097 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-21 13:27:59.070 +04:30 [ERR] OnError
+Telegram.Bot.Exceptions.RequestException: Exception during making request
+ ---> System.Net.Http.HttpRequestException: An error occurred while sending the request.
+ ---> System.IO.IOException: Unable to read data from the transport connection: An established connection was aborted by the software in your host machine..
+ ---> System.Net.Sockets.SocketException (10053): An established connection was aborted by the software in your host machine.
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource<System.Int32>.GetResult(Int16 token)
+   at System.Net.Security.SslStream.EnsureFullTlsFrameAsync[TIOAdapter](TIOAdapter adapter)
+   at System.Net.Security.SslStream.ReadAsyncInternal[TIOAdapter](TIOAdapter adapter, Memory`1 buffer)
+   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithVersionDetectionAndRetryAsync(HttpRequestMessage request, Boolean async, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsyncCore(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, Boolean async, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.<SendAsync>g__Core|83_0(HttpRequestMessage request, HttpCompletionOption completionOption, CancellationTokenSource cts, Boolean disposeCts, CancellationTokenSource pendingRequestsCts, CancellationToken originalCancellationToken)
+   at Telegram.Bot.TelegramBotClient.<MakeRequestAsync>g__SendRequestAsync|22_0[TResponse](HttpClient httpClient, HttpRequestMessage httpRequest, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at Telegram.Bot.TelegramBotClient.<MakeRequestAsync>g__SendRequestAsync|22_0[TResponse](HttpClient httpClient, HttpRequestMessage httpRequest, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.Extensions.Polling.DefaultUpdateReceiver.ReceiveAsync(IUpdateHandler updateHandler, CancellationToken cancellationToken)
+2022-05-21 13:28:39.415 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-21 13:28:39.430 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-21 13:28:39.558 +04:30 [INF] Server qwxp:1440:e9e6e7d0 successfully announced in 102.3281 ms
+2022-05-21 13:28:39.564 +04:30 [INF] Server qwxp:1440:e9e6e7d0 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-21 13:28:39.677 +04:30 [INF] Server qwxp:1440:e9e6e7d0 all the dispatchers started
+2022-05-21 13:28:40.387 +04:30 [INF] Bot Started With : teoskofoskefkookefkobot
+2022-05-21 13:28:41.585 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-21 13:28:41.587 +04:30 [INF] Hosting environment: Development
+2022-05-21 13:28:41.588 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager

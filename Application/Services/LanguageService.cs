@@ -1,12 +1,9 @@
-﻿using System.CodeDom;
-using GroupManager.Application.Contracts;
-using GroupManager.DataLayer.Controller;
+﻿using GroupManager.DataLayer.Controller;
 using GroupManager.DataLayer.Models;
 using Mosaik.Core;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
-using WordFilter;
 
 namespace GroupManager.Application.Services;
 
