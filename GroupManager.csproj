@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Worker">
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
@@ -7,6 +7,10 @@
 		<UserSecretsId>dotnet-BotApi-5C541D33-AC79-4EC1-83FD-B075AA3B5C4D</UserSecretsId>
 		<PublishSingleFile>true</PublishSingleFile>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="ManagerDb.db" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<!--<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
@@ -43,6 +47,15 @@
 		<Folder Include="DataLayer\Models\" />
 		<Folder Include="DataLayer\Context\" />
 		<Folder Include="DataLayer\Controller\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="ManagerHangFireDb.db">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+		<None Update="ManagerDb.db">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
 	</ItemGroup>
 
 </Project>
