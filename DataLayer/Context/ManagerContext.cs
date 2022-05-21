@@ -25,8 +25,6 @@ public class ManagerContext : DbContext
     {
         options.UseLoggerFactory(_loggerFactory);
         options.UseLazyLoadingProxies().UseSqlite("Data Source = ManagerDb.db");
-
-        Log.Information("Can Connect To Db:\n{0}", Database.CanConnect());
         base.OnConfiguring(options);
 
     }

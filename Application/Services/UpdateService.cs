@@ -1,4 +1,5 @@
 ﻿using GroupManager.Application.Handlers;
+using GroupManager.DataLayer.Context;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
@@ -37,6 +38,8 @@ namespace GroupManager.Application.Services
             var me = await _client.GetMeAsync(cancellationToken);
             Log.Information("Bot Started With : {0}", me.Username);
             ManagerConfig.BotUserName = me.Username ?? "-";
+            var canConnect = await new ManagerContext().Database.CanConnectAsync(cancellationToken);
+            Log.Information("Can Connect To Db:\n{0}", canConnect);
 
             _client.StartReceiving(OnUpdate, OnError, cancellationToken: cancellationToken);
 
