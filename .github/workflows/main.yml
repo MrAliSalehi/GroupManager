@@ -11,12 +11,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    #- name: Setup .NET
-    #  uses: actions/setup-dotnet@v2
-    #  with:
-     #   dotnet-version: 6.0.x
+    - name: Stop Service
+      run: systemctl stop groupmanager.service
     - name: Build
-      run: /snap/bin/dotnet build
+      run: dotnet build
+    - name: publish
+      run: dotnet publish -c Release --self-contained --runtime linux-x64
     - name: Run
-      run: /snap/bin/dotnet run
+      run: systemctl start groupmanager.service
+      
  
