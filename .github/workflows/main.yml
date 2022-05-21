@@ -1,0 +1,20 @@
+name: .NET
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: self-hosted
+
+    steps:
+    - name: Restore dependencies
+      run:  /snap/bin/dotnet restore
+    - name: Build
+      run: /snap/bin/dotnet restore build --no-restore
+    - name: Run
+      run: /snap/bin/dotnet restore run
+    #- name: Status
+    #  run: systemctl status groupManager.service
