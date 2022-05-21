@@ -15,6 +15,6 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Run
-      run: systemctl start groupManager.service
-    - name: Status
-      run: systemctl status groupManager.service
+      run: dotnet run
+    #- name: Status
+    #  run: systemctl status groupManager.service
