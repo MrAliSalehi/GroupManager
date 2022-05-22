@@ -49,7 +49,7 @@ public static class CommandDescription
 
     internal static string BuildParametersToString(this Describer describer)
     {
-        var output = $"<i>Command:</i><b>{describer.Name}<b/>\n<i>Description:</i><b>{describer.Description}</b>";
+        var output = $"<i>Command:</i><b>{describer.Name}</b>\n<i>Description:</i><b>{describer.Description}</b>";
         if (describer.Parameters is not null or "")
             output += $"\n{describer.Parameters}";
         else
