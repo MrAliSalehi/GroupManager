@@ -40,13 +40,6 @@ namespace GroupManager.Application.Services
                 await _client.SendTextMessageAsync(ManagerConfig.Admins.First(), "Bot Has Been Started", cancellationToken: cancellationToken);
                 ManagerConfig.BotUserName = me.Username ?? "-";
 
-                await using var db = new ManagerContext();
-                var created = await db.Database.EnsureCreatedAsync(cancellationToken);
-                Log.Information("Db Created:{x}", created);
-                var conn = await db.Database.CanConnectAsync(cancellationToken);
-                Log.Information("Db connected:{x}", conn);
-
-
                 _client.StartReceiving(OnUpdate, OnError, cancellationToken: cancellationToken);
                 await base.StartAsync(cancellationToken);
             }

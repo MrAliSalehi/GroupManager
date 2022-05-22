@@ -24,8 +24,6 @@ public class ManagerContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
         options.UseLoggerFactory(_loggerFactory);
-        //{Environment.CurrentDirectory}{Globals.SlashOrBackSlash}ManagerDb.db
-        Log.Information("main path {x}", Path);
         options.UseLazyLoadingProxies().UseSqlite($"Data Source = {Path}");
         base.OnConfiguring(options);
 
