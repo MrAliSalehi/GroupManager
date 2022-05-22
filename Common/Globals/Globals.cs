@@ -15,10 +15,8 @@ namespace GroupManager.Common.Globals
         public static BotConfigs BotConfigs { get; set; } = new();
         public static ServiceProvider ServiceProvider { get; set; } = default!;
         public static string SlashOrBackSlash => RuntimeInformation.IsOSPlatform(OSPlatform.Linux) ? "/" : "\\";
-        public static string ConnectionString(string name = "ManagerDb") => Configuration.GetConnectionString(name);
+        public static string ConnectionString(string name) => Configuration.GetConnectionString(name);
         public static List<Describer> Describers { get; } = new();
-
-        private static DateTime Now => DateTime.Now;
 
         public static readonly ChatPermissions MutePermissions = new()
         {

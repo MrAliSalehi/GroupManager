@@ -27,10 +27,6 @@ host.ConfigureServices((context, services) =>
     services.Configure<BotConfigs>(config);
     context.Configuration.Bind(config.Key, Globals.BotConfigs);
 
-    using var db = new ManagerContext();
-    var created = db.Database.EnsureCreated();
-    Log.Information("Db Created:{x}", created);
-
     services.AddSingleton<ITelegramBotClient, TelegramBotClient>(_ => new TelegramBotClient(Globals.BotConfigs.Token));
 
     Globals.Configuration = context.Configuration;
@@ -56,13 +52,13 @@ host.ConfigureServices((context, services) =>
     services.AddHostedService<AntiLinkIdTagService>();
 });
 
+
 var describers = typeof(IDescriber)
     .GetImplementedClasses()
     .GetDescribeAttribute<DescriberAttribute>()
     .Map();
 
 Globals.Describers.AddRange(describers);
-
 
 
 host.InjectSerilog();

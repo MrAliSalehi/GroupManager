@@ -1,4 +1,5 @@
 ﻿using GroupManager.Application.Handlers;
+using GroupManager.DataLayer.Context;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
@@ -17,7 +18,6 @@ namespace GroupManager.Application.Services
         public UpdateService()
         {
             var token = Globals.BotConfigs.Token;
-            Log.Information("Registering With Token {token}", token);
             _client = new TelegramBotClient(token);
             _myChatMemberHandler = new MyChatMemberHandler(_client);
             _messageHandler = new MessageHandler(_client);
@@ -37,9 +37,15 @@ namespace GroupManager.Application.Services
             try
             {
                 var me = await _client.GetMeAsync(cancellationToken);
-                await _client.SendTextMessageAsync(ManagerConfig.Admins.First(), "Bot Has Been Started",
-                    cancellationToken: cancellationToken);
+                await _client.SendTextMessageAsync(ManagerConfig.Admins.First(), "Bot Has Been Started", cancellationToken: cancellationToken);
                 ManagerConfig.BotUserName = me.Username ?? "-";
+
+                await using var db = new ManagerContext();
+                var created = await db.Database.EnsureCreatedAsync(cancellationToken);
+                Log.Information("Db Created:{x}", created);
+                var conn = await db.Database.CanConnectAsync(cancellationToken);
+                Log.Information("Db connected:{x}", conn);
+
 
                 _client.StartReceiving(OnUpdate, OnError, cancellationToken: cancellationToken);
                 await base.StartAsync(cancellationToken);

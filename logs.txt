@@ -4023,3 +4023,101 @@ Telegram.Bot.Exceptions.RequestException: Exception during making request
 2022-05-21 13:28:41.587 +04:30 [INF] Hosting environment: Development
 2022-05-21 13:28:41.588 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
 2022-05-21 22:07:23.360 +04:30 [INF] DB PATH:D:\Projects\telegram\BotApi\GroupManager\GroupManager\ManagerDb.db
+2022-05-22 11:24:03.815 +04:30 [INF] Registering With Token 5381690668:AAE9cOa-nwVmmk8JMlLjG7QkLjYQaWPhJe0
+2022-05-22 11:24:04.288 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-22 11:24:04.289 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-22 11:24:04.456 +04:30 [INF] Server qwxp:21244:0f343c5b successfully announced in 138.7735 ms
+2022-05-22 11:24:04.459 +04:30 [INF] Server qwxp:21244:0f343c5b is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-22 11:24:04.550 +04:30 [INF] Server qwxp:21244:0f343c5b all the dispatchers started
+2022-05-22 11:24:04.701 +04:30 [INF] 2 servers were removed due to timeout
+2022-05-22 11:25:10.782 +04:30 [INF] Registering With Token 5381690668:AAE9cOa-nwVmmk8JMlLjG7QkLjYQaWPhJe0
+2022-05-22 11:25:11.198 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-22 11:25:11.200 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-22 11:25:11.347 +04:30 [INF] Server qwxp:25092:66f22799 successfully announced in 120.3599 ms
+2022-05-22 11:25:11.354 +04:30 [INF] Server qwxp:25092:66f22799 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-22 11:25:11.454 +04:30 [INF] Server qwxp:25092:66f22799 all the dispatchers started
+2022-05-22 11:26:16.856 +04:30 [INF] Registering With Token 5381690668:AAE9cOa-nwVmmk8JMlLjG7QkLjYQaWPhJe0
+2022-05-22 11:26:17.437 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-22 11:26:17.439 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-22 11:26:17.638 +04:30 [INF] Server qwxp:12640:6b4de73e successfully announced in 135.4831 ms
+2022-05-22 11:26:17.645 +04:30 [INF] Server qwxp:12640:6b4de73e is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-22 11:26:17.776 +04:30 [INF] Server qwxp:12640:6b4de73e all the dispatchers started
+2022-05-22 11:26:44.094 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-22 11:26:44.109 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-22 11:26:44.262 +04:30 [INF] Server qwxp:5316:e0f27ebf successfully announced in 121.443 ms
+2022-05-22 11:26:44.268 +04:30 [INF] Server qwxp:5316:e0f27ebf is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-22 11:26:44.400 +04:30 [INF] Server qwxp:5316:e0f27ebf all the dispatchers started
+2022-05-22 11:26:46.229 +04:30 [INF] Db Created:System.Threading.Tasks.Task`1[System.Boolean]
+2022-05-22 11:26:46.691 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-22 11:26:46.693 +04:30 [INF] Hosting environment: Development
+2022-05-22 11:26:46.694 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-22 11:27:06.619 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-22 11:27:06.638 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-22 11:27:06.806 +04:30 [INF] Server qwxp:21536:fb4e635d successfully announced in 135.8509 ms
+2022-05-22 11:27:06.811 +04:30 [INF] Server qwxp:21536:fb4e635d is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-22 11:27:06.955 +04:30 [INF] Server qwxp:21536:fb4e635d all the dispatchers started
+2022-05-22 11:27:08.780 +04:30 [INF] Db Created:false
+2022-05-22 11:27:09.204 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-22 11:27:09.206 +04:30 [INF] Hosting environment: Development
+2022-05-22 11:27:09.207 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-22 11:28:29.687 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-22 11:28:29.702 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-22 11:28:29.842 +04:30 [INF] Server qwxp:10060:849d36dc successfully announced in 113.3086 ms
+2022-05-22 11:28:29.848 +04:30 [INF] Server qwxp:10060:849d36dc is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-22 11:28:29.989 +04:30 [INF] Server qwxp:10060:849d36dc all the dispatchers started
+2022-05-22 11:28:31.033 +04:30 [INF] main path ManagerDb.db
+2022-05-22 11:28:31.786 +04:30 [INF] Db Created:false
+2022-05-22 11:28:31.819 +04:30 [INF] main path ManagerDb.db
+2022-05-22 11:28:32.165 +04:30 [INF] main path ManagerDb.db
+2022-05-22 11:28:32.207 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-22 11:28:32.210 +04:30 [INF] Hosting environment: Development
+2022-05-22 11:28:32.210 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-22 11:29:22.224 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-22 11:29:22.240 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-22 11:29:22.400 +04:30 [INF] Server qwxp:12860:29a31e8e successfully announced in 121.156 ms
+2022-05-22 11:29:22.406 +04:30 [INF] Server qwxp:12860:29a31e8e is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-22 11:29:22.501 +04:30 [INF] Server qwxp:12860:29a31e8e all the dispatchers started
+2022-05-22 11:29:22.544 +04:30 [INF] 1 servers were removed due to timeout
+2022-05-22 11:29:23.591 +04:30 [INF] main path ManagerDb.db
+2022-05-22 11:29:24.350 +04:30 [INF] Db Created:false
+2022-05-22 11:29:24.353 +04:30 [INF] Db connected:true
+2022-05-22 11:29:24.384 +04:30 [INF] main path ManagerDb.db
+2022-05-22 11:29:24.738 +04:30 [INF] main path ManagerDb.db
+2022-05-22 11:29:24.780 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-22 11:29:24.782 +04:30 [INF] Hosting environment: Development
+2022-05-22 11:29:24.783 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-22 11:29:55.281 +04:30 [INF] main path ManagerDb.db
+2022-05-22 11:29:55.293 +04:30 [INF] main path ManagerDb.db
+2022-05-22 11:29:55.740 +04:30 [INF] main path ManagerDb.db
+2022-05-22 11:29:55.790 +04:30 [INF] main path ManagerDb.db
+2022-05-22 11:30:02.228 +04:30 [INF] main path ManagerDb.db
+2022-05-22 11:30:02.458 +04:30 [INF] main path ManagerDb.db
+2022-05-22 11:30:02.461 +04:30 [INF] main path ManagerDb.db
