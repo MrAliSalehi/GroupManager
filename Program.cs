@@ -34,7 +34,7 @@ host.ConfigureServices((context, services) =>
     GlobalJobFilters.Filters.Add(new AutomaticRetryAttribute { Attempts = 3 });
     services.AddHangfire(conf =>
     {
-        var connString = Globals.ConnectionString();
+        var connString = Globals.ConnectionString("HangFireDb");
         conf.SetDataCompatibilityLevel(CompatibilityLevel.Version_170)
             .UseSimpleAssemblyNameTypeSerializer()
             .UseDefaultTypeSerializer()

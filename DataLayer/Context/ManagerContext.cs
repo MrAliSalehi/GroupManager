@@ -12,7 +12,7 @@ public class ManagerContext : DbContext
     public virtual DbSet<FloodSettings> FloodSettings { get; set; }
 
     private readonly ILoggerFactory _loggerFactory;
-
+    private static readonly string Path = Globals.ConnectionString("MainDb");
     public ManagerContext() : base() { }
 
     public ManagerContext(DbContextOptions<ManagerContext> options, ILoggerFactory loggerFactory) : base(options)
@@ -24,7 +24,8 @@ public class ManagerContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder options)
     {
         options.UseLoggerFactory(_loggerFactory);
-        options.UseLazyLoadingProxies().UseSqlite($"Data Source = {Environment.CurrentDirectory}{Globals.SlashOrBackSlash}ManagerDb.db");
+        //{Environment.CurrentDirectory}{Globals.SlashOrBackSlash}ManagerDb.db
+        options.UseLazyLoadingProxies().UseSqlite($"Data Source = {Path}");
         base.OnConfiguring(options);
 
     }

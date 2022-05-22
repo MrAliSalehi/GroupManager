@@ -49,13 +49,13 @@
 		<Folder Include="DataLayer\Controller\" />
 	</ItemGroup>
 
-	<ItemGroup>
+	<!--<ItemGroup>
 		<None Update="ManagerHangFireDb.db">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="ManagerDb.db">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-	</ItemGroup>
+	</ItemGroup>-->
 
 </Project>
