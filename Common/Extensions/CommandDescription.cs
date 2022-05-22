@@ -49,12 +49,12 @@ public static class CommandDescription
 
     internal static string BuildParametersToString(this Describer describer)
     {
-        var output = $"Command: {describer.Name}\nDescription:{describer.Description}";
+        var output = $"<i>Command:</i><b>{describer.Name}<b/>\n<i>Description:</i><b>{describer.Description}</b>";
         if (describer.Parameters is not null or "")
             output += $"\n{describer.Parameters}";
         else
             output += "-No Parameters.";
-        output = output.Replace("-", "\\-");
+
         return output;
     }
 }

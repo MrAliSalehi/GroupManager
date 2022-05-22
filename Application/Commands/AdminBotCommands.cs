@@ -26,7 +26,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
         _textFilter = new TextFilter();
         _manager.AddOrUpdate<ResetMediaLimit>("ResetMediaLimit", (reset) => reset.ResetMediaLimitAsync(), "00 00 * * *");
     }
-    [Describer("Is Active", "Check If Group Is Under bot Protection Or Not", null)]
+    [Describer("!!is active", "Check If Group Is Under bot Protection Or Not", null)]
     internal async Task IsActiveAsync(Message message, CancellationToken ct = default)
     {
 
@@ -1002,7 +1002,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
         };
         await Client.SendTextMessageAsync(message.Chat.Id, response, cancellationToken: ct);
     }
-
+    [Describer("!!help", "All Cli Commands", null)]
     internal async Task HelpAsync(Message message, CancellationToken ct = default)
     {
         if (CurrentGroup is null)
@@ -1015,7 +1015,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
         var allCommands = Globals.Describers
             .Select(p => p.BuildParametersToString())
             .Aggregate("", (current, command) => current + (command + "\n"));
-        await Client.SendTextMessageAsync(message.Chat.Id, allCommands is "" or " " ? "Nothing Found" : allCommands, ParseMode.MarkdownV2, cancellationToken: ct);
+        await Client.SendTextMessageAsync(message.Chat.Id, allCommands is "" or " " ? "Nothing Found" : allCommands, ParseMode.Html, cancellationToken: ct);
     }
     [Describer("set media limit", "this will set your limitations for media such as (gif,video,sticker,photo)",
         "-g: GIF LIMIT\n-s: STICKER LIMIT\n-v: VIDEO LIMIT\n-p: PHOTO LIMIT\n" +
@@ -1282,6 +1282,5 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
         await Client.SendTextMessageAsync(message.Chat.Id, $"Message Limit Has been Enabled", replyToMessageId: message.MessageId, cancellationToken: ct);
         await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
     }
-
 
 }
