@@ -18,6 +18,7 @@ host.ConfigureAppConfiguration((context, builder) =>
    .AddJsonFile($"appsettings.{context.HostingEnvironment.EnvironmentName}.json", false, true)
    .Build();
 
+
 });
 
 host.ConfigureServices((context, services) =>
@@ -26,6 +27,9 @@ host.ConfigureServices((context, services) =>
     services.Configure<BotConfigs>(config);
     context.Configuration.Bind(config.Key, Globals.BotConfigs);
 
+    using var db = new ManagerContext();
+    var created = db.Database.EnsureCreated();
+    Log.Information("Db Created:{x}", created);
 
     services.AddSingleton<ITelegramBotClient, TelegramBotClient>(_ => new TelegramBotClient(Globals.BotConfigs.Token));
 
@@ -59,9 +63,7 @@ var describers = typeof(IDescriber)
 
 Globals.Describers.AddRange(describers);
 
-await using var db = new ManagerContext();
-var created = await db.Database.EnsureCreatedAsync();
-Log.Information("Db Created:{x}", created);
+
 
 host.InjectSerilog();
 
