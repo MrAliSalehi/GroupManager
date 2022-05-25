@@ -59,7 +59,7 @@ public class MessageHandler : HandlerBase
         if (command is null)
             return;
 
-        var group = await GroupController.GetGroupByIdWithAdminsAsync(message.Chat.Id, ct).ConfigureAwait(true);
+        var group = await GroupController.GetGroupByIdWithAdminsAsync(message.Chat.Id, ct);
 
         if (!(group?.Admins.Any(x => x.UserId == message.From.Id) ?? false) && !ManagerConfig.Admins.Contains(message.From.Id))
         {
@@ -79,7 +79,7 @@ public class MessageHandler : HandlerBase
                 { } x when (x.StartsWith("rem admin")) => _adminBotCommands.RemoveAdminAsync(message, ct),
                 _ => Task.CompletedTask
             };
-            await baseAdminResponse.ConfigureAwait(true);
+            await baseAdminResponse;
         }
 
 
@@ -136,7 +136,7 @@ public class MessageHandler : HandlerBase
 
             _ => Task.CompletedTask
         };
-        await response.ConfigureAwait(true);
+        await response;
     }
 
     private async Task MemberCommandsAsync(Message message, CancellationToken ct)
@@ -151,7 +151,7 @@ public class MessageHandler : HandlerBase
             "ban me" => _memberBotCommands.BenMeAsync(message, ct),
             _ => Task.CompletedTask
         };
-        await response.ConfigureAwait(true);
+        await response;
     }
 
 }
