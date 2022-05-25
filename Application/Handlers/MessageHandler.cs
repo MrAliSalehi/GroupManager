@@ -66,6 +66,7 @@ public class MessageHandler : HandlerBase
             await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
         }
+        _adminBotCommands.CurrentGroup = group;
 
         if (ManagerConfig.Admins.Contains(message.From.Id))
         {
@@ -81,7 +82,6 @@ public class MessageHandler : HandlerBase
             await baseAdminResponse.ConfigureAwait(true);
         }
 
-        _adminBotCommands.CurrentGroup = group;
 
         var response = command.Value.Replace("!!", "") switch
         {
