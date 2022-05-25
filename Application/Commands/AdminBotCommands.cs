@@ -47,7 +47,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
 
         var removeGroupResult = await GroupController.RemoveGroupAsync(message.Chat.Id, ct);
         var removeForceChannelsResult = await ForceJoinController.RemoveAllRelatedChannelsAsync(message.Chat.Id, ct);
-        var removeFloodSettingsResult = await FloodController.RemoveSettingsAsync(message.Chat.Id, ct);
+        var removeFloodSettingsResult = await FloodController.RemoveSettingsAsync(CurrentGroup.Id, ct);
         var removeGroupResponse = removeGroupResult switch
         {
             0 => "Group Has Been Removed",
@@ -725,7 +725,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
             return;
         }
 
-        var result = await FloodController.RemoveSettingsAsync(message.Chat.Id, ct);
+        var result = await FloodController.RemoveSettingsAsync(CurrentGroup.Id, ct);
         var response = result switch
         {
             0 => "Flood Has been Removed",
