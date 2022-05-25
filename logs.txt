@@ -4121,3 +4121,131 @@ Telegram.Bot.Exceptions.RequestException: Exception during making request
 2022-05-22 11:30:02.228 +04:30 [INF] main path ManagerDb.db
 2022-05-22 11:30:02.458 +04:30 [INF] main path ManagerDb.db
 2022-05-22 11:30:02.461 +04:30 [INF] main path ManagerDb.db
+2022-05-25 08:06:24.144 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-25 08:06:24.166 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-25 08:06:24.334 +04:30 [INF] Server qwxp:22256:e6f0a0a1 successfully announced in 119.3793 ms
+2022-05-25 08:06:24.344 +04:30 [INF] Server qwxp:22256:e6f0a0a1 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-25 08:06:24.527 +04:30 [INF] Server qwxp:22256:e6f0a0a1 all the dispatchers started
+2022-05-25 08:06:25.862 +04:30 [INF] 6 servers were removed due to timeout
+2022-05-25 08:06:27.444 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-25 08:06:27.455 +04:30 [INF] Hosting environment: Development
+2022-05-25 08:06:27.458 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-25 08:07:48.890 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-25 08:07:48.906 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-25 08:07:49.042 +04:30 [INF] Server qwxp:14656:3af706f6 successfully announced in 109.7967 ms
+2022-05-25 08:07:49.046 +04:30 [INF] Server qwxp:14656:3af706f6 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-25 08:07:49.143 +04:30 [INF] Server qwxp:14656:3af706f6 all the dispatchers started
+2022-05-25 08:08:20.476 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-25 08:08:20.491 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-25 08:08:20.677 +04:30 [INF] Server qwxp:14952:efbc7458 successfully announced in 129.3076 ms
+2022-05-25 08:08:20.683 +04:30 [INF] Server qwxp:14952:efbc7458 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-25 08:08:20.782 +04:30 [INF] Server qwxp:14952:efbc7458 all the dispatchers started
+2022-05-25 08:08:27.565 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-25 08:08:27.568 +04:30 [INF] Hosting environment: Development
+2022-05-25 08:08:27.569 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-25 08:08:56.210 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-25 08:08:56.225 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-25 08:08:56.378 +04:30 [INF] Server qwxp:23300:17aa3f92 successfully announced in 128.3051 ms
+2022-05-25 08:08:56.386 +04:30 [INF] Server qwxp:23300:17aa3f92 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-25 08:08:56.494 +04:30 [INF] Server qwxp:23300:17aa3f92 all the dispatchers started
+2022-05-25 08:08:58.549 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-25 08:08:58.552 +04:30 [INF] Hosting environment: Development
+2022-05-25 08:08:58.553 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-25 08:12:36.751 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-25 08:12:36.766 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-25 08:12:36.907 +04:30 [INF] Server qwxp:316:dba628c4 successfully announced in 116.2407 ms
+2022-05-25 08:12:36.913 +04:30 [INF] Server qwxp:316:dba628c4 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-25 08:12:37.000 +04:30 [INF] Server qwxp:316:dba628c4 all the dispatchers started
+2022-05-25 08:12:37.029 +04:30 [INF] 1 servers were removed due to timeout
+2022-05-25 08:12:39.228 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-25 08:12:39.230 +04:30 [INF] Hosting environment: Development
+2022-05-25 08:12:39.231 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-25 08:14:36.089 +04:30 [ERR] Unable to update heartbeat on the resource 'HangFire:recurring-jobs:lock'. The resource is not locked or is locked by another owner.
+2022-05-25 08:51:04.982 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-25 08:51:04.997 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-25 08:51:05.139 +04:30 [INF] Server qwxp:12312:2e0b1145 successfully announced in 115.528 ms
+2022-05-25 08:51:05.143 +04:30 [INF] Server qwxp:12312:2e0b1145 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-25 08:51:05.236 +04:30 [INF] Server qwxp:12312:2e0b1145 all the dispatchers started
+2022-05-25 08:51:05.805 +04:30 [INF] 4 servers were removed due to timeout
+2022-05-25 08:51:07.501 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-25 08:51:07.503 +04:30 [INF] Hosting environment: Development
+2022-05-25 08:51:07.504 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-25 08:51:26.256 +04:30 [ERR] OnUpdate
+Telegram.Bot.Exceptions.ApiRequestException: Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.EditMessageReplyMarkupAsync(ITelegramBotClient botClient, ChatId chatId, Int32 messageId, InlineKeyboardMarkup replyMarkup, CancellationToken cancellationToken)
+   at GroupManager.Application.Handlers.CallBackHandler.GeneralSettingsAsync(CallbackQuery callback, IReadOnlyList`1 data, Group group, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 438
+   at GroupManager.Application.Handlers.CallBackHandler.AdminCallbacksAsync(CallbackQuery callback, IReadOnlyList`1 data, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 99
+   at GroupManager.Application.Handlers.CallBackHandler.InitHandlerAsync(CallbackQuery callback, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 33
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 80
+2022-05-25 08:53:21.486 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-25 08:53:21.501 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-25 08:53:21.633 +04:30 [INF] Server qwxp:19620:2cae46e7 successfully announced in 105.6996 ms
+2022-05-25 08:53:21.640 +04:30 [INF] Server qwxp:19620:2cae46e7 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-25 08:53:21.764 +04:30 [INF] Server qwxp:19620:2cae46e7 all the dispatchers started
+2022-05-25 08:53:25.958 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-25 08:53:25.960 +04:30 [INF] Hosting environment: Development
+2022-05-25 08:53:25.962 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-25 08:53:28.735 +04:30 [ERR] OnUpdate
+Telegram.Bot.Exceptions.ApiRequestException: Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.EditMessageTextAsync(ITelegramBotClient botClient, ChatId chatId, Int32 messageId, String text, Nullable`1 parseMode, IEnumerable`1 entities, Nullable`1 disableWebPagePreview, InlineKeyboardMarkup replyMarkup, CancellationToken cancellationToken)
+   at GroupManager.Application.Handlers.CallBackHandler.AdminCallbacksAsync(CallbackQuery callback, IReadOnlyList`1 data, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 74
+   at GroupManager.Application.Handlers.CallBackHandler.InitHandlerAsync(CallbackQuery callback, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 33
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 80
+2022-05-25 08:53:44.907 +04:30 [ERR] OnUpdate
+Telegram.Bot.Exceptions.ApiRequestException: Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.EditMessageReplyMarkupAsync(ITelegramBotClient botClient, ChatId chatId, Int32 messageId, InlineKeyboardMarkup replyMarkup, CancellationToken cancellationToken)
+   at GroupManager.Application.Handlers.CallBackHandler.GeneralSettingsAsync(CallbackQuery callback, IReadOnlyList`1 data, Group group, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 438
+   at GroupManager.Application.Handlers.CallBackHandler.AdminCallbacksAsync(CallbackQuery callback, IReadOnlyList`1 data, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 99
+   at GroupManager.Application.Handlers.CallBackHandler.InitHandlerAsync(CallbackQuery callback, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 33
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 80
+2022-05-25 08:54:27.498 +04:30 [WRN] Server qwxp:19620:2cae46e7 was considered dead by other servers, restarting...
+2022-05-25 08:55:03.325 +04:30 [INF] Starting Hangfire Server using job storage: 'Connection string: ManagerHangFireDb.db,  prefix: hangfire'
+2022-05-25 08:55:03.340 +04:30 [INF] Using the following options for Hangfire Server:
+    Worker count: 20
+    Listening queues: 'default'
+    Shutdown timeout: 00:00:15
+    Schedule polling interval: 00:00:15
+2022-05-25 08:55:03.480 +04:30 [INF] Server qwxp:17712:ada10428 successfully announced in 115.4068 ms
+2022-05-25 08:55:03.486 +04:30 [INF] Server qwxp:17712:ada10428 is starting the registered dispatchers: ServerWatchdog, ServerJobCancellationWatcher, ExpirationManager, CountersAggregator, Worker, DelayedJobScheduler, RecurringJobScheduler...
+2022-05-25 08:55:03.611 +04:30 [INF] Server qwxp:17712:ada10428 all the dispatchers started
+2022-05-25 08:55:05.781 +04:30 [INF] Application started. Press Ctrl+C to shut down.
+2022-05-25 08:55:05.783 +04:30 [INF] Hosting environment: Development
+2022-05-25 08:55:05.784 +04:30 [INF] Content root path: D:\Projects\telegram\BotApi\GroupManager\GroupManager
+2022-05-25 08:55:11.520 +04:30 [ERR] OnUpdate
+Telegram.Bot.Exceptions.ApiRequestException: Bad Request: message is not modified: specified new message content and reply markup are exactly the same as a current content and reply markup of the message
+   at Telegram.Bot.TelegramBotClient.MakeRequestAsync[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at Telegram.Bot.TelegramBotClientExtensions.EditMessageTextAsync(ITelegramBotClient botClient, ChatId chatId, Int32 messageId, String text, Nullable`1 parseMode, IEnumerable`1 entities, Nullable`1 disableWebPagePreview, InlineKeyboardMarkup replyMarkup, CancellationToken cancellationToken)
+   at GroupManager.Application.Handlers.CallBackHandler.AdminCallbacksAsync(CallbackQuery callback, IReadOnlyList`1 data, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 74
+   at GroupManager.Application.Handlers.CallBackHandler.InitHandlerAsync(CallbackQuery callback, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Handlers\CallBackHandler.cs:line 33
+   at GroupManager.Application.Services.UpdateService.OnUpdate(ITelegramBotClient client, Update update, CancellationToken ct) in D:\Projects\telegram\BotApi\GroupManager\GroupManager\Application\Services\UpdateService.cs:line 80

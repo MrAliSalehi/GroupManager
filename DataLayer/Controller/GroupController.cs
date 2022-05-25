@@ -27,7 +27,25 @@ public struct GroupController
         try
         {
             await using var db = new ManagerContext();
-            return await db.Groups.FirstOrDefaultAsync(p => p.GroupId == groupId, ct);
+            return await db.Groups.FirstOrDefaultAsync(p => p.GroupId == groupId, ct).ConfigureAwait(false);
+
+        }
+        catch (Exception e)
+        {
+            Log.Error(e, "GetGroupByIdAsync");
+            return null;
+        }
+    }
+
+    public static async ValueTask<Group?> GetGroupByIdWithAdminsAsync(long groupId, CancellationToken ct = default)
+    {
+        try
+        {
+            await using var db = new ManagerContext();
+            return await db.Groups
+                .Include(x => x.Admins)
+                .FirstOrDefaultAsync(p => p.GroupId == groupId, ct)
+                .ConfigureAwait(false);
 
         }
         catch (Exception e)

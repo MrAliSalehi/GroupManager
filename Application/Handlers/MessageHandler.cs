@@ -1,6 +1,7 @@
 ﻿using GroupManager.Application.Commands;
 using GroupManager.Application.Contracts;
 using GroupManager.DataLayer.Controller;
+using GroupManager.DataLayer.Models;
 using Telegram.Bot;
 using Telegram.Bot.Types;
 
@@ -26,30 +27,26 @@ public class MessageHandler : HandlerBase
         if (message.Chat.Id == message.From.Id)
             return;
 
-
         try
         {
-
-
             if (RegPatterns.Is.AdminBotCommand(message.Text))
-                await AdminCommandsAsync(message, ct);
+                await AdminCommandsAsync(message, ct).ConfigureAwait(false);
 
             if (RegPatterns.Is.MemberBotCommand(message.Text))
-                await MemberCommandsAsync(message, ct);
+                await MemberCommandsAsync(message, ct).ConfigureAwait(false);
 
-            var group = await GroupController.GetGroupByIdIncludeChannelAsync(message.Chat.Id, ct);
+            var group = await GroupController.GetGroupByIdIncludeChannelAsync(message.Chat.Id, ct).ConfigureAwait(false);
             if (group is null)
                 return;
 
-            await UserController.TryAddUserAsync(message.From.Id, ct);
+            await UserController.TryAddUserAsync(message.From.Id, ct).ConfigureAwait(false);
 
-            await _groupCommands.HandleGroupAsync(message, group, ct);
+            await _groupCommands.HandleGroupAsync(message, group, ct).ConfigureAwait(false);
         }
         catch (Exception e)
         {
             Log.Error(e, nameof(InitHandlerAsync));
         }
-
     }
 
     private async Task AdminCommandsAsync(Message message, CancellationToken ct)
@@ -57,17 +54,32 @@ public class MessageHandler : HandlerBase
         if (message.From is null)
             return;
 
-        if (!ManagerConfig.Admins.Contains(message.From.Id))
-        {
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
-            return;
-        }
 
         var command = RegPatterns.Get.AdminBotCommand(message.Text);
         if (command is null)
             return;
 
-        var group = await GroupController.GetGroupByIdAsync(message.Chat.Id, ct);
+        var group = await GroupController.GetGroupByIdWithAdminsAsync(message.Chat.Id, ct).ConfigureAwait(false);
+
+        if (!(group?.Admins.Any(x => x.UserId == message.From.Id) ?? false) && !ManagerConfig.Admins.Contains(message.From.Id))
+        {
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            return;
+        }
+
+        if (ManagerConfig.Admins.Contains(message.From.Id))
+        {
+            var baseAdminResponse = command.Value.Replace("!!", "") switch
+            {
+                "remove gp" => _adminBotCommands.RemoveGroupAsync(message, ct),
+                "add gp" => _adminBotCommands.AddGroupAsync(message, ct),
+                "admins" => _adminBotCommands.AdminListAsync(message, ct),
+                { } x when (x.StartsWith("set admin")) => _adminBotCommands.SetAdminAsync(message, ct),
+                { } x when (x.StartsWith("rem admin")) => _adminBotCommands.RemoveAdminAsync(message, ct),
+                _ => Task.CompletedTask
+            };
+            await baseAdminResponse.ConfigureAwait(false);
+        }
 
         _adminBotCommands.CurrentGroup = group;
 
@@ -76,9 +88,6 @@ public class MessageHandler : HandlerBase
             "help" => _adminBotCommands.HelpAsync(message, ct),
             "sett" => _adminBotCommands.SettingAsync(message, ct),
             "is active" => _adminBotCommands.IsActiveAsync(message, ct),
-
-            "remove gp" => _adminBotCommands.RemoveGroupAsync(message, ct),
-            "add gp" => _adminBotCommands.AddGroupAsync(message, ct),
 
             "enable welcome" => _adminBotCommands.EnableWelcomeAsync(message, ct),
             "disable welcome" => _adminBotCommands.DisableWelcomeAsync(message, ct),
@@ -124,9 +133,10 @@ public class MessageHandler : HandlerBase
             { } x when (x.StartsWith("set lang")) => _adminBotCommands.SetLanguageAsync(message, ct),
             "enable lang" => _adminBotCommands.EnableLanguageLimitAsync(message, ct),
             "disable lang" => _adminBotCommands.DisableLanguageLimitAsync(message, ct),
+
             _ => Task.CompletedTask
         };
-        await response;
+        await response.ConfigureAwait(false);
     }
 
     private async Task MemberCommandsAsync(Message message, CancellationToken ct)
@@ -141,7 +151,7 @@ public class MessageHandler : HandlerBase
             "ban me" => _memberBotCommands.BenMeAsync(message, ct),
             _ => Task.CompletedTask
         };
-        await response;
+        await response.ConfigureAwait(false);
     }
 
 }

@@ -6,22 +6,29 @@ public struct RegPatterns
 {
     private static readonly Regex PublicLinkRegex =
         new(@"(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})",
-            RegexOptions.Compiled | RegexOptions.Multiline | RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(600));
+            RegexOptions.Compiled | RegexOptions.IgnoreCase, TimeSpan.FromMilliseconds(600));
 
     private static readonly Regex TelegramLinkRegex = new(@"(t|telesco|telegram)\.(me|dog|pe)\/(.+)",
         RegexOptions.Compiled | RegexOptions.Multiline, TimeSpan.FromSeconds(1));
 
     private static readonly Regex IdRegex = new(@"^@\w{4,}", RegexOptions.Compiled | RegexOptions.Multiline,
         TimeSpan.FromMilliseconds(300));
+
     private static readonly Regex HashTagRegex = new(@"^#[a-z-0-9_]+", RegexOptions.Compiled | RegexOptions.Multiline,
         TimeSpan.FromMilliseconds(300));
 
     private static readonly Regex MemberBotCommandRegex = new(@"^!.+", RegexOptions.Compiled, TimeSpan.FromSeconds(1));
+
     private static readonly Regex AdminBotCommandRegex = new(@"^!!.+", RegexOptions.Compiled, TimeSpan.FromSeconds(1));
+
     private static readonly Regex MessageLimitCommandRegex = new(@"!!set ml\s+(?<count>\d+)", RegexOptions.Compiled, TimeSpan.FromMilliseconds(300));
+
     private static readonly Regex MuteUserCommandRegex = new(@"!!mute\s+(?<userId>\d+)", RegexOptions.Compiled, TimeSpan.FromMilliseconds(300));
+
+    private static readonly Regex PublicUserIdRequireRegex = new(@"!!.+\s+(?<userId>\d+)", RegexOptions.Compiled, TimeSpan.FromMilliseconds(300));
+
     private static readonly Regex BaseCommandRegex = new(@"(?<=[-{1,2}|\/])(?<name>[a-zA-Z0-9]*)[ |:|""]*(?<value>[\w|.|?|=|&|+| |:|\/|\\]*)(?=[ |""]|$)",
-        RegexOptions.Multiline | RegexOptions.IgnoreCase | RegexOptions.Compiled, TimeSpan.FromSeconds(2));
+         RegexOptions.IgnoreCase | RegexOptions.Compiled, TimeSpan.FromSeconds(2));
 
     private static readonly Regex SetTbmCommandRegex = new(@"!!set tbm\s+-from\s+(?<from>\d+:\d+\s+\w{2})\s+-until\s+(?<until>\d+:\d+\s+\w{2})",
             RegexOptions.Compiled | RegexOptions.IgnoreCase, TimeSpan.FromSeconds(1));
@@ -39,7 +46,6 @@ public struct RegPatterns
         {
             return message is not null && MemberBotCommandRegex.IsMatch(message);
         }
-
         public static bool AdminBotCommand(string? message)
         {
             return message is not null && AdminBotCommandRegex.IsMatch(message);
@@ -51,6 +57,8 @@ public struct RegPatterns
         public static Match? TbmData(string? message) => message is null ? null : SetTbmCommandRegex.Match(message);
 
         public static Match? MuteUserData(string? message) => message is null ? null : MuteUserCommandRegex.Match(message);
+
+        public static Match? GetUserIdData(string? message) => message is null ? null : PublicUserIdRequireRegex.Match(message);
 
         public static Match? MessageLimitData(string? message) => message is null ? null : MessageLimitCommandRegex.Match(message);
 

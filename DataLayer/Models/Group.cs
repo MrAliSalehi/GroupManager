@@ -54,5 +54,6 @@ namespace GroupManager.DataLayer.Models
         public bool FilterPublicLink { get; set; }
         public bool FilterHashTag { get; set; }
         public bool FilterId { get; set; }
+        public virtual ICollection<Admin> Admins { get; set; }
     }
 }

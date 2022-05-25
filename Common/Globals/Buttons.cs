@@ -153,14 +153,27 @@ public struct InlineButtons
         {
             public static InlineKeyboardMarkup GetAntiLinkMenu(Group group)
             {
-                var filterTelLink = group.FilterTelLink ? ConstData.TrueEmoji : ConstData.FalseEmoji;
-                var filterPubLinks = group.FilterPublicLink ? ConstData.TrueEmoji : ConstData.FalseEmoji;
-                var filterId = group.FilterId ? ConstData.TrueEmoji : ConstData.FalseEmoji;
-                var filterTag = group.FilterHashTag ? ConstData.TrueEmoji : ConstData.FalseEmoji;
-                ChangeButtonValue("Tel", AntiLink, p => p.Text = $"Tel {filterTelLink}");
-                ChangeButtonValue("public", AntiLink, p => p.Text = $"public {filterPubLinks}");
-                ChangeButtonValue("ID", AntiLink, p => p.Text = $"ID {filterId}");
-                ChangeButtonValue("Tag", AntiLink, p => p.Text = $"Tag {filterTag}");
+                ChangeButtonValue("Tel", AntiLink, p =>
+                {
+                    var filterTelLink = group.FilterTelLink ? ConstData.TrueEmoji : ConstData.FalseEmoji;
+                    p.Text = $"Tel {filterTelLink}";
+                });
+                ChangeButtonValue("public", AntiLink, p =>
+                {
+                    var filterPubLinks = group.FilterPublicLink ? ConstData.TrueEmoji : ConstData.FalseEmoji;
+                    p.Text = $"public {filterPubLinks}";
+                });
+                ChangeButtonValue("ID", AntiLink, p =>
+                {
+                    var filterId = group.FilterId ? ConstData.TrueEmoji : ConstData.FalseEmoji;
+                    p.Text = $"ID {filterId}";
+                });
+                ChangeButtonValue("Tag", AntiLink, p =>
+                {
+                    var filterTag = group.FilterHashTag ? ConstData.TrueEmoji : ConstData.FalseEmoji;
+                    p.Text = $"Tag {filterTag}";
+                });
+
                 return AntiLink;
             }
             public static InlineKeyboardMarkup GetMenu(Group group)
@@ -168,13 +181,38 @@ public struct InlineButtons
                 var messageLimitStatus = group.EnableMessageLimitPerUser ? ConstData.TrueEmoji : ConstData.FalseEmoji;
                 GeneralSetting.InlineKeyboard.First().First().Text = $"Message Limit {messageLimitStatus}";
 
-                var antiJoin = group.AntiJoin ? ConstData.TrueEmoji : ConstData.FalseEmoji;
-                var antiBot = group.AntiBot ? ConstData.TrueEmoji : ConstData.FalseEmoji;
-                var antiFor = group.AntiForward ? ConstData.TrueEmoji : ConstData.FalseEmoji;
 
-                ChangeButtonValue("Anti Join", GeneralSetting, button => button.Text = $"Anti Join {antiJoin}");
-                ChangeButtonValue("Anti Bot", GeneralSetting, button => button.Text = $"Anti Bot {antiBot}");
-                ChangeButtonValue("Anti Forward", GeneralSetting, button => button.Text = $"Anti Forward {antiFor}");
+                ChangeButtonValue("Anti Join", GeneralSetting, button =>
+                {
+                    var antiJoin = group.AntiJoin ? ConstData.TrueEmoji : ConstData.FalseEmoji;
+                    button.Text = $"Anti Join {antiJoin}";
+                });
+                ChangeButtonValue("Anti Bot", GeneralSetting, button =>
+                {
+                    var antiBot = group.AntiBot ? ConstData.TrueEmoji : ConstData.FalseEmoji;
+                    button.Text = $"Anti Bot {antiBot}";
+                });
+                ChangeButtonValue("Anti Forward", GeneralSetting, button =>
+                {
+                    var antiFor = group.AntiForward ? ConstData.TrueEmoji : ConstData.FalseEmoji;
+                    button.Text = $"Anti Forward {antiFor}";
+                });
+
+                ChangeButtonValue("Welcome", GeneralSetting, p =>
+                {
+                    var welcome = group.SayWelcome ? ConstData.TrueEmoji : ConstData.FalseEmoji;
+                    p.Text = $"Welcome {welcome}";
+                });
+                ChangeButtonValue("Force Join", GeneralSetting, p =>
+                {
+                    var forceJoin = group.ForceJoin ? ConstData.TrueEmoji : ConstData.FalseEmoji;
+                    p.Text = $"Force Join {forceJoin}";
+                });
+                ChangeButtonValue("Message Size Limit", GeneralSetting, p =>
+                {
+                    var messageLimit = group.LimitMessageSize ? ConstData.TrueEmoji : ConstData.FalseEmoji;
+                    p.Text = $"Message Size Limit {messageLimit}";
+                });
                 return GeneralSetting;
             }
             private static readonly InlineKeyboardMarkup GeneralSetting = new(new[]
@@ -196,6 +234,18 @@ public struct InlineButtons
                 new []
                 {
                     InlineKeyboardButton.WithCallbackData("Anti Link",$"{nameof(Admin)}:{nameof(General)}:{nameof(AntiLink)}"),
+                },
+                new []
+                {
+                    InlineKeyboardButton.WithCallbackData("Welcome ",$"{nameof(Admin)}:{nameof(General)}:{ConstData.Welcome}"),
+                },
+                new []
+                {
+                    InlineKeyboardButton.WithCallbackData("Force Join ",$"{nameof(Admin)}:{nameof(General)}:{ConstData.ForceJoin}"),
+                },
+                new []
+                {
+                    InlineKeyboardButton.WithCallbackData("Message Size Limit ",$"{nameof(Admin)}:{nameof(General)}:{ConstData.MessageSizeLimit}"),
                 },
                 new []
                 {
@@ -278,7 +328,9 @@ public struct ConstData
     public const string PublicFilterLink = "pfl";
     public const string FilterId = "fi";
     public const string FilterTag = "ft";
-
+    public const string Welcome = "wl";
+    public const string ForceJoin = "fj";
+    public const string MessageSizeLimit = "msl";
 
     public const char TrueEmoji = '✅';
     public const char FalseEmoji = '❌';

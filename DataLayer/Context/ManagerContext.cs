@@ -10,6 +10,7 @@ public class ManagerContext : DbContext
     public virtual DbSet<Group> Groups { get; set; } = null!;
     public virtual DbSet<User> Users { get; set; } = null!;
     public virtual DbSet<FloodSettings> FloodSettings { get; set; }
+    public virtual DbSet<Admin> Admins { get; set; }
 
     private readonly ILoggerFactory _loggerFactory;
     private static readonly string Path = Globals.ConnectionString("MainDb");
