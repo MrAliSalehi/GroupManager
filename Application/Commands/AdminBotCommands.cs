@@ -41,13 +41,13 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
         if (CurrentGroup is null)
         {
             await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Registered For Bot",
-                cancellationToken: ct).ConfigureAwait(false);
+                cancellationToken: ct);
             return;
         }
 
-        var removeGroupResult = await GroupController.RemoveGroupAsync(message.Chat.Id, ct).ConfigureAwait(false);
-        var removeForceChannelsResult = await ForceJoinController.RemoveAllRelatedChannelsAsync(message.Chat.Id, ct).ConfigureAwait(false);
-        var removeFloodSettingsResult = await FloodController.RemoveSettingsAsync(message.Chat.Id, ct).ConfigureAwait(false);
+        var removeGroupResult = await GroupController.RemoveGroupAsync(message.Chat.Id, ct);
+        var removeForceChannelsResult = await ForceJoinController.RemoveAllRelatedChannelsAsync(message.Chat.Id, ct);
+        var removeFloodSettingsResult = await FloodController.RemoveSettingsAsync(message.Chat.Id, ct);
         var removeGroupResponse = removeGroupResult switch
         {
             0 => "Group Has Been Removed",
@@ -68,24 +68,24 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
             1 => "Flood Setting Does not Exists",
             _ => "Cant Get Any FloodSetting"
         };
-        await Client.SendTextMessageAsync(message.Chat.Id, $"{removeGroupResponse}\n{removeForceChannelsResponse}\n{removeSettingResponse}", cancellationToken: ct).ConfigureAwait(false);
+        await Client.SendTextMessageAsync(message.Chat.Id, $"{removeGroupResponse}\n{removeForceChannelsResponse}\n{removeSettingResponse}", cancellationToken: ct);
     }
     [Describer("!!add gp", "Add Group To List!", null)]
     internal async Task AddGroupAsync(Message message, CancellationToken ct = default)
     {
         if (CurrentGroup is not null)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Already added", cancellationToken: ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Already added", cancellationToken: ct);
             return;
         }
 
-        var addedGp = await GroupController.AddGroupAsync(message.Chat.Id, ct).ConfigureAwait(false);
+        var addedGp = await GroupController.AddGroupAsync(message.Chat.Id, ct);
         if (addedGp is null)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "Cant Add Group Right Now", cancellationToken: ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Cant Add Group Right Now", cancellationToken: ct);
             return;
         }
-        await Client.SendTextMessageAsync(message.Chat.Id, "Group Has Been Added To Bot", cancellationToken: ct).ConfigureAwait(false);
+        await Client.SendTextMessageAsync(message.Chat.Id, "Group Has Been Added To Bot", cancellationToken: ct);
     }
     [Describer("!!sett", "Open Inline Panel For Settings", null)]
     internal async Task SettingAsync(Message message, CancellationToken ct = default)
@@ -93,8 +93,8 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
         if (message.From is null)
             return;
         await Client.SendTextMessageAsync(message.Chat.Id, ConstData.MessageOfMainMenu, replyMarkup: InlineButtons.Admin.SettingMenu,
-            cancellationToken: ct, replyToMessageId: message.MessageId).ConfigureAwait(false);
-        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            cancellationToken: ct, replyToMessageId: message.MessageId);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
     }
     [Describer("!!set welcome", "set Welcome Message", "TEXT")]
     internal async Task SetWelcomeAsync(Message message, CancellationToken ct = default)
@@ -106,15 +106,15 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
             {
                 var messageToUpdate = message.Text?.Replace("!!set welcome", "");
                 p.WelcomeMessage = messageToUpdate;
-            }, message.Chat.Id, ct).ConfigureAwait(false);
+            }, message.Chat.Id, ct);
             if (group is null)
             {
-                await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", cancellationToken: ct).ConfigureAwait(false);
+                await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", cancellationToken: ct);
                 return;
             }
 
-            await Client.SendTextMessageAsync(message.Chat.Id, $"Welcome Message Set To :\n({group.WelcomeMessage})", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, $"Welcome Message Set To :\n({group.WelcomeMessage})", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
         }
         catch (Exception e)
         {
@@ -129,17 +129,17 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
             var group = await GroupController.UpdateGroupAsync(p =>
             {
                 p.SayWelcome = false;
-            }, message.Chat.Id, ct).ConfigureAwait(false);
+            }, message.Chat.Id, ct);
             if (group is null)
             {
-                await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-                await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+                await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+                await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
 
                 return;
             }
 
-            await Client.SendTextMessageAsync(message.Chat.Id, "Welcome Message Disabled!", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Welcome Message Disabled!", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
 
         }
         catch (Exception e)
@@ -157,16 +157,16 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
             {
                 p.SayWelcome = true;
 
-            }, message.Chat.Id, ct).ConfigureAwait(false);
+            }, message.Chat.Id, ct);
             if (group is null)
             {
-                await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-                await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+                await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+                await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
 
                 return;
             }
-            await Client.SendTextMessageAsync(message.Chat.Id, "Welcome Message Enabled!", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Welcome Message Enabled!", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
 
         }
         catch (Exception e)
@@ -192,9 +192,9 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
             if (userIdFromCommand is 0)
                 return;
 
-            await Client.UnbanChatMemberAsync(message.Chat.Id, userIdFromCommand, true, ct).ConfigureAwait(false);
-            await Client.SendTextMessageAsync(message.Chat.Id, $"User {userIdFromCommand} Has Been Unbanned", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.UnbanChatMemberAsync(message.Chat.Id, userIdFromCommand, true, ct);
+            await Client.SendTextMessageAsync(message.Chat.Id, $"User {userIdFromCommand} Has Been Unbanned", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
         }
         catch (Exception e)
         {
@@ -218,9 +218,9 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
             if (userIdFromCommand is 0)
                 return;
 
-            await Client.BanChatMemberAsync(message.Chat.Id, userIdFromCommand, cancellationToken: ct).ConfigureAwait(false);
-            await Client.SendTextMessageAsync(message.Chat.Id, $"User {userIdFromCommand} Has Been banned", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.BanChatMemberAsync(message.Chat.Id, userIdFromCommand, cancellationToken: ct);
+            await Client.SendTextMessageAsync(message.Chat.Id, $"User {userIdFromCommand} Has Been banned", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
         }
         catch (Exception e)
         {
@@ -232,16 +232,16 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
     {
         try
         {
-            var group = await GroupController.UpdateGroupAsync(p => { p.ForceJoin = true; }, message.Chat.Id, ct).ConfigureAwait(false);
+            var group = await GroupController.UpdateGroupAsync(p => { p.ForceJoin = true; }, message.Chat.Id, ct);
 
             if (group is null)
             {
-                await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-                await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+                await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+                await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
                 return;
             }
-            await Client.SendTextMessageAsync(message.Chat.Id, "Force Join Enabled", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Force Join Enabled", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
 
         }
         catch (Exception e)
@@ -254,16 +254,16 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
     {
         try
         {
-            var group = await GroupController.UpdateGroupAsync(p => { p.ForceJoin = false; }, message.Chat.Id, ct).ConfigureAwait(false);
+            var group = await GroupController.UpdateGroupAsync(p => { p.ForceJoin = false; }, message.Chat.Id, ct);
 
             if (group is null)
             {
-                await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-                await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+                await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+                await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
                 return;
             }
-            await Client.SendTextMessageAsync(message.Chat.Id, "Force Join Disabled", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Force Join Disabled", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
 
         }
         catch (Exception e)
@@ -279,23 +279,23 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
             var channelId = message.Text?.Replace("!!add force", "");
             if (channelId is null or "" or " ")
             {
-                await Client.SendTextMessageAsync(message.Chat.Id, "Channel Id Is Wrong!", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-                await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+                await Client.SendTextMessageAsync(message.Chat.Id, "Channel Id Is Wrong!", replyToMessageId: message.MessageId, cancellationToken: ct);
+                await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
                 return;
             }
 
             if (CurrentGroup is null)
             {
-                await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-                await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+                await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+                await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
                 return;
             }
 
-            await ForceJoinController.AddChannelAsync(CurrentGroup.Id, channelId.Trim(), ct).ConfigureAwait(false);
+            await ForceJoinController.AddChannelAsync(CurrentGroup.Id, channelId.Trim(), ct);
 
 
-            await Client.SendTextMessageAsync(message.Chat.Id, $"Channel @{channelId?.Replace("@", "")} Added To Force Join List.", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, $"Channel @{channelId?.Replace("@", "")} Added To Force Join List.", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
 
         }
         catch (Exception e)
@@ -311,18 +311,18 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
             var channelId = message.Text?.Replace("!!add force", "");
             if (channelId is null or "" or " ")
             {
-                await Client.SendTextMessageAsync(message.Chat.Id, "Channel Id Is Wrong!", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-                await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+                await Client.SendTextMessageAsync(message.Chat.Id, "Channel Id Is Wrong!", replyToMessageId: message.MessageId, cancellationToken: ct);
+                await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
                 return;
             }
 
             if (CurrentGroup is null)
             {
-                await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-                await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+                await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+                await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
                 return;
             }
-            var result = await ForceJoinController.RemoveChannelAsync(CurrentGroup.Id, channelId.Replace("!!rem force ", ""), ct).ConfigureAwait(false);
+            var result = await ForceJoinController.RemoveChannelAsync(CurrentGroup.Id, channelId.Replace("!!rem force ", ""), ct);
             var outputText = result switch
             {
                 0 => "Channel Has been Removed",
@@ -330,8 +330,8 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
                 2 => "There Is Some Issues during Remove Channel Operation",
                 _ => "-",
             };
-            await Client.SendTextMessageAsync(message.Chat.Id, outputText, replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, outputText, replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
 
         }
         catch (Exception e)
@@ -346,16 +346,16 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
         {
             if (CurrentGroup is null)
             {
-                await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-                await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+                await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+                await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
                 return;
             }
 
-            var channelsList = await ForceJoinController.GetAllChannelsAsync(CurrentGroup.Id, ct).ConfigureAwait(false);
+            var channelsList = await ForceJoinController.GetAllChannelsAsync(CurrentGroup.Id, ct);
             if (channelsList is null or { Count: 0 })
             {
-                await Client.SendTextMessageAsync(message.Chat.Id, "No Channel Found!", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-                await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+                await Client.SendTextMessageAsync(message.Chat.Id, "No Channel Found!", replyToMessageId: message.MessageId, cancellationToken: ct);
+                await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
                 return;
             }
 
@@ -365,7 +365,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
                 outputText += $"@{p.ChannelId}\n";
             });
             await Client.SendTextMessageAsync(message.Chat.Id, $"List Of All Force-Join-Channels:\n{outputText}",
-                cancellationToken: ct).ConfigureAwait(false);
+                cancellationToken: ct);
         }
         catch (Exception e)
         {
@@ -379,20 +379,20 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
         if (CurrentGroup is null)
         {
             await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated",
-                replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+                replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
         }
         try
         {
-            await Client.SetChatPermissionsAsync(message.Chat.Id, Globals.MutePermissions, ct).ConfigureAwait(false);
-            await Client.SendTextMessageAsync(message.Chat.Id, "Group Has been Muted", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
+            await Client.SetChatPermissionsAsync(message.Chat.Id, Globals.MutePermissions, ct);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Has been Muted", replyToMessageId: message.MessageId, cancellationToken: ct);
         }
         catch (Exception)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "Bot Doesn't Have Permissions To Do This\nOr Just Can Do it Right Now!", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Bot Doesn't Have Permissions To Do This\nOr Just Can Do it Right Now!", replyToMessageId: message.MessageId, cancellationToken: ct);
         }
-        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
 
     }
     [Describer("!!unmute all", "UnMute All Members Of Chat", null)]
@@ -402,23 +402,23 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
         if (CurrentGroup is null)
         {
             await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated",
-                replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+                replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
         }
 
         try
         {
-            var chat = await Client.GetChatAsync(message.Chat.Id, ct).ConfigureAwait(false);
+            var chat = await Client.GetChatAsync(message.Chat.Id, ct);
 
-            await Client.SetChatPermissionsAsync(message.Chat.Id, Globals.UnMutePermissions, ct).ConfigureAwait(false);
-            await Client.SendTextMessageAsync(message.Chat.Id, "Group Has been UnMuted", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
+            await Client.SetChatPermissionsAsync(message.Chat.Id, Globals.UnMutePermissions, ct);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Has been UnMuted", replyToMessageId: message.MessageId, cancellationToken: ct);
         }
         catch (Exception)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "Bot Doesn't Have Permissions To Do This\nOr Just Can Do it Right Now!", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Bot Doesn't Have Permissions To Do This\nOr Just Can Do it Right Now!", replyToMessageId: message.MessageId, cancellationToken: ct);
         }
-        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
 
     }
     [Describer("!!set tbm", "Set Time-Based-Mute For Group.\nThis Will Mute Group In Specified Time Period.", "-from:TIME=>12:43 PM\n-until=>14:12 PM")]
@@ -427,8 +427,8 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
         if (CurrentGroup is null)
         {
             await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated",
-                replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+                replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
         }
 
@@ -447,20 +447,20 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
         {
             p.TimeBasedMuteFromTime = fromTime;
             p.TimeBasedMuteUntilTime = untilTime;
-        }, message.Chat.Id, ct).ConfigureAwait(false);
+        }, message.Chat.Id, ct);
         await Client.SendTextMessageAsync(message.Chat.Id,
             $"Time-Based-Mute has been set to:\n<b>[{fromTime.TimeOfDay.Humanize(3)}]</b> until <b>[{untilTime.TimeOfDay.Humanize(3)}]</b>." +
             $"\nGroup Will Be muted for <b>[{muteTime.Humanize(3)}]</b>", ParseMode.Html,
-            replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            replyToMessageId: message.MessageId, cancellationToken: ct);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
     }
     [Describer("!!enable tbm", "Enable Time-Based-Mute.", null)]
     internal async Task EnableTimeBasedMuteAsync(Message message, CancellationToken ct = default)
     {
         if (CurrentGroup is null)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
         }
 
@@ -472,7 +472,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
             p.TimeBasedMute = true;
             p.TimeBasedMuteFuncHashId = muteHashId;
             p.TimeBasedUnmuteFuncHashId = unmuteHashId;
-        }, message.Chat.Id, ct).ConfigureAwait(false);
+        }, message.Chat.Id, ct);
 
 
         var fromHour = CurrentGroup.TimeBasedMuteFromTime.Hour;
@@ -494,8 +494,8 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
         _manager.AddOrUpdate<TimeBasedMute>(unmuteHashId, (tbm) => tbm.TimeBasedUnMuteAsync(), untilCron, TimeZoneInfo.Local);
 
 
-        await Client.SendTextMessageAsync(message.Chat.Id, "Time-Based-Mute Activated", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+        await Client.SendTextMessageAsync(message.Chat.Id, "Time-Based-Mute Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
     }
     [Describer("!!disable tbm", "Disable Time-Based-Mute.", null)]
     internal async Task DisableTimeBasedMuteAsync(Message message, CancellationToken ct = default)
@@ -503,8 +503,8 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
         if (CurrentGroup is null)
         {
             await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated",
-                replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+                replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
         }
 
@@ -518,10 +518,10 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
             p.TimeBasedMute = false;
             p.TimeBasedMuteFuncHashId = string.Empty;
             p.TimeBasedUnmuteFuncHashId = string.Empty;
-        }, message.Chat.Id, ct).ConfigureAwait(false);
+        }, message.Chat.Id, ct);
 
-        await Client.SendTextMessageAsync(message.Chat.Id, "Time-Based-Mute Deactivated", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+        await Client.SendTextMessageAsync(message.Chat.Id, "Time-Based-Mute Deactivated", replyToMessageId: message.MessageId, cancellationToken: ct);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
     }
     [Describer("!!monitor tbm", "This Is For Developer Monitoring!\nDon't Touch It!", "-s Scheduled\n-q Queues")]
     internal async Task MonitorTbmAsync(Message message, CancellationToken ct = default)
@@ -587,15 +587,15 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
             }
         }
     SkipQueues:
-        await Client.SendTextMessageAsync(message.Chat.Id, data, cancellationToken: ct).ConfigureAwait(false);
+        await Client.SendTextMessageAsync(message.Chat.Id, data, cancellationToken: ct);
     }
     [Describer("!!set ml", "Set Message Count For Each user Per Day.\nAfter This Amount User Will Be Muted", "COUNT")]
     internal async Task SetMessageLimitPerUserDayAsync(Message message, CancellationToken ct = default)
     {
         if (CurrentGroup is null)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
         }
 
@@ -608,46 +608,46 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
         var updatedGroup = await GroupController.UpdateGroupAsync(p =>
         {
             p.MaxMessagePerUser = count;
-        }, CurrentGroup.GroupId, ct).ConfigureAwait(false);
+        }, CurrentGroup.GroupId, ct);
         if (updatedGroup is null)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "Cant Updated Group Right Now!", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Cant Updated Group Right Now!", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
         }
-        await Client.SendTextMessageAsync(message.Chat.Id, $"Max Message Per User has been Set to:({updatedGroup.MaxMessagePerUser})", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+        await Client.SendTextMessageAsync(message.Chat.Id, $"Max Message Per User has been Set to:({updatedGroup.MaxMessagePerUser})", replyToMessageId: message.MessageId, cancellationToken: ct);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
     }
     [Describer("!!enable ml", "Enable Message Count Limit.", null)]
     internal async Task EnableMessageLimitAsync(Message message, CancellationToken ct = default)
     {
         if (CurrentGroup is null)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
         }
 
-        await SetMessageLimitStatusAsync(message, true, ct).ConfigureAwait(false);
+        await SetMessageLimitStatusAsync(message, true, ct);
     }
     [Describer("!!disable ml", "Disable Message Count Limit.", null)]
     internal async Task DisableMessageLimitAsync(Message message, CancellationToken ct = default)
     {
         if (CurrentGroup is null)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
         }
-        await SetMessageLimitStatusAsync(message, false, ct).ConfigureAwait(false);
+        await SetMessageLimitStatusAsync(message, false, ct);
     }
     [Describer("!!mute", "Mute User With Specified Id Or Replied.", "USERID | Replay")]
     internal async Task MuteUserAsync(Message message, CancellationToken ct = default)
     {
         if (CurrentGroup is null)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
         }
 
@@ -655,12 +655,12 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
 
         if (userId is 0)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "User Id Is Not Specified!", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "User Id Is Not Specified!", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
         }
 
-        await SetUserPermissionStatusAsync(userId, message.Chat.Id, true, ct).ConfigureAwait(false);
+        await SetUserPermissionStatusAsync(userId, message.Chat.Id, true, ct);
 
     }
     [Describer("!!unmute", "UnMute User With Specified Id Or Replied.", "USERID | Replay")]
@@ -668,8 +668,8 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
     {
         if (CurrentGroup is null)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
         }
 
@@ -677,55 +677,55 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
 
         if (userId is 0)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "User Id Is Not Specified!", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "User Id Is Not Specified!", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
         }
 
-        await SetUserPermissionStatusAsync(userId, message.Chat.Id, false, ct).ConfigureAwait(false);
+        await SetUserPermissionStatusAsync(userId, message.Chat.Id, false, ct);
     }
     [Describer("!!enable flood", "Enable Anti-Flood System With Default Setups.", null)]
     internal async Task EnableFloodAsync(Message message, CancellationToken ct = default)
     {
         if (CurrentGroup is null)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
         }
 
 
-        var setting = await FloodController.AddFloodSettingAsync(CurrentGroup.Id, Globals.DefaultFloodSettings, ct).ConfigureAwait(false);
+        var setting = await FloodController.AddFloodSettingAsync(CurrentGroup.Id, Globals.DefaultFloodSettings, ct);
         if (setting is null)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "Cant Enable Anti Flood", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Cant Enable Anti Flood", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
         }
 
         try
         {
             AntiFloodService.Settings.Add(setting);
-            await Client.SendTextMessageAsync(message.Chat.Id, "Anti Flood Added To Bot", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Anti Flood Added To Bot", replyToMessageId: message.MessageId, cancellationToken: ct);
         }
         catch (Exception)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "Cant Store In-Memory Anti Flood", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Cant Store In-Memory Anti Flood", replyToMessageId: message.MessageId, cancellationToken: ct);
         }
 
-        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
     }
     [Describer("!!disable flood", "Disable Anti-Flood System.", null)]
     internal async Task DisableFloodAsync(Message message, CancellationToken ct = default)
     {
         if (CurrentGroup is null)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
         }
 
-        var result = await FloodController.RemoveSettingsAsync(message.Chat.Id, ct).ConfigureAwait(false);
+        var result = await FloodController.RemoveSettingsAsync(message.Chat.Id, ct);
         var response = result switch
         {
             0 => "Flood Has been Removed",
@@ -750,8 +750,8 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
             -1 => "Cant Clear memory Now",
             _ => "Memory Has Been Cleared"
         };
-        await Client.SendTextMessageAsync(message.Chat.Id, $"Flood Status:\n{response}\nMemory Status:\nGroup:{memoryResponse}\nSetting:{memoryRemoveSetting}", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+        await Client.SendTextMessageAsync(message.Chat.Id, $"Flood Status:\n{response}\nMemory Status:\nGroup:{memoryResponse}\nSetting:{memoryRemoveSetting}", replyToMessageId: message.MessageId, cancellationToken: ct);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
     }
     [Describer("!!set flood", "Configure Anti-Flood System.", "--mute:This Will Mute User On Detection.\n--ban:This Will Ban User On Detection.\n" +
                                                             "--noban,--nomute : Reversed The --ban And --mute Commands.\n-i Seconds For Allowed Message Count[Default Is 10].\n" +
@@ -764,19 +764,19 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
     {
         if (CurrentGroup is null)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
         }
 
         var regex = RegPatterns.Get.BaseCommandData(message.Text);
         if (regex is null)
             return;
-        var settings = await FloodController.GetFloodSettingAsync(CurrentGroup.Id, ct).ConfigureAwait(false);
+        var settings = await FloodController.GetFloodSettingAsync(CurrentGroup.Id, ct);
         if (settings is null)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "Flood Setting NotFound!", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Flood Setting NotFound!", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
 
         }
@@ -809,8 +809,8 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
                         var canParse = uint.TryParse(value, out var result);
                         if (!canParse)
                         {
-                            await Client.SendTextMessageAsync(message.Chat.Id, "Interval Value Is Not Valid!", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-                            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+                            await Client.SendTextMessageAsync(message.Chat.Id, "Interval Value Is Not Valid!", replyToMessageId: message.MessageId, cancellationToken: ct);
+                            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
                             return;
                         }
 
@@ -822,8 +822,8 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
                         var canParse = uint.TryParse(value, out var count);
                         if (!canParse)
                         {
-                            await Client.SendTextMessageAsync(message.Chat.Id, "Max Message Count Value Is Not Valid!", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-                            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+                            await Client.SendTextMessageAsync(message.Chat.Id, "Max Message Count Value Is Not Valid!", replyToMessageId: message.MessageId, cancellationToken: ct);
+                            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
                             return;
                         }
 
@@ -835,7 +835,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
                         var canParse = short.TryParse(value, out var dayTime);
                         if (!canParse)
                         {
-                            await Client.SendTextMessageAsync(message.Chat.Id, "Invalid Day Time!", cancellationToken: ct).ConfigureAwait(false);
+                            await Client.SendTextMessageAsync(message.Chat.Id, "Invalid Day Time!", cancellationToken: ct);
                             break;
                         }
 
@@ -847,7 +847,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
                         var canParse = short.TryParse(value, out var monthTime);
                         if (!canParse)
                         {
-                            await Client.SendTextMessageAsync(message.Chat.Id, "Invalid Month Time!", cancellationToken: ct).ConfigureAwait(false);
+                            await Client.SendTextMessageAsync(message.Chat.Id, "Invalid Month Time!", cancellationToken: ct);
                             break;
                         }
                         restrictTime = restrictTime.Add(TimeSpan.FromDays(monthTime * 30));
@@ -858,7 +858,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
                         var canParse = short.TryParse(value, out var hourTime);
                         if (!canParse)
                         {
-                            await Client.SendTextMessageAsync(message.Chat.Id, "Invalid Hour Time!", cancellationToken: ct).ConfigureAwait(false);
+                            await Client.SendTextMessageAsync(message.Chat.Id, "Invalid Hour Time!", cancellationToken: ct);
                             break;
                         }
                         restrictTime = restrictTime.Add(TimeSpan.FromHours(hourTime));
@@ -886,10 +886,10 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
             if (messageCount.HasValue)
                 p.MessageCountPerInterval = messageCount.Value;
 
-        }, CurrentGroup.Id, ct).ConfigureAwait(false);
-        await AntiFloodService.LoadAntiFloodGroupsAsync(ct).ConfigureAwait(false);
-        await Client.SendTextMessageAsync(message.Chat.Id, "Flood Settings Updated Updated", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+        }, CurrentGroup.Id, ct);
+        await AntiFloodService.LoadAntiFloodGroupsAsync(ct);
+        await Client.SendTextMessageAsync(message.Chat.Id, "Flood Settings Updated Updated", replyToMessageId: message.MessageId, cancellationToken: ct);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
 
     }
     [Describer("!!enable ms", "Enable Message Size Limit.", null)]
@@ -897,37 +897,37 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
     {
         if (CurrentGroup is null)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
         }
 
-        await GroupController.UpdateGroupAsync(p => p.LimitMessageSize = true, message.Chat.Id, ct).ConfigureAwait(false);
+        await GroupController.UpdateGroupAsync(p => p.LimitMessageSize = true, message.Chat.Id, ct);
 
-        await Client.SendTextMessageAsync(message.Chat.Id, "Message Size Enabled", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+        await Client.SendTextMessageAsync(message.Chat.Id, "Message Size Enabled", replyToMessageId: message.MessageId, cancellationToken: ct);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
     }
     [Describer("!!disable ms", "Disable Message Size Limit.", null)]
     internal async Task DisableMessageSizeLimitAsync(Message message, CancellationToken ct = default)
     {
         if (CurrentGroup is null)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
         }
-        await GroupController.UpdateGroupAsync(p => p.LimitMessageSize = false, message.Chat.Id, ct).ConfigureAwait(false);
+        await GroupController.UpdateGroupAsync(p => p.LimitMessageSize = false, message.Chat.Id, ct);
 
-        await Client.SendTextMessageAsync(message.Chat.Id, "Message Size Disabled", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+        await Client.SendTextMessageAsync(message.Chat.Id, "Message Size Disabled", replyToMessageId: message.MessageId, cancellationToken: ct);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
     }
     [Describer("!!set ms", "Set Message Size Limit!", "--line:Lines Of Size.\nThis Will Convert To Char.[Each Line ~= 50 Char].\n--char Count Of Chars")]
     internal async Task SetMessageSizeLimitAsync(Message message, CancellationToken ct = default)
     {
         if (CurrentGroup is null)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
         }
 
@@ -948,7 +948,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
                         var canParse = uint.TryParse(value, out var num);
                         if (!canParse)
                         {
-                            await Client.SendTextMessageAsync(message.Chat.Id, "Invalid -line Argument", cancellationToken: ct).ConfigureAwait(false);
+                            await Client.SendTextMessageAsync(message.Chat.Id, "Invalid -line Argument", cancellationToken: ct);
                             break;
                         }
 
@@ -961,7 +961,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
                         var canParse = uint.TryParse(value, out var num);
                         if (!canParse)
                         {
-                            await Client.SendTextMessageAsync(message.Chat.Id, "Invalid -line Argument", cancellationToken: ct).ConfigureAwait(false);
+                            await Client.SendTextMessageAsync(message.Chat.Id, "Invalid -line Argument", cancellationToken: ct);
                             break;
                         }
 
@@ -974,14 +974,14 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
 
         if (charCount is null or default(uint))
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "no valid for Char Count Found!", cancellationToken: ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "no valid for Char Count Found!", cancellationToken: ct);
             return;
         }
 
-        var result = await GroupController.UpdateGroupAsync(p => p.MaxMessageSize = charCount.Value, message.Chat.Id, ct).ConfigureAwait(false);
+        var result = await GroupController.UpdateGroupAsync(p => p.MaxMessageSize = charCount.Value, message.Chat.Id, ct);
 
         var response = result is null ? "Cant Update group Message Limit" : $" message Size Limit Updated To {charCount} Char.";
-        await Client.SendTextMessageAsync(message.Chat.Id, response, cancellationToken: ct).ConfigureAwait(false);
+        await Client.SendTextMessageAsync(message.Chat.Id, response, cancellationToken: ct);
 
     }
     [Describer("!!filter", "Filter Specified Words.\nThis Bot Has A Base-Default Filters For Bad Words.", "Word")]
@@ -989,8 +989,8 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
     {
         if (CurrentGroup is null)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
         }
         if (message.Text is null or "filter")
@@ -998,7 +998,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
 
         var data = message.Text.Replace("filter", "");
 
-        var result = await _textFilter.AddWordIfNotExistsAsync(data, ct).ConfigureAwait(false);
+        var result = await _textFilter.AddWordIfNotExistsAsync(data, ct);
 
         var response = result switch
         {
@@ -1006,22 +1006,22 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
             1 => "Word Added To Filters!",
             _ => "Cant Add Anything Right Now ):"
         };
-        await Client.SendTextMessageAsync(message.Chat.Id, response, cancellationToken: ct).ConfigureAwait(false);
+        await Client.SendTextMessageAsync(message.Chat.Id, response, cancellationToken: ct);
     }
     [Describer("!!help", "All Cli Commands", null)]
     internal async Task HelpAsync(Message message, CancellationToken ct = default)
     {
         if (CurrentGroup is null)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
         }
 
         var allCommands = Globals.Describers
             .Select(p => p.BuildParametersToString())
             .Aggregate("", (current, command) => current + (command + "\n"));
-        await Client.SendTextMessageAsync(message.Chat.Id, allCommands is "" or " " ? "Nothing Found" : allCommands, ParseMode.Html, cancellationToken: ct).ConfigureAwait(false);
+        await Client.SendTextMessageAsync(message.Chat.Id, allCommands is "" or " " ? "Nothing Found" : allCommands, ParseMode.Html, cancellationToken: ct);
     }
     [Describer("set media limit", "this will set your limitations for media such as (gif,video,sticker,photo)",
         "-g: GIF LIMIT\n-s: STICKER LIMIT\n-v: VIDEO LIMIT\n-p: PHOTO LIMIT\n" +
@@ -1030,8 +1030,8 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
     {
         if (CurrentGroup is null)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
         }
 
@@ -1054,7 +1054,7 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
             var canParseValue = uint.TryParse(value, out var num);
             if (!canParseValue)
             {
-                await Client.SendTextMessageAsync(message.Chat.Id, $"Invalid argument {value} given to {command}", cancellationToken: ct).ConfigureAwait(false);
+                await Client.SendTextMessageAsync(message.Chat.Id, $"Invalid argument {value} given to {command}", cancellationToken: ct);
                 continue;
             }
             switch (command)
@@ -1091,13 +1091,13 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
                 user.SentPhotos = 0;
                 user.SentStickers = 0;
                 user.SentVideos = 0;
-            }, ct).ConfigureAwait(false);
+            }, ct);
             var resetResponse = resetResult switch
             {
                 0 => "Users Has been updated",
                 _ => "Cant Update Users"
             };
-            await Client.SendTextMessageAsync(message.Chat.Id, resetResponse, replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, resetResponse, replyToMessageId: message.MessageId, cancellationToken: ct);
 
         }
         var result = await GroupController.UpdateGroupAsync(p =>
@@ -1114,31 +1114,31 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
             if (sticker is not 0)
                 p.StickerLimits = sticker.Value;
 
-        }, message.Chat.Id, ct).ConfigureAwait(false);
-        await MediaLimitService.ReLoadGroupsAsync(ct).ConfigureAwait(false);
+        }, message.Chat.Id, ct);
+        await MediaLimitService.ReLoadGroupsAsync(ct);
         var response = result is null ? "Cant Update Group Right Now" : "Limitations Of Group Updated";
-        await Client.SendTextMessageAsync(message.Chat.Id, response, replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+        await Client.SendTextMessageAsync(message.Chat.Id, response, replyToMessageId: message.MessageId, cancellationToken: ct);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
     }
     [Describer("!!enable media limit", "Enable Limitations For Media.", null)]
     internal async Task EnableMediaLimitAsync(Message message, CancellationToken ct)
     {
         if (CurrentGroup is null)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
         }
 
-        var result = await GroupController.UpdateGroupAsync(p => p.LimitMedia = true, message.Chat.Id, ct).ConfigureAwait(false);
+        var result = await GroupController.UpdateGroupAsync(p => p.LimitMedia = true, message.Chat.Id, ct);
         var response = result switch
         {
             null => "Cant Update Group Right Now",
             _ => "Media Limit Enabled"
         };
-        await MediaLimitService.ReLoadGroupsAsync(ct).ConfigureAwait(false);
-        await Client.SendTextMessageAsync(message.Chat.Id, response, replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+        await MediaLimitService.ReLoadGroupsAsync(ct);
+        await Client.SendTextMessageAsync(message.Chat.Id, response, replyToMessageId: message.MessageId, cancellationToken: ct);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
 
 
     }
@@ -1147,21 +1147,21 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
     {
         if (CurrentGroup is null)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
         }
 
-        var result = await GroupController.UpdateGroupAsync(p => p.LimitMedia = false, message.Chat.Id, ct).ConfigureAwait(false);
+        var result = await GroupController.UpdateGroupAsync(p => p.LimitMedia = false, message.Chat.Id, ct);
         var response = result switch
         {
             null => "Cant Update Group Right Now",
             _ => "Media Limit Disabled"
         };
-        await MediaLimitService.ReLoadGroupsAsync(ct).ConfigureAwait(false);
+        await MediaLimitService.ReLoadGroupsAsync(ct);
 
-        await Client.SendTextMessageAsync(message.Chat.Id, response, replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+        await Client.SendTextMessageAsync(message.Chat.Id, response, replyToMessageId: message.MessageId, cancellationToken: ct);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
 
 
     }
@@ -1171,8 +1171,8 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
         if (CurrentGroup is null)
         {
             await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated",
-                replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+                replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
         }
 
@@ -1184,40 +1184,40 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
         var isValid = Enum.TryParse<Language>(command, out var lang);
         if (!isValid)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "Invalid Language", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Invalid Language", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
         }
 
-        var result = await GroupController.UpdateGroupAsync(p => p.AllowedLanguage = lang, message.Chat.Id, ct).ConfigureAwait(false);
+        var result = await GroupController.UpdateGroupAsync(p => p.AllowedLanguage = lang, message.Chat.Id, ct);
         var response = result switch
         {
             null => "Cant Update Group Right Now",
             _ => $"Language Changed To {lang}"
         };
-        await MediaLimitService.ReLoadGroupsAsync(ct).ConfigureAwait(false);
+        await MediaLimitService.ReLoadGroupsAsync(ct);
 
-        await Client.SendTextMessageAsync(message.Chat.Id, response, replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+        await Client.SendTextMessageAsync(message.Chat.Id, response, replyToMessageId: message.MessageId, cancellationToken: ct);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
     }
     [Describer("!!enable lang", "Enable Language Limit For Group.", null)]
     internal async Task EnableLanguageLimitAsync(Message message, CancellationToken ct = default)
     {
         if (CurrentGroup is null)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
         }
-        var result = await GroupController.UpdateGroupAsync(p => p.LanguageLimit = true, message.Chat.Id, ct).ConfigureAwait(false);
+        var result = await GroupController.UpdateGroupAsync(p => p.LanguageLimit = true, message.Chat.Id, ct);
         var response = result switch
         {
             null => "Cant Update Group Right Now",
             _ => "Language Limit Enabled"
         };
-        await LanguageService.ReloadGroupsAsync(ct).ConfigureAwait(false);
-        await Client.SendTextMessageAsync(message.Chat.Id, response, replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+        await LanguageService.ReloadGroupsAsync(ct);
+        await Client.SendTextMessageAsync(message.Chat.Id, response, replyToMessageId: message.MessageId, cancellationToken: ct);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
 
     }
     [Describer("!!disable lang", "Disable Language Limit For Group.", null)]
@@ -1225,89 +1225,89 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
     {
         if (CurrentGroup is null)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
         }
-        var result = await GroupController.UpdateGroupAsync(p => p.LanguageLimit = false, message.Chat.Id, ct).ConfigureAwait(false);
+        var result = await GroupController.UpdateGroupAsync(p => p.LanguageLimit = false, message.Chat.Id, ct);
         var response = result switch
         {
             null => "Cant Update Group Right Now",
             _ => "Language Limit Disabled"
         };
-        await LanguageService.ReloadGroupsAsync(ct).ConfigureAwait(false);
-        await Client.SendTextMessageAsync(message.Chat.Id, response, replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+        await LanguageService.ReloadGroupsAsync(ct);
+        await Client.SendTextMessageAsync(message.Chat.Id, response, replyToMessageId: message.MessageId, cancellationToken: ct);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
     }
 
     internal async Task SetAdminAsync(Message message, CancellationToken ct)
     {
         if (CurrentGroup is null)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
         }
 
         var id = GetIdForAdminHandler(message);
         if (id is 0)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "Id Not Specified", cancellationToken: ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Id Not Specified", cancellationToken: ct);
             return;
         }
 
-        var result = await AdminController.CreateAdminIfNotExistsAsync(id, CurrentGroup.Id, ct).ConfigureAwait(false);
+        var result = await AdminController.CreateAdminIfNotExistsAsync(id, CurrentGroup.Id, ct);
         var response = result switch
         {
             0 => "Admin Already Exists",
             1 => "Admin Added Successfully",
             _ => "Cant Create Admins Right Now"
         };
-        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
-        await Client.SendTextMessageAsync(message.Chat.Id, response, replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
+        await Client.SendTextMessageAsync(message.Chat.Id, response, replyToMessageId: message.MessageId, cancellationToken: ct);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
     }
 
     internal async Task RemoveAdminAsync(Message message, CancellationToken ct)
     {
         if (CurrentGroup is null)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
         }
 
         var id = GetIdForAdminHandler(message);
         if (id is 0)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "Id Not Specified", cancellationToken: ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Id Not Specified", cancellationToken: ct);
             return;
         }
 
-        var result = await AdminController.RemoveAdminAsync(id, CurrentGroup.Id, ct).ConfigureAwait(false);
+        var result = await AdminController.RemoveAdminAsync(id, CurrentGroup.Id, ct);
         var response = result switch
         {
             0 => "Id Not Found.",
             1 => "Admin Removed Successfully.",
             _ => "Cant Remove Admins Right Now."
         };
-        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
-        await Client.SendTextMessageAsync(message.Chat.Id, response, replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
+        await Client.SendTextMessageAsync(message.Chat.Id, response, replyToMessageId: message.MessageId, cancellationToken: ct);
     }
 
     internal async Task AdminListAsync(Message message, CancellationToken ct)
     {
         if (CurrentGroup is null)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Group Is Not Activated", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
         }
 
-        var admins = await AdminController.GetAllAdminsAsync(message.Chat.Id, ct).ConfigureAwait(false);
+        var admins = await AdminController.GetAllAdminsAsync(CurrentGroup.Id, ct);
         if (admins is null)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "Cant Find Any Admin But You!", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Cant Find Any Admin But You!", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
 
         }
@@ -1319,8 +1319,8 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
             response += $"{counter}-{ad.UserId}\n";
             counter++;
         }
-        await Client.SendTextMessageAsync(message.Chat.Id, response, replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+        await Client.SendTextMessageAsync(message.Chat.Id, response is "" or " " ? "Nothing Found!" : response, replyToMessageId: message.MessageId, cancellationToken: ct);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
     }
 
     private static long GetIdForMuteUser(Message message)
@@ -1363,13 +1363,13 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
     {
         try
         {
-            await Client.RestrictChatMemberAsync(groupId, userId, muteUser ? Globals.MutePermissions : Globals.UnMutePermissions, cancellationToken: ct).ConfigureAwait(false);
+            await Client.RestrictChatMemberAsync(groupId, userId, muteUser ? Globals.MutePermissions : Globals.UnMutePermissions, cancellationToken: ct);
             var text = muteUser ? $"User {userId} Has been Muted!" : $"User {userId} Has been UnMuted!";
-            await Client.SendTextMessageAsync(groupId, text, cancellationToken: ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(groupId, text, cancellationToken: ct);
         }
         catch (Exception)
         {
-            await Client.SendTextMessageAsync(groupId, $"Cant Change User Permissions!\nThere Is Some Issues!", cancellationToken: ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(groupId, $"Cant Change User Permissions!\nThere Is Some Issues!", cancellationToken: ct);
         }
     }
 
@@ -1378,16 +1378,16 @@ public class AdminBotCommands : HandlerBase, IBotCommand, IDescriber
         var updatedGroup = await GroupController.UpdateGroupAsync(p =>
         {
             p.EnableMessageLimitPerUser = limitStatus;
-        }, message.Chat.Id, ct).ConfigureAwait(false);
+        }, message.Chat.Id, ct);
 
         if (updatedGroup is null)
         {
-            await Client.SendTextMessageAsync(message.Chat.Id, "Cant Updated Group Right Now!", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+            await Client.SendTextMessageAsync(message.Chat.Id, "Cant Updated Group Right Now!", replyToMessageId: message.MessageId, cancellationToken: ct);
+            await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
             return;
         }
-        await Client.SendTextMessageAsync(message.Chat.Id, $"Message Limit Has been Enabled", replyToMessageId: message.MessageId, cancellationToken: ct).ConfigureAwait(false);
-        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct).ConfigureAwait(false);
+        await Client.SendTextMessageAsync(message.Chat.Id, $"Message Limit Has been Enabled", replyToMessageId: message.MessageId, cancellationToken: ct);
+        await Client.DeleteMessageAsync(message.Chat.Id, message.MessageId, ct);
     }
 
 }

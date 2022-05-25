@@ -30,15 +30,15 @@ public class CallBackHandler : HandlerBase
         switch (dataArr[0])
         {
             case nameof(InlineButtons.Admin):
-                await AdminCallbacksAsync(callback, dataArr, ct).ConfigureAwait(false);
+                await AdminCallbacksAsync(callback, dataArr, ct);
                 break;
             case nameof(InlineButtons.Member):
-                await MemberCallbacksAsync(callback, dataArr, ct).ConfigureAwait(false);
+                await MemberCallbacksAsync(callback, dataArr, ct);
                 break;
             default:
                 break;
         }
-        await Task.CompletedTask.ConfigureAwait(false);
+        await Task.CompletedTask;
     }
 
     private async Task AdminCallbacksAsync(CallbackQuery callback, IReadOnlyList<string> data, CancellationToken ct)
@@ -47,13 +47,13 @@ public class CallBackHandler : HandlerBase
         if (callback.Message is null)
             return;
 
-        var group = await GroupController.GetGroupByIdWithAdminsAsync(callback.Message.Chat.Id, ct).ConfigureAwait(false);
+        var group = await GroupController.GetGroupByIdWithAdminsAsync(callback.Message.Chat.Id, ct);
         if (group is null)
             return;
 
         if (!(group.Admins.Any(p => p.UserId == callback.From.Id)) && !ManagerConfig.Admins.Contains(callback.From.Id))
         {
-            await Client.AnswerCallbackQueryAsync(callback.Id, "You Are Not Admin of Bot!", cancellationToken: ct).ConfigureAwait(false);
+            await Client.AnswerCallbackQueryAsync(callback.Id, "You Are Not Admin of Bot!", cancellationToken: ct);
             return;
         }
         switch (data[1])
@@ -63,43 +63,43 @@ public class CallBackHandler : HandlerBase
                     switch (data[2])
                     {
                         case nameof(InlineButtons.Admin.Warn):
-                            await Client.EditMessageTextAsync(callback.Message.Chat.Id, callback.Message.MessageId, ConstData.MessageOfWarnMenu, replyMarkup: InlineButtons.Admin.Warn.GetMenu(group), cancellationToken: ct).ConfigureAwait(false);
+                            await Client.EditMessageTextAsync(callback.Message.Chat.Id, callback.Message.MessageId, ConstData.MessageOfWarnMenu, replyMarkup: InlineButtons.Admin.Warn.GetMenu(group), cancellationToken: ct);
                             break;
 
                         case nameof(InlineButtons.Admin.Curse):
-                            await Client.EditMessageTextAsync(callback.Message.Chat.Id, callback.Message.MessageId, ConstData.MessageOfCurseMenu, replyMarkup: InlineButtons.Admin.Curse.GetMenu(group), cancellationToken: ct).ConfigureAwait(false);
+                            await Client.EditMessageTextAsync(callback.Message.Chat.Id, callback.Message.MessageId, ConstData.MessageOfCurseMenu, replyMarkup: InlineButtons.Admin.Curse.GetMenu(group), cancellationToken: ct);
                             break;
 
                         case nameof(InlineButtons.Admin.General):
-                            await Client.EditMessageTextAsync(callback.Message.Chat.Id, callback.Message.MessageId, ConstData.MessageOfGeneralMenu, replyMarkup: InlineButtons.Admin.General.GetMenu(group), cancellationToken: ct).ConfigureAwait(false);
+                            await Client.EditMessageTextAsync(callback.Message.Chat.Id, callback.Message.MessageId, ConstData.MessageOfGeneralMenu, replyMarkup: InlineButtons.Admin.General.GetMenu(group), cancellationToken: ct);
                             break;
 
                         case ConstData.Close:
                             await Client.EditMessageTextAsync(callback.Message.Chat.Id, callback.Message.MessageId, "<i>Panel Closed</i>", ParseMode.Html,
-                                cancellationToken: ct).ConfigureAwait(false);
+                                cancellationToken: ct);
                             break;
                     }
                     break;
                 }
             case nameof(InlineButtons.Admin.Warn):
-                await AdminWarnMenuAsync(callback, data, group, ct).ConfigureAwait(false);
+                await AdminWarnMenuAsync(callback, data, group, ct);
                 break;
             case nameof(InlineButtons.Admin.Curse):
-                await AdminCurseMenuAsync(callback, data, ct).ConfigureAwait(false);
+                await AdminCurseMenuAsync(callback, data, ct);
                 break;
             case nameof(InlineButtons.Admin.Curse.MuteTimeModify):
-                await ModifyMuteTimeAsync(callback, data, group, ct).ConfigureAwait(false);
+                await ModifyMuteTimeAsync(callback, data, group, ct);
                 break;
             case nameof(InlineButtons.Admin.ConfirmChat):
-                await GroupController.AddGroupAsync(callback.Message.Chat.Id, ct).ConfigureAwait(false);
-                await Client.EditMessageTextAsync(callback.Message.Chat.Id, callback.Message.MessageId, "<b>Bot is Now Active</b>", ParseMode.Html, cancellationToken: ct).ConfigureAwait(false);
+                await GroupController.AddGroupAsync(callback.Message.Chat.Id, ct);
+                await Client.EditMessageTextAsync(callback.Message.Chat.Id, callback.Message.MessageId, "<b>Bot is Now Active</b>", ParseMode.Html, cancellationToken: ct);
 
                 break;
             case nameof(InlineButtons.Admin.General):
-                await GeneralSettingsAsync(callback, data, group, ct).ConfigureAwait(false);
+                await GeneralSettingsAsync(callback, data, group, ct);
                 break;
             case nameof(InlineButtons.Admin.General.AntiLink):
-                await AntiLinkSettingsAsync(callback, data, group, ct).ConfigureAwait(false);
+                await AntiLinkSettingsAsync(callback, data, group, ct);
                 break;
 
         }
@@ -132,20 +132,20 @@ public class CallBackHandler : HandlerBase
                         if (data[2] is ConstData.FilterId)
                             p.FilterId = !p.FilterId;
 
-                    }, callback.Message.Chat.Id, ct).ConfigureAwait(false);
+                    }, callback.Message.Chat.Id, ct);
                     if (updatedGroup is null)
                         return;
 
                     var keyboard = InlineButtons.Admin.General.GetAntiLinkMenu(updatedGroup);
                     await Client.EditMessageReplyMarkupAsync(callback.Message.Chat.Id, callback.Message.MessageId,
-                        keyboard, ct).ConfigureAwait(false);
+                        keyboard, ct);
                 }
                 break;
 
             case ConstData.Back:
                 {
                     var keyboard = InlineButtons.Admin.General.GetMenu(group);
-                    await Client.EditMessageTextAsync(callback.Message.Chat.Id, callback.Message.MessageId, ConstData.MessageOfGeneralMenu, replyMarkup: keyboard, cancellationToken: ct).ConfigureAwait(false);
+                    await Client.EditMessageTextAsync(callback.Message.Chat.Id, callback.Message.MessageId, ConstData.MessageOfGeneralMenu, replyMarkup: keyboard, cancellationToken: ct);
                     break;
                 }
         }
@@ -156,7 +156,7 @@ public class CallBackHandler : HandlerBase
         switch (data[1])
         {
             case "Force":
-                await ForceJoinAsync(callBack, data, ct).ConfigureAwait(false);
+                await ForceJoinAsync(callBack, data, ct);
                 break;
         }
 
@@ -173,27 +173,27 @@ public class CallBackHandler : HandlerBase
             return;
         if (userId != callback.From.Id)
         {
-            await Client.AnswerCallbackQueryAsync(callback.Id, "This Button Is Not Meant For You!", true, cancellationToken: ct).ConfigureAwait(false);
+            await Client.AnswerCallbackQueryAsync(callback.Id, "This Button Is Not Meant For You!", true, cancellationToken: ct);
             return;
 
         }
-        var fullGroup = await GroupController.GetGroupByIdIncludeChannelAsync(callback.Message.Chat.Id, ct).ConfigureAwait(false);
+        var fullGroup = await GroupController.GetGroupByIdIncludeChannelAsync(callback.Message.Chat.Id, ct);
         if (fullGroup is null)
             return;
 
-        var notJoinedList = await ChatMemberHandler.CheckUserChatMemberAsync(callback.From.Id, fullGroup.ForceJoinChannel, Client, ct).ConfigureAwait(false);
+        var notJoinedList = await ChatMemberHandler.CheckUserChatMemberAsync(callback.From.Id, fullGroup.ForceJoinChannel, Client, ct);
         if (notJoinedList.Count == 0)
         {
             await Client.RestrictChatMemberAsync(callback.Message.Chat.Id, callback.From.Id, UnMuteChatPermissions,
-                cancellationToken: ct).ConfigureAwait(false);
-            await Client.AnswerCallbackQueryAsync(callback.Id, "You Can Chat Now!", true, cancellationToken: ct).ConfigureAwait(false);
-            await Client.DeleteMessageAsync(callback.Message.Chat.Id, callback.Message.MessageId, ct).ConfigureAwait(false);
+                cancellationToken: ct);
+            await Client.AnswerCallbackQueryAsync(callback.Id, "You Can Chat Now!", true, cancellationToken: ct);
+            await Client.DeleteMessageAsync(callback.Message.Chat.Id, callback.Message.MessageId, ct);
 
         }
         else
         {
             await Client.AnswerCallbackQueryAsync(callback.Id, "You Are Not Joined In Channels!", true,
-                cancellationToken: ct).ConfigureAwait(false);
+                cancellationToken: ct);
             return;
         }
     }
@@ -216,7 +216,7 @@ public class CallBackHandler : HandlerBase
 
             case ConstData.Back:
                 await Client.EditMessageTextAsync(callback.Message.Chat.Id, callback.Message.MessageId,
-                    ConstData.MessageOfCurseMenu, replyMarkup: InlineButtons.Admin.Curse.GetMenu(group), cancellationToken: ct).ConfigureAwait(false);
+                    ConstData.MessageOfCurseMenu, replyMarkup: InlineButtons.Admin.Curse.GetMenu(group), cancellationToken: ct);
                 break;
         }
     }
@@ -256,7 +256,7 @@ public class CallBackHandler : HandlerBase
                             gp.WarnOnCurse = !gp.WarnOnCurse;
                         }
 
-                    }, callback.Message.Chat.Id, ct).ConfigureAwait(false);
+                    }, callback.Message.Chat.Id, ct);
                     if (updatedGroup is null)
                         return;
 
@@ -271,18 +271,18 @@ public class CallBackHandler : HandlerBase
                     });
 
                     await Client.EditMessageReplyMarkupAsync(callback.Message.Chat.Id, callback.Message.MessageId,
-                        callback.Message.ReplyMarkup, ct).ConfigureAwait(false);
+                        callback.Message.ReplyMarkup, ct);
                     break;
                 }
 
             case nameof(InlineButtons.Admin.Curse.MuteTimeModify):
                 await Client.EditMessageTextAsync(callback.Message.Chat.Id, callback.Message.MessageId, ConstData.MessageOfModifyMuteTimeMenu,
-                    replyMarkup: InlineButtons.Admin.Curse.MuteTimeModify, cancellationToken: ct).ConfigureAwait(false);
+                    replyMarkup: InlineButtons.Admin.Curse.MuteTimeModify, cancellationToken: ct);
                 break;
 
             case ConstData.Back:
                 await Client.EditMessageTextAsync(callback.Message.Chat.Id, callback.Message.MessageId, ConstData.MessageOfMainMenu,
-                    replyMarkup: InlineButtons.Admin.SettingMenu, cancellationToken: ct).ConfigureAwait(false);
+                    replyMarkup: InlineButtons.Admin.SettingMenu, cancellationToken: ct);
                 break;
         }
     }
@@ -309,10 +309,10 @@ public class CallBackHandler : HandlerBase
                     if (data[2] is ConstData.Minus)
                         p.MaxWarns--;
 
-                }, group.GroupId, ct).ConfigureAwait(false);
+                }, group.GroupId, ct);
 
                 await Client.EditMessageReplyMarkupAsync(callback.Message!.Chat.Id, callback.Message.MessageId,
-                    updatedKeyboard, ct).ConfigureAwait(false);
+                    updatedKeyboard, ct);
 
                 break;
 
@@ -320,7 +320,7 @@ public class CallBackHandler : HandlerBase
                 updatedGroup = await GroupController.UpdateGroupAsync(p =>
                 {
                     p.BanOnMaxWarn = !p.BanOnMaxWarn;
-                }, group.GroupId, ct).ConfigureAwait(false);
+                }, group.GroupId, ct);
                 if (updatedGroup is null)
                     return;
                 group = updatedGroup;
@@ -331,14 +331,14 @@ public class CallBackHandler : HandlerBase
                  });
 
                 await Client.EditMessageReplyMarkupAsync(callback.Message!.Chat.Id, callback.Message.MessageId,
-                    callback.Message.ReplyMarkup, ct).ConfigureAwait(false);
+                    callback.Message.ReplyMarkup, ct);
                 break;
 
             case ConstData.Mute:
                 updatedGroup = await GroupController.UpdateGroupAsync(p =>
                 {
                     p.MuteOnMaxWarn = !p.MuteOnMaxWarn;
-                }, group.GroupId, ct).ConfigureAwait(false);
+                }, group.GroupId, ct);
                 if (updatedGroup is null)
                     return;
                 group = updatedGroup;
@@ -349,12 +349,12 @@ public class CallBackHandler : HandlerBase
                 });
 
                 await Client.EditMessageReplyMarkupAsync(callback.Message!.Chat.Id, callback.Message.MessageId,
-                    callback.Message.ReplyMarkup, ct).ConfigureAwait(false);
+                    callback.Message.ReplyMarkup, ct);
                 break;
 
             case ConstData.Back:
                 await Client.EditMessageTextAsync(callback.Message!.Chat.Id, callback.Message.MessageId,
-                    ConstData.MessageOfMainMenu, replyMarkup: InlineButtons.Admin.SettingMenu, cancellationToken: ct).ConfigureAwait(false);
+                    ConstData.MessageOfMainMenu, replyMarkup: InlineButtons.Admin.SettingMenu, cancellationToken: ct);
                 break;
 
         }
@@ -370,7 +370,7 @@ public class CallBackHandler : HandlerBase
         {
             case nameof(InlineButtons.Admin.General.AntiLink):
                 keyboard = InlineButtons.Admin.General.GetAntiLinkMenu(group);
-                await Client.EditMessageTextAsync(callback.Message.Chat.Id, callback.Message.MessageId, ConstData.MessageOfAntiLinkMenu, replyMarkup: keyboard, cancellationToken: ct).ConfigureAwait(false);
+                await Client.EditMessageTextAsync(callback.Message.Chat.Id, callback.Message.MessageId, ConstData.MessageOfAntiLinkMenu, replyMarkup: keyboard, cancellationToken: ct);
                 break;
 
             case ConstData.MessageLimitPerDay:
@@ -378,12 +378,12 @@ public class CallBackHandler : HandlerBase
                     updatedGroup = await GroupController.UpdateGroupAsync(p =>
                     {
                         p.EnableMessageLimitPerUser = !p.EnableMessageLimitPerUser;
-                    }, group.GroupId, ct).ConfigureAwait(false);
+                    }, group.GroupId, ct);
                     if (updatedGroup is null)
                         return;
 
                     keyboard = InlineButtons.Admin.General.GetMenu(updatedGroup);
-                    await Client.EditMessageReplyMarkupAsync(callback.Message.Chat.Id, callback.Message.MessageId, keyboard, ct).ConfigureAwait(false);
+                    await Client.EditMessageReplyMarkupAsync(callback.Message.Chat.Id, callback.Message.MessageId, keyboard, ct);
 
                     break;
                 }
@@ -431,11 +431,11 @@ public class CallBackHandler : HandlerBase
                                 }
                         }
 
-                    }, group.GroupId, ct).ConfigureAwait(false);
+                    }, group.GroupId, ct);
                     if (updatedGroup is null)
                         return;
                     keyboard = InlineButtons.Admin.General.GetMenu(updatedGroup);
-                    await Client.EditMessageReplyMarkupAsync(callback.Message.Chat.Id, callback.Message.MessageId, keyboard, ct).ConfigureAwait(false);
+                    await Client.EditMessageReplyMarkupAsync(callback.Message.Chat.Id, callback.Message.MessageId, keyboard, ct);
 
                     break;
                 }
@@ -443,7 +443,7 @@ public class CallBackHandler : HandlerBase
             case ConstData.Back:
                 {
                     await Client.EditMessageReplyMarkupAsync(callback.Message.Chat.Id, callback.Message.MessageId,
-                        InlineButtons.Admin.SettingMenu, ct).ConfigureAwait(false);
+                        InlineButtons.Admin.SettingMenu, ct);
                     break;
                 }
         }
